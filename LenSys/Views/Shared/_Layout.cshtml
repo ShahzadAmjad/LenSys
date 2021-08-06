@@ -1,0 +1,227 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    @*<environment include="Development">*@
+    <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    @*Font Awesome*@
+    <link href="~/css/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    @*NProgress*@
+    <link href="~/css/nprogress/nprogress.css" rel="stylesheet" />
+    @*bootstrap-daterangepicker*@
+    <link href="~/css/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet" />
+    @*Custom Theme Style*@
+    <link href="~/css/custom-css/build/css/custom.css" rel="stylesheet" />
+    @*</environment>*@
+
+
+    <title>@ViewBag.Title</title>
+
+</head>
+<body class=" nav-md">
+    <div class="container body">
+        <div class="main_container">
+            <div class="col-md-3 left_col">
+                <div class="left_col scroll-view">
+                    <div class="navbar nav_title" style="border: 0;">
+                        <a asp-controller="home" asp-action="Index" class="site_title"><i class="fa fa-paw"></i> <span>BIZL</span></a>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <!-- menu profile quick info -->
+                    <div class="profile clearfix">
+                        <div class="profile_pic">
+                            <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+                        </div>
+                        <div class="profile_info">
+                            <span>Welcome,</span>
+                            <h2>Dear Applicant</h2>
+                        </div>
+                    </div>
+
+                    <br />
+                    @*Side navgation bar*@
+                    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu ">
+                        <div class="menu_section">
+                            <h3>Loan Applications</h3>
+                            <ul class="nav side-menu">
+                                <li>
+                                    <a><i class="fa fa-home"></i> Individual <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a asp-controller="home" asp-action="IndividualTermLoan">Personal Details</a></li>
+                                        <li><a href="#">Address Details</a></li>
+                                        <li><a href="#">Employment Details</a></li>
+                                        <li><a href="#">Income & Expenditure</a></li>
+                                        <li><a href="#">Assets & Liabilities</a></li>
+                                        <li><a href="#">Property Details</a></li>
+                                        <li><a href="#">Credit History</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a><i class="fa fa-home"></i> Busniess <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="#">Busniess Details</a></li>
+                                        <li><a href="#">Key Principals</a></li>
+                                        <li><a href="#">Busniess Liability</a></li>
+                                        <li><a href="#">Servacibility</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- top navigation -->
+            <div class="top_nav">
+                <div class="nav_menu">
+                    <div class="nav toggle">
+                        <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                    </div>
+                    <nav class="nav navbar-nav">
+                        <ul class=" navbar-right">
+                            <li class="nav-item dropdown open" style="padding-left: 15px;">
+                                <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
+                                    <img src="images/img.jpg" alt="">Applicant
+                                </a>
+                                <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="javascript:;"> Profile</a>
+                                    <a class="dropdown-item" href="javascript:;">
+                                        <span class="badge bg-red pull-right">50%</span>
+                                        <span>Settings</span>
+                                    </a>
+                                    <a class="dropdown-item" href="javascript:;">Help</a>
+                                    <a class="dropdown-item" href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                                </div>
+                            </li>
+
+                            <li role="presentation" class="nav-item dropdown open">
+                                <a href="javascript:;" class="dropdown-toggle info-number" id="navbarDropdown1" data-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa fa-envelope-o"></i>
+                                    <span class="badge bg-green">6</span>
+                                </a>
+                                <ul class="dropdown-menu list-unstyled msg_list" role="menu" aria-labelledby="navbarDropdown1">
+                                    <li class="nav-item">
+                                        <a class="dropdown-item">
+                                            <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
+                                            <span>
+                                                <span>John Smith</span>
+                                                <span class="time">3 mins ago</span>
+                                            </span>
+                                            <span class="message">
+                                                Loan approval in progress...
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="dropdown-item">
+                                            <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
+                                            <span>
+                                                <span>John Smith</span>
+                                                <span class="time">3 mins ago</span>
+                                            </span>
+                                            <span class="message">
+                                                Loan approval in progress...
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="dropdown-item">
+                                            <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
+                                            <span>
+                                                <span>John Smith</span>
+                                                <span class="time">3 mins ago</span>
+                                            </span>
+                                            <span class="message">
+                                                Loan approval in progress...
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="dropdown-item">
+                                            <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
+                                            <span>
+                                                <span>John Smith</span>
+                                                <span class="time">3 mins ago</span>
+                                            </span>
+                                            <span class="message">
+                                                Loan approval in progress...
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <div class="text-center">
+                                            <a class="dropdown-item">
+                                                <strong>See All Alerts</strong>
+                                                <i class="fa fa-angle-right"></i>
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <!-- /top navigation -->
+
+            <div class="right_col" role="main">
+                @RenderBody()
+            </div>
+
+            @if (IsSectionDefined("Scripts"))
+            {
+                @RenderSection("Scripts", required: true)
+            }
+
+            <!-- footer content -->
+            <footer>
+                <div class="pull-right">
+                    BIZL Admin Template
+                </div>
+                <div class="clearfix"></div>
+            </footer>
+            <!-- /footer content -->
+
+        </div>
+    </div>
+
+
+    <script src="~/lib/jquery/jquery.js"></script>
+    @*<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>*@
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    @*<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>*@
+
+    <script src="~/lib/bootstrap/js/bootstrap.js"></script>
+
+
+
+
+    <script src="~/js/fastclick/lib/fastclick.js"></script>
+    <script src="~/css/nprogress/nprogress.js"></script>
+    <script src="~/js/Chart.js/dist/Chart.js"></script>
+    <script src="~/js/gauge.js/dist/gauge.js"></script>
+    <script src="~/js/bootstrap-progressbar/bootstrap-progressbar.js"></script>
+    <script src="~/js/iCheck/icheck.js"></script>
+    <script src="~/js/skycons/skycons.js"></script>
+    <script src="~/js/Flot/jquery.flot.js"></script>
+    <script src="~/js/Flot/jquery.flot.pie.js"></script>
+    <script src="~/js/Flot/jquery.flot.time.js"></script>
+    <script src="~/js/Flot/jquery.flot.stack.js"></script>
+    <script src="~/js/Flot/jquery.flot.resize.js"></script>
+    <script src="~/js/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+    <script src="~/js/flot-spline/js/jquery.flot.spline.min.js"></script>
+    <script src="~/js/flot.curvedlines/curvedLines.js"></script>
+    <script src="~/js/DateJS/build/date.js"></script>
+    <script src="~/js/jqvmap/dist/jquery.vmap.js"></script>
+    <script src="~/js/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+    <script src="~/js/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+    <script src="~/js/moment/min/moment.min.js"></script>
+    <script src="~/css/bootstrap-daterangepicker/daterangepicker.js"></script>
+
+    @*Custom javascript for theme*@
+    <script src="~/js/custom-js/custom.js"></script>
+</body>
+</html>
