@@ -1,0 +1,151 @@
+﻿@model AddressDetails
+
+@{
+    ViewBag.Title = "Individual Address Details";
+}
+
+<div class="" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Individual Loan Application</h3>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 ">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Address Details</h2>
+
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br />
+                        <form id="IndividualAddressDetailsForm" data-parsley-validate class="form-horizontal form-label-left" asp-controller="IndividualAddressDetails" asp-action="AddressDetails" method="post">
+
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="FirstLineAddress">
+                                    First Line Address<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input type="text" asp-for="FirstLineAddress" id="firstLineAddress" name="firstLineAddress" required="required" class="form-control ">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="SecondLineAddress" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Second Line Address <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input type="text" asp-for="SecondLineAddress" id="secondLineAddress" name="secondLineAddress" required="required" class="form-control">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="City" class="col-form-label col-md-3 col-sm-3 label-align">City</label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="City" id="city" name="city" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="PostCode" class="col-form-label col-md-3 col-sm-3 label-align"> Post Code</label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="PostCode" id="postCode" name="postCode" class="form-control" type="text">
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label asp-for="DateMovedIn" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Date Moved In <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="DateMovedIn" id="dateMovedIn" name="dateMovedIn" class="date-picker form-control" placeholder="dd-mm-yyyy" type="text" required="required" onfocus="this.type='date'" onmouseover="this.type='date'" onclick="this.type='date'" onblur="this.type='text'" onmouseout="timeFunctionLong(this)">
+                                    <script>
+                                        function timeFunctionLong(input) {
+                                            setTimeout(function () {
+                                                input.type = 'text';
+                                            }, 60000);
+                                        }</script>
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label asp-for="OutstandingMortgageBalance" class="col-form-label col-md-3 col-sm-3 label-align">Outstanding Mortgage Balance</label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="OutstandingMortgageBalance" id="outstandingMortgageBalance" name="outstandingMortgageBalance" class="form-control" type="text">
+                                </div>
+                            </div>
+
+
+
+                            <div class="item form-group">
+                                <label asp-for="LessThanThreeYears" class="col-form-label col-md-3 col-sm-3 label-align">If Less than 3 Years, Previous Address</label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <select asp-for="LessThanThreeYears" id="lessThanThreeYears" name="lessThanThreeYears" class="form-control">
+                                        <option>Yes</option>
+                                        <option>No</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label asp-for="PreviousFirstLineAddress" class="col-form-label col-md-3 col-sm-3 label-align">First Line Address
+                                    <span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="PreviousFirstLineAddress" id="previousFirstLineAddress" name="previousFirstLineAddress" class="form-control" type="text">
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label asp-for="PreviousSecondLineAddress" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Second Line Address <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input type="text" asp-for="PreviousSecondLineAddress" id="previousSecondLineAddress" name="previousSecondLineAddress" required="required" class="form-control">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="PreviousCity" class="col-form-label col-md-3 col-sm-3 label-align">City</label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="PreviousCity" id="previousCity" name="previousCity" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="PreviousPostCode" class="col-form-label col-md-3 col-sm-3 label-align"> Post Code</label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="PreviousPostCode" id="previousPostCode" name="previousPostCode" class="form-control" type="text">
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label asp-for="PreviousDateMovedIn" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Date Moved In <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="PreviousDateMovedIn" id="previousDateMovedIn" name="previousDateMovedIn" class="date-picker form-control" placeholder="dd-mm-yyyy" type="text" required="required" onfocus="this.type='date'" onmouseover="this.type='date'" onclick="this.type='date'" onblur="this.type='text'" onmouseout="timeFunctionLong(this)">
+                                    <script>
+                                        function timeFunctionLong(input) {
+                                            setTimeout(function () {
+                                                input.type = 'text';
+                                            }, 60000);
+                                        }</script>
+                                </div>
+                            </div>
+
+
+
+                            <div class="ln_solid"></div>
+                            <div class="item form-group">
+                                <div class="col-md-6 col-sm-6 offset-md-3">
+                                    <button class="btn btn-primary" type="button">Cancel</button>
+                                    <button class="btn btn-primary" type="reset">Save</button>
+                                    <button type="submit" class="btn btn-success">Save & Countinue</button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
