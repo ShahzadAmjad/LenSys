@@ -101,7 +101,16 @@
                                     <div class="col-md-6 col-sm-6 ">
                                         <select asp-for="Gender" id="gender" name="gender" class="form-control">
                                             <option>Yes</option>
-                                            <option>No</option>                                            
+                                            <option>No</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="item form-group">
+                                    <label asp-for="MaritalStatus" class="col-form-label col-md-3 col-sm-3 label-align">Marital Status</label>
+                                    <div class="col-md-6 col-sm-6 ">
+                                        <select asp-for="MaritalStatus" id="maritalStatus" name="maritalStatus" class="form-control">
+                                            <option>Married</option>
+                                            <option>Unmarried</option>
                                         </select>
                                     </div>
                                 </div>
@@ -111,8 +120,8 @@
                                 <div class="item form-group">
                                     <div class="col-md-6 col-sm-6 offset-md-3">
                                         <button class="btn btn-primary" type="button">Cancel</button>
-                                        <button class="btn btn-primary" type="reset">Reset</button>
-                                        <button type="submit" class="btn btn-success">Submit</button>
+                                        <button class="btn btn-primary" type="reset">Save</button>
+                                        <button type="submit" class="btn btn-success">Save & Countinue</button>
                                     </div>
                                 </div>
 
