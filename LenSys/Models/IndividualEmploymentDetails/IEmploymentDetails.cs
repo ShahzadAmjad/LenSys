@@ -7,5 +7,6 @@ namespace LenSys.Models.IndividualEmploymentDetails
 {
     interface IEmploymentDetails
     {
+        EmploymentDetails Add(EmploymentDetails addressDetails);
     }
 }
