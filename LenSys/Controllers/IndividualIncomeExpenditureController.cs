@@ -1,4 +1,4 @@
-﻿using LenSys.Models;
+﻿using LenSys.Models.IndividualIncomeExpenditure;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -7,33 +7,31 @@ using System.Threading.Tasks;
 
 namespace LenSys.Controllers
 {
-    public class HomeController: Controller
+    public class IndividualIncomeExpenditureController:Controller
     {
-
         public ViewResult Index()
         {
             //String name = "Default Index Page";
             //return name;
-            return View("~/Views/IndividualPersonalDetails/PersonalDetails.cshtml");
+            return View("IncomeExpenditure");
         }
         [HttpGet]
-        public ViewResult IndividualTermLoan()
+        public ViewResult IncomeExpenditure()
         {
             return View();
         }
         [HttpPost]
-        public IActionResult IndividualTermLoan(Individual individual)
+        public IActionResult IncomeExpenditure(IncomeExpenditure incomeExpenditure)
         {
             if (ModelState.IsValid)
             {
                 //Employee newEmployee = _emplyeeRepositry.Add(employee);
                 ////return View();
                 //return RedirectToAction("details", new { id = newEmployee.Id });
-                return View("individualTermLoan");
+                return View("IncomeExpenditure");
             }
 
             return View();
         }
-
     }
 }

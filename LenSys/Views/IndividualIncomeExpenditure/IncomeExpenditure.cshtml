@@ -1,7 +1,7 @@
-﻿@model EmploymentDetails
+﻿@model IncomeExpenditure
 
 @{
-    ViewBag.Title = "Individual Employment Details";
+    ViewBag.Title = "Monthly Income Expenditure Details";
 }
 
 <div class="" role="main">
@@ -16,13 +16,13 @@
             <div class="col-md-12 col-sm-12 ">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Employment Details</h2>
+                        <h2>Monthly Income & Expenditure Details</h2>
 
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
                         <br />
-                        <form id="IndividualEmploymentDetailsForm" data-parsley-validate class="form-horizontal form-label-left" asp-controller="IndividualEmploymentDetails" asp-action="EmploymentDetails" method="post">
+                        <form id="IndividualIcomeExpenditureForm" data-parsley-validate class="form-horizontal form-label-left" asp-controller="IndividualIncomeExpenditure" asp-action="IncomeExpenditure" method="post">
 
                             <div class="item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="EmploymentStatus">
@@ -59,7 +59,8 @@
 
                             <div class="item form-group">
                                 <label asp-for="JobTitle" class="col-form-label col-md-3 col-sm-3 label-align">
-                                Job Title</label>
+                                    Job Title
+                                </label>
                                 <div class="col-md-6 col-sm-6 ">
                                     <input asp-for="JobTitle" id="jobTitle" name="jobTitle" class="form-control" type="text">
                                 </div>
@@ -86,7 +87,8 @@
 
                             <div class="item form-group">
                                 <label asp-for="EmployersName" class="col-form-label col-md-3 col-sm-3 label-align">
-                                Employer's Name </label>
+                                    Employer's Name
+                                </label>
                                 <div class="col-md-6 col-sm-6 ">
                                     <select asp-for="EmployersName" id="employersName" name="employersName" class="form-control">
                                         <option>Yes</option>
@@ -121,7 +123,7 @@
                                     <input asp-for="LatestEarnedIncomeYearThree" id="latestEarnedIncomeYearThree" name="latestEarnedIncomeYearThree" class="form-control" type="text">
                                 </div>
                             </div>
-                           
+
 
 
 
