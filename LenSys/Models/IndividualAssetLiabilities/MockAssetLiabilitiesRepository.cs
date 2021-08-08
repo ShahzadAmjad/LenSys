@@ -5,7 +5,16 @@ using System.Threading.Tasks;
 
 namespace LenSys.Models.IndividualAssetLiabilities
 {
-    public class MockAssetLiabilitiesRepository
+    public class MockAssetLiabilitiesRepository : IAssetLiabilitiesRepository
     {
+        private List<AssetLiabilities> _assetLiabilities;
+        public MockAssetLiabilitiesRepository()
+        {
+                
+        }
+        public AssetLiabilities Add(AssetLiabilities assetLiabilities)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

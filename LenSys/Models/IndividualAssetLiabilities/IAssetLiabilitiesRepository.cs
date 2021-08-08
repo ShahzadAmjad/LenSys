@@ -7,5 +7,6 @@ namespace LenSys.Models.IndividualAssetLiabilities
 {
     interface IAssetLiabilitiesRepository
     {
+        AssetLiabilities Add(AssetLiabilities assetLiabilities);
     }
 }

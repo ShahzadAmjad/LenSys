@@ -14,7 +14,7 @@ namespace LenSys.Models.IndividualAssetLiabilities
         public int OtherInvestments { get; set; }
         public int TotalAssets { get; set; }//C
         public int Overdraft { get; set; }
-        public int ReidentialMortgage { get; set; }
+        public int ResidentialMortgage { get; set; }
         public int CarLoanHP { get; set; }
         public int PersonalLoan1 { get; set; }
         public int PersonalLoan2 { get; set; }
