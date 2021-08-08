@@ -25,59 +25,55 @@
                         <form id="IndividualIcomeExpenditureForm" data-parsley-validate class="form-horizontal form-label-left" asp-controller="IndividualIncomeExpenditure" asp-action="IncomeExpenditure" method="post">
 
                             <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="EmploymentStatus">
-                                    Employment Status<span class="required">*</span>
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="SalaryAfterTax">
+                                    Salary/drawing after tax<span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input type="text" asp-for="EmploymentStatus" id="employmentStatus" name="employmentStatus" required="required" class="form-control ">
+                                    <input type="text" asp-for="SalaryAfterTax" id="salaryAfterTax" name="salaryAfterTax" required="required" class="form-control ">
                                 </div>
                             </div>
                             <div class="item form-group">
-                                <label asp-for="EmploymentType" class="col-form-label col-md-3 col-sm-3 label-align">
-                                    Employment Type <span class="required">*</span>
+                                <label asp-for="DividendsAfterTax" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Dividends after tax <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input type="text" asp-for="EmploymentType" id="employmentType" name="employmentType" required="required" class="form-control">
+                                    <input type="text" asp-for="DividendsAfterTax" id="dividendsAfterTax" name="dividendsAfterTax" required="required" class="form-control">
                                 </div>
                             </div>
                             <div class="item form-group">
-                                <label asp-for="GrossSalary" class="col-form-label col-md-3 col-sm-3 label-align">
-                                    Gross Salary/Drawing<span class="required">*</span>
+                                <label asp-for="PartnerEaningAfterTax" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Your Partner earning's after tax<span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input asp-for="GrossSalary" id="grossSalary" name="grossSalary" class="form-control" type="text">
+                                    <input asp-for="PartnerEaningAfterTax" id="partnerEaningAfterTax" name="partnerEaningAfterTax" class="form-control" type="text">
                                 </div>
                             </div>
                             <div class="item form-group">
-                                <label asp-for="NationalInsuranceNumber" class="col-form-label col-md-3 col-sm-3 label-align">
-                                    National Insurance Number <span class="required">*</span>
+                                <label asp-for="OtherIncomeInvestments" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Other Investments <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input asp-for="NationalInsuranceNumber" id="nationalInsuranceNumber" name="nationalInsuranceNumber" class="form-control" type="text">
+                                    <input asp-for="OtherIncomeInvestments" id="otherIncomeInvestments" name="otherIncomeInvestments" class="form-control" type="text">
+                                </div>
+                            </div>
+
+                            <h3 style="color:black;">Monthly Expentitures</h3>
+
+                            <div class="item form-group">
+                                <label asp-for="MortgageRent" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Mortgage/Rent
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="MortgageRent" id="mortgageRent" name="mortgageRent" class="form-control" type="text">
                                 </div>
                             </div>
 
                             <div class="item form-group">
-                                <label asp-for="JobTitle" class="col-form-label col-md-3 col-sm-3 label-align">
-                                    Job Title
+                                <label asp-for="LifeAssurancePension" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Life Assurance/Pension <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input asp-for="JobTitle" id="jobTitle" name="jobTitle" class="form-control" type="text">
-                                </div>
-                            </div>
-
-                            <div class="item form-group">
-                                <label asp-for="StartDate" class="col-form-label col-md-3 col-sm-3 label-align">
-                                    Start Date <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 ">
-                                    <input asp-for="StartDate" id="startDate" name="startDate" class="date-picker form-control" placeholder="dd-mm-yyyy" type="text" required="required" onfocus="this.type='date'" onmouseover="this.type='date'" onclick="this.type='date'" onblur="this.type='text'" onmouseout="timeFunctionLong(this)">
-                                    <script>
-                                        function timeFunctionLong(input) {
-                                            setTimeout(function () {
-                                                input.type = 'text';
-                                            }, 60000);
-                                        }</script>
+                                    <input asp-for="LifeAssurancePension" id="lifeAssurancePension" name="lifeAssurancePension" class="form-control" type="text">
                                 </div>
                             </div>
 
@@ -86,11 +82,11 @@
 
 
                             <div class="item form-group">
-                                <label asp-for="EmployersName" class="col-form-label col-md-3 col-sm-3 label-align">
-                                    Employer's Name
+                                <label asp-for="RatesCouncilTax" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Rates/Council Tax
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <select asp-for="EmployersName" id="employersName" name="employersName" class="form-control">
+                                    <select asp-for="RatesCouncilTax" id="ratesCouncilTax" name="ratesCouncilTax" class="form-control">
                                         <option>Yes</option>
                                         <option>No</option>
                                     </select>
@@ -98,32 +94,95 @@
                             </div>
 
                             <div class="item form-group">
-                                <label asp-for="LatestEarnedIncomeYearOne" class="col-form-label col-md-3 col-sm-3 label-align">
-                                    Latest Earned Income (most recent Year 1)
+                                <label asp-for="WaterGasElectricityTelephoneBill" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Water/Gas/Electricity/Telephone
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input asp-for="LatestEarnedIncomeYearOne" id="latestEarnedIncomeYearOne" name="latestEarnedIncomeYearOne" class="form-control" type="text">
+                                    <input asp-for="WaterGasElectricityTelephoneBill" id="waterGasElectricityTelephoneBill" name="waterGasElectricityTelephoneBill" class="form-control" type="text">
                                 </div>
                             </div>
 
                             <div class="item form-group">
-                                <label asp-for="LatestEarnedIncomeYearTwo" class="col-form-label col-md-3 col-sm-3 label-align">
-                                    Latest Earned Income (year 2) <span class="required">*</span>
+                                <label asp-for="HomeBuildingContentsInsurance" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Home Building/Contents Insurance <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input type="text" asp-for="LatestEarnedIncomeYearTwo" id="latestEarnedIncomeYearTwo" name="latestEarnedIncomeYearTwo" required="required" class="form-control">
+                                    <input type="text" asp-for="HomeBuildingContentsInsurance" id="homeBuildingContentsInsurance" name="homeBuildingContentsInsurance" required="required" class="form-control">
                                 </div>
                             </div>
                             <div class="item form-group">
-                                <label asp-for="LatestEarnedIncomeYearThree" class="col-form-label col-md-3 col-sm-3 label-align">
-                                    Latest Earned Income (year 3) <span class="required">*</span>
+                                <label asp-for="TravelToWork" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Travel to work<span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input asp-for="LatestEarnedIncomeYearThree" id="latestEarnedIncomeYearThree" name="latestEarnedIncomeYearThree" class="form-control" type="text">
+                                    <input asp-for="TravelToWork" id="travelToWork" name="travelToWork" class="form-control" type="text">
                                 </div>
                             </div>
-
+                            <div class="item form-group">
+                                <label asp-for="PetrolCarMaintenance" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Petrol/Car Maintenance<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="PetrolCarMaintenance" id="petrolCarMaintenance" name="petrolCarMaintenance" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="CarInsuranceRoadTax" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Car Insurance/Road Tax<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="CarInsuranceRoadTax" id="carInsuranceRoadTax" name="carInsuranceRoadTax" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="FoodAndClothing" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Food And Clothing<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="FoodAndClothing" id="foodAndClothing" name="foodAndClothing" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="LoanHPCreditCardPayments" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Loan/HP/Credit Card Payments<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="LoanHPCreditCardPayments" id="loanHPCreditCardPayments" name="loanHPCreditCardPayments" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="EntertainmentSubscriptions" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Entertainment/Subscriptions<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="EntertainmentSubscriptions" id="entertainmentSubscriptions" name="entertainmentSubscriptions" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="OtherCostChristmisHolidays" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Other Cost e.g Christmis/Holidays<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="OtherCostChristmisHolidays" id="otherCostChristmisHolidays" name="otherCostChristmisHolidays" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="TotalExpenditure" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Total Expenditure(B)<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="TotalExpenditure" id="totalExpenditure" name="totalExpenditure" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="MonthlyDisposableIncome" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Monthly Disposable Income(A-B)<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="MonthlyDisposableIncome" id="monthlyDisposableIncome" name="monthlyDisposableIncome" class="form-control" type="text">
+                                </div>
+                            </div>
 
 
 

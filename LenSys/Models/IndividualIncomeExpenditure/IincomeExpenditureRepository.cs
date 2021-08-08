@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 
 namespace LenSys.Models.IndividualIncomeExpenditure
 {
-    public interface IincomeExpenditureRepository
+    interface IincomeExpenditureRepository
     {
+        IncomeExpenditure Add(IncomeExpenditure incomeExpenditure);
     }
 }

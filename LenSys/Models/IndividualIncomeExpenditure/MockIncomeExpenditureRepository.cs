@@ -5,7 +5,16 @@ using System.Threading.Tasks;
 
 namespace LenSys.Models.IndividualIncomeExpenditure
 {
-    public class MockIncomeExpenditureRepository:IincomeExpenditureRepository
+    public class MockIncomeExpenditureRepository : IincomeExpenditureRepository
     {
+        private List<IncomeExpenditure> _incomeExpenditures;
+        public MockIncomeExpenditureRepository()
+        {
+
+        }
+        public IncomeExpenditure Add(IncomeExpenditure incomeExpenditure)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LenSys.Controllers
 {
-    public class IndividualIncomeExpenditureController:Controller
+    public class IndividualIncomeExpenditureController : Controller
     {
         public ViewResult Index()
         {
