@@ -29,7 +29,20 @@
                                     How would you describe your personal credit rating?
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input type="text" asp-for="PersonalCreditRating" id="personalCreditRating" name="personalCreditRating" required="required" class="form-control ">
+                                    <select asp-for="PersonalCreditRating" id="personalCreditRating" name="personalCreditRating" class="form-control">
+                                        <option>
+                                            Excellent
+                                        </option>
+                                        <option>
+                                            Good
+                                        </option>
+                                        <option>
+                                            Fair
+                                        </option>
+                                        <option>
+                                            Poor
+                                        </option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="item form-group">

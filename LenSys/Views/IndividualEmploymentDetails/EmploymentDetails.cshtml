@@ -29,7 +29,14 @@
                                     Employment Status<span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input type="text" asp-for="EmploymentStatus" id="employmentStatus" name="employmentStatus" required="required" class="form-control ">
+                                    <select asp-for="EmploymentStatus" id="EmploymentStatus" name="EmploymentStatus" class="form-control">
+                                        <option>
+                                            Employed
+                                        </option>
+                                        <option>
+                                            Self-employed
+                                        </option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -37,7 +44,14 @@
                                     Employment Type <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input type="text" asp-for="EmploymentType" id="employmentType" name="employmentType" required="required" class="form-control">
+                                    <select asp-for="EmploymentType" id="employmentType" name="employmentType" class="form-control">
+                                        <option>
+                                            Full time
+                                        </option>
+                                        <option>
+                                            Part time
+                                        </option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -88,10 +102,7 @@
                                 <label asp-for="EmployersName" class="col-form-label col-md-3 col-sm-3 label-align">
                                 Employer's Name </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <select asp-for="EmployersName" id="employersName" name="employersName" class="form-control">
-                                        <option>Yes</option>
-                                        <option>No</option>
-                                    </select>
+                                    <input asp-for="EmployersName" id="employersName" name="employersName" class="form-control" type="text">
                                 </div>
                             </div>
 

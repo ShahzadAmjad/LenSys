@@ -54,9 +54,26 @@
                                 </div>
                             </div>
                             <div class="item form-group">
-                                <label asp-for="Position" class="col-form-label col-md-3 col-sm-3 label-align">Position</label>
+                                <label asp-for="Position" class="col-form-label col-md-3 col-sm-3 label-align">Position (*MultiSelect)</label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input asp-for="Position" id="position" name="position" class="form-control" type="text">
+                                    <select asp-for="Position" id="position" name="position" class=" form-control" multiple>
+                                        <option>
+                                            Director & Shareholder
+                                        </option>
+                                        <option>
+                                            Director
+                                        </option>
+                                        <option>
+                                            Shareholder
+                                        </option>
+                                        <option>
+                                            Partner
+                                        </option>
+                                        <option>
+                                            Guarantor
+                                        </option>
+                                        
+                                    </select>
                                 </div>
                             </div>
 

@@ -69,6 +69,48 @@
                             </div>
 
                             <div class="item form-group">
+                                <label asp-for="ResidentialStatus" class="col-form-label col-md-3 col-sm-3 label-align"> Residential Status</label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <select asp-for="ResidentialStatus" id="residentialStatus" name="residentialStatus" class="form-control">
+                                        <option>
+                                            Owner with mortgage
+                                        </option>
+                                        <option>
+                                            Owner without mortgage
+                                        </option>
+                                        <option>
+                                            Renting – private landlord
+                                        </option>
+                                        <option>
+                                            Renting – Local authority/Social landlord 89b
+                                        </option>
+                                        <option>
+                                            Renting – Letting agent
+                                        </option>
+                                        <option>
+                                            Living with parents
+                                        </option>
+                                        <option>
+                                            Living with friends/relatives
+                                        </option>
+                                        <option>
+                                            Employer accommodation
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label asp-for="MarketValue" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Market Value
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="MarketValue" id="marketValue" name="marketValue" class="form-control" type="text">
+                                </div>
+                            </div>
+
+
+                            <div class="item form-group">
                                 <label asp-for="OutstandingMortgageBalance" class="col-form-label col-md-3 col-sm-3 label-align">Outstanding Mortgage Balance</label>
                                 <div class="col-md-6 col-sm-6 ">
                                     <input asp-for="OutstandingMortgageBalance" id="outstandingMortgageBalance" name="outstandingMortgageBalance" class="form-control" type="text">
@@ -88,8 +130,10 @@
                             </div>
 
                             <div class="item form-group">
-                                <label asp-for="PreviousFirstLineAddress" class="col-form-label col-md-3 col-sm-3 label-align">First Line Address
-                                    <span class="required">*</span></label>
+                                <label asp-for="PreviousFirstLineAddress" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    First Line Address
+                                    <span class="required">*</span>
+                                </label>
                                 <div class="col-md-6 col-sm-6 ">
                                     <input asp-for="PreviousFirstLineAddress" id="previousFirstLineAddress" name="previousFirstLineAddress" class="form-control" type="text">
                                 </div>

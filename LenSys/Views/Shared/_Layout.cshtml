@@ -53,19 +53,19 @@
                                         <li><a asp-controller="IndividualPersonalDetails" asp-action="PersonalDetails">Personal Details</a></li>
                                         <li><a asp-controller="IndividualAddressDetails" asp-action="AddressDetails">Address Details</a></li>
                                         <li><a asp-controller="IndividualEmploymentDetails" asp-action="EmploymentDetails">Employment Details</a></li>
-                                        <li><a href="#">Income & Expenditure</a></li>
-                                        <li><a href="#">Assets & Liabilities</a></li>
-                                        <li><a href="#">Property Details</a></li>
-                                        <li><a href="#">Credit History</a></li>
+                                        <li><a asp-controller="IndividualIncomeExpenditure" asp-action="IncomeExpenditure">Income & Expenditure</a></li>
+                                        <li><a asp-controller="IndividualAssetLiabilities" asp-action="AssetLiabilities">Assets & Liabilities</a></li>
+                                        <li><a asp-controller="IndividualPropertySchedule" asp-action="PropertySchedule">Property Details</a></li>
+                                        <li><a asp-controller="IndividualCreditHistory" asp-action="CreditHistory">Credit History</a></li>
                                     </ul>
                                 </li>
                                 <li>
                                     <a><i class="fa fa-home"></i> Busniess <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
-                                        <li><a href="#">Busniess Details</a></li>
-                                        <li><a href="#">Key Principals</a></li>
-                                        <li><a href="#">Busniess Liability</a></li>
-                                        <li><a href="#">Servacibility</a></li>
+                                        <li><a asp-controller="BusniessDetails" asp-action="BusniessDetails">Busniess Details</a></li>
+                                        <li><a asp-controller="BusniessKeyPrincipals" asp-action="KeyPrincipals">Key Principals</a></li>
+                                        <li><a asp-controller="BusniessLiabilities" asp-action="BusniessLiabilities">Busniess Liability</a></li>
+                                        <li><a asp-controller="BusniessServiceability" asp-action="Serviceability">Servacibility</a></li>
                                     </ul>
                                 </li>
                             </ul>
