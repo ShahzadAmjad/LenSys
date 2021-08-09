@@ -1,5 +1,150 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model BusniessLiabilities
+
 @{
+    ViewBag.Title = "Busniess Liabilities";
 }
+
+<div class="" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Busniess Loan Application</h3>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 ">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Busniess Liabilities</h2>
+
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br />
+                        <form id="BusniessLiabilitiesForm" data-parsley-validate class="form-horizontal form-label-left" asp-controller="IndividualPropertySchedule" asp-action="PropertySchedule" method="post">
+
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="Lender">
+                                    Lender<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input type="text" asp-for="Lender" id="lender" name="lender" required="required" class="form-control ">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="OrigionalLoanAmount" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Origional Loan Amount <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input type="text" asp-for="OrigionalLoanAmount" id="origionalLoanAmount" name="origionalLoanAmount" required="required" class="form-control">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="OutstandingBalance" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Outstanding Balance<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="OutstandingBalance" id="outstandingBalance" name="outstandingBalance" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="MonthlyPayment" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Monthly Payment<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="MonthlyPayment" id="monthlyPayment" name="monthlyPayment" class="form-control" type="text">
+                                </div>
+                            </div>
+
+
+
+                            <div class="item form-group">
+                                <label asp-for="InitialTerm" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Initial Term
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="InitialTerm" id="initialTerm" name="initialTerm" class="form-control" type="text">
+                                </div>
+                            </div>
+
+
+
+                            <div class="item form-group">
+                                <label asp-for="RemainingTerm" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Remaining Term
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="RemainingTerm" id="remainingTerm" name="remainingTerm" class="form-control" type="text">
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label asp-for="Rate" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Rate
+                                    <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="Rate" id="rate" name="rate" class="form-control" type="text">
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label asp-for="FixedOrVariable" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Fixed Or Variable <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <select asp-for="FixedOrVariable" id="fixedOrVariable" name="fixedOrVariable" class="form-control">
+                                        <option>Variable</option>
+                                        <option>Fixed</option>
+                                        <option>Any</option>
+                                    </select>
+                                </div>
+                            </div>
+                                <div class="item form-group">
+                                    <label asp-for="FixedTerm" class="col-form-label col-md-3 col-sm-3 label-align">
+                                        Fixed Term
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 ">
+                                        <input asp-for="FixedTerm" id="fixedTerm" name="fixedTerm" class="form-control" type="text">
+                                    </div>
+                                </div>
+
+
+                                <div class="item form-group">
+                                    <label asp-for="CommitmentTerm" class="col-form-label col-md-3 col-sm-3 label-align">
+                                        Commitment Term <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 ">
+                                        <input asp-for="CommitmentTerm" id="commitmentTerm" name="commitmentTerm" class="form-control" type="text">
+                                    </div>
+                                </div>
+
+                                <div class="item form-group">
+                                    <label asp-for="EarlyRepaymentCharge" class="col-form-label col-md-3 col-sm-3 label-align">
+                                        Early Repayment Charge <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 ">
+                                        <input asp-for="EarlyRepaymentCharge" id="earlyRepaymentCharge" name="earlyRepaymentCharge" class="form-control" type="text">
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="ln_solid"></div>
+                                <div class="item form-group">
+                                    <div class="col-md-6 col-sm-6 offset-md-3">
+                                        <button class="btn btn-primary" type="button">Cancel</button>
+                                        <button class="btn btn-primary" type="reset">Save</button>
+                                        <button type="submit" class="btn btn-success">Save & Countinue</button>
+                                    </div>
+                                </div>
+
+</form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

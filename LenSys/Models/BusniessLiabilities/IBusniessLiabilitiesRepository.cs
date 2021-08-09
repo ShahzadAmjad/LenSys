@@ -7,5 +7,6 @@ namespace LenSys.Models.BusniessLiabilities
 {
     interface IBusniessLiabilitiesRepository
     {
+        BusniessLiabilities Add(BusniessLiabilities busniessLiabilities);
     }
 }

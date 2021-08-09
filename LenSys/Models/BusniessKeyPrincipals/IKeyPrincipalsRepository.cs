@@ -7,5 +7,6 @@ namespace LenSys.Models.BusniessKeyPrincipals
 {
     interface IKeyPrincipalsRepository
     {
+        KeyPrincipals Add(KeyPrincipals keyPrincipals);
     }
 }

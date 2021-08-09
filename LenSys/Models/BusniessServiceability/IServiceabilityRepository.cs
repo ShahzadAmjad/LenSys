@@ -7,5 +7,6 @@ namespace LenSys.Models.BusniessServiceability
 {
     interface IServiceabilityRepository
     {
+        Serviceability Add(Serviceability serviceability);
     }
 }

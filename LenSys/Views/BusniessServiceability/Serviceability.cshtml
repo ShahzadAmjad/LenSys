@@ -1,5 +1,79 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model Serviceability
+
 @{
+    ViewBag.Title = "Busniess Serviceability";
 }
+
+
+<div class="" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Busniess Loan Application</h3>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 ">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Serviceability</h2>
+
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br />
+                        <form id="BusniessServiceabilityForm" data-parsley-validate class="form-horizontal form-label-left" asp-controller="IndividualPersonalDetails" asp-action="PersonalDetails" method="post">
+
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="Year">
+                                    Year (Most recent)<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input type="text" asp-for="Year" id="year" name="year" required="required" class="form-control ">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="TurnOver" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Turnover <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input type="text" asp-for="TurnOver" id="turnOver" name="turnOver" required="required" class="form-control">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="NetProfit" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Net Profit
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="NetProfit" id="netProfit" name="netProfit" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="EBITDA" class="col-form-label col-md-3 col-sm-3 label-align"> EBITDA</label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="EBITDA" id="eBITDA" name="eBITDA" class="form-control" type="text">
+                                </div>
+                            </div>
+                           
+
+
+
+
+
+                            <div class="ln_solid"></div>
+                            <div class="item form-group">
+                                <div class="col-md-6 col-sm-6 offset-md-3">
+                                    <button class="btn btn-primary" type="button">Cancel</button>
+                                    <button class="btn btn-primary" type="reset">Save</button>
+                                    <button type="submit" class="btn btn-success">Save & Countinue</button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
