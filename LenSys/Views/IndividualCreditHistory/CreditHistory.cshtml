@@ -1,0 +1,111 @@
+﻿@model CreditHistory
+
+@{
+    ViewBag.Title = "Individual Credit History";
+}
+
+<div class="" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Individual Loan Application</h3>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 ">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Credit History</h2>
+
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br />
+                        <form id="IndividualCreditHistoryForm" data-parsley-validate class="form-horizontal form-label-left" asp-controller="IndividualAddressDetails" asp-action="AddressDetails" method="post">
+
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="PersonalCreditRating">
+                                    How would you describe your personal credit rating?
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input type="text" asp-for="PersonalCreditRating" id="personalCreditRating" name="personalCreditRating" required="required" class="form-control ">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="IVAorCVA" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Has the client been subject to an Individual Voluntary Arrangement (IVA) or Company Voluntary Arrangement (CVA)? <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input type="text" asp-for="IVAorCVA" id="iVAorCVA" name="iVAorCVA" required="required" class="form-control">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="DeclaredBankrupt" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Has the client ever been declared bankrupt?
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="DeclaredBankrupt" id="declaredBankrupt" name="declaredBankrupt" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="PropertyRepossessed" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Has the client ever had any property repossessed?
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="PropertyRepossessed" id="propertyRepossessed" name="propertyRepossessed" class="form-control" type="text">
+                                </div>
+                            </div>
+
+                            
+
+                            <div class="item form-group">
+                                <label asp-for="LegalAction" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Is the client or their business party to any legal action?
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="LegalAction" id="outstandingMortgageBalance" name="outstandingMortgageBalance" class="form-control" type="text">
+                                </div>
+                            </div>
+
+
+
+                           
+
+                            <div class="item form-group">
+                                <label asp-for="GuarantorOnLoan" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Is the client a guarantor on any loans?
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="GuarantorOnLoan" id="guarantorOnLoan" name="guarantorOnLoan" class="form-control" type="text">
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label asp-for="CriminalConvictions" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Does the client have any criminal convictions?
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input type="text" asp-for="CriminalConvictions" id="criminalConvictions" name="criminalConvictions" required="required" class="form-control">
+                                </div>
+                            </div>
+                            
+
+
+
+                            <div class="ln_solid"></div>
+                            <div class="item form-group">
+                                <div class="col-md-6 col-sm-6 offset-md-3">
+                                    <button class="btn btn-primary" type="button">Cancel</button>
+                                    <button class="btn btn-primary" type="reset">Save</button>
+                                    <button type="submit" class="btn btn-success">Save & Countinue</button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

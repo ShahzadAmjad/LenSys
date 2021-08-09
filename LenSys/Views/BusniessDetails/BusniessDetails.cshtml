@@ -1,0 +1,152 @@
+﻿@model BusniessDetails
+
+@{
+    ViewBag.Title = "Busniess Details";
+}
+
+@*<form asp-controller="IndividualPersonalDetails" asp-action="PersonalDetails" method="post">*@
+
+
+<div class="" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Busniess Loan Application</h3>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 ">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Busniess Details</h2>
+
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br />
+                        <form id="BusniessDetailsForm" data-parsley-validate class="form-horizontal form-label-left" asp-controller="IndividualPersonalDetails" asp-action="PersonalDetails" method="post">
+
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="ApplicationType">
+                                    Title<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <select asp-for="ApplicationType" id="applicationType" name="applicationType" class="form-control">
+                                        <option>
+                                            Limited company
+                                        </option>
+                                        <option>
+                                            Sole trader
+                                        </option>
+                                        <option>
+                                            Partnership
+                                        </option>
+                                        <option>
+                                            Limited Liability Partnership
+                                        </option>
+                                        <option>
+                                            PLC
+                                        </option>
+                                        <option>
+                                            Trust
+                                        </option>
+                                        <option>
+                                            Individual(s)
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label asp-for="CompanyBusniessName" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Company/Busniess Name <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input type="text" asp-for="CompanyBusniessName" id="companyBusniessName" name="companyBusniessName" required="required" class="form-control">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="RegisteredNumber" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Registered number (only for Limited company/limited liability partnership/PLC)
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="RegisteredNumber" id="registeredNumber" name="registeredNumber" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="NatureOfBusniess" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Nature Of Busniess
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="NatureOfBusniess" id="natureOfBusniess" name="natureOfBusniess" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="RegisteredAddress" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Registered Address
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="RegisteredAddress" id="registeredAddress" name="registeredAddress" class="form-control" type="text">
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label asp-for="TradingAddress" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Trading Address
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="TradingAddress" id="tradingAddress" name="tradingAddress" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="CorrespondenceAddress" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Correspondence Address
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="CorrespondenceAddress" id="correspondenceAddress" name="correspondenceAddress" class="form-control" type="text">
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label asp-for="TradingSince" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Trading Since<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="TradingSince" id="tradingSince" name="tradingSince" class="date-picker form-control" placeholder="dd-mm-yyyy" type="text" required="required" onfocus="this.type='date'" onmouseover="this.type='date'" onclick="this.type='date'" onblur="this.type='text'" onmouseout="timeFunctionLong(this)">
+                                    <script>
+                                        function timeFunctionLong(input) {
+                                            setTimeout(function () {
+                                                input.type = 'text';
+                                            }, 60000);
+                                        }</script>
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
+
+
+                            <div class="ln_solid"></div>
+                            <div class="item form-group">
+                                <div class="col-md-6 col-sm-6 offset-md-3">
+                                    <button class="btn btn-primary" type="button">Cancel</button>
+                                    <button class="btn btn-primary" type="reset">Save</button>
+                                    <button type="submit" class="btn btn-success">Save & Countinue</button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
