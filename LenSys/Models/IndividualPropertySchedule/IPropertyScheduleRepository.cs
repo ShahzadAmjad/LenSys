@@ -5,8 +5,13 @@ using System.Threading.Tasks;
 
 namespace LenSys.Models.IndividualPropertySchedule
 {
-    interface IPropertyScheduleRepository
+    public interface IPropertyScheduleRepository
     {
+        PropertySchedule GetProperySchedule(int propertyId);
+        IEnumerable<PropertySchedule> GetAllPropertySchedule();
+        //Old One
         PropertySchedule Add(PropertySchedule propertySchedule);
+        PropertySchedule Update(PropertySchedule propertyScheduleChanges);
+        PropertySchedule Delete(int id);
     }
 }

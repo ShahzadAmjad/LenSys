@@ -7,7 +7,7 @@ namespace LenSys.Models.IndividualPropertySchedule
 {
     public class PropertySchedule
     {
-        public string Property { get; set; }
+        public int PropertyId { get; set; }
         public string Owner { get; set; }
         public string PropertyAddress { get; set; }
         public string Lender { get; set; }
@@ -24,7 +24,7 @@ namespace LenSys.Models.IndividualPropertySchedule
         public string LTV { get; set; }
         public string PropertyType { get; set; }
         public string PropertyDescription { get; set; }
-        public int TypeOfTenancyLeaseASTBoth { get; set; }
+        public string TypeOfTenancyLeaseASTBoth { get; set; }
         public int RemainingTermOfLease { get; set; }
     }
 }

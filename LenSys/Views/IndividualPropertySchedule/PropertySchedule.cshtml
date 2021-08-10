@@ -24,12 +24,13 @@
                         <br />
                         <form id="IndividualPropertyScheduleForm" data-parsley-validate class="form-horizontal form-label-left" asp-controller="IndividualPropertySchedule" asp-action="PropertySchedule" method="post">
 
+
                             <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="Property">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="PropertyId">
                                     Property<span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input type="text" asp-for="Property" id="property" name="property" required="required" class="form-control ">
+                                    <input type="text" asp-for="PropertyId" id="propertyId" name="propertyId" required="required" class="form-control ">
                                 </div>
                             </div>
                             <div class="item form-group">

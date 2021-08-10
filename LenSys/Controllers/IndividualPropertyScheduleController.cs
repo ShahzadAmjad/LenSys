@@ -9,12 +9,33 @@ namespace LenSys.Controllers
 {
     public class IndividualPropertyScheduleController:Controller
     {
+        private IPropertyScheduleRepository _propertyScheduleRepositry;
+
+        public IndividualPropertyScheduleController(IPropertyScheduleRepository propertyScheduleRepository)
+        {
+            _propertyScheduleRepositry = propertyScheduleRepository;
+        }
         public ViewResult Index()
         {
             //String name = "Default Index Page";
             //return name;
-            return View("PropertySchedule");
+
+            //MockPropertyScheduleRepository mockPropertyScheduleRepository = new MockPropertyScheduleRepository();
+
+
+            var model = _propertyScheduleRepositry.GetAllPropertySchedule();
+            return View("AllProperties",model);
         }
+        //[HttpGet]
+        public ViewResult AllProperties()
+        {
+            var model = _propertyScheduleRepositry.GetAllPropertySchedule();
+            return View("AllProperties", model);
+        }
+
+
+
+
         [HttpGet]
         public ViewResult PropertySchedule()
         {

@@ -1,5 +1,6 @@
 using LenSys.Models;
 using LenSys.Models.Home;
+using LenSys.Models.IndividualPropertySchedule;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -20,6 +21,7 @@ namespace LenSys
         {
             services.AddMvc(options => options.EnableEndpointRouting = false);
             services.AddSingleton<ILeadRepository, MockLeadRepository>();
+            services.AddSingleton<IPropertyScheduleRepository, MockPropertyScheduleRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
