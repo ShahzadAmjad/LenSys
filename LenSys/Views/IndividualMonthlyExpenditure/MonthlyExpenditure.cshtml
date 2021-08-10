@@ -1,0 +1,166 @@
+﻿@model MonthlyExpanditure
+
+@{
+    ViewBag.Title = "Monthly Expenditure Details";
+}
+
+<div class="" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Individual Loan Application</h3>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 ">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Monthly Expenditure Details</h2>
+
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br />
+                        <form id="IndividualMonthlyExpenditureForm" data-parsley-validate class="form-horizontal form-label-left" asp-controller="IndividualIncomeExpenditure" asp-action="IncomeExpenditure" method="post"> 
+
+                            <div class="item form-group">
+                                <label asp-for="MortgageRent" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Mortgage/Rent
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="MortgageRent" id="mortgageRent" name="mortgageRent" class="form-control" type="text">
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label asp-for="LifeAssurancePension" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Life Assurance/Pension <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="LifeAssurancePension" id="lifeAssurancePension" name="lifeAssurancePension" class="form-control" type="text">
+                                </div>
+                            </div>
+
+
+
+
+
+                            <div class="item form-group">
+                                <label asp-for="RatesCouncilTax" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Rates/Council Tax
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="RatesCouncilTax" id="ratesCouncilTax" name="ratesCouncilTax" class="form-control" type="text">
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label asp-for="WaterGasElectricityTelephoneBill" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Water/Gas/Electricity/Telephone
+                                    <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="WaterGasElectricityTelephoneBill" id="waterGasElectricityTelephoneBill" name="waterGasElectricityTelephoneBill" class="form-control" type="text">
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label asp-for="HomeBuildingContentsInsurance" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Home Building/Contents Insurance <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input type="text" asp-for="HomeBuildingContentsInsurance" id="homeBuildingContentsInsurance" name="homeBuildingContentsInsurance" required="required" class="form-control">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="TravelToWork" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Travel to work<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="TravelToWork" id="travelToWork" name="travelToWork" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="PetrolCarMaintenance" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Petrol/Car Maintenance<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="PetrolCarMaintenance" id="petrolCarMaintenance" name="petrolCarMaintenance" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="CarInsuranceRoadTax" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Car Insurance/Road Tax<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="CarInsuranceRoadTax" id="carInsuranceRoadTax" name="carInsuranceRoadTax" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="FoodAndClothing" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Food And Clothing<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="FoodAndClothing" id="foodAndClothing" name="foodAndClothing" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="LoanHPCreditCardPayments" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Loan/HP/Credit Card Payments<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="LoanHPCreditCardPayments" id="loanHPCreditCardPayments" name="loanHPCreditCardPayments" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="EntertainmentSubscriptions" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Entertainment/Subscriptions<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="EntertainmentSubscriptions" id="entertainmentSubscriptions" name="entertainmentSubscriptions" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="OtherCostChristmisHolidays" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Other Cost e.g Christmis/Holidays<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="OtherCostChristmisHolidays" id="otherCostChristmisHolidays" name="otherCostChristmisHolidays" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="TotalExpenditure" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Total Expenditure(B)<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="TotalExpenditure" id="totalExpenditure" name="totalExpenditure" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="MonthlyDisposableIncome" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Monthly Disposable Income(A-B)<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="MonthlyDisposableIncome" id="monthlyDisposableIncome" name="monthlyDisposableIncome" class="form-control" type="text">
+                                </div>
+                            </div>
+
+
+
+                            <div class="ln_solid"></div>
+                            <div class="item form-group">
+                                <div class="col-md-6 col-sm-6 offset-md-3">
+                                    <button class="btn btn-primary" type="button">Cancel</button>
+                                    <button class="btn btn-primary" type="reset">Save</button>
+                                    <button type="submit" class="btn btn-success">Save & Countinue</button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

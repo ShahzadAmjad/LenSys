@@ -1,0 +1,151 @@
+﻿@model Liabilities
+
+@{
+    ViewBag.Title = "Liabilities";
+}
+
+<div class="" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Individual Loan Application</h3>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 ">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Liabilities Details</h2>
+
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br />
+                        <form id="IndividualLiabilitiesForm" data-parsley-validate class="form-horizontal form-label-left" asp-controller="IndividualAssetLiabilities" asp-action="AssetLiabilities" method="post">
+
+                            <div class="item form-group">
+                                <label asp-for="Overdraft" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Overdraft
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="Overdraft" id="overdraft" name="overdraft" class="form-control" type="text">
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label asp-for="ResidentialMortgage" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Residential Mortgage
+                                    <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="ResidentialMortgage" id="residentialMortgage" name="residentialMortgage" class="form-control" type="text">
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label asp-for="CarLoanHP" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    CarLoan/HP<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input type="text" asp-for="CarLoanHP" id="carLoanHP" name="carLoanHP" required="required" class="form-control">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="PersonalLoan1" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Personal Loan 1<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="PersonalLoan1" id="personalLoan1" name="personalLoan1" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="PersonalLoan2" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Personal Loan 2<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="PersonalLoan2" id="personalLoan2" name="personalLoan2" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="PersonalLoan3" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Personal Loanc3<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="PersonalLoan3" id="personalLoan3" name="personalLoan3" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="StoreCreditCard1" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Store/Credit Card 1<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="StoreCreditCard1" id="storeCreditCard1" name="storeCreditCard1" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="StoreCreditCard2" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Store/Credit Card 2<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="StoreCreditCard2" id="storeCreditCard2" name="storeCreditCard2" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="StoreCreditCard3" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Store/Credit Card 3<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="StoreCreditCard3" id="storeCreditCard3" name="storeCreditCard3" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="PersonalGuaranteesSigned" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Personal Guarantees Signed<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="PersonalGuaranteesSigned" id="personalGuaranteesSigned" name="personalGuaranteesSigned" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="Others" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Others<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="Others" id="others" name="others" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="TotalLiabilities" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Total Liabilities(D)<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="TotalLiabilities" id="totalLiabilities" name="totalLiabilities" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="NetAssets" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Net Assets(C-D)<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="NetAssets" id="netAssets" name="netAssets" class="form-control" type="text">
+                                </div>
+                            </div>
+
+
+                            <div class="ln_solid"></div>
+                            <div class="item form-group">
+                                <div class="col-md-6 col-sm-6 offset-md-3">
+                                    <button class="btn btn-primary" type="button">Cancel</button>
+                                    <button class="btn btn-primary" type="reset">Save</button>
+                                    <button type="submit" class="btn btn-success">Save & Countinue</button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
