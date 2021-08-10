@@ -1,0 +1,150 @@
+﻿@model Lead
+
+@{
+    ViewBag.Title = "Home";
+}
+
+@*<form asp-controller="IndividualPersonalDetails" asp-action="PersonalDetails" method="post">*@
+
+
+<div class="" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Loan Application</h3>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 ">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Lead</h2>
+
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br />
+                        <form id="IndividualPersonalDetailsForm" data-parsley-validate class="form-horizontal form-label-left" asp-controller="IndividualPersonalDetails" asp-action="PersonalDetails" method="post">
+                            <div class="item form-group">
+                                <label asp-for="LoanPurpose" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Loan Purpose
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="LoanPurpose" id="loanPurpose" name="loanPurpose" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="LoanAmount" class="col-form-label col-md-3 col-sm-3 label-align">
+                                Loan Amount
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="LoanAmount" id="loanAmount" name="loanAmount" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="IntroducerName" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Introducer Name
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="IntroducerName" id="introducerName" name="introducerName" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="ApplicationType" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Application Type
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <select asp-for="ApplicationType" id="applicationType" name="applicationType" class="form-control">
+                                        <option>
+                                            Limited company
+                                        </option>
+                                        <option>
+                                            Sole trader
+                                        </option>
+                                        <option>
+                                            Partnership
+                                        </option>
+                                        <option>
+                                            Limited Liability Partnership
+                                        </option>
+                                        <option>
+                                            PLC
+                                        </option>
+                                        <option>
+                                            Trust
+                                        </option>
+                                        <option>
+                                            Individual(s)
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="CompanyBusniessName" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Company/Busniess Name
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="CompanyBusniessName" id="CompanyBusniessName" name="CompanyBusniessName" class="form-control" type="text">
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="Title">
+                                    Title<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input type="text" asp-for="Title" id="title" name="title" required="required" class="form-control ">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="FirstName" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    First Name <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input type="text" asp-for="FirstName" id="first-name" name="first-name" required="required" class="form-control">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="MiddleName" class="col-form-label col-md-3 col-sm-3 label-align">Middle Name / Initial</label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="MiddleName" id="middle-name" name="middle-name" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="Surname" class="col-form-label col-md-3 col-sm-3 label-align"> Surname</label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="Surname" id="surname" name="surname" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="PhoneNo" class="col-form-label col-md-3 col-sm-3 label-align">Phone No</label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="PhoneNo" id="phoneNo" name="phoneNo" class="form-control" type="text">
+                                </div>
+                            </div>
+
+
+
+                            <div class="ln_solid"></div>
+                            <div class="item form-group">
+                                <div class="col-md-6 col-sm-6 offset-md-3">
+                                    <button class="btn btn-primary" type="button">Cancel</button>
+                                    <button class="btn btn-primary" type="reset">Save</button>
+                                    <button type="submit" class="btn btn-success">Save & Countinue</button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<div asp-validation-summary="All" class="text-danger"></div>*@
+@*</form>*@
