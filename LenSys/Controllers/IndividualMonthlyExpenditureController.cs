@@ -21,7 +21,7 @@ namespace LenSys.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult MonthlyExpenditure(MonthlyExpanditure monthlyExpenditure)
+        public IActionResult MonthlyExpenditure(MonthlyExpenditure monthlyExpenditure)
         {
             if (ModelState.IsValid)
             {

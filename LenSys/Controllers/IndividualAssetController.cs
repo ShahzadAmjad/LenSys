@@ -7,28 +7,28 @@ using System.Threading.Tasks;
 
 namespace LenSys.Controllers
 {
-    public class IndividualAssetLiabilitiesController:Controller
+    public class IndividualAssetController:Controller
     {
         public ViewResult Index()
         {
             //String name = "Default Index Page";
             //return name;
-            return View("AssetLiabilities");
+            return View("Asset");
         }
         [HttpGet]
-        public ViewResult AssetLiabilities()
+        public ViewResult Asset()
         {
             return View();
         }
         [HttpPost]
-        public IActionResult AssetLiabilities(AssetLiabilities assetLiabilities)
+        public IActionResult Asset(Asset asset)
         {
             if (ModelState.IsValid)
             {
                 //Employee newEmployee = _emplyeeRepositry.Add(employee);
                 ////return View();
                 //return RedirectToAction("details", new { id = newEmployee.Id });
-                return View("AssetLiabilities");
+                return View("Asset");
             }
 
             return View();

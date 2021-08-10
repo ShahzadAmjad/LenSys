@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace LenSys.Models.IndividualMonthlyExpenditure
 {
-    public class MonthlyExpanditure
+    public class MonthlyExpenditure
     {
         public int MortgageRent { get; set; }
         public int LifeAssurancePension { get; set; }

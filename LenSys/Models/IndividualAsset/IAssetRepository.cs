@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 
 namespace LenSys.Models.IndividualAssetLiabilities
 {
-    interface IAssetLiabilitiesRepository
+    interface IAssetRepository
     {
-        AssetLiabilities Add(AssetLiabilities assetLiabilities);
+        Asset Add(Asset assetLiabilities);
     }
 }

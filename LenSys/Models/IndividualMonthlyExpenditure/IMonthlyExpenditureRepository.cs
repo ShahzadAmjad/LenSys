@@ -7,6 +7,6 @@ namespace LenSys.Models.IndividualMonthlyExpenditure
 {
     interface IMonthlyExpenditureRepository
     {
-        MonthlyExpanditure Add(MonthlyExpanditure monthlyExpanditure);
+        MonthlyExpenditure Add(MonthlyExpenditure monthlyExpanditure);
     }
 }

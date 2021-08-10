@@ -1,0 +1,95 @@
+﻿@model Asset
+
+@{
+    ViewBag.Title = "Individual Asset Details";
+}
+
+<div class="" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Individual Loan Application</h3>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 ">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Asset Details</h2>
+
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br />
+                        <form id="IndividualAssetForm" data-parsley-validate class="form-horizontal form-label-left" asp-controller="IndividualAssetLiabilities" asp-action="AssetLiabilities" method="post">
+
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="Cash">
+                                    Cash<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input type="text" asp-for="Cash" id="cash" name="cash" required="required" class="form-control ">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="Shares" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Shares <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input type="text" asp-for="Shares" id="shares" name="shares" required="required" class="form-control">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="LifePolicy" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Life Policy (surrender value only)<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="LifePolicy" id="lifePolicy" name="lifePolicy" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="PersonalDewellingHouse" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Personal Dewelling House <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="PersonalDewellingHouse" id="personalDewellingHouse" name="personalDewellingHouse" class="form-control" type="text">
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label asp-for="OtherInvestments" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Other Investments
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="OtherInvestments" id="otherInvestments" name="ostherInvestments" class="form-control" type="text">
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label asp-for="TotalAssets" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Total Assets(C) <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="TotalAssets" id="totalAssets" name="totalAssets" class="form-control" type="text">
+                                </div>
+                            </div>
+
+
+
+                            <div class="ln_solid"></div>
+                            <div class="item form-group">
+                                <div class="col-md-6 col-sm-6 offset-md-3">
+                                    <button class="btn btn-primary" type="button">Cancel</button>
+                                    <button class="btn btn-primary" type="reset">Save</button>
+                                    <button type="submit" class="btn btn-success">Save & Countinue</button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

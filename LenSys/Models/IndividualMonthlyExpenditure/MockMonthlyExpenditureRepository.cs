@@ -7,12 +7,12 @@ namespace LenSys.Models.IndividualMonthlyExpenditure
 {
     public class MockMonthlyExpenditureRepository : IMonthlyExpenditureRepository
     {
-        private List<MonthlyExpanditure> _monthlyExpanditure;
+        private List<MonthlyExpenditure> _monthlyExpanditure;
         public MockMonthlyExpenditureRepository()
         {
 
         }
-        public MonthlyExpanditure Add(MonthlyExpanditure monthlyExpanditure)
+        public MonthlyExpenditure Add(MonthlyExpenditure monthlyExpanditure)
         {
             throw new NotImplementedException();
         }
