@@ -55,20 +55,43 @@ namespace LenSys.Models.IndividualPropertySchedule
             return _propertySchedule;
         }
 
-        public PropertySchedule GetProperySchedule(int propertyId)
+        public PropertySchedule GetPropertySchedule(int propertyId)
         {
             return _propertySchedule.FirstOrDefault(e => e.PropertyId == propertyId);
         }
 
-        public PropertySchedule Update(PropertySchedule propertyScheduleChanges)
+        public PropertySchedule Update(PropertySchedule model)
         {
-            PropertySchedule propertySchedule = _propertySchedule.FirstOrDefault(e => e.PropertyId == propertyScheduleChanges.PropertyId);
+            PropertySchedule propertySchedule = _propertySchedule.FirstOrDefault(e => e.PropertyId == model.PropertyId);
             if (propertySchedule != null)
             {
                 //propertySchedule.Name = employeeChanges.Name;
                 //propertySchedule.Email = employeeChanges.Email;
                 //propertySchedule.Department = employeeChanges.Department;
+                propertySchedule.PropertyId = model.PropertyId;
+                propertySchedule.Owner = model.Owner;
+                propertySchedule.PropertyAddress = model.PropertyAddress;
+                propertySchedule.Lender = model.Lender;
+                propertySchedule.PurchaseDate = model.PurchaseDate;
+                propertySchedule.PurchasePrice = model.PurchasePrice;
+                propertySchedule.OrigionalMortgageAmount = model.OrigionalMortgageAmount;
+                propertySchedule.CurrentMarketValue = model.CurrentMarketValue;
+                propertySchedule.OutstandingMortgage = model.OutstandingMortgage;
+                propertySchedule.RemainingTerm = model.RemainingTerm;
+                propertySchedule.TypeOfRate = model.TypeOfRate;
+                propertySchedule.InterestRate = model.InterestRate;
+                propertySchedule.RentPcm = model.RentPcm;
+                propertySchedule.MortgagePcm = model.MortgagePcm;
+                propertySchedule.LTV = model.LTV;
+                propertySchedule.PropertyType = model.PropertyType;
+                propertySchedule.PropertyDescription = model.PropertyDescription;
+                propertySchedule.TypeOfTenancyLeaseASTBoth = model.TypeOfTenancyLeaseASTBoth;
+                propertySchedule.RemainingTermOfLease = model.RemainingTermOfLease;
             }
+            //PropertySchedule propertySchedule2 = _propertySchedule.FirstOrDefault(e => e.PropertyId == model.PropertyId);
+            //_propertySchedule.Remove(propertySchedule2);
+            //_propertySchedule.Add(propertySchedule);
+
             return propertySchedule;
         }
     }

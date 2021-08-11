@@ -7,7 +7,7 @@ namespace LenSys.Models.IndividualPropertySchedule
 {
     public interface IPropertyScheduleRepository
     {
-        PropertySchedule GetProperySchedule(int propertyId);
+        PropertySchedule GetPropertySchedule(int propertyId);
         IEnumerable<PropertySchedule> GetAllPropertySchedule();
         //Old One
         PropertySchedule Add(PropertySchedule propertySchedule);

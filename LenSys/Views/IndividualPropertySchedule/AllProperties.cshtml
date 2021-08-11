@@ -3,12 +3,14 @@
 @{
     ViewBag.Title = "Individual All Property Schedule";
 }
-@*<form id="IndividualPropertyScheduleForm" data-parsley-validate class="form-horizontal form-label-left" asp-controller="IndividualPropertySchedule" asp-action="PropertySchedule" method="post">*@
+@*<form id="IndividualPropertyScheduleForm" data-parsley-validate class="form-horizontal form-label-left" asp-controller="IndividualPropertySchedule" asp-action="AllProperties" method="post">*@
+
     <div class="mtop20">
-        <input type="button" class="btn btn-primary" id="btnAddProd" value="Add New Property Schedule" onclick="@("window.location.href='" + @Url.Action("PropertySchedule", "IndividualPropertySchedule") + "'");" />
+        <a asp-controller="IndividualPropertySchedule" asp-action="PropertySchedule" class="btn btn-primary">Add New Property Schedule</a>
+        @*<input type="button" asp-controller="IndividualPropertySchedule" asp-action="PropertySchedule" class="btn btn-primary" id="btnAddProd" value="Add New Property Schedule" />*@
     </div>
 
-    </>
+    
 
     <div class="mtop20">
         <table id="tblProdinfo" class="table table-bordered table-hover">
@@ -25,33 +27,31 @@
                 {
                     @foreach (var propertySchedule in Model)
                     {
-                <tr>
-                    <td>@propertySchedule.PropertyId</td>
-                    <td>@propertySchedule.Owner</td>
-                    <td>@propertySchedule.PropertyAddress</td>
+                        <tr>
+                            <td>@propertySchedule.PropertyId</td>
+                            <td>@propertySchedule.Owner</td>
+                            <td>@propertySchedule.PropertyAddress</td>
 
-                    <td id="txtCName_@propertySchedule.PropertyId.ToString()" style="display:none;"><input type='text' id="txtCName_@propertySchedule.PropertyId.ToString()" value="@propertySchedule.PropertyId" /></td>
-                    <td id="txtPName_@propertySchedule.PropertyId.ToString()" style="display:none;"><input type='text' id="txtPName_@propertySchedule.PropertyId.ToString()" value="@propertySchedule.Owner" /></td>
-                    <td id="txtPPrice_@propertySchedule.PropertyId.ToString()" style="display:none;" ><input type='text' id="txtPPrice_@propertySchedule.PropertyId.ToString()" value="@propertySchedule.PropertyAddress" /></td>
+                            <td id="txtCName_@propertySchedule.PropertyId.ToString()" style="display:none;"><input type='text' id="txtCName_@propertySchedule.PropertyId.ToString()" value="@propertySchedule.PropertyId" /></td>
+                            <td id="txtPName_@propertySchedule.PropertyId.ToString()" style="display:none;"><input type='text' id="txtPName_@propertySchedule.PropertyId.ToString()" value="@propertySchedule.Owner" /></td>
+                            <td id="txtPPrice_@propertySchedule.PropertyId.ToString()" style="display:none;"><input type='text' id="txtPPrice_@propertySchedule.PropertyId.ToString()" value="@propertySchedule.PropertyAddress" /></td>
 
 
-                    <td>
-                        <input type="button" class="btn btn-primary" id="btnEditProd_@propertySchedule.PropertyId.ToString()" value="Edit" onclick="editRowProductData(@propertySchedule.PropertyId.ToString())" />
+                            <td>
+                                <a asp-controller="IndividualPropertySchedule" asp-action="EditProperty" class="btn btn-primary" asp-route-id="@propertySchedule.PropertyId">Edit</a>
+                                <a asp-controller="IndividualPropertySchedule" asp-action="DeleteProperty" class="btn btn-primary" asp-route-id="@propertySchedule.PropertyId">Delete</a>
+                                @*<input type="button" class="btn btn-primary" id="btnEditProd_@propertySchedule.PropertyId.ToString()" value="Edit" onclick="editRowProductData(@propertySchedule.PropertyId.ToString())" />
 
-                        <input type="button" class="btn btn-primary" id="btnUpdateProd_@propertySchedule.PropertyId.ToString()" value="Update" onclick="saveProdData(@propertySchedule.PropertyId.ToString(),@propertySchedule.PropertyId.ToString())" style="display:none;" />
+        <input type="button" class="btn btn-primary" id="btnUpdateProd_@propertySchedule.PropertyId.ToString()" value="Update" onclick="saveProdData(@propertySchedule.PropertyId.ToString(),@propertySchedule.PropertyId.ToString())" style="display:none;" />
 
-                        <input type="button" class="btn btn-primary" id="btnDeleteProd_@propertySchedule.PropertyId.ToString()" value="Delete" onclick="deleteProdData(@propertySchedule.PropertyId.ToString(),@propertySchedule.PropertyId.ToString())" />
+        <input type="button" class="btn btn-primary" id="btnDeleteProd_@propertySchedule.PropertyId.ToString()" value="Delete" onclick="deleteProdData(@propertySchedule.PropertyId.ToString(),@propertySchedule.PropertyId.ToString())" />
 
-                        <input type="button" class="btn btn-primary" id="btnCancelProd_@propertySchedule.PropertyId.ToString()" value="Cancel" onclick="removeProdData(@propertySchedule.PropertyId)" style="display:none;" />
-                    </td>
-                </tr>
+        <input type="button" class="btn btn-primary" id="btnCancelProd_@propertySchedule.PropertyId.ToString()" value="Cancel" onclick="removeProdData(@propertySchedule.PropertyId)" style="display:none;" />*@
+                            </td>
+                        </tr>
                     }
                 }
-
-
             </tbody>
         </table>
-
-
-
     </div>
+@*</form>*@
