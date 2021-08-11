@@ -77,21 +77,23 @@ namespace LenSys.Controllers
                 //return View("AllProperties");
             }
 
-            return View();
+            return View("AllProperties");
         }
-        public ViewResult DeleteProperty(int? id)
+        public ViewResult DeleteProperty(int id)
         {
             //HomeDetailsViewModel homeDetailsViewModel = new HomeDetailsViewModel()
             //{
             //    Employee = _emplyeeRepositry.GetEmployee(id ?? 1),
             //    PageTitle = "Employee Details"
             //};
-
-            PropertySchedule model = _propertyScheduleRepositry.GetPropertySchedule(1);
-            ViewBag.PageTitle = "Edit Property";
+            // PropertySchedule model = _propertyScheduleRepositry.GetPropertySchedule(id);
+            //ViewBag.PageTitle = "Delete Property";
             //ViewBag.Employee = model;
+            //return View("PropertySchedule", model);
 
-            return View("PropertySchedule", model);
+            _propertyScheduleRepositry.Delete(id);
+            var RemainingProperties = _propertyScheduleRepositry.GetAllPropertySchedule();
+            return View("AllProperties", RemainingProperties);
         }
 
         [HttpGet]
