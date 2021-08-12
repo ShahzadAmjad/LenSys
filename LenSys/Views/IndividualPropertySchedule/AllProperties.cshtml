@@ -16,9 +16,9 @@
         <table id="tblProdinfo" class="table table-bordered table-hover">
             <thead>
                 <tr>
-                    <th id="cname">Property ID</th>
-                    <th id="pname" class="hideCol hideHideCol_2">Owner Name</th>
-                    <th id="pprice" class="hideCol hideHideCol_3">Address</th>
+                    <th id="propertyID">Property ID</th>
+                    <th id="owner" class="hideCol hideHideCol_2">Owner Name</th>
+                    <th id="address" class="hideCol hideHideCol_3">Address</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -35,9 +35,9 @@
                             <td>@propertySchedule.Owner</td>
                             <td>@propertySchedule.PropertyAddress</td>
 
-                            <td id="txtCName_@propertySchedule.PropertyId.ToString()" style="display:none;"><input type='text' id="txtCName_@propertySchedule.PropertyId.ToString()" value="@propertySchedule.PropertyId" /></td>
+                            @*<td id="txtCName_@propertySchedule.PropertyId.ToString()" style="display:none;"><input type='text' id="txtCName_@propertySchedule.PropertyId.ToString()" value="@propertySchedule.PropertyId" /></td>
                             <td id="txtPName_@propertySchedule.PropertyId.ToString()" style="display:none;"><input type='text' id="txtPName_@propertySchedule.PropertyId.ToString()" value="@propertySchedule.Owner" /></td>
-                            <td id="txtPPrice_@propertySchedule.PropertyId.ToString()" style="display:none;"><input type='text' id="txtPPrice_@propertySchedule.PropertyId.ToString()" value="@propertySchedule.PropertyAddress" /></td>
+                            <td id="txtPPrice_@propertySchedule.PropertyId.ToString()" style="display:none;"><input type='text' id="txtPPrice_@propertySchedule.PropertyId.ToString()" value="@propertySchedule.PropertyAddress" /></td>*@
 
 
                             <td>
@@ -49,11 +49,11 @@
 
                                 @*<input type="button" class="btn btn-primary" id="btnEditProd_@propertySchedule.PropertyId.ToString()" value="Edit" onclick="editRowProductData(@propertySchedule.PropertyId.ToString())" />
 
-        <input type="button" class="btn btn-primary" id="btnUpdateProd_@propertySchedule.PropertyId.ToString()" value="Update" onclick="saveProdData(@propertySchedule.PropertyId.ToString(),@propertySchedule.PropertyId.ToString())" style="display:none;" />
+                                <input type="button" class="btn btn-primary" id="btnUpdateProd_@propertySchedule.PropertyId.ToString()" value="Update" onclick="saveProdData(@propertySchedule.PropertyId.ToString(),@propertySchedule.PropertyId.ToString())" style="display:none;" />
 
-        <input type="button" class="btn btn-primary" id="btnDeleteProd_@propertySchedule.PropertyId.ToString()" value="Delete" onclick="deleteProdData(@propertySchedule.PropertyId.ToString(),@propertySchedule.PropertyId.ToString())" />
+                                <input type="button" class="btn btn-primary" id="btnDeleteProd_@propertySchedule.PropertyId.ToString()" value="Delete" onclick="deleteProdData(@propertySchedule.PropertyId.ToString(),@propertySchedule.PropertyId.ToString())" />
 
-        <input type="button" class="btn btn-primary" id="btnCancelProd_@propertySchedule.PropertyId.ToString()" value="Cancel" onclick="removeProdData(@propertySchedule.PropertyId)" style="display:none;" />*@
+                                <input type="button" class="btn btn-primary" id="btnCancelProd_@propertySchedule.PropertyId.ToString()" value="Cancel" onclick="removeProdData(@propertySchedule.PropertyId)" style="display:none;" />*@
 
 
                                 <div class="modal fade" id="@mid" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -74,6 +74,8 @@
                                         </div>
                                     </div>
                                 </div>
+
+
                             </td>
                         </tr>
                     }

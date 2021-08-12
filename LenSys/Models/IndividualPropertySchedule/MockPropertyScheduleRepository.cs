@@ -68,7 +68,8 @@ namespace LenSys.Models.IndividualPropertySchedule
                 //propertySchedule.Name = employeeChanges.Name;
                 //propertySchedule.Email = employeeChanges.Email;
                 //propertySchedule.Department = employeeChanges.Department;
-                propertySchedule.PropertyId = model.PropertyId;
+
+                //propertySchedule.PropertyId = model.PropertyId;
                 propertySchedule.Owner = model.Owner;
                 propertySchedule.PropertyAddress = model.PropertyAddress;
                 propertySchedule.Lender = model.Lender;
@@ -87,6 +88,8 @@ namespace LenSys.Models.IndividualPropertySchedule
                 propertySchedule.PropertyDescription = model.PropertyDescription;
                 propertySchedule.TypeOfTenancyLeaseASTBoth = model.TypeOfTenancyLeaseASTBoth;
                 propertySchedule.RemainingTermOfLease = model.RemainingTermOfLease;
+
+                //return propertySchedule;
             }
             //PropertySchedule propertySchedule2 = _propertySchedule.FirstOrDefault(e => e.PropertyId == model.PropertyId);
             //_propertySchedule.Remove(propertySchedule2);
