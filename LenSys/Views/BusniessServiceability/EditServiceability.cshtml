@@ -1,7 +1,7 @@
 ﻿@model Serviceability
 
 @{
-    ViewBag.Title = "Busniess Serviceability";
+    ViewBag.Title = "Edit Busniess Serviceability";
 }
 
 
@@ -17,13 +17,15 @@
             <div class="col-md-12 col-sm-12 ">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Serviceability</h2>
+                        <h2>Edit Serviceability</h2>
 
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
                         <br />
-                        <form id="BusniessServiceabilityForm" data-parsley-validate class="form-horizontal form-label-left" asp-controller="BusniessServiceability" asp-action="Serviceability" method="post">
+                        <form id="EditBusniessServiceabilityForm" data-parsley-validate class="form-horizontal form-label-left" asp-controller="BusniessServiceability" asp-action="EditServiceability" method="post">
+
+                            <input hidden asp-for="ServiceabilityId" />
 
                             <div class="item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="ServiceabilityId">
@@ -64,17 +66,12 @@
                                 </div>
                             </div>
 
-
-
-
-
-
                             <div class="ln_solid"></div>
                             <div class="item form-group">
                                 <div class="col-md-6 col-sm-6 offset-md-3">
-                                    <button class="btn btn-primary" type="button">Cancel</button>
-                                    <button class="btn btn-primary" type="reset">Reset</button>
-                                    <button type="submit" class="btn btn-success">Save</button>
+                                    <a asp-controller="BusniessServiceability" asp-action="AllServiceability" class="btn btn-primary">Cancel</a>
+                                    
+                                    <button type="submit" class="btn btn-success">Update</button>
                                 </div>
                             </div>
 

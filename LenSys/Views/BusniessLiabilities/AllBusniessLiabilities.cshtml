@@ -1,0 +1,68 @@
+﻿@model IEnumerable<BusniessLiabilities>
+
+@{
+    ViewBag.Title = "All Busniess Liabilities";
+}
+
+<div class="mtop20">
+    <a asp-controller="BusniessLiabilities" asp-action="BusniessLiabilities" class="btn btn-primary">Add New Busniess Liability</a>
+</div>
+
+
+<div class="mtop20">
+    <table id="tblBusniessLiability" class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th id="busniessLiabilityId">Busniess Liability ID</th>
+                <th id="lender" class="hideCol hideHideCol_2">Lender</th>
+                <th id="origionalLoanAmount" class="hideCol hideHideCol_3">Origional Loan Amount</th>
+                <th id="outstandingBalance" class="hideCol hideHideCol_3">Outstanding Balance</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Count() > 0)
+            {
+                @foreach (var busniessLiabilities in Model)
+
+                {
+                    var tm = "#myModal" + busniessLiabilities.BusniessLiabilityId;
+                    var mid = "myModal" + busniessLiabilities.BusniessLiabilityId;
+                    <tr>
+                        <td>@busniessLiabilities.BusniessLiabilityId</td>
+                        <td>@busniessLiabilities.Lender</td>
+                        <td>@busniessLiabilities.OrigionalLoanAmount</td>
+                        <td>@busniessLiabilities.OutstandingBalance</td>
+
+                        <td>
+                            <a asp-controller="BusniessLiabilities" asp-action="EditBusniessLiabilities" class="btn btn-primary" asp-route-id="@busniessLiabilities.BusniessLiabilityId">Edit</a>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="@tm">
+                                Delete
+                            </button>
+
+
+                            <div class="modal fade" id="@mid" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            @*<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>*@
+                                            <h4 class="modal-title text-center" id="myModalLabel">Delete Property</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            Are you sure want to delete this Busniess Liability?
+                                        </div>
+                                        <div class="modal-footer">
+
+                                            <a asp-controller="BusniessLiabilities" asp-action="DeleteBusniessLiabilities" asp-route-Id="@busniessLiabilities.BusniessLiabilityId" id="deleteBtn" class="btn bg-danger mr-1">Delete</a>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

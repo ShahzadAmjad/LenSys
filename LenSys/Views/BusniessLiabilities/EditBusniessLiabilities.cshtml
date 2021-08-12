@@ -1,7 +1,7 @@
 ﻿@model BusniessLiabilities
 
 @{
-    ViewBag.Title = "Busniess Liabilities";
+    ViewBag.Title = "Edit Busniess Liabilities";
 }
 
 <div class="" role="main">
@@ -16,13 +16,15 @@
             <div class="col-md-12 col-sm-12 ">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Busniess Liabilities</h2>
+                        <h2>Edit Busniess Liabilities</h2>
 
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
                         <br />
-                        <form id="BusniessLiabilitiesForm" data-parsley-validate class="form-horizontal form-label-left" asp-controller="BusniessLiabilities" asp-action="BusniessLiabilities" method="post">
+                        <form id="EditBusniessLiabilitiesForm" data-parsley-validate class="form-horizontal form-label-left" asp-controller="BusniessLiabilities" asp-action="EditBusniessLiabilities" method="post">
+
+                            <input hidden asp-for="BusniessLiabilityId" />
 
                             <div class="item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="BusniessLiabilityId">
@@ -144,9 +146,10 @@
                             <div class="ln_solid"></div>
                             <div class="item form-group">
                                 <div class="col-md-6 col-sm-6 offset-md-3">
-                                    <button class="btn btn-primary" type="button">Cancel</button>
-                                    <button class="btn btn-primary" type="reset">Save</button>
-                                    <button type="submit" class="btn btn-success">Save & Countinue</button>
+                                    <a asp-controller="BusniessLiabilities" asp-action="AllBusniessLiabilities" class="btn btn-primary">Cancel</a>
+                                    @*<button class="btn btn-primary" type="button">Cancel</button>*@
+                                    @*<button class="btn btn-primary" type="reset">Save</button>*@
+                                    <button type="submit" class="btn btn-success">Update</button>
                                 </div>
                             </div>
 

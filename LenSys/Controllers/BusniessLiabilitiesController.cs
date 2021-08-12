@@ -9,11 +9,49 @@ namespace LenSys.Controllers
 {
     public class BusniessLiabilitiesController:Controller
     {
+        private IBusniessLiabilitiesRepository _busniessLiabilitiesRepository;
+        public BusniessLiabilitiesController(IBusniessLiabilitiesRepository busniessLiabilitiesRepository)
+        {
+            _busniessLiabilitiesRepository = busniessLiabilitiesRepository;
+        }
         public ViewResult Index()
         {
-            //String name = "Default Index Page";
-            //return name;
-            return View("BusniessLiabilities");
+            var model = _busniessLiabilitiesRepository.GetAllBusniessLiabilities();
+            return View("AllBusniessLiabilities", model);
+            //return View("BusniessLiabilities");
+        }
+        public ViewResult AllBusniessLiabilities()
+        {
+            var model = _busniessLiabilitiesRepository.GetAllBusniessLiabilities();
+            return View("AllBusniessLiabilities", model);
+        }
+        [HttpGet]
+        public ViewResult EditBusniessLiabilities(int id)
+        {
+            BusniessLiabilities model = _busniessLiabilitiesRepository.GetBusniessLiabilities(id);
+            ViewBag.PageTitle = "Edit Busniess Liabilities";
+
+            return View("EditBusniessLiabilities", model);
+        }
+        [HttpPost]
+        public IActionResult EditBusniessLiabilities(BusniessLiabilities busniessLiabilities)
+        {
+            if (ModelState.IsValid)
+            {
+                _busniessLiabilitiesRepository.Update(busniessLiabilities);
+
+                var updatedBusniessLiabilities = _busniessLiabilitiesRepository.GetAllBusniessLiabilities();
+
+                return RedirectToAction("AllBusniessLiabilities", updatedBusniessLiabilities);
+            }
+
+            return View();
+        }
+        public ViewResult DeleteBusniessLiabilities(int id)
+        {
+            _busniessLiabilitiesRepository.Delete(id);
+            var RemainingBusniessLiabilities = _busniessLiabilitiesRepository.GetAllBusniessLiabilities();
+            return View("AllBusniessLiabilities", RemainingBusniessLiabilities);
         }
         [HttpGet]
         public ViewResult BusniessLiabilities()
@@ -25,10 +63,10 @@ namespace LenSys.Controllers
         {
             if (ModelState.IsValid)
             {
-                //Employee newEmployee = _emplyeeRepositry.Add(employee);
-                ////return View();
-                //return RedirectToAction("details", new { id = newEmployee.Id });
-                return View("BusniessLiabilities");
+                BusniessLiabilities busniessLiabilities1 = _busniessLiabilitiesRepository.Add(busniessLiabilities);
+
+                var updatedbusniessLiabilities= _busniessLiabilitiesRepository.GetAllBusniessLiabilities();
+                return RedirectToAction("AllBusniessLiabilities", updatedbusniessLiabilities);
             }
 
             return View();

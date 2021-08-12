@@ -7,7 +7,7 @@ namespace LenSys.Models.BusniessLiabilities
 {
     public class BusniessLiabilities
     {
- 
+        public int BusniessLiabilityId { get; set; }
         public string Lender { get; set; }
         public int OrigionalLoanAmount { get; set; }
         public int OutstandingBalance { get; set; }

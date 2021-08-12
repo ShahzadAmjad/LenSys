@@ -1,5 +1,7 @@
 using LenSys.Models;
 using LenSys.Models.BusniessKeyPrincipals;
+using LenSys.Models.BusniessLiabilities;
+using LenSys.Models.BusniessServiceability;
 using LenSys.Models.Home;
 using LenSys.Models.IndividualPropertySchedule;
 using Microsoft.AspNetCore.Builder;
@@ -24,6 +26,8 @@ namespace LenSys
             services.AddSingleton<ILeadRepository, MockLeadRepository>();
             services.AddSingleton<IPropertyScheduleRepository, MockPropertyScheduleRepository>();
             services.AddSingleton<IKeyPrincipalsRepository, MockKeyPrincipalsRepository>();
+            services.AddSingleton<IBusniessLiabilitiesRepository, MockBusniessLiabilitiesRepository>();
+            services.AddSingleton<IServiceabilityRepository, MockServicebilityRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

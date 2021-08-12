@@ -5,8 +5,13 @@ using System.Threading.Tasks;
 
 namespace LenSys.Models.BusniessServiceability
 {
-    interface IServiceabilityRepository
+   public interface IServiceabilityRepository
     {
         Serviceability Add(Serviceability serviceability);
+
+        Serviceability GetServiceability(int serviceabilityId);
+        IEnumerable<Serviceability> GetAllServiceability();
+        Serviceability Update(Serviceability serviceability);
+        Serviceability Delete(int id);
     }
 }
