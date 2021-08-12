@@ -65,10 +65,6 @@ namespace LenSys.Models.IndividualPropertySchedule
             PropertySchedule propertySchedule = _propertySchedule.FirstOrDefault(e => e.PropertyId == model.PropertyId);
             if (propertySchedule != null)
             {
-                //propertySchedule.Name = employeeChanges.Name;
-                //propertySchedule.Email = employeeChanges.Email;
-                //propertySchedule.Department = employeeChanges.Department;
-
                 //propertySchedule.PropertyId = model.PropertyId;
                 propertySchedule.Owner = model.Owner;
                 propertySchedule.PropertyAddress = model.PropertyAddress;
@@ -88,13 +84,7 @@ namespace LenSys.Models.IndividualPropertySchedule
                 propertySchedule.PropertyDescription = model.PropertyDescription;
                 propertySchedule.TypeOfTenancyLeaseASTBoth = model.TypeOfTenancyLeaseASTBoth;
                 propertySchedule.RemainingTermOfLease = model.RemainingTermOfLease;
-
-                //return propertySchedule;
             }
-            //PropertySchedule propertySchedule2 = _propertySchedule.FirstOrDefault(e => e.PropertyId == model.PropertyId);
-            //_propertySchedule.Remove(propertySchedule2);
-            //_propertySchedule.Add(propertySchedule);
-
             return propertySchedule;
         }
     }

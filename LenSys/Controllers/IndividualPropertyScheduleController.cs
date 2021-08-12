@@ -17,7 +17,6 @@ namespace LenSys.Controllers
         }
         public ViewResult Index()
         {
-
             var model = _propertyScheduleRepositry.GetAllPropertySchedule();
             return View("AllProperties",model);
         }
@@ -31,7 +30,6 @@ namespace LenSys.Controllers
         [HttpGet]
         public ViewResult EditProperty(int id)
         {
- 
             PropertySchedule model= _propertyScheduleRepositry.GetPropertySchedule(id);
             ViewBag.PageTitle = "Edit Property";
            
@@ -47,9 +45,6 @@ namespace LenSys.Controllers
                 var updatedProperties = _propertyScheduleRepositry.GetAllPropertySchedule();
                 
                 return RedirectToAction("AllProperties", updatedProperties);
-
-                //return RedirectToAction("details", new { id = newEmployee.Id });
-                //return View("AllProperties");
             }
 
             return View("AllProperties");
@@ -71,12 +66,11 @@ namespace LenSys.Controllers
         {
             if (ModelState.IsValid)
             {
-                PropertySchedule newEmployee = _propertyScheduleRepositry.Add(propertySchedule);
+                PropertySchedule property = _propertyScheduleRepositry.Add(propertySchedule);
 
                 var updatedProperties = _propertyScheduleRepositry.GetAllPropertySchedule();
                 return RedirectToAction("AllProperties", updatedProperties);
             }
-
             return View();
         }
     }
