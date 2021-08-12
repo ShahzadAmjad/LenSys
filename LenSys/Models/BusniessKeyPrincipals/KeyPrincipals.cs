@@ -7,6 +7,7 @@ namespace LenSys.Models.BusniessKeyPrincipals
 {
     public class KeyPrincipals
     {
+        public int KeyPrincipalsId { get; set; }
         public string Title { get; set; }
         public string FirstName { get; set; }
         public string MiddleName { get; set; }

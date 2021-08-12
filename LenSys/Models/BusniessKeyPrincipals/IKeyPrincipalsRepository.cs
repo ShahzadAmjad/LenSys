@@ -5,8 +5,12 @@ using System.Threading.Tasks;
 
 namespace LenSys.Models.BusniessKeyPrincipals
 {
-    interface IKeyPrincipalsRepository
+    public interface IKeyPrincipalsRepository
     {
+        KeyPrincipals GetKeyPrincipals(int KeyPrincipalsId);
+        IEnumerable<KeyPrincipals> GetAllKeyPrincipals();
         KeyPrincipals Add(KeyPrincipals keyPrincipals);
+        KeyPrincipals Update(KeyPrincipals keyPrincipalsChanges);
+        KeyPrincipals Delete(int KeyPrincipalsId);
     }
 }

@@ -1,7 +1,7 @@
 ﻿@model KeyPrincipals
 
 @{
-    ViewBag.Title = "Busniess Key Principals";
+    ViewBag.Title = "Edit Busniess Key Principals";
 }
 
 
@@ -17,13 +17,15 @@
             <div class="col-md-12 col-sm-12 ">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Key Principals</h2>
+                        <h2>Edit Key Principals</h2>
 
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
                         <br />
-                        <form id="BusniessKeyPrincipalsForm" data-parsley-validate class="form-horizontal form-label-left" asp-controller="BusniessKeyPrincipals" asp-action="KeyPrincipals" method="post">
+                        <form id="EditBusniessKeyPrincipalsForm" data-parsley-validate class="form-horizontal form-label-left" asp-controller="BusniessKeyPrincipals" asp-action="EditKeyPrincipals" method="post">
+
+                            <input hidden asp-for="KeyPrincipalsId" />
 
                             <div class="item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="KeyPrincipalsId">
@@ -97,15 +99,14 @@
 
 
 
-
-
-
                             <div class="ln_solid"></div>
                             <div class="item form-group">
                                 <div class="col-md-6 col-sm-6 offset-md-3">
-                                    <button class="btn btn-primary" type="button">Cancel</button>
-                                    <button class="btn btn-primary" type="reset">Rset Form</button>
-                                    <button type="submit" class="btn btn-success">Save</button>
+                                    <a asp-controller="BusniessKeyPrincipals" asp-action="AllKeyPrincipals" class="btn btn-primary">Cancel</a>
+                                    @*<a asp-controller="BusniessKeyPrincipals" asp-action="EditKeyPrincipals" class="btn btn-primary">Update</a>*@
+                                    @*<button class="btn btn-primary" type="button">Cancel</button>*@
+                                    @*<button class="btn btn-primary" type="reset">Save</button>*@
+                                    <button type="submit" class="btn btn-success">Update</button>
                                 </div>
                             </div>
 

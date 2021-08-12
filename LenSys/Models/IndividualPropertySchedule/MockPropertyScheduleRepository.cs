@@ -8,6 +8,7 @@ namespace LenSys.Models.IndividualPropertySchedule
     public class MockPropertyScheduleRepository : IPropertyScheduleRepository
     {
         private List<PropertySchedule> _propertySchedule;
+
         public MockPropertyScheduleRepository()
         {
             _propertySchedule = new List<PropertySchedule>()
@@ -33,6 +34,7 @@ namespace LenSys.Models.IndividualPropertySchedule
             };
 
         }
+
         public PropertySchedule Add(PropertySchedule propertySchedule)
         {
             propertySchedule.PropertyId = _propertySchedule.Max(e => e.PropertyId) + 1;

@@ -1,0 +1,69 @@
+﻿@model IEnumerable<KeyPrincipals>
+
+@{
+    ViewBag.Title = "Busniess All Key Principals";
+}
+
+<div class="mtop20">
+    <a asp-controller="BusniessKeyPrincipals" asp-action="KeyPrincipals" class="btn btn-primary">Add New Key Principal</a>
+</div>
+
+
+
+<div class="mtop20">
+    <table id="tblBusniessKeyPrincipals" class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th id="keyPrincipalId">Key Principal Id</th>
+                <th id="firstName" class="hideCol hideHideCol_2">First Name</th>
+                <th id="position" class="hideCol hideHideCol_3">Position</th>
+                <th id="percentageShareholding" class="hideCol hideHideCol_3">Percentage Share Holding</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Count() > 0)
+            {
+                @foreach (var keyPrincipals in Model)
+
+                {
+                    var tm = "#myModal" + keyPrincipals.KeyPrincipalsId;
+                    var mid = "myModal" + keyPrincipals.KeyPrincipalsId;
+                    <tr>
+                        <td>@keyPrincipals.KeyPrincipalsId</td>
+                        <td>@keyPrincipals.FirstName</td>
+                        <td>@keyPrincipals.Position</td>
+                        <td>@keyPrincipals.PercentageShareholding</td>
+
+                        <td>
+                            <a asp-controller="BusniessKeyPrincipals" asp-action="EditKeyPrincipals" class="btn btn-primary" asp-route-id="@keyPrincipals.KeyPrincipalsId">Edit</a>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="@tm">
+                                Delete
+                            </button>
+
+
+                            <div class="modal fade" id="@mid" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            @*<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>*@
+                                            <h4 class="modal-title text-center" id="myModalLabel">Delete Key Principal</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            Are you sure want to delete this Key Principal?
+                                        </div>
+                                        <div class="modal-footer">
+
+                                            <a asp-controller="BusniessKeyPrincipals" asp-action="DeleteKeyPrincipal" asp-route-Id="@keyPrincipals.KeyPrincipalsId" id="deleteBtn" class="btn bg-danger mr-1">Delete</a>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

@@ -16,6 +16,7 @@
                     <th id="propertyID">Property ID</th>
                     <th id="owner" class="hideCol hideHideCol_2">Owner Name</th>
                     <th id="address" class="hideCol hideHideCol_3">Address</th>
+                    <th id="address" class="hideCol hideHideCol_3">Property Description</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -27,38 +28,39 @@
                     {
                         var tm = "#myModal" + propertySchedule.PropertyId;
                         var mid = "myModal" + propertySchedule.PropertyId;
-                        <tr>
-                            <td>@propertySchedule.PropertyId</td>
-                            <td>@propertySchedule.Owner</td>
-                            <td>@propertySchedule.PropertyAddress</td>
+                <tr>
+                    <td>@propertySchedule.PropertyId</td>
+                    <td>@propertySchedule.Owner</td>
+                    <td>@propertySchedule.PropertyAddress</td>
+                    <td>@propertySchedule.PropertyDescription</td>
 
-                            <td>
-                                <a asp-controller="IndividualPropertySchedule" asp-action="EditProperty" class="btn btn-primary" asp-route-id="@propertySchedule.PropertyId">Edit</a>
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="@tm">
-                                    Delete
-                                </button>
+                    <td>
+                        <a asp-controller="IndividualPropertySchedule" asp-action="EditProperty" class="btn btn-primary" asp-route-id="@propertySchedule.PropertyId">Edit</a>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="@tm">
+                            Delete
+                        </button>
 
 
-                                <div class="modal fade" id="@mid" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                @*<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>*@
-                                                <h4 class="modal-title text-center" id="myModalLabel">Delete Property</h4>
-                                            </div>
-                                            <div class="modal-body">
-                                                Are you sure want to delete this Property Schedule?
-                                            </div>
-                                            <div class="modal-footer">
+                        <div class="modal fade" id="@mid" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        @*<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>*@
+                                        <h4 class="modal-title text-center" id="myModalLabel">Delete Property</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        Are you sure want to delete this Property Schedule?
+                                    </div>
+                                    <div class="modal-footer">
 
-                                                <a asp-controller="IndividualPropertySchedule" asp-action="DeleteProperty" asp-route-Id="@propertySchedule.PropertyId" id="deleteBtn" class="btn bg-danger mr-1">Delete</a>
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                            </div>
-                                        </div>
+                                        <a asp-controller="IndividualPropertySchedule" asp-action="DeleteProperty" asp-route-Id="@propertySchedule.PropertyId" id="deleteBtn" class="btn bg-danger mr-1">Delete</a>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                     </div>
                                 </div>
-                            </td>
-                        </tr>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
                     }
                 }
             </tbody>

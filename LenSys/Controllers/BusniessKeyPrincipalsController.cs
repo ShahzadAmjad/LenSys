@@ -9,26 +9,70 @@ namespace LenSys.Controllers
 {
     public class BusniessKeyPrincipalsController:Controller
     {
+        private IKeyPrincipalsRepository _keyPrincipalsRepository;
+        public BusniessKeyPrincipalsController(IKeyPrincipalsRepository keyPrincipalsRepository)
+        {
+            _keyPrincipalsRepository = keyPrincipalsRepository;
+        }
         public ViewResult Index()
         {
-            //String name = "Default Index Page";
-            //return name;
-            return View("KeyPrincipals");
+            var model = _keyPrincipalsRepository.GetAllKeyPrincipals();
+            return View("AllKeyPrincipals", model);    
         }
+        public ViewResult AllKeyPrincipals()
+        {
+            var model = _keyPrincipalsRepository.GetAllKeyPrincipals();
+            return View("AllKeyPrincipals", model);
+        }
+        [HttpGet]
+        public ViewResult EditKeyPrincipals(int id)
+        {
+            //var model = _keyPrincipalsRepository.GetAllKeyPrincipals();
+            //return View("AllKeyPrincipals", model);
+
+            KeyPrincipals model = _keyPrincipalsRepository.GetKeyPrincipals(id);
+            ViewBag.PageTitle = "Edit Key Principal";
+
+            return View("EditKeyPrincipals", model);
+        }
+        [HttpPost]
+        public IActionResult EditKeyPrincipals(KeyPrincipals keyPrincipalsChange)
+        {
+            if (ModelState.IsValid)
+            {
+                _keyPrincipalsRepository.Update(keyPrincipalsChange);
+
+                var updatedKeyPrincipalsLst = _keyPrincipalsRepository.GetAllKeyPrincipals();
+
+                return RedirectToAction("AllKeyPrincipals", updatedKeyPrincipalsLst);
+                //return View("AllKeyPrincipals");
+            }
+
+            return View();
+        }
+
+        public ViewResult DeleteKeyPrincipal(int id)
+        {
+            _keyPrincipalsRepository.Delete(id);
+            var RemainingProperties = _keyPrincipalsRepository.GetAllKeyPrincipals();
+            return View("AllKeyPrincipals", RemainingProperties);
+        }
+
+
         [HttpGet]
         public ViewResult KeyPrincipals()
         {
             return View();
         }
         [HttpPost]
-        public IActionResult KeyPrincipals(KeyPrincipals keyPrincipals)
+        public IActionResult KeyPrincipals(KeyPrincipals keyPrincipals1)
         {
             if (ModelState.IsValid)
             {
-                //Employee newEmployee = _emplyeeRepositry.Add(employee);
-                ////return View();
-                //return RedirectToAction("details", new { id = newEmployee.Id });
-                return View("KeyPrincipals");
+                KeyPrincipals keyPrincipals = _keyPrincipalsRepository.Add(keyPrincipals1);
+
+                var updatedKeyPrincipals = _keyPrincipalsRepository.GetAllKeyPrincipals();
+                return RedirectToAction("AllKeyPrincipals", updatedKeyPrincipals);
             }
 
             return View();

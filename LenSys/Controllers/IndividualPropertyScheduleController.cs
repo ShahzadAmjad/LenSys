@@ -10,7 +10,6 @@ namespace LenSys.Controllers
     public class IndividualPropertyScheduleController:Controller
     {
         private IPropertyScheduleRepository _propertyScheduleRepositry;
-
         public IndividualPropertyScheduleController(IPropertyScheduleRepository propertyScheduleRepository)
         {
             _propertyScheduleRepositry = propertyScheduleRepository;
