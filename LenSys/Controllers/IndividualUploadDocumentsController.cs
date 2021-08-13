@@ -1,6 +1,7 @@
 ﻿using LenSys.Models.IndividualUploadDocuments;
 using LenSys.ViewModels.IndividualUploadDocuments;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -46,9 +47,13 @@ namespace LenSys.Controllers
                     uniqueFileName = Guid.NewGuid().ToString() + "_" + model.Document.FileName;
                     string filePath = Path.Combine(UploadsFolder, uniqueFileName);
                     model.Document.CopyTo(new FileStream(filePath, FileMode.Create));
+
+                   // Server.MapPath("~/Images/Logos/" + model.Document.FileName);
+
+
                 }
 
-
+                //To save data to database
                 IndividualDocuments individualDocuments = new IndividualDocuments
                 {
                     DocumentName = model.DocumentName,
