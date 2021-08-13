@@ -2,8 +2,10 @@ using LenSys.Models;
 using LenSys.Models.BusniessKeyPrincipals;
 using LenSys.Models.BusniessLiabilities;
 using LenSys.Models.BusniessServiceability;
+using LenSys.Models.BusniessUploadDocument;
 using LenSys.Models.Home;
 using LenSys.Models.IndividualPropertySchedule;
+using LenSys.Models.IndividualUploadDocuments;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -28,6 +30,8 @@ namespace LenSys
             services.AddSingleton<IKeyPrincipalsRepository, MockKeyPrincipalsRepository>();
             services.AddSingleton<IBusniessLiabilitiesRepository, MockBusniessLiabilitiesRepository>();
             services.AddSingleton<IServiceabilityRepository, MockServicebilityRepository>();
+            services.AddSingleton<IBusniessDocumentsRepository, MockBusniessDocumentsRepository>();
+            services.AddSingleton<IindividualDocumentsRepository, MockIndividualDocumentsRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -6,6 +6,8 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\lib\" />
+    <Folder Include="wwwroot\BusniessDocuments\" />
+    <Folder Include="wwwroot\IndividualDocuments\" />
   </ItemGroup>
 
   <ItemGroup>

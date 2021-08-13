@@ -7,6 +7,15 @@ namespace LenSys.Models.IndividualUploadDocuments
 {
     public class MockIndividualDocumentsRepository : IindividualDocumentsRepository
     {
+        private List<IndividualDocuments> _individualDocuments;
+        public MockIndividualDocumentsRepository()
+        {
+            _individualDocuments = new List<IndividualDocuments>()
+            {
+                new IndividualDocuments{DocumentId=1, DocumentPath="path", DocumentName="SampleDoc"}
+                
+            };
+        }
         public IEnumerable<IndividualDocuments> GetAllIndividualDocuments()
         {
             throw new NotImplementedException();
@@ -24,7 +33,9 @@ namespace LenSys.Models.IndividualUploadDocuments
 
         public IndividualDocuments UploadDocument(IndividualDocuments document)
         {
-            throw new NotImplementedException();
+            document.DocumentId = _individualDocuments.Max(e => e.DocumentId) + 1;
+            _individualDocuments.Add(document);
+            return document;
         }
     }
 }

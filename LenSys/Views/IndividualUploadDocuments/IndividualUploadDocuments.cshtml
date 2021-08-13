@@ -1,1 +1,114 @@
-﻿<h1>Individual Upload Dcuments</h1>
+﻿@model IndividualDocumentsViewModel
+
+@{
+    ViewBag.Title = "Individual Upload Document";
+}
+
+
+
+
+<div class="" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Individual Loan Application</h3>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 ">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Individual Upload Document</h2>
+
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br />
+                        <form id="individualUploadDocumentForm" enctype="multipart/form-data" data-parsley-validate class="form-horizontal form-label-left" asp-controller="IndividualUploadDocuments" asp-action="IndividualUploadDocuments" method="post">
+                            @*<div class="item form-group">
+                                    <label asp-for="DocumentId" class="col-form-label col-md-2 col-sm-2 label-align">
+                                        Document Id
+                                    </label>
+                                    <div class="col-md-10 col-sm-10 ">
+                                        <input asp-for="DocumentId" id="documentId" name="documentId" class="form-control" type="text">
+                                    </div>
+                                </div>*@
+
+                            <div class="item form-group">
+                                <label asp-for="DocumentName" class="col-form-label col-md-2 col-sm-2 label-align">
+                                    Select Document
+                                </label>
+                                <div class="col-md-10 col-sm-10 ">
+                                    <select asp-for="DocumentName" id="DocumentName" name="DocumentName" class="form-control">
+                                        <option>
+                                            Financial accounts. Most recent filed annual accounts including Profit & Loss account. (required by default for Business Finance and Asset Finance)
+                                        </option>
+                                        <option>
+                                            Business bank statements. Last 6 months' business bank statements in PDF format (required by default for Business Finance and Asset Finance)
+                                        </option>
+                                        <option>
+                                            Personal bank statements. Last 6 months' personal bank statements in PDF format.
+                                        </option>
+                                        <option>
+                                            Aged debtor list
+                                        </option>
+                                        <option>
+                                            VAT returns. Last 4 quarters
+                                        </option>
+                                        <option>
+                                            Management Accounts. Up to date profit & loss and balance sheet information.
+                                        </option>
+                                        <option>
+                                            Tax returns. Last 2 tax returns/SA302s. (required by default for Property Finance)
+                                        </option>
+                                        <option>
+                                            Payslips. Last 3 months
+                                        </option>
+                                        <option>
+                                            P60. Last 2 annual P60 pay records
+                                        </option>
+                                        <option>
+                                            Leases. Leases for all tenants, or lease Heads of Terms. (required by default for Property Finance)
+                                        </option>
+                                        <option>
+                                            Property Schedule
+                                        </option>
+                                        <option>
+                                            Identification. Passport or driving licence. (required by default for all applications)
+                                        </option>
+                                        <option>
+                                            CV. CV detailing relevant experience.
+                                        </option>
+                                        <option>
+                                            Other. Other useful documents
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="Document" class="col-form-label col-md-2 col-sm-2 label-align">
+                                    Document Path
+                                </label>
+                                <div class="col-md-10 col-sm-10 ">
+                                    <input asp-for="Document" id="DocumentPath" name="DocumentPath" class="form-control-file" type="file">
+                                </div>
+                            </div>
+
+                            <div class="ln_solid"></div>
+                            <div class="item form-group">
+                                <div class="col-md-6 col-sm-6 offset-md-3">
+                                    <button class="btn btn-primary" type="button">Cancel</button>
+                                    <button type="submit" class="btn btn-success">Upload</button>
+                                    @*<a asp-controller="IndividualUploadDocuments" asp-action="IndividualUploadDocuments" class="btn btn-success">Upload</a>*@
+
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

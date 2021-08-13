@@ -7,6 +7,16 @@ namespace LenSys.Models.BusniessUploadDocument
 {
     public class MockBusniessDocumentsRepository : IBusniessDocumentsRepository
     {
+        private List<BusniessDocuments> _busniessDocuments;
+
+        public MockBusniessDocumentsRepository()
+        {
+            _busniessDocuments = new List<BusniessDocuments>()
+            {
+                new BusniessDocuments{DocumentId=1, DocumentPath="path", DocumentName="SampleDoc"}
+
+            };
+        }
         public IEnumerable<BusniessDocuments> GetAllBusniessDocuments()
         {
             throw new NotImplementedException();
@@ -24,7 +34,9 @@ namespace LenSys.Models.BusniessUploadDocument
 
         public BusniessDocuments UploadDocument(BusniessDocuments document)
         {
-            throw new NotImplementedException();
+            document.DocumentId = _busniessDocuments.Max(e => e.DocumentId) + 1;
+            _busniessDocuments.Add(document);
+            return document;
         }
     }
 }
