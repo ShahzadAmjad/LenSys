@@ -1,1 +1,88 @@
-﻿<h1>Search Page</h1>
+﻿@model Search
+
+@{
+    ViewBag.Title = "Search";
+}
+
+
+
+
+<div class="" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Busniess Loan Application Search</h3>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 ">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Search By</h2>
+
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br />
+                        <form id="BusniessUploadDocumentForm" enctype="multipart/form-data" data-parsley-validate class="form-horizontal form-label-left" asp-controller="Home" asp-action="Search" method="post">
+                            @*<div class="item form-group">
+            <label asp-for="SearchId" class="col-form-label col-md-2 col-sm-2 label-align">
+                Search Id
+            </label>
+            <div class="col-md-10 col-sm-10 ">
+                <input asp-for="SearchId" id="documentId" name="documentId" class="form-control" type="text">
+            </div>
+        </div>*@
+
+                            <div class="form-check form-check-inline">
+                                <input asp-for="SearchAttribute" class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Application Id">
+                                <label class="form-check-label" for="inlineRadio1">Application Id</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input asp-for="SearchAttribute" class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Busniess Id">
+                                <label class="form-check-label" for="inlineRadio2">Busniess Id</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input asp-for="SearchAttribute" class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="Individual Id">
+                                <label class="form-check-label" for="inlineRadio1">Individual Id</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input asp-for="SearchAttribute" class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4" value="First Name">
+                                <label class="form-check-label" for="inlineRadio2">First Name</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input asp-for="SearchAttribute" class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio5" value="Phone No">
+                                <label class="form-check-label" for="inlineRadio1">Phone No</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input asp-for="SearchAttribute" class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio6" value="Company Name">
+                                <label class="form-check-label" for="inlineRadio2">Company Name</label>
+                            </div>
+                            <br />
+                            <br />
+
+                            <div class="item form-group">
+                                <label asp-for="SearchParam" class="col-form-label col-md-3 col-sm-3 label-align">
+                                Search Parameter
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="SearchParam" id="SearchParam" name="SearchParam" class="form-control" type="text">
+                                </div>
+                            </div>
+
+                            <div class="ln_solid"></div>
+                            <div class="item form-group">
+                                <div class="col-md-6 col-sm-6 offset-md-3">
+                                    <button class="btn btn-primary" type="button">Cancel</button>
+                                    <button type="submit" class="btn btn-success">Search</button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

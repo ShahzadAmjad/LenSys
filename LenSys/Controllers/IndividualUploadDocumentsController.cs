@@ -47,10 +47,6 @@ namespace LenSys.Controllers
                     uniqueFileName = Guid.NewGuid().ToString() + "_" + model.Document.FileName;
                     string filePath = Path.Combine(UploadsFolder, uniqueFileName);
                     model.Document.CopyTo(new FileStream(filePath, FileMode.Create));
-
-                   // Server.MapPath("~/Images/Logos/" + model.Document.FileName);
-
-
                 }
 
                 //To save data to database
