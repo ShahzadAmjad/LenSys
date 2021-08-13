@@ -12,9 +12,9 @@ namespace LenSys.Models.BusniessServiceability
         {
             _serviceability = new List<Serviceability>()
             {
-                new Serviceability{ServiceabilityId=1,TurnOver=2000, NetProfit=1000,EBITDA="50000"},
-                new Serviceability{ServiceabilityId=2,TurnOver=3000, NetProfit=2000,EBITDA="60000"},
-                new Serviceability{ServiceabilityId=3,TurnOver=4000, NetProfit=3000,EBITDA="70000"}
+                new Serviceability{ServiceabilityId=1, Year=(DateTime.Now.Year).ToString(),TurnOver=2000, NetProfit=1000,EBITDA="50000"},
+                new Serviceability{ServiceabilityId=2, Year=(DateTime.Now.Year).ToString(),TurnOver=3000, NetProfit=2000,EBITDA="60000"},
+                new Serviceability{ServiceabilityId=3, Year=(DateTime.Now.Year).ToString(),TurnOver=4000, NetProfit=3000,EBITDA="70000"}
 
             };
         }

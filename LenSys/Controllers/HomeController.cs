@@ -22,6 +22,14 @@ namespace LenSys.Controllers
         {
             return View();
         }
+        public ViewResult Search()
+        {
+            return View();
+        }
+        public ViewResult DocumentList()
+        {
+            return View();
+        }
         [HttpPost]
         public IActionResult Lead(Lead lead)
         {

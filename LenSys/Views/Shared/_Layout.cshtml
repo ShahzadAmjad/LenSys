@@ -48,6 +48,14 @@
                             <h3>Loan Applications</h3>
                             <ul class="nav side-menu">
                                 <li>
+                                    <a><i class="fa fa-search"></i> Home <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a asp-controller="Home" asp-action="Lead">Lead</a></li>
+                                        <li><a asp-controller="Home" asp-action="Search">Search</a></li>
+                                        <li><a asp-controller="Home" asp-action="DocumentList">Document List</a></li>
+                                    </ul>
+                                </li>
+                                <li>
                                     <a><i class="fa fa-home"></i> Individual <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                         <li><a asp-controller="IndividualPersonalDetails" asp-action="PersonalDetails">Personal Details</a></li>
@@ -57,19 +65,23 @@
                                         <li><a asp-controller="IndividualMonthlyExpenditure" asp-action="MonthlyExpenditure">Expenditure Details</a></li>
                                         <li><a asp-controller="IndividualAsset" asp-action="Asset">Assets Details</a></li>
                                         <li><a asp-controller="IndividualLiabilities" asp-action="Liabilities">Liabilities</a></li>
-                                        <li><a asp-controller="IndividualPropertySchedule" asp-action="PropertySchedule">Property Details</a></li>
+                                        <li><a asp-controller="IndividualPropertySchedule" asp-action="AllPropertySchedule">Property Details</a></li>
                                         <li><a asp-controller="IndividualCreditHistory" asp-action="CreditHistory">Credit History</a></li>
+                                        <li><a asp-controller="IndividualUploadDocuments" asp-action="IndividualUploadDocuments">Upload Document</a></li>
                                     </ul>
                                 </li>
                                 <li>
                                     <a><i class="fa fa-home"></i> Busniess <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                         <li><a asp-controller="BusniessDetails" asp-action="BusniessDetails">Busniess Details</a></li>
-                                        <li><a asp-controller="BusniessKeyPrincipals" asp-action="KeyPrincipals">Key Principals</a></li>
-                                        <li><a asp-controller="BusniessLiabilities" asp-action="BusniessLiabilities">Busniess Liability</a></li>
-                                        <li><a asp-controller="BusniessServiceability" asp-action="Serviceability">Serviceability</a></li>
+                                        <li><a asp-controller="BusniessKeyPrincipals" asp-action="AllKeyPrincipals">Key Principals</a></li>
+                                        <li><a asp-controller="BusniessLiabilities" asp-action="AllBusniessLiabilities">Busniess Liability</a></li>
+                                        <li><a asp-controller="BusniessServiceability" asp-action="AllServiceability">Serviceability</a></li>
+                                        <li><a asp-controller="BusniessUploadDocuments" asp-action="BusniessUploadDocuments">Upload Document</a></li>
                                     </ul>
                                 </li>
+
+
                             </ul>
                         </div>
                     </div>

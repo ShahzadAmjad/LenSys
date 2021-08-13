@@ -8,7 +8,7 @@ namespace LenSys.Models.BusniessServiceability
     public class Serviceability
     {
         public int ServiceabilityId { get; set; }
-        public DateTime Year { get; set; }
+        public string Year { get; set; }
         public int TurnOver { get; set; }
         public int NetProfit { get; set; }
         public string EBITDA { get; set; }
