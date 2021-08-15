@@ -1,1 +1,201 @@
-﻿<h1>Document List</h1>
+﻿@model DocumentList
+
+@{
+    ViewBag.Title = "Document List";
+}
+
+
+
+
+<div class="" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Documents List</h3>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 ">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Documents</h2>
+
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br />
+                        <form id="BusniessUploadDocumentForm" enctype="multipart/form-data" data-parsley-validate class="form-horizontal form-label-left" asp-controller="Home" asp-action="DocumentList" method="post">
+                            @*<div class="item form-group">
+                                <label asp-for="DocumentId" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Document Id
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="DocumentId" id="documentId" name="documentId" class="form-control" type="text">
+                                </div>
+                            </div>*@
+
+                            <div style="margin-left:100px;">
+
+                                <div class="form-check ">
+                                    <input class="form-check-input  " asp-for="DocumentNameList" type="checkbox" value="" id="defaultCheck1">
+                                    <label class="form-check-label " for="defaultCheck1">
+                                        Financial accounts. Most recent filed annual accounts including Profit & Loss account. (required by default for Business Finance and Asset Finance)
+                                    </label>
+                                </div>
+
+
+                                <br />
+
+                                <div class="form-check">
+                                    <input class="form-check-input" asp-for="DocumentNameList" type="checkbox" value="" id="defaultCheck1">
+                                    <label class="form-check-label" for="defaultCheck1">
+                                        Business bank statements. Last 6 months' business bank statements in PDF format (required by default for Business Finance and Asset Finance)
+                                    </label>
+                                </div>
+
+
+                                <br />
+
+                                <div class="form-check">
+                                    <input class="form-check-input" asp-for="DocumentNameList" type="checkbox" value="" id="defaultCheck1">
+                                    <label class="form-check-label" for="defaultCheck1">
+                                        Personal bank statements. Last 6 months' personal bank statements in PDF format.
+                                    </label>
+                                </div>
+
+
+                                <br />
+
+                                @*<div class="form-check">
+                                    <input class="form-check-input" asp-for="DocumentNameList" type="checkbox" value="" id="defaultCheck1">
+                                    <label class="form-check-label" for="defaultCheck1">
+                                        Aged debtor list
+                                    </label>
+                                </div>
+
+
+                                <br />*@
+
+                                @*<div class="form-check">
+                                    <input class="form-check-input" asp-for="DocumentNameList" type="checkbox" value="" id="defaultCheck1">
+                                    <label class="form-check-label" for="defaultCheck1">
+                                        Aged creditor list
+                                    </label>
+                                </div>
+
+
+                                <br />*@
+
+                                @*<div class="form-check">
+                                    <input class="form-check-input" asp-for="DocumentNameList" type="checkbox" value="" id="defaultCheck1">
+                                    <label class="form-check-label" for="defaultCheck1">
+                                        VAT returns. Last 4 quarters
+                                    </label>
+                                </div>
+
+
+                                <br />*@
+
+                                <div class="form-check">
+                                    <input class="form-check-input" asp-for="DocumentNameList" type="checkbox" value="" id="defaultCheck1">
+                                    <label class="form-check-label" for="defaultCheck1">
+                                        Management Accounts. Up to date profit & loss and balance sheet information.
+                                    </label>
+                                </div>
+
+
+                                <br />
+
+                                <div class="form-check">
+                                    <input class="form-check-input" asp-for="DocumentNameList" type="checkbox" value="" id="defaultCheck1">
+                                    <label class="form-check-label" for="defaultCheck1">
+                                        Tax returns. Last 2 tax returns/SA302s. (required by default for Property Finance)
+                                    </label>
+                                </div>
+
+
+                                <br />
+
+                                @*<div class="form-check">
+                                    <input class="form-check-input" asp-for="DocumentNameList" type="checkbox" value="" id="defaultCheck1">
+                                    <label class="form-check-label" for="defaultCheck1">
+                                        Payslips. Last 3 months.
+                                    </label>
+                                </div>
+
+
+                                <br />*@
+
+                                @*<div class="form-check">
+                                    <input class="form-check-input" asp-for="DocumentNameList" type="checkbox" value="" id="defaultCheck1">
+                                    <label class="form-check-label" for="defaultCheck1">
+                                        P60. Last 2 annual P60 pay records.
+                                    </label>
+                                </div>
+
+                                <br />*@
+
+                                <div class="form-check">
+                                    <input class="form-check-input" asp-for="DocumentNameList" type="checkbox" value="" id="defaultCheck1">
+                                    <label class="form-check-label" for="defaultCheck1">
+                                        Leases. Leases for all tenants, or lease Heads of Terms. (required by default for Property Finance)
+                                    </label>
+                                </div>
+
+                                <br />
+
+                                @*<div class="form-check">
+                                    <input class="form-check-input" asp-for="DocumentNameList" type="checkbox" value="" id="defaultCheck1">
+                                    <label class="form-check-label" for="defaultCheck1">
+                                        Property Schedule.
+                                    </label>
+                                </div>
+
+                                <br />*@
+
+                                <div class="form-check">
+                                    <input class="form-check-input" asp-for="DocumentNameList" type="checkbox" value="" id="defaultCheck1">
+                                    <label class="form-check-label" for="defaultCheck1">
+                                        Identification. Passport or driving licence. (required by default for all applications)
+                                    </label>
+                                </div>
+
+                                <br />
+
+                                <div class="form-check">
+                                    <input class="form-check-input" asp-for="DocumentNameList" type="checkbox" value="" id="defaultCheck1">
+                                    <label class="form-check-label" for="defaultCheck1">
+                                        CV. CV detailing relevant experience.
+                                    </label>
+                                </div>
+
+                                <br />
+
+                                <div class="form-check">
+                                    <input class="form-check-input" asp-for="DocumentNameList" type="checkbox" value="" id="defaultCheck1">
+                                    <label class="form-check-label" for="defaultCheck1">
+                                        Other. Other useful documents.
+                                    </label>
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="ln_solid"></div>
+                            <div class="item form-group">
+                                <div class="col-md-6 col-sm-6 offset-md-3">
+                                    <button class="btn btn-primary" type="button">Cancel</button>
+                                    <button type="reset" class="btn btn-success">Clear</button>
+                                    <button type="submit" class="btn btn-success">Save</button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
