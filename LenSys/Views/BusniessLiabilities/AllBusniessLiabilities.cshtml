@@ -1,11 +1,12 @@
-﻿@model IEnumerable<BusniessLiabilities>
+﻿@model BusniessLiabilitiesCreateViewModel
 
 @{
     ViewBag.Title = "All Busniess Liabilities";
 }
 
 <div class="mtop20">
-    <a asp-controller="BusniessLiabilities" asp-action="BusniessLiabilities" class="btn btn-success">Add New Busniess Liability</a>
+    @*<a asp-controller="BusniessLiabilities" asp-action="BusniessLiabilities" class="btn btn-success">Add New Busniess Liability</a>*@
+    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createBusniessLiabilityModel">Add New Busniess Liability</button>
 </div>
 
 
@@ -22,9 +23,9 @@
             </tr>
         </thead>
         <tbody>
-            @if (Model.Count() > 0)
+            @if (Model._busniessLiabilities.Count() > 0)
             {
-                @foreach (var busniessLiabilities in Model)
+                @foreach (var busniessLiabilities in Model._busniessLiabilities)
 
                 {
                     var tm = "#myModal" + busniessLiabilities.BusniessLiabilityId;
@@ -37,7 +38,7 @@
                         <td><a asp-controller="BusniessLiabilities" asp-action="EditBusniessLiabilities" class="btn btn-primary" asp-route-id="@busniessLiabilities.BusniessLiabilityId">Edit</a></td>
 
                         <td>
-                            
+
                             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="@tm">
                                 Delete
                             </button>
@@ -49,6 +50,7 @@
                                         <div class="modal-header">
                                             @*<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>*@
                                             <h4 class="modal-title text-center" id="myModalLabel">Delete Property</h4>
+                                            <button type="button" class="close " data-dismiss="modal" aria-hidden="true">&times;</button>
                                         </div>
                                         <div class="modal-body">
                                             Are you sure want to delete this Busniess Liability?
@@ -67,4 +69,35 @@
             }
         </tbody>
     </table>
+
+    @*Add New Busniess Liability Modal*@
+
+    <div class="modal fade bd-example-modal-lg" id="createBusniessLiabilityModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog  modal-lg" role="form">
+            <div class="modal-content">
+                <div class="modal-header">
+                    @*<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>*@
+                    <h4 class="modal-title text-center" id="myModalLabel">Add Busniess Liability</h4>
+                    <button type="button" class="close " data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+
+
+
+                    Busniess Liability
+
+
+
+                </div>
+                <div class="modal-footer">
+
+                    <a asp-controller="BusniessLiabilities" asp-action="BusniessLiabilities" id="AddPropertyBtn" class="btn btn-primary mr-1">Save</a>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
 </div>

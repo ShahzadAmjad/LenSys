@@ -1,11 +1,12 @@
-﻿@model IEnumerable<KeyPrincipals>
+﻿@model KeyPrincipalsCreateViewModel
 
 @{
     ViewBag.Title = "Busniess All Key Principals";
 }
 
 <div class="mtop20">
-    <a asp-controller="BusniessKeyPrincipals" asp-action="KeyPrincipals" class="btn btn-success">Add New Key Principal</a>
+    @*<a asp-controller="BusniessKeyPrincipals" asp-action="KeyPrincipals" class="btn btn-success">Add New Key Principal</a>*@
+    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createKeyPrincipalModal">Add New Key Principal</button>
 </div>
 
 
@@ -23,9 +24,9 @@
             </tr>
         </thead>
         <tbody>
-            @if (Model.Count() > 0)
+            @if (Model._keyPrincipals.Count() > 0)
             {
-                @foreach (var keyPrincipals in Model)
+                @foreach (var keyPrincipals in Model._keyPrincipals)
 
                 {
                     var tm = "#myModal" + keyPrincipals.KeyPrincipalsId;
@@ -39,7 +40,7 @@
                         <td><a asp-controller="BusniessKeyPrincipals" asp-action="EditKeyPrincipals" class="btn btn-primary " asp-route-id="@keyPrincipals.KeyPrincipalsId">Edit</a></td>
 
                         <td>
-                            
+
                             <button type="button" class="btn btn-danger " data-toggle="modal" data-target="@tm">
                                 Delete
                             </button>
@@ -51,6 +52,7 @@
                                         <div class="modal-header">
                                             @*<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>*@
                                             <h4 class="modal-title text-center" id="myModalLabel">Delete Key Principal</h4>
+                                            <button type="button" class="close " data-dismiss="modal" aria-hidden="true">&times;</button>
                                         </div>
                                         <div class="modal-body">
                                             Are you sure want to delete this Key Principal?
@@ -69,4 +71,36 @@
             }
         </tbody>
     </table>
+
+
+    @*Add New Key Principal Modal*@
+
+    <div class="modal fade bd-example-modal-lg" id="createKeyPrincipalModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog  modal-lg" role="form">
+            <div class="modal-content">
+                <div class="modal-header">
+                    @*<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>*@
+                    <h4 class="modal-title text-center" id="myModalLabel">Add Busniess Key principal</h4>
+                    <button type="button" class="close " data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+
+
+
+                    Key Principal
+
+
+
+                </div>
+                <div class="modal-footer">
+
+                    <a asp-controller="BusniessKeyPrincipals" asp-action="KeyPrincipals" id="AddPropertyBtn" class="btn btn-primary mr-1">Save</a>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
 </div>

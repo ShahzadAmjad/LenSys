@@ -1,4 +1,5 @@
 ﻿using LenSys.Models.BusniessServiceability;
+using LenSys.ViewModels.BusniessServiceability;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -25,7 +26,13 @@ namespace LenSys.Controllers
         public ViewResult AllServiceability()
         {
             var model = _serviceabilityRepository.GetAllServiceability();
-            return View("AllServiceability", model);
+
+            ServiceabilityCreateViewModel viewmodel = new ServiceabilityCreateViewModel();
+            viewmodel._serviceability = model;
+            viewmodel.serviceability = new Serviceability();
+
+
+            return View("AllServiceability", viewmodel);
         }
         [HttpGet]
         public ViewResult EditServiceability(int id)
