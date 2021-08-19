@@ -5,7 +5,7 @@
 }
 
 <div class="mtop20">
-    <a asp-controller="BusniessServiceability" asp-action="Serviceability" class="btn btn-primary">Add New Busniess Serviceability</a>
+    <a asp-controller="BusniessServiceability" asp-action="Serviceability" class="btn btn-success">Add New Busniess Serviceability</a>
 </div>
 
 
@@ -17,7 +17,8 @@
                 <th id="year" class="hideCol hideHideCol_2">Year(Most recent)</th>
                 <th id="Turnover" class="hideCol hideHideCol_3">Turnover</th>
                 <th id="netProfit" class="hideCol hideHideCol_3">Net Profit</th>
-                <th>Action</th>
+                <th>Edit</th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -33,13 +34,11 @@
                         <td>@serviceability.Year</td>
                         <td>@serviceability.TurnOver</td>
                         <td>@serviceability.NetProfit</td>
-
-                        <td>
-                            <a asp-controller="BusniessServiceability" asp-action="EditServiceability" class="btn btn-primary" asp-route-id="@serviceability.ServiceabilityId">Edit</a>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="@tm">
+                        <td><a asp-controller="BusniessServiceability" asp-action="EditServiceability" class="btn btn-primary" asp-route-id="@serviceability.ServiceabilityId">Edit</a></td>
+                        <td>            
+                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="@tm">
                                 Delete
                             </button>
-
 
                             <div class="modal fade" id="@mid" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">

@@ -5,7 +5,7 @@
 }
 
     <div class="mtop20">
-        <a asp-controller="IndividualPropertySchedule" asp-action="PropertySchedule" class="btn btn-primary">Add New Property Schedule</a>
+        <a asp-controller="IndividualPropertySchedule" asp-action="PropertySchedule" class="btn btn-success">Add New Property Schedule</a>
     </div>
 
 
@@ -17,7 +17,8 @@
                     <th id="owner" class="hideCol hideHideCol_2">Owner Name</th>
                     <th id="address" class="hideCol hideHideCol_3">Address</th>
                     <th id="address" class="hideCol hideHideCol_3">Property Description</th>
-                    <th>Action</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
                 </tr>
             </thead>
             <tbody>
@@ -33,13 +34,12 @@
                     <td>@propertySchedule.Owner</td>
                     <td>@propertySchedule.PropertyAddress</td>
                     <td>@propertySchedule.PropertyDescription</td>
-
-                    <td>
-                        <a asp-controller="IndividualPropertySchedule" asp-action="EditProperty" class="btn btn-primary" asp-route-id="@propertySchedule.PropertyId">Edit</a>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="@tm">
+                    <td><a asp-controller="IndividualPropertySchedule" asp-action="EditProperty" class="btn btn-primary" asp-route-id="@propertySchedule.PropertyId">Edit</a></td>
+                    
+                    <td>                        
+                       <button type="button" class="btn btn-danger" data-toggle="modal" data-target="@tm">
                             Delete
                         </button>
-
 
                         <div class="modal fade" id="@mid" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                             <div class="modal-dialog">

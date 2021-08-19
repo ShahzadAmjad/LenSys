@@ -5,7 +5,7 @@
 }
 
 <div class="mtop20">
-    <a asp-controller="BusniessLiabilities" asp-action="BusniessLiabilities" class="btn btn-primary">Add New Busniess Liability</a>
+    <a asp-controller="BusniessLiabilities" asp-action="BusniessLiabilities" class="btn btn-success">Add New Busniess Liability</a>
 </div>
 
 
@@ -17,7 +17,8 @@
                 <th id="lender" class="hideCol hideHideCol_2">Lender</th>
                 <th id="origionalLoanAmount" class="hideCol hideHideCol_3">Origional Loan Amount</th>
                 <th id="outstandingBalance" class="hideCol hideHideCol_3">Outstanding Balance</th>
-                <th>Action</th>
+                <th>Edit</th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -33,10 +34,11 @@
                         <td>@busniessLiabilities.Lender</td>
                         <td>@busniessLiabilities.OrigionalLoanAmount</td>
                         <td>@busniessLiabilities.OutstandingBalance</td>
+                        <td><a asp-controller="BusniessLiabilities" asp-action="EditBusniessLiabilities" class="btn btn-primary" asp-route-id="@busniessLiabilities.BusniessLiabilityId">Edit</a></td>
 
                         <td>
-                            <a asp-controller="BusniessLiabilities" asp-action="EditBusniessLiabilities" class="btn btn-primary" asp-route-id="@busniessLiabilities.BusniessLiabilityId">Edit</a>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="@tm">
+                            
+                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="@tm">
                                 Delete
                             </button>
 

@@ -5,7 +5,7 @@
 }
 
 <div class="mtop20">
-    <a asp-controller="BusniessKeyPrincipals" asp-action="KeyPrincipals" class="btn btn-primary">Add New Key Principal</a>
+    <a asp-controller="BusniessKeyPrincipals" asp-action="KeyPrincipals" class="btn btn-success">Add New Key Principal</a>
 </div>
 
 
@@ -18,7 +18,8 @@
                 <th id="firstName" class="hideCol hideHideCol_2">First Name</th>
                 <th id="position" class="hideCol hideHideCol_3">Position</th>
                 <th id="percentageShareholding" class="hideCol hideHideCol_3">Percentage Share Holding</th>
-                <th>Action</th>
+                <th>Edit</th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -35,9 +36,11 @@
                         <td>@keyPrincipals.Position</td>
                         <td>@keyPrincipals.PercentageShareholding</td>
 
+                        <td><a asp-controller="BusniessKeyPrincipals" asp-action="EditKeyPrincipals" class="btn btn-primary " asp-route-id="@keyPrincipals.KeyPrincipalsId">Edit</a></td>
+
                         <td>
-                            <a asp-controller="BusniessKeyPrincipals" asp-action="EditKeyPrincipals" class="btn btn-primary" asp-route-id="@keyPrincipals.KeyPrincipalsId">Edit</a>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="@tm">
+                            
+                            <button type="button" class="btn btn-danger " data-toggle="modal" data-target="@tm">
                                 Delete
                             </button>
 
