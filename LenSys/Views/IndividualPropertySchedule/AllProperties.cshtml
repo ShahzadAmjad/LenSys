@@ -1,68 +1,283 @@
-﻿@model IEnumerable<PropertySchedule>
+﻿
+@model PropertyScheduleCreateViewModel
+
 
 @{
     ViewBag.Title = "Individual All Property Schedule";
 }
 
-    <div class="mtop20">
-        <a asp-controller="IndividualPropertySchedule" asp-action="PropertySchedule" class="btn btn-success">Add New Property Schedule</a>
-    </div>
+<div class="mtop20">
+    @*<a asp-controller="IndividualPropertySchedule" asp-action="PropertySchedule" class="btn btn-success">Add New Property Schedule</a>*@
+    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createPropertyModel">Add New Property Schedule</button>
+</div>
 
 
-    <div class="mtop20">
-        <table id="tblPropertyinfo" class="table table-bordered table-hover table-striped ">
-            <thead class="thead-light">
-                <tr>
-                    <th id="propertyID">Property ID</th>
-                    <th id="owner" class="hideCol hideHideCol_2">Owner Name</th>
-                    <th id="address" class="hideCol hideHideCol_3">Address</th>
-                    <th id="address" class="hideCol hideHideCol_3">Property Description</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
-                </tr>
-            </thead>
-            <tbody>
-                @if (Model.Count() > 0)
+<div class="mtop20">
+    <table id="tblPropertyinfo" class="table table-bordered table-hover table-striped ">
+        <thead class="thead-light">
+            <tr>
+                <th id="propertyID">Property ID</th>
+                <th id="owner" class="hideCol hideHideCol_2">Owner Name</th>
+                <th id="address" class="hideCol hideHideCol_3">Address</th>
+                <th id="address" class="hideCol hideHideCol_3">Property Description</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model._propertySchedule.Count() > 0)
+            {
+                @foreach (var propertySchedule in Model._propertySchedule)
+
                 {
-                    @foreach (var propertySchedule in Model)
+                    var tm = "#myModal" + propertySchedule.PropertyId;
+                    var mid = "myModal" + propertySchedule.PropertyId;
+                    <tr>
+                        <td>@propertySchedule.PropertyId</td>
+                        <td>@propertySchedule.Owner</td>
+                        <td>@propertySchedule.PropertyAddress</td>
+                        <td>@propertySchedule.PropertyDescription</td>
+                        <td><a asp-controller="IndividualPropertySchedule" asp-action="EditProperty" class="btn btn-primary" asp-route-id="@propertySchedule.PropertyId">Edit</a></td>
 
-                    {
-                        var tm = "#myModal" + propertySchedule.PropertyId;
-                        var mid = "myModal" + propertySchedule.PropertyId;
-                <tr>
-                    <td>@propertySchedule.PropertyId</td>
-                    <td>@propertySchedule.Owner</td>
-                    <td>@propertySchedule.PropertyAddress</td>
-                    <td>@propertySchedule.PropertyDescription</td>
-                    <td><a asp-controller="IndividualPropertySchedule" asp-action="EditProperty" class="btn btn-primary" asp-route-id="@propertySchedule.PropertyId">Edit</a></td>
-                    
-                    <td>                        
-                       <button type="button" class="btn btn-danger" data-toggle="modal" data-target="@tm">
-                            Delete
-                        </button>
+                        <td>
+                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="@tm">
+                                Delete
+                            </button>
 
-                        <div class="modal fade" id="@mid" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        @*<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>*@
-                                        <h4 class="modal-title text-center" id="myModalLabel">Delete Property</h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        Are you sure want to delete this Property Schedule?
-                                    </div>
-                                    <div class="modal-footer">
+                            <div class="modal fade" id="@mid" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            @*<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>*@
+                                            <h4 class="modal-title text-center" id="myModalLabel">Delete Property</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            Are you sure want to delete this Property Schedule?
+                                        </div>
+                                        <div class="modal-footer">
 
-                                        <a asp-controller="IndividualPropertySchedule" asp-action="DeleteProperty" asp-route-Id="@propertySchedule.PropertyId" id="deleteBtn" class="btn bg-danger mr-1">Delete</a>
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            <a asp-controller="IndividualPropertySchedule" asp-action="DeleteProperty" asp-route-Id="@propertySchedule.PropertyId" id="deleteBtn" class="btn bg-danger mr-1">Delete</a>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </td>
-                </tr>
-                    }
+                        </td>
+                    </tr>
                 }
-            </tbody>
-        </table>
+            }
+        </tbody>
+    </table>
+
+    @*Add New Property Modal*@
+
+    <div class="modal fade bd-example-modal-lg" id="createPropertyModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog  modal-lg" role="form">
+            <div class="modal-content">
+                <div class="modal-header">
+                    @*<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>*@
+                    <h4 class="modal-title text-center" id="myModalLabel">Add Property Schedule</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="@Model.propertySchedule.PropertyId">
+                            Property Id<span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input type="text" asp-for="@Model.propertySchedule.PropertyId" id="propertyId" name="propertyId" required="required" class="form-control ">
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label asp-for="@Model.propertySchedule.Owner" class="col-form-label col-md-3 col-sm-3 label-align">
+                            Owner <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input type="text" asp-for="@Model.propertySchedule.Owner" id="Owner" name="owner" required="required" class="form-control">
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label asp-for="@Model.propertySchedule.PropertyAddress" class="col-form-label col-md-3 col-sm-3 label-align">
+                            Property Address<span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input asp-for="@Model.propertySchedule.PropertyAddress" id="propertyAddress" name="propertyAddress" class="form-control" type="text">
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label asp-for="@Model.propertySchedule.Lender" class="col-form-label col-md-3 col-sm-3 label-align">
+                            Lender<span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input asp-for="@Model.propertySchedule.Lender" id="lender" name="lender" class="form-control" type="text">
+                        </div>
+                    </div>
+
+                    <div class="item form-group">
+                        <label asp-for="@Model.propertySchedule.PurchaseDate" class="col-form-label col-md-3 col-sm-3 label-align">
+                            Purchase Date <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input asp-for="@Model.propertySchedule.PurchaseDate" id="purchaseDate" name="purchaseDate" class="date-picker form-control" placeholder="dd-mm-yyyy" type="text" required="required" onfocus="this.type='date'" onmouseover="this.type='date'" onclick="this.type='date'" onblur="this.type='text'" onmouseout="timeFunctionLong(this)">
+                            <script>
+                                        function timeFunctionLong(input) {
+                                            setTimeout(function () {
+                                                input.type = 'text';
+                                            }, 60000);
+                                        }</script>
+                        </div>
+                    </div>
+
+                    <div class="item form-group">
+                        <label asp-for="@Model.propertySchedule.PurchasePrice" class="col-form-label col-md-3 col-sm-3 label-align">
+                            Purchase Price
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input asp-for="@Model.propertySchedule.PurchasePrice" id="purchasePrice" name="purchasePrice" class="form-control" type="text">
+                        </div>
+                    </div>
+
+
+
+                    <div class="item form-group">
+                        <label asp-for="@Model.propertySchedule.OrigionalMortgageAmount" class="col-form-label col-md-3 col-sm-3 label-align">
+                            Origional Mortgage Amount
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input asp-for="@Model.propertySchedule.OrigionalMortgageAmount" id="origionalMortgageAmount" name="origionalMortgageAmount" class="form-control" type="text">
+                        </div>
+                    </div>
+
+                    <div class="item form-group">
+                        <label asp-for="@Model.propertySchedule.CurrentMarketValue" class="col-form-label col-md-3 col-sm-3 label-align">
+                            Current Market Value
+                            <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input asp-for="@Model.propertySchedule.CurrentMarketValue" id="currentMarketValue" name="currentMarketValue" class="form-control" type="text">
+                        </div>
+                    </div>
+
+                    <div class="item form-group">
+                        <label asp-for="@Model.propertySchedule.OutstandingMortgage" class="col-form-label col-md-3 col-sm-3 label-align">
+                            Outstanding Mortgage <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input type="text" asp-for="@Model.propertySchedule.OutstandingMortgage" id="outstandingMortgage" name="outstandingMortgage" required="required" class="form-control">
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label asp-for="@Model.propertySchedule.RemainingTerm" class="col-form-label col-md-3 col-sm-3 label-align">
+                            Remaining Term
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input asp-for="@Model.propertySchedule.RemainingTerm" id="remainingTerm" name="remainingTerm" class="form-control" type="text">
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label asp-for="@Model.propertySchedule.TypeOfRate" class="col-form-label col-md-3 col-sm-3 label-align">
+                            Type Of Rate
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <select asp-for="@Model.propertySchedule.TypeOfRate" id="typeOfRate" name="typeOfRate" class="form-control">
+                                <option>Variable</option>
+                                <option>Fixed</option>
+                                <option>Any</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="item form-group">
+                        <label asp-for="@Model.propertySchedule.InterestRate" class="col-form-label col-md-3 col-sm-3 label-align">
+                            Interest Rate <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input asp-for="@Model.propertySchedule.InterestRate" id="interestRate" name="interestRate" class="form-control" type="text">
+                        </div>
+                    </div>
+
+                    <div class="item form-group">
+                        <label asp-for="@Model.propertySchedule.RentPcm" class="col-form-label col-md-3 col-sm-3 label-align">
+                            Rent pcm <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input asp-for="@Model.propertySchedule.RentPcm" id="rentPcm" name="rentPcm" class="form-control" type="text">
+                        </div>
+                    </div>
+
+                    <div class="item form-group">
+                        <label asp-for="@Model.propertySchedule.MortgagePcm" class="col-form-label col-md-3 col-sm-3 label-align">
+                            Mortgage pcm
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input asp-for="@Model.propertySchedule.MortgagePcm" id="mortgagePcm" name="mortgagePcm" class="form-control" type="text">
+                        </div>
+                    </div>
+
+
+
+                    <div class="item form-group">
+                        <label asp-for="@Model.propertySchedule.LTV" class="col-form-label col-md-3 col-sm-3 label-align">
+                            LTV
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input asp-for="@Model.propertySchedule.LTV" id="lTV" name="lTV" class="form-control" type="text">
+                        </div>
+                    </div>
+
+                    <div class="item form-group">
+                        <label asp-for="@Model.propertySchedule.PropertyType" class="col-form-label col-md-3 col-sm-3 label-align">
+                            Property Type
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <select asp-for="@Model.propertySchedule.PropertyType" id="propertyType" name="propertyType" class="form-control">
+                                <option>Commercial</option>
+                                <option>Residential</option>
+                                <option>Semi-Commercial</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="item form-group">
+                        <label asp-for="@Model.propertySchedule.PropertyDescription" class="col-form-label col-md-3 col-sm-3 label-align">
+                            Property Description <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input type="text" asp-for="@Model.propertySchedule.PropertyDescription" id="propertyDescription" name="propertyDescription" required="required" class="form-control">
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label asp-for="@Model.propertySchedule.TypeOfTenancyLeaseASTBoth" class="col-form-label col-md-3 col-sm-3 label-align">
+                            Type Of Tenancy Lease/AST/Both
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <select asp-for="@Model.propertySchedule.TypeOfTenancyLeaseASTBoth" id="typeOfTenancyLeaseASTBoth" name="typeOfTenancyLeaseASTBoth" class="form-control">
+                                <option>Lease</option>
+                                <option>AST</option>
+                                <option>Both</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label asp-for="@Model.propertySchedule.RemainingTermOfLease" class="col-form-label col-md-3 col-sm-3 label-align">
+                            Remaining Term Of Lease
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input asp-for="@Model.propertySchedule.RemainingTermOfLease" id="remainingTermOfLease" name="remainingTermOfLease" class="form-control" type="text">
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+                <div class="modal-footer">
+
+                    <a asp-controller="IndividualPropertySchedule" asp-action="PropertySchedule" id="AddPropertyBtn" class="btn btn-primary mr-1">Save</a>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
     </div>
+
+
+</div>

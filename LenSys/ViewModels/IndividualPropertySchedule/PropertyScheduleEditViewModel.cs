@@ -1,12 +1,14 @@
-﻿using System;
+﻿using LenSys.Models.IndividualPropertySchedule;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace LenSys.ViewModels.IndividualPropertySchedule
 {
-    public class PropertyScheduleEditViewModel:PropertyScheduleCreateViewModel
+    public class PropertyScheduleEditViewModel
     {
-        public int PropertyID { get; set; }
+        //public PropertySchedule propertySchedule { get; set; }
+        //public IEnumerable<PropertySchedule> _propertySchedule { get; set; }
     }
 }
