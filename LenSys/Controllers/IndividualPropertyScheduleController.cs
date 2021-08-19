@@ -18,7 +18,12 @@ namespace LenSys.Controllers
         public ViewResult Index()
         {
             var model = _propertyScheduleRepositry.GetAllPropertySchedule();
-            return View("AllProperties",model);
+            //return View("AllProperties",model);
+            PropertyScheduleCreateViewModel viewmodel = new PropertyScheduleCreateViewModel();
+            viewmodel._propertySchedule = model;
+            viewmodel.propertySchedule = new PropertySchedule();
+
+            return View("AllProperties", viewmodel);
         }
         //[HttpGet]
         public ViewResult AllProperties()

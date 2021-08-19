@@ -19,8 +19,13 @@ namespace LenSys.Controllers
         public ViewResult Index()
         {
             var model = _serviceabilityRepository.GetAllServiceability();
-            return View("AllServiceability", model);
-            //return View("Serviceability");
+            //return View("AllServiceability", model);
+            ServiceabilityCreateViewModel viewmodel = new ServiceabilityCreateViewModel();
+            viewmodel._serviceability = model;
+            viewmodel.serviceability = new Serviceability();
+
+
+            return View("AllServiceability", viewmodel);
         }
 
         public ViewResult AllServiceability()

@@ -18,7 +18,12 @@ namespace LenSys.Controllers
         public ViewResult Index()
         {
             var model = _keyPrincipalsRepository.GetAllKeyPrincipals();
-            return View("AllKeyPrincipals", model);    
+            //return View("AllKeyPrincipals", model);    
+            KeyPrincipalsCreateViewModel viewmodel = new KeyPrincipalsCreateViewModel();
+            viewmodel._keyPrincipals = model;
+            viewmodel.keyPrincipals = new KeyPrincipals();
+
+            return View("AllKeyPrincipals", viewmodel);
         }
         public ViewResult AllKeyPrincipals()
         {
