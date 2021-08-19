@@ -87,7 +87,75 @@
 
 
 
-                    Key Principal
+                    <div class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="@Model.keyPrincipals.KeyPrincipalsId">
+                            ID <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input type="text" asp-for="@Model.keyPrincipals.KeyPrincipalsId" id="keyPrincipalsId" name="keyPrincipalsId" required="required" class="form-control ">
+                        </div>
+                    </div>
+
+                    <div class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="@Model.keyPrincipals.Title">
+                            Title<span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input type="text" asp-for="@Model.keyPrincipals.Title" id="title" name="title" required="required" class="form-control ">
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label asp-for="@Model.keyPrincipals.FirstName" class="col-form-label col-md-3 col-sm-3 label-align">
+                            First Name <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input type="text" asp-for="@Model.keyPrincipals.FirstName" id="firstName" name="firstName" required="required" class="form-control">
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label asp-for="@Model.keyPrincipals.MiddleName" class="col-form-label col-md-3 col-sm-3 label-align">Middle Name / Initial</label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input asp-for="@Model.keyPrincipals.MiddleName" id="middle-name" name="middle-name" class="form-control" type="text">
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label asp-for="@Model.keyPrincipals.Surname" class="col-form-label col-md-3 col-sm-3 label-align"> Surname</label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input asp-for="@Model.keyPrincipals.Surname" id="surname" name="surname" class="form-control" type="text">
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label asp-for="@Model.keyPrincipals.Position" class="col-form-label col-md-3 col-sm-3 label-align">Position (*MultiSelect)</label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <select asp-for="@Model.keyPrincipals.Position" id="position" name="position" class=" form-control" multiple>
+                                <option>
+                                    Director & Shareholder
+                                </option>
+                                <option>
+                                    Director
+                                </option>
+                                <option>
+                                    Shareholder
+                                </option>
+                                <option>
+                                    Partner
+                                </option>
+                                <option>
+                                    Guarantor
+                                </option>
+
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="item form-group">
+                        <label asp-for="@Model.keyPrincipals.PercentageShareholding" class="col-form-label col-md-3 col-sm-3 label-align">
+                            Percentage Shareholding
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input asp-for="@Model.keyPrincipals.PercentageShareholding" id="percentageShareholding" name="percentageShareholding" class="form-control" type="text">
+                        </div>
+                    </div>
 
 
 

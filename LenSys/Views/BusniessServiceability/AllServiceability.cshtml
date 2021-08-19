@@ -79,9 +79,46 @@
                     <button type="button" class="close " data-dismiss="modal" aria-hidden="true">&times;</button>
                 </div>
                 <div class="modal-body">
-                    
 
-                   New Serviceability
+
+                    <div class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="@Model.serviceability.ServiceabilityId">
+                            Serviceability Id<span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input type="text" asp-for=" @Model.serviceability.ServiceabilityId" id="serviceabilityId" name="serviceabilityId" required="required" class="form-control ">
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="@Model.serviceability.Year">
+                            Year (Most recent)<span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input type="text" asp-for="@Model.serviceability.Year" id="year" name="year" required="required" class="form-control ">
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label asp-for="@Model.serviceability.TurnOver" class="col-form-label col-md-3 col-sm-3 label-align">
+                            Turnover <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input type="text" asp-for="@Model.serviceability.TurnOver" id="turnOver" name="turnOver" required="required" class="form-control">
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label asp-for="@Model.serviceability.NetProfit" class="col-form-label col-md-3 col-sm-3 label-align">
+                            Net Profit
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input asp-for="@Model.serviceability.NetProfit" id="netProfit" name="netProfit" class="form-control" type="text">
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label asp-for="@Model.serviceability.EBITDA" class="col-form-label col-md-3 col-sm-3 label-align"> EBITDA</label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input asp-for="@Model.serviceability.EBITDA" id="eBITDA" name="eBITDA" class="form-control" type="text">
+                        </div>
+                    </div>
 
 
 

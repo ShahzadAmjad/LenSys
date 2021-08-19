@@ -84,7 +84,122 @@
 
 
 
-                    Busniess Liability
+                    <div class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="@Model.busniessLiabilities.BusniessLiabilityId">
+                            Busniess Liability Id<span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input type="text" asp-for="@Model.busniessLiabilities.BusniessLiabilityId" id="busniessLiabilityId" name="busniessLiabilityId" required="required" class="form-control ">
+                        </div>
+                    </div>
+
+                    <div class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="@Model.busniessLiabilities.Lender">
+                            Lender<span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input type="text" asp-for="@Model.busniessLiabilities.Lender" id="lender" name="lender" required="required" class="form-control ">
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label asp-for="@Model.busniessLiabilities.OrigionalLoanAmount" class="col-form-label col-md-3 col-sm-3 label-align">
+                            Origional Loan Amount <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input type="text" asp-for="@Model.busniessLiabilities.OrigionalLoanAmount" id="origionalLoanAmount" name="origionalLoanAmount" required="required" class="form-control">
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label asp-for="@Model.busniessLiabilities.OutstandingBalance" class="col-form-label col-md-3 col-sm-3 label-align">
+                            Outstanding Balance<span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input asp-for="@Model.busniessLiabilities.OutstandingBalance" id="outstandingBalance" name="outstandingBalance" class="form-control" type="text">
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label asp-for="@Model.busniessLiabilities.MonthlyPayment" class="col-form-label col-md-3 col-sm-3 label-align">
+                            Monthly Payment<span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input asp-for="@Model.busniessLiabilities.MonthlyPayment" id="monthlyPayment" name="monthlyPayment" class="form-control" type="text">
+                        </div>
+                    </div>
+
+
+
+                    <div class="item form-group">
+                        <label asp-for="@Model.busniessLiabilities.InitialTerm" class="col-form-label col-md-3 col-sm-3 label-align">
+                            Initial Term
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input asp-for="@Model.busniessLiabilities.InitialTerm" id="initialTerm" name="initialTerm" class="form-control" type="text">
+                        </div>
+                    </div>
+
+
+
+                    <div class="item form-group">
+                        <label asp-for="@Model.busniessLiabilities.RemainingTerm" class="col-form-label col-md-3 col-sm-3 label-align">
+                            Remaining Term
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input asp-for="@Model.busniessLiabilities.RemainingTerm" id="remainingTerm" name="remainingTerm" class="form-control" type="text">
+                        </div>
+                    </div>
+
+                    <div class="item form-group">
+                        <label asp-for="@Model.busniessLiabilities.Rate" class="col-form-label col-md-3 col-sm-3 label-align">
+                            Rate
+                            <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input asp-for="@Model.busniessLiabilities.Rate" id="rate" name="rate" class="form-control" type="text">
+                        </div>
+                    </div>
+
+                    <div class="item form-group">
+                        <label asp-for="@Model.busniessLiabilities.FixedOrVariable" class="col-form-label col-md-3 col-sm-3 label-align">
+                            Fixed Or Variable <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <select asp-for="@Model.busniessLiabilities.FixedOrVariable" id="fixedOrVariable" name="fixedOrVariable" class="form-control">
+                                <option>Variable</option>
+                                <option>Fixed</option>
+                                <option>Any</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label asp-for="@Model.busniessLiabilities.FixedTerm" class="col-form-label col-md-3 col-sm-3 label-align">
+                            Fixed Term
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input asp-for="@Model.busniessLiabilities.FixedTerm" id="fixedTerm" name="fixedTerm" class="form-control" type="text">
+                        </div>
+                    </div>
+
+
+                    <div class="item form-group">
+                        <label asp-for="@Model.busniessLiabilities.CommitmentTerm" class="col-form-label col-md-3 col-sm-3 label-align">
+                            Commitment Term <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input asp-for="@Model.busniessLiabilities.CommitmentTerm" id="commitmentTerm" name="commitmentTerm" class="form-control" type="text">
+                        </div>
+                    </div>
+
+                    <div class="item form-group">
+                        <label asp-for="@Model.busniessLiabilities.EarlyRepaymentCharge" class="col-form-label col-md-3 col-sm-3 label-align">
+                            Early Repayment Charge <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input asp-for="@Model.busniessLiabilities.EarlyRepaymentCharge" id="earlyRepaymentCharge" name="earlyRepaymentCharge" class="form-control" type="text">
+                        </div>
+                    </div>
+
+
+
 
 
 
