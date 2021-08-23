@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using LenSys.Models.AppPropertyFinance;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,9 +15,22 @@ namespace LenSys.Controllers
             //return name;
             return View("AppPropertyFinance");
         }
-        //[HttpGet]
+        [HttpGet]
         public ViewResult AppPropertyFinance()
         {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult AppPropertyFinance(AppPropertyFinance appBusniessFinance)
+        {
+            if (ModelState.IsValid)
+            {
+                //Employee newEmployee = _emplyeeRepositry.Add(employee);
+                ////return View();
+                //return RedirectToAction("details", new { id = newEmployee.Id });
+                return View("Index", "Home");
+            }
+
             return View();
         }
     }

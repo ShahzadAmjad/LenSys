@@ -1,1 +1,172 @@
-﻿<h1>Asset Finance</h1>
+﻿@model AppAssetFinance
+
+@{
+    ViewBag.Title = "App Asset Finance";
+}
+
+<div class="" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Asset Finance Application</h3>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 ">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Finance Details</h2>
+
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br />
+                        <form id="AppAssetFinanceForm" data-parsley-validate class="form-horizontal form-label-left" asp-controller="AppAssetFinance" asp-action="AppAssetFinance" method="post">
+
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="AssetType">
+                                    Asset Type
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input type="text" asp-for="AssetType" id="assetType" name="assetType" required="required" class="form-control">
+
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label asp-for="Description" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Description <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input type="text" asp-for="Description" id="description" name="description" required="required" class="form-control">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="PurchasePriceOfAssetValue" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Purchase Price Of Asset Value
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="PurchasePriceOfAssetValue" id="purchasePriceOfAssetValue" name="purchasePriceOfAssetValue" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="Deposit" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Deposit
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="Deposit" id="deposit" name="deposit" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="LoanAmount" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Loan Amount
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="LoanAmount" id="loanAmount" name="loanAmount" class="form-control" type="text">
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label asp-for="VATincluded" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    VAT Included
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="VATincluded" id="vATincluded" name="vATincluded" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="RepaymentTermMonths" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Repayment Term Months
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="RepaymentTermMonths" id="repaymentTermMonths" name="repaymentTermMonths" class="form-control" type="text">
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label asp-for="BalloonPayment" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Balloon Payment<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="BalloonPayment" id="balloonPayment" name="balloonPayment" class="form-control" type="text">
+
+                                </div>
+                            </div>
+                            <h3>Supplier Details</h3>
+
+                            <div class="item form-group">
+                                <label asp-for="CompanyName" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Company Name<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="CompanyName" id="companyName" name="companyName" class="form-control" type="text">
+
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="ContactName" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Contact Name<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="ContactName" id="contactName" name="contactName" class="form-control" type="text">
+
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="PhoneNumber" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Phone Number<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="PhoneNumber" id="phoneNumber" name="phoneNumber" class="form-control" type="text">
+
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="Email" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Email<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="Email" id="email" name="email" class="form-control" type="text">
+
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="Address" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Address<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="Address" id="address" name="address" class="form-control" type="text">
+
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="Notes" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Notes<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="Notes" id="notes" name="notes" class="form-control" type="text">
+
+                                </div>
+                            </div>
+
+
+
+                            <div class="ln_solid"></div>
+                            <div class="item form-group">
+                                <div class="col-md-6 col-sm-6 offset-md-3">
+                                    <button class="btn btn-primary" type="button">Cancel</button>
+                                    <button class="btn btn-primary" type="reset">Save</button>
+                                    <button type="submit" class="btn btn-success">Submit Application</button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
