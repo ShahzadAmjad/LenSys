@@ -51,6 +51,14 @@ namespace LenSys.Models.AppDevelopmentFinance
         public string SellingCosts_Insert2 { get; set; }
         public int SellingCosts_Total { get; set; }
 
+        //Project Timescales
+        public DateTime Acquistion { get; set; }
+        public DateTime PlainingPermission { get; set; }
+        public DateTime PlainingConditions { get; set; }
+        public DateTime StartConstruction { get; set; }
+        public DateTime BuildingSignOff { get; set; }
+        public DateTime SaleLetWholeBuilding { get; set; }
+
         //FCA Regulations
 
         public string FCA_RegulatedLoan { get; set; }
