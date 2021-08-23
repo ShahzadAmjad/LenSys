@@ -59,6 +59,10 @@ namespace LenSys.Models.AppDevelopmentFinance
         public DateTime BuildingSignOff { get; set; }
         public DateTime SaleLetWholeBuilding { get; set; }
 
+        //Project Timescales
+        public string DetailsOfPlainingPermission { get; set; }
+        public string DetailsOfBuildersContrators { get; set; }
+
         //FCA Regulations
 
         public string FCA_RegulatedLoan { get; set; }

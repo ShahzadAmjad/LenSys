@@ -8,5 +8,16 @@ namespace LenSys.Controllers
 {
     public class AppAssetFinanceController : Controller
     {
+        public ViewResult Index()
+        {
+            //String name = "Default Index Page";
+            //return name;
+            return View("AppAssetFinance");
+        }
+        //[HttpGet]
+        public ViewResult AppAssetFinance()
+        {
+            return View();
+        }
     }
 }
