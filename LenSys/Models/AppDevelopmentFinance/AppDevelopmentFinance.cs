@@ -64,20 +64,8 @@ namespace LenSys.Models.AppDevelopmentFinance
         public string FCA_RegulatedLoan { get; set; }
         public string WillApplicantOrFamilyMemOwn40PercentOfSecurityatmortgageTime { get; set; }
         public string EverLivedinThisProperty { get; set; }
+        public string Notes { get; set; }
 
-        //Accountant
-        public string AccountantName { get; set; }
-        public string AccountantCompany { get; set; }
-        public int AccountantPhoneNo { get; set; }
-        public string AccountantEmail { get; set; }
-        public string AccountantAddress { get; set; }
 
-        //Solicitor
-        public string SolicitorName { get; set; }
-        public string SolicitorCompany { get; set; }
-        public int SolicitorPhoneNo { get; set; }
-        public string SolicitorEmail { get; set; }
-        public string SolicitorAddress { get; set; }
-        public int SolicitorDXnumber { get; set; }
     }
 }
