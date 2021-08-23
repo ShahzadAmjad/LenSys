@@ -1,4 +1,5 @@
 ﻿using LenSys.Models.BusniessLiabilities;
+using LenSys.ViewModels.BusniessLiabilities;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -17,13 +18,22 @@ namespace LenSys.Controllers
         public ViewResult Index()
         {
             var model = _busniessLiabilitiesRepository.GetAllBusniessLiabilities();
-            return View("AllBusniessLiabilities", model);
-            //return View("BusniessLiabilities");
+            //return View("AllBusniessLiabilities", model);
+            BusniessLiabilitiesCreateViewModel viewmodel = new BusniessLiabilitiesCreateViewModel();
+            viewmodel._busniessLiabilities = model;
+            viewmodel.busniessLiabilities = new BusniessLiabilities();
+
+            return View("AllBusniessLiabilities", viewmodel);
         }
         public ViewResult AllBusniessLiabilities()
         {
             var model = _busniessLiabilitiesRepository.GetAllBusniessLiabilities();
-            return View("AllBusniessLiabilities", model);
+
+            BusniessLiabilitiesCreateViewModel viewmodel = new BusniessLiabilitiesCreateViewModel();
+            viewmodel._busniessLiabilities = model;
+            viewmodel.busniessLiabilities = new BusniessLiabilities();
+
+            return View("AllBusniessLiabilities", viewmodel);
         }
         [HttpGet]
         public ViewResult EditBusniessLiabilities(int id)

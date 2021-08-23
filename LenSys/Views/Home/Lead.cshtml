@@ -31,7 +31,20 @@
                                     Loan Purpose
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input asp-for="LoanPurpose" id="loanPurpose" name="loanPurpose" class="form-control" type="text">
+                                    <select asp-for="LoanPurpose" id="loanPurpose" name="loanPurpose" class="form-control">
+                                        <option>
+                                            Property finance
+                                        </option>
+                                        <option>
+                                            Business finance
+                                        </option>
+                                        <option>
+                                            Asset finance
+                                        </option>
+                                        <option>
+                                            Development finance
+                                        </option>                                     
+                                    </select>
                                 </div>
                             </div>
                             <div class="item form-group">

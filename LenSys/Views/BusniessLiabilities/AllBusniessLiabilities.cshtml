@@ -1,29 +1,31 @@
-﻿@model IEnumerable<BusniessLiabilities>
+﻿@model BusniessLiabilitiesCreateViewModel
 
 @{
     ViewBag.Title = "All Busniess Liabilities";
 }
 
 <div class="mtop20">
-    <a asp-controller="BusniessLiabilities" asp-action="BusniessLiabilities" class="btn btn-primary">Add New Busniess Liability</a>
+    @*<a asp-controller="BusniessLiabilities" asp-action="BusniessLiabilities" class="btn btn-success">Add New Busniess Liability</a>*@
+    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createBusniessLiabilityModel">Add New Busniess Liability</button>
 </div>
 
 
 <div class="mtop20">
-    <table id="tblBusniessLiability" class="table table-bordered table-hover">
-        <thead>
+    <table id="tblBusniessLiability" class="table table-bordered table-hover table-striped">
+        <thead class="thead-light">
             <tr>
                 <th id="busniessLiabilityId">Busniess Liability ID</th>
                 <th id="lender" class="hideCol hideHideCol_2">Lender</th>
                 <th id="origionalLoanAmount" class="hideCol hideHideCol_3">Origional Loan Amount</th>
                 <th id="outstandingBalance" class="hideCol hideHideCol_3">Outstanding Balance</th>
-                <th>Action</th>
+                <th>Edit</th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
-            @if (Model.Count() > 0)
+            @if (Model._busniessLiabilities.Count() > 0)
             {
-                @foreach (var busniessLiabilities in Model)
+                @foreach (var busniessLiabilities in Model._busniessLiabilities)
 
                 {
                     var tm = "#myModal" + busniessLiabilities.BusniessLiabilityId;
@@ -33,10 +35,11 @@
                         <td>@busniessLiabilities.Lender</td>
                         <td>@busniessLiabilities.OrigionalLoanAmount</td>
                         <td>@busniessLiabilities.OutstandingBalance</td>
+                        <td><a asp-controller="BusniessLiabilities" asp-action="EditBusniessLiabilities" class="btn btn-primary" asp-route-id="@busniessLiabilities.BusniessLiabilityId">Edit</a></td>
 
                         <td>
-                            <a asp-controller="BusniessLiabilities" asp-action="EditBusniessLiabilities" class="btn btn-primary" asp-route-id="@busniessLiabilities.BusniessLiabilityId">Edit</a>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="@tm">
+
+                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="@tm">
                                 Delete
                             </button>
 
@@ -47,6 +50,7 @@
                                         <div class="modal-header">
                                             @*<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>*@
                                             <h4 class="modal-title text-center" id="myModalLabel">Delete Property</h4>
+                                            <button type="button" class="close " data-dismiss="modal" aria-hidden="true">&times;</button>
                                         </div>
                                         <div class="modal-body">
                                             Are you sure want to delete this Busniess Liability?
@@ -65,4 +69,150 @@
             }
         </tbody>
     </table>
+
+    @*Add New Busniess Liability Modal*@
+
+    <div class="modal fade bd-example-modal-lg" id="createBusniessLiabilityModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog  modal-lg" role="form">
+            <div class="modal-content">
+                <div class="modal-header">
+                    @*<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>*@
+                    <h4 class="modal-title text-center" id="myModalLabel">Add Busniess Liability</h4>
+                    <button type="button" class="close " data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+
+
+
+                    <div class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="@Model.busniessLiabilities.BusniessLiabilityId">
+                            Busniess Liability Id<span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input type="text" asp-for="@Model.busniessLiabilities.BusniessLiabilityId" id="busniessLiabilityId" name="busniessLiabilityId" required="required" class="form-control ">
+                        </div>
+                    </div>
+
+                    <div class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="@Model.busniessLiabilities.Lender">
+                            Lender<span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input type="text" asp-for="@Model.busniessLiabilities.Lender" id="lender" name="lender" required="required" class="form-control ">
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label asp-for="@Model.busniessLiabilities.OrigionalLoanAmount" class="col-form-label col-md-3 col-sm-3 label-align">
+                            Origional Loan Amount <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input type="text" asp-for="@Model.busniessLiabilities.OrigionalLoanAmount" id="origionalLoanAmount" name="origionalLoanAmount" required="required" class="form-control">
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label asp-for="@Model.busniessLiabilities.OutstandingBalance" class="col-form-label col-md-3 col-sm-3 label-align">
+                            Outstanding Balance<span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input asp-for="@Model.busniessLiabilities.OutstandingBalance" id="outstandingBalance" name="outstandingBalance" class="form-control" type="text">
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label asp-for="@Model.busniessLiabilities.MonthlyPayment" class="col-form-label col-md-3 col-sm-3 label-align">
+                            Monthly Payment<span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input asp-for="@Model.busniessLiabilities.MonthlyPayment" id="monthlyPayment" name="monthlyPayment" class="form-control" type="text">
+                        </div>
+                    </div>
+
+
+
+                    <div class="item form-group">
+                        <label asp-for="@Model.busniessLiabilities.InitialTerm" class="col-form-label col-md-3 col-sm-3 label-align">
+                            Initial Term
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input asp-for="@Model.busniessLiabilities.InitialTerm" id="initialTerm" name="initialTerm" class="form-control" type="text">
+                        </div>
+                    </div>
+
+
+
+                    <div class="item form-group">
+                        <label asp-for="@Model.busniessLiabilities.RemainingTerm" class="col-form-label col-md-3 col-sm-3 label-align">
+                            Remaining Term
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input asp-for="@Model.busniessLiabilities.RemainingTerm" id="remainingTerm" name="remainingTerm" class="form-control" type="text">
+                        </div>
+                    </div>
+
+                    <div class="item form-group">
+                        <label asp-for="@Model.busniessLiabilities.Rate" class="col-form-label col-md-3 col-sm-3 label-align">
+                            Rate
+                            <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input asp-for="@Model.busniessLiabilities.Rate" id="rate" name="rate" class="form-control" type="text">
+                        </div>
+                    </div>
+
+                    <div class="item form-group">
+                        <label asp-for="@Model.busniessLiabilities.FixedOrVariable" class="col-form-label col-md-3 col-sm-3 label-align">
+                            Fixed Or Variable <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <select asp-for="@Model.busniessLiabilities.FixedOrVariable" id="fixedOrVariable" name="fixedOrVariable" class="form-control">
+                                <option>Variable</option>
+                                <option>Fixed</option>
+                                <option>Any</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label asp-for="@Model.busniessLiabilities.FixedTerm" class="col-form-label col-md-3 col-sm-3 label-align">
+                            Fixed Term
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input asp-for="@Model.busniessLiabilities.FixedTerm" id="fixedTerm" name="fixedTerm" class="form-control" type="text">
+                        </div>
+                    </div>
+
+
+                    <div class="item form-group">
+                        <label asp-for="@Model.busniessLiabilities.CommitmentTerm" class="col-form-label col-md-3 col-sm-3 label-align">
+                            Commitment Term <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input asp-for="@Model.busniessLiabilities.CommitmentTerm" id="commitmentTerm" name="commitmentTerm" class="form-control" type="text">
+                        </div>
+                    </div>
+
+                    <div class="item form-group">
+                        <label asp-for="@Model.busniessLiabilities.EarlyRepaymentCharge" class="col-form-label col-md-3 col-sm-3 label-align">
+                            Early Repayment Charge <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input asp-for="@Model.busniessLiabilities.EarlyRepaymentCharge" id="earlyRepaymentCharge" name="earlyRepaymentCharge" class="form-control" type="text">
+                        </div>
+                    </div>
+
+
+
+
+
+
+                </div>
+                <div class="modal-footer">
+
+                    <a asp-controller="BusniessLiabilities" asp-action="AllBusniessLiabilities" id="AddPropertyBtn" class="btn btn-primary mr-1">Save</a>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
 </div>

@@ -1,29 +1,31 @@
-﻿@model IEnumerable<Serviceability>
+﻿@model ServiceabilityCreateViewModel
 
 @{
     ViewBag.Title = "All Busniess Serviceability";
 }
 
 <div class="mtop20">
-    <a asp-controller="BusniessServiceability" asp-action="Serviceability" class="btn btn-primary">Add New Busniess Serviceability</a>
+    @*<a asp-controller="BusniessServiceability" asp-action="Serviceability" class="btn btn-success">Add New Busniess Serviceability</a>*@
+    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createServiceabilityModel">Add New Busniess Serviceability</button>
 </div>
 
 
 <div class="mtop20">
-    <table id="tblServiceability" class="table table-bordered table-hover">
-        <thead>
+    <table id="tblServiceability" class="table table-bordered table-hover table-striped">
+        <thead class="thead-light">
             <tr>
                 <th id="serviceabilityID">Serviceability ID</th>
                 <th id="year" class="hideCol hideHideCol_2">Year(Most recent)</th>
                 <th id="Turnover" class="hideCol hideHideCol_3">Turnover</th>
                 <th id="netProfit" class="hideCol hideHideCol_3">Net Profit</th>
-                <th>Action</th>
+                <th>Edit</th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
-            @if (Model.Count() > 0)
+            @if (Model._serviceability.Count() > 0)
             {
-                @foreach (var serviceability in Model)
+                @foreach (var serviceability in Model._serviceability)
 
                 {
                     var tm = "#myModal" + serviceability.ServiceabilityId;
@@ -33,13 +35,11 @@
                         <td>@serviceability.Year</td>
                         <td>@serviceability.TurnOver</td>
                         <td>@serviceability.NetProfit</td>
-
+                        <td><a asp-controller="BusniessServiceability" asp-action="EditServiceability" class="btn btn-primary" asp-route-id="@serviceability.ServiceabilityId">Edit</a></td>
                         <td>
-                            <a asp-controller="BusniessServiceability" asp-action="EditServiceability" class="btn btn-primary" asp-route-id="@serviceability.ServiceabilityId">Edit</a>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="@tm">
+                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="@tm">
                                 Delete
                             </button>
-
 
                             <div class="modal fade" id="@mid" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
@@ -47,6 +47,7 @@
                                         <div class="modal-header">
                                             @*<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>*@
                                             <h4 class="modal-title text-center" id="myModalLabel">Delete Property</h4>
+                                            <button type="button" class="close " data-dismiss="modal" aria-hidden="true">&times;</button>
                                         </div>
                                         <div class="modal-body">
                                             Are you sure want to delete this Busniess Serviceability?
@@ -65,4 +66,72 @@
             }
         </tbody>
     </table>
+
+
+    @*Add New Serviceability Modal*@
+
+    <div class="modal fade bd-example-modal-lg" id="createServiceabilityModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog  modal-lg" role="form">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <h4 class="modal-title text-center" id="myModalLabel">Add Busniess Serviceability</h4>
+                    <button type="button" class="close " data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+
+
+                    <div class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="@Model.serviceability.ServiceabilityId">
+                            Serviceability Id<span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input type="text" asp-for=" @Model.serviceability.ServiceabilityId" id="serviceabilityId" name="serviceabilityId" required="required" class="form-control ">
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="@Model.serviceability.Year">
+                            Year (Most recent)<span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input type="text" asp-for="@Model.serviceability.Year" id="year" name="year" required="required" class="form-control ">
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label asp-for="@Model.serviceability.TurnOver" class="col-form-label col-md-3 col-sm-3 label-align">
+                            Turnover <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input type="text" asp-for="@Model.serviceability.TurnOver" id="turnOver" name="turnOver" required="required" class="form-control">
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label asp-for="@Model.serviceability.NetProfit" class="col-form-label col-md-3 col-sm-3 label-align">
+                            Net Profit
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input asp-for="@Model.serviceability.NetProfit" id="netProfit" name="netProfit" class="form-control" type="text">
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label asp-for="@Model.serviceability.EBITDA" class="col-form-label col-md-3 col-sm-3 label-align"> EBITDA</label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input asp-for="@Model.serviceability.EBITDA" id="eBITDA" name="eBITDA" class="form-control" type="text">
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+                <div class="modal-footer">
+
+                    <a asp-controller="BusniessServiceability" asp-action="AllServiceability" id="AddPropertyBtn" class="btn btn-primary mr-1">Save</a>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 </div>

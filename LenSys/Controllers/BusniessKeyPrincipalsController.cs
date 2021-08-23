@@ -1,4 +1,5 @@
 ﻿using LenSys.Models.BusniessKeyPrincipals;
+using LenSys.ViewModels.BusniessKeyPrincipals;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -17,12 +18,22 @@ namespace LenSys.Controllers
         public ViewResult Index()
         {
             var model = _keyPrincipalsRepository.GetAllKeyPrincipals();
-            return View("AllKeyPrincipals", model);    
+            //return View("AllKeyPrincipals", model);    
+            KeyPrincipalsCreateViewModel viewmodel = new KeyPrincipalsCreateViewModel();
+            viewmodel._keyPrincipals = model;
+            viewmodel.keyPrincipals = new KeyPrincipals();
+
+            return View("AllKeyPrincipals", viewmodel);
         }
         public ViewResult AllKeyPrincipals()
         {
             var model = _keyPrincipalsRepository.GetAllKeyPrincipals();
-            return View("AllKeyPrincipals", model);
+
+            KeyPrincipalsCreateViewModel viewmodel = new KeyPrincipalsCreateViewModel();
+            viewmodel._keyPrincipals = model;
+            viewmodel.keyPrincipals = new KeyPrincipals();
+
+            return View("AllKeyPrincipals", viewmodel);
         }
         [HttpGet]
         public ViewResult EditKeyPrincipals(int id)

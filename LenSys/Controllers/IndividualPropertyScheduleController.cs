@@ -1,4 +1,5 @@
 ﻿using LenSys.Models.IndividualPropertySchedule;
+using LenSys.ViewModels.IndividualPropertySchedule;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -17,13 +18,23 @@ namespace LenSys.Controllers
         public ViewResult Index()
         {
             var model = _propertyScheduleRepositry.GetAllPropertySchedule();
-            return View("AllProperties",model);
+            //return View("AllProperties",model);
+            PropertyScheduleCreateViewModel viewmodel = new PropertyScheduleCreateViewModel();
+            viewmodel._propertySchedule = model;
+            viewmodel.propertySchedule = new PropertySchedule();
+
+            return View("AllProperties", viewmodel);
         }
         //[HttpGet]
         public ViewResult AllProperties()
         {
             var model = _propertyScheduleRepositry.GetAllPropertySchedule();
-            return View("AllProperties", model);
+            //var tuple= new Tuple<ModelBinderAttribute,>
+            PropertyScheduleCreateViewModel viewmodel = new PropertyScheduleCreateViewModel();
+            viewmodel._propertySchedule = model;
+            viewmodel.propertySchedule = new PropertySchedule();
+
+            return View("AllProperties", viewmodel);
         }
 
         [HttpGet]
