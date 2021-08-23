@@ -25,7 +25,7 @@ namespace LenSys.Controllers
 
             return View("AllProperties", viewmodel);
         }
-        //[HttpGet]
+        [HttpGet]
         public ViewResult AllProperties()
         {
             var model = _propertyScheduleRepositry.GetAllPropertySchedule();
@@ -36,6 +36,25 @@ namespace LenSys.Controllers
 
             return View("AllProperties", viewmodel);
         }
+        [HttpPost]
+        public IActionResult AllProperties(PropertyScheduleCreateViewModel propertyScheduleViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                PropertySchedule property = _propertyScheduleRepositry.Add(propertyScheduleViewModel.propertySchedule);
+
+                var updatedProperties = _propertyScheduleRepositry.GetAllPropertySchedule();
+
+                PropertyScheduleCreateViewModel viewmodel = new PropertyScheduleCreateViewModel();
+                viewmodel._propertySchedule = updatedProperties;
+                viewmodel.propertySchedule = new PropertySchedule();
+
+                return View("AllProperties", viewmodel);
+                //return RedirectToAction("AllProperties", updatedProperties);
+            }
+            return View();
+        }
+
 
         [HttpGet]
         public ViewResult EditProperty(int id)
