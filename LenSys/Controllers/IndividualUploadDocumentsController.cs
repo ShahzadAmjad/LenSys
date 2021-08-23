@@ -2,6 +2,7 @@
 using LenSys.ViewModels.IndividualUploadDocuments;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Hosting.Server;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -45,7 +46,7 @@ namespace LenSys.Controllers
                 string uniqueFileName = null;
                 if (model.Document != null)
                 {
-                    string UploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "IndividualDocuments");
+                    string UploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "IndividualDocuments");                    
                     uniqueFileName = Guid.NewGuid().ToString() + "_" + model.Document.FileName;
                     string filePath = Path.Combine(UploadsFolder, uniqueFileName);
                     model.Document.CopyTo(new FileStream(filePath, FileMode.Create));
@@ -68,6 +69,8 @@ namespace LenSys.Controllers
 
             return View();
         }
+
+
 
     }
 }
