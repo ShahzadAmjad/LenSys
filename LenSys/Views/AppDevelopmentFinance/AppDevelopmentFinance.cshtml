@@ -3,4 +3,468 @@
 @{
     ViewBag.Title = "App Development Finance";
 }
-<h1>Development Finance</h1>
+<div class="" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Development Finance Application</h3>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 ">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Development Details</h2>
+
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br />
+                        <form id="AppDevelopmentFinanceForm" data-parsley-validate class="form-horizontal form-label-left" asp-controller="AppDevelopmentFinance" asp-action="AppDevelopmentFinance" method="post">
+
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="PurchasePrice">
+                                    Purchase Price
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input type="text" asp-for="PurchasePrice" id="purchasePrice" name="purchasePrice" required="required" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label asp-for="MarketValueOfLand" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Market Value Of Land <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input type="text" asp-for="MarketValueOfLand" id="marketValueOfLand" name="marketValueOfLand" required="required" class="form-control">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="ConstructionCost" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Construction Cost
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="ConstructionCost" id="constructionCost" name="constructionCost" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="TotalDevelopmentCost" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Total Development Cost
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="TotalDevelopmentCost" id="totalDevelopmentCost" name="totalDevelopmentCost" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="GrossDevelopmentValue" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Gross Development Value
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="GrossDevelopmentValue" id="grossDevelopmentValue" name="grossDevelopmentValue" class="form-control" type="text">
+                                </div>
+                            </div>
+
+
+                            <div class="item form-group">
+                                <label asp-for="LoanAmount" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Loan Amount
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="LoanAmount" id="loanAmount" name="loanAmount" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="LoanTermMonths" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Loan Term (Months)
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="LoanTermMonths" id="loanTermMonths" name="loanTermMonths" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="AmountOfExistingLoanToBe" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Amount Of Existing Loan To Be
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="AmountOfExistingLoanToBe" id="amountOfExistingLoanToBe" name="amountOfExistingLoanToBe" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="TargetCompletionDate" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Target Completion Date
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="TargetCompletionDate" id="TargetCompletionDate" name="TargetCompletionDate" class="date-picker form-control" placeholder="dd-mm-yyyy" type="text" required="required" onfocus="this.type='date'" onmouseover="this.type='date'" onclick="this.type='date'" onblur="this.type='text'" onmouseout="timeFunctionLong(this)">
+                                    <script>
+                                        function timeFunctionLong(input) {
+                                            setTimeout(function () {
+                                                input.type = 'text';
+                                            }, 60000);
+                                        }</script>
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="SourceOfDeposit" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Source Of Deposit
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="SourceOfDeposit" id="sourceOfDeposit" name="sourceOfDeposit" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="ExistStrategy" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Exist Strategy
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="ExistStrategy" id="existStrategy" name="existStrategy" class="form-control" type="text">
+                                </div>
+                            </div>
+
+
+                            @*Security Details table will come here*@
+
+
+                            @*Construction Fee*@
+                            <div class="item form-group">
+                                <label asp-for="Demolition" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Demolition
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="Demolition" id="demolition" name="demolition" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="MaterialsCost" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Materials Cost
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="MaterialsCost" id="materialsCost" name="materialsCost" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="GasInstallation" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Gas Installation
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="GasInstallation" id="gasInstallation" name="gasInstallation" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="ElectricInstallation" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Electric Installation
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="ElectricInstallation" id="electricInstallation" name="electricInstallation" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="WaterInstallation" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Water Installation
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="WaterInstallation" id="waterInstallation" name="waterInstallation" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="LandScapingCost" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    LandScaping Cost
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="LandScapingCost" id="landScapingCost" name="landScapingCost" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="Labour" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Labour
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="Labour" id="labour" name="labour" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="CIL" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    CIL
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="CIL" id="cIL" name="cIL" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="Insert1" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Insert
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="Insert1" id="insert1" name="insert1" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="Insert2" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Insert
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="Insert2" id="insert2" name="insert2" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="Insert3" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Insert
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="Insert3" id="insert3" name="insert3" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="Insert4" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Insert
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="Insert4" id="insert4" name="insert4" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="StampDuty" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Stamp Duty
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="StampDuty" id="stampDuty" name="stampDuty" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="LegalFees" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Legal Fees
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="LegalFees" id="legalFees" name="legalFees" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="OtherCostFinance" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Other Cost (i.e Finance)
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="OtherCostFinance" id="otherCostFinance" name="otherCostFinance" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="TotalCosts" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Total Costs
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="TotalCosts" id="totalCosts" name="totalCosts" class="form-control" type="text">
+                                </div>
+                            </div>
+
+
+                            @*Selling Costs*@
+                            <h3 style="color:black">Selling Cost</h3>
+                            <div class="item form-group">
+                                <label asp-for="EstateAgentFees" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Estate Agent Fees
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="EstateAgentFees" id="estateAgentFees" name="estateAgentFees" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="LegalFees" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Legal Fees
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="LegalFees" id="legalFees" name="legalFees" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="SellingCosts_Insert1" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Insert
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="SellingCosts_Insert1" id="sellingCosts_Insert1" name="sellingCosts_Insert1" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="SellingCosts_Insert2" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Insert
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="SellingCosts_Insert2" id="sellingCosts_Insert2" name="sellingCosts_Insert2" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="SellingCosts_Total" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Total
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="SellingCosts_Total" id="sellingCosts_Total" name="sellingCosts_Total" class="form-control" type="text">
+                                </div>
+                            </div>
+
+
+                            @*Project timescales*@
+                            <h3 style="color:black">Project timescales</h3>
+
+                            <div class="item form-group">
+                                <label asp-for="Acquistion" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Acquistion
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="Acquistion" id="acquistion" name="acquistion" class="date-picker form-control" placeholder="dd-mm-yyyy" type="text" required="required" onfocus="this.type='date'" onmouseover="this.type='date'" onclick="this.type='date'" onblur="this.type='text'" onmouseout="timeFunctionLong(this)">
+                                    <script>
+                                        function timeFunctionLong(input) {
+                                            setTimeout(function () {
+                                                input.type = 'text';
+                                            }, 60000);
+                                        }</script>
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="PlainingPermission" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Plaining Permission
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="PlainingPermission" id="plainingPermission" name="plainingPermission" class="date-picker form-control" placeholder="dd-mm-yyyy" type="text" required="required" onfocus="this.type='date'" onmouseover="this.type='date'" onclick="this.type='date'" onblur="this.type='text'" onmouseout="timeFunctionLong(this)">
+                                    <script>
+                                        function timeFunctionLong(input) {
+                                            setTimeout(function () {
+                                                input.type = 'text';
+                                            }, 60000);
+                                        }</script>
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="PlainingConditions" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Plaining Conditions
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="PlainingConditions" id="plainingConditions" name="plainingConditions" class="date-picker form-control" placeholder="dd-mm-yyyy" type="text" required="required" onfocus="this.type='date'" onmouseover="this.type='date'" onclick="this.type='date'" onblur="this.type='text'" onmouseout="timeFunctionLong(this)">
+                                    <script>
+                                        function timeFunctionLong(input) {
+                                            setTimeout(function () {
+                                                input.type = 'text';
+                                            }, 60000);
+                                        }</script>
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="StartConstruction" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Start Construction
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="StartConstruction" id="startConstruction" name="startConstruction" class="date-picker form-control" placeholder="dd-mm-yyyy" type="text" required="required" onfocus="this.type='date'" onmouseover="this.type='date'" onclick="this.type='date'" onblur="this.type='text'" onmouseout="timeFunctionLong(this)">
+                                    <script>
+                                        function timeFunctionLong(input) {
+                                            setTimeout(function () {
+                                                input.type = 'text';
+                                            }, 60000);
+                                        }</script>
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="BuildingSignOff" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Building Sign Off
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="BuildingSignOff" id="buildingSignOff" name="buildingSignOff" class="date-picker form-control" placeholder="dd-mm-yyyy" type="text" required="required" onfocus="this.type='date'" onmouseover="this.type='date'" onclick="this.type='date'" onblur="this.type='text'" onmouseout="timeFunctionLong(this)">
+                                    <script>
+                                        function timeFunctionLong(input) {
+                                            setTimeout(function () {
+                                                input.type = 'text';
+                                            }, 60000);
+                                        }</script>
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="SaleLetWholeBuilding" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Sale/Let (Whole Building)
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="SaleLetWholeBuilding" id="saleLetWholeBuilding" name="saleLetWholeBuilding" class="date-picker form-control" placeholder="dd-mm-yyyy" type="text" required="required" onfocus="this.type='date'" onmouseover="this.type='date'" onclick="this.type='date'" onblur="this.type='text'" onmouseout="timeFunctionLong(this)">
+                                    <script>
+                                        function timeFunctionLong(input) {
+                                            setTimeout(function () {
+                                                input.type = 'text';
+                                            }, 60000);
+                                        }</script>
+                                </div>
+                            </div>
+                            @*Development Paln*@
+                            <h3 style="color:black">Development Plan</h3>
+
+                            <div class="item form-group">
+                                <label asp-for="DetailsOfPlainingPermission" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Details Of Plaining Permission<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="DetailsOfPlainingPermission" id="DetailsOfPlainingPermission" name="DetailsOfPlainingPermission" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="DetailsOfBuildersContrators" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Details Of Builders/Contrators<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="DetailsOfBuildersContrators" id="detailsOfBuildersContrators" name="detailsOfBuildersContrators" class="form-control" type="text">
+                                </div>
+                            </div>
+
+                            @*FCA Regulation*@
+                        <h3 style="color:black">FCA Regulations</h3>
+                            <div class="item form-group">
+                                <label asp-for="WillApplicantOrFamilyMemOwn40PercentOfSecurityatmortgageTime" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Will the applicant or a close family relative occupy more than 40% of the proposed security at any time during the term of the mortgage?
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <select asp-for="WillApplicantOrFamilyMemOwn40PercentOfSecurityatmortgageTime" id="willApplicantOrFamilyMemOwn40PercentOfSecurityatmortgageTime" name="willApplicantOrFamilyMemOwn40PercentOfSecurityatmortgageTime" class="form-control">
+                                        <option>
+                                            YES
+                                        </option>
+                                        <option>
+                                            NO
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label asp-for="EverLivedinThisProperty" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Has the applicant ever lived in this property?
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <select asp-for="EverLivedinThisProperty" id="everLivedinThisProperty" name="everLivedinThisProperty" class="form-control">
+                                        <option>
+                                            YES
+                                        </option>
+                                        <option>
+                                            NO
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label asp-for="Notes" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Notes<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="Notes" id="notes" name="notes" class="form-control" type="text">
+                                </div>
+                            </div>
+
+
+                            <div class="ln_solid"></div>
+                            <div class="item form-group">
+                                <div class="col-md-6 col-sm-6 offset-md-3">
+                                    <button class="btn btn-primary" type="button">Cancel</button>
+                                    <button class="btn btn-primary" type="reset">Save</button>
+                                    <button type="submit" class="btn btn-success">Submit Application</button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

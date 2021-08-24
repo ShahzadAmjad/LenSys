@@ -26,7 +26,7 @@ namespace LenSys.Models.AppDevelopmentFinance
 
 
         //Construction Fees
-        public string Demolition { get; set; }
+        public int Demolition { get; set; }
         public int MaterialsCost { get; set; }
         public int GasInstallation { get; set; }
         public int ElectricInstallation { get; set; }
@@ -35,10 +35,10 @@ namespace LenSys.Models.AppDevelopmentFinance
         public int LandScapingCost { get; set; }
         public int Labour { get; set; }
         public int CIL { get; set; }
-        public string Insert1 { get; set; }
-        public string Insert2 { get; set; }
-        public string Insert3 { get; set; }
-        public string Insert4 { get; set; }
+        public int Insert1 { get; set; }
+        public int Insert2 { get; set; }
+        public int Insert3 { get; set; }
+        public int Insert4 { get; set; }
         public int StampDuty { get; set; }
         public int LegalFees { get; set; }
         public int OtherCostFinance { get; set; }

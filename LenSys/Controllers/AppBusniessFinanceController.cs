@@ -9,6 +9,7 @@ namespace LenSys.Controllers
 {
     public class AppBusniessFinanceController : Controller
     {
+        public List<AppBusniessFinanceSecurityDetails> _SecurityDetails;
         public ViewResult Index()
         {
             //String name = "Default Index Page";
@@ -18,7 +19,31 @@ namespace LenSys.Controllers
         [HttpGet]
         public ViewResult AppBusniessFinance()
         {
-            return View();
+            //Dummy Data for Security Details
+            var securityDetails = new AppBusniessFinanceSecurityDetails
+            {
+                Notes="Security Property",
+                LegalChargeOverProperty="YES",
+                SecurityType= "Residential ",
+                PropertyType="1 Bed Appartment",
+                NameOfPropertyOwner = "John",
+                Tenure= 2,
+                YearsRemainingOnLeaseIfLeaseHold= 1,
+                PropertyValue= 5454,
+                OriginalPurchasePrice= 6000,
+                AddressForPropertyOfSecurity="Russia",
+                SecondLineAddress= "Cremlin",
+                City= "Moscow",
+                PostCode= 85000
+            };
+
+            _SecurityDetails.Add(securityDetails);
+            //AppBusniessFinance model = new AppBusniessFinance();
+            //model.securityDetails.Add(securityDetails);
+
+            ViewData["SecurityDetailsList"] = _SecurityDetails;
+
+            return View("AppBusniessFinance");
         }
         [HttpPost]
         public IActionResult AppBusniessFinance(AppBusniessFinance appBusniessFinance)

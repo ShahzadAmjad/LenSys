@@ -16,7 +16,7 @@
             <div class="col-md-12 col-sm-12 ">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Finance Details</h2>
+                        <h2>Loan Details</h2>
 
                         <div class="clearfix"></div>
                     </div>
@@ -72,7 +72,14 @@
                                     VAT Included
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input asp-for="VATincluded" id="vATincluded" name="vATincluded" class="form-control" type="text">
+                                    <select asp-for="VATincluded" id="vATincluded" name="vATincluded" class="form-control">
+                                        <option>
+                                            YES
+                                        </option>
+                                        <option>
+                                            NO
+                                        </option>                                  
+                                    </select>
                                 </div>
                             </div>
                             <div class="item form-group">

@@ -8,7 +8,7 @@ namespace LenSys.Models.AppBusniessFinance
     public class AppBusniessFinance
     {
         //Loan Details
-        public int LoanId { get; set; }
+        public int BusniessFinId { get; set; } 
         public string TypeOfFinance { get; set; }
         public int AmountOfFinance { get; set; }
         public int RepaymentTermMonths { get; set; }
@@ -16,21 +16,7 @@ namespace LenSys.Models.AppBusniessFinance
         public string SecurityOffered { get; set; }
 
         //Security Details
-        public string Notes { get; set; }
-        public string LegalOrNot { get; set; }
-
-        public string SecurityType { get; set; }
-        public string PropertyType { get; set; }
-        public string NameOfPropertyOwner { get; set; }
-        public int Tenure { get; set; }
-        public int YearsRemainingOnLeaseIfLeaseHold { get; set; }
-        public int PropertyValue { get; set; }
-        public int OriginalPurchasePrice { get; set; }
-
-        public string AddressForPropertyOfSecurity { get; set; }
-        public string SecondLineAddress { get; set; }
-        public string City { get; set; }
-        public int PostCode { get; set; }
+        public List<AppBusniessFinanceSecurityDetails> securityDetails { get; set; }
 
         //FCA Regulations
 
