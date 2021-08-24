@@ -137,8 +137,80 @@
 
                             @*Security Details table will come here*@
 
+
+                            <div class="x_title">
+                                <h3>Security Details</h3>
+
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="mtop20">
+                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createKeyPrincipalModal">Add New Security Details</button>
+                            </div>
+
+                            <div class="mtop20">
+                                <table id="tblSecurityDetails" class="table table-bordered table-hover table-striped">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th id="id">Id</th>
+                                            <th id="propertyType" class="hideCol hideHideCol_2">Property Type</th>
+                                            <th id="pameOfPropertyOwner" class="hideCol hideHideCol_3">Name Of Property Owner</th>
+                                            <th id="propertyvalue" class="hideCol hideHideCol_3">City</th>
+                                            <th>Edit</th>
+                                            <th>Delete</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @*@if ((IEnumerable<AppBusniessFinanceSecurityDetails>)ViewData["EmployeeData"].Count() > 0)
+                    {*@
+                                        @foreach (var securityDetails in (IEnumerable<AppPropertyFinanceSecurityDetails>)ViewData["SecurityDetailsList"])
+
+                                        {
+                                            var tm = "#myModal" + securityDetails.SecurityDetailsId;
+                                            var mid = "myModal" + securityDetails.SecurityDetailsId;
+                                            <tr>
+                                                <td>@securityDetails.SecurityDetailsId</td>
+                                                <td>@securityDetails.PropertyType</td>
+                                                <td>@securityDetails.NameOfPropertyOwner</td>
+                                                <td>@securityDetails.City</td>
+
+                                                <td><a asp-controller="AppPropertyFinance" asp-action="EditSecuritydetail" class="btn btn-primary " asp-route-id="@securityDetails.SecurityDetailsId">Edit</a></td>
+
+                                                <td>
+
+                                                    <button type="button" class="btn btn-danger " data-toggle="modal" data-target="@tm">
+                                                        Delete
+                                                    </button>
+
+
+                                                    <div class="modal fade" id="@mid" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    @*<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>*@
+                                                                    <h4 class="modal-title text-center" id="myModalLabel">Delete Security Detail</h4>
+                                                                    <button type="button" class="close " data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    Are you sure want to delete this Security?
+                                                                </div>
+                                                                <div class="modal-footer">
+
+                                                                    <a asp-controller="AppPropertyFinance" asp-action="DeleteSecurityDetail" asp-route-Id="@securityDetails.SecurityDetailsId" id="deleteBtn" class="btn bg-danger mr-1">Delete</a>
+                                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        }
+                                        @* } *@
+                                    </tbody>
+                                </table>
+                            </div>
+
                             @*FCA Regulation*@
-                        <h3 style="color:black"> FCA Regulation</h3>
+                            <h3 style="color:black"> FCA Regulation</h3>
                             <div class="item form-group">
                                 <label asp-for="FCA_RegulatedLoan" class="col-form-label col-md-3 col-sm-3 label-align">
                                     Is this an FCA regulated loan?
@@ -285,7 +357,7 @@
                                     <input asp-for="SolicitorDXnumber" id="SolicitorDXnumber" name="SolicitorDXnumber" class="form-control" type="text">
                                 </div>
                             </div>
-                            
+
 
 
 
