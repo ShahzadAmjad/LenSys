@@ -8,7 +8,10 @@ namespace LenSys.Models.AppDevelopmentFinance
     public class AppDevelopmentFinanceSecurityDetails
     {
         //Id filed for development
-        public int PropertyId { get; set; }
+        public int SecurityDetailsId { get; set; }
+
+
+
         public string SecurityType { get; set; }
         public string DescriptionOfProperty { get; set; }
         public string PropertyCurrentUse { get; set; }

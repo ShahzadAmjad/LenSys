@@ -107,131 +107,189 @@
 
                                 <div class="clearfix"></div>
                             </div>
-                            <div class="mtop20">
-                                @*<a asp-controller="BusniessKeyPrincipals" asp-action="KeyPrincipals" class="btn btn-success">Add New Key Principal</a>*@
+                            <div class="mtop20">                                
                                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createKeyPrincipalModal">Add New Security Details</button>
                             </div>
 
+                            <div class="mtop20">
+                                <table id="tblSecurityDetails" class="table table-bordered table-hover table-striped">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th id="id">Id</th>
+                                            <th id="propertyType" class="hideCol hideHideCol_2">Property Type</th>
+                                            <th id="pameOfPropertyOwner" class="hideCol hideHideCol_3">Name Of Property Owner</th>
+                                            <th id="propertyvalue" class="hideCol hideHideCol_3">Property value</th>
+                                            <th>Edit</th>
+                                            <th>Delete</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @*@if ((IEnumerable<AppBusniessFinanceSecurityDetails>)ViewData["EmployeeData"].Count() > 0)
+        {*@
+                                        @foreach (var securityDetails in (IEnumerable<AppBusniessFinanceSecurityDetails>)ViewData["SecurityDetailsList"])
+
+                                        {
+                                            var tm = "#myModal" + securityDetails.SecurityDetailsId;
+                                            var mid = "myModal" + securityDetails.SecurityDetailsId;
+                                            <tr>
+                                                <td>@securityDetails.SecurityDetailsId</td>
+                                                <td>@securityDetails.PropertyType</td>
+                                                <td>@securityDetails.NameOfPropertyOwner</td>
+                                                <td>@securityDetails.PropertyValue</td>
+
+                                                <td><a asp-controller="AppBusniessFinance" asp-action="EditSecuritydetail" class="btn btn-primary " asp-route-id="@securityDetails.SecurityDetailsId">Edit</a></td>
+
+                                                <td>
+
+                                                    <button type="button" class="btn btn-danger " data-toggle="modal" data-target="@tm">
+                                                        Delete
+                                                    </button>
 
 
+                                                    <div class="modal fade" id="@mid" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    @*<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>*@
+                                                                    <h4 class="modal-title text-center" id="myModalLabel">Delete Security Detail</h4>
+                                                                    <button type="button" class="close " data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    Are you sure want to delete this Security?
+                                                                </div>
+                                                                <div class="modal-footer">
 
-
-
-
-                            @*FCA Regulation*@
-                            
-                            <div class="x_title">
-                                <h3>FCA Regulation</h3>
-
-                                <div class="clearfix"></div>
-                            </div>
-                            <div class="item form-group">
-                                <label asp-for="FCA_RegulatedLoan" class="col-form-label col-md-3 col-sm-3 label-align">
-                                    Is this an FCA regulated loan?
-                                </label>
-                                <div class="col-md-6 col-sm-6 ">
-                                    <select asp-for="FCA_RegulatedLoan" id="fCA_RegulatedLoan" name="fCA_RegulatedLoan" class="form-control">
-                                        <option>
-                                            YES
-                                        </option>
-                                        <option>
-                                            NO
-                                        </option>
-                                    </select>
+                                                                    <a asp-controller="AppBusniessFinance" asp-action="DeleteSecurityDetail" asp-route-Id="@securityDetails.SecurityDetailsId" id="deleteBtn" class="btn bg-danger mr-1">Delete</a>
+                                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        }
+                                        @* } *@
+                                    </tbody>
+                                </table>
                                 </div>
-                            </div>
-                            <div class="item form-group">
-                                <label asp-for="WillApplicantOrFamilyMemOwn40PercentOfSecurityatmortgageTime" class="col-form-label col-md-3 col-sm-3 label-align">
-                                    Will the applicant or a close family relative occupy more than 40% of the proposed security at any time during the term of the mortgage?
-                                </label>
-                                <div class="col-md-6 col-sm-6 ">
-                                    <select asp-for="WillApplicantOrFamilyMemOwn40PercentOfSecurityatmortgageTime" id="willApplicantOrFamilyMemOwn40PercentOfSecurityatmortgageTime" name="willApplicantOrFamilyMemOwn40PercentOfSecurityatmortgageTime" class="form-control">
-                                        <option>
-                                            YES
-                                        </option>
-                                        <option>
-                                            NO
-                                        </option>
-                                    </select>
+
+
+
+
+                                @*FCA Regulation*@
+
+                                <div class="x_title">
+                                    <h3>FCA Regulation</h3>
+
+                                    <div class="clearfix"></div>
                                 </div>
-                            </div>
-
-                            <div class="item form-group">
-                                <label asp-for="EverLivedinThisProperty" class="col-form-label col-md-3 col-sm-3 label-align">
-                                    Has the applicant ever lived in this property?
-                                </label>
-                                <div class="col-md-6 col-sm-6 ">
-                                    <select asp-for="EverLivedinThisProperty" id="everLivedinThisProperty" name="everLivedinThisProperty" class="form-control">
-                                        <option>
-                                            YES
-                                        </option>
-                                        <option>
-                                            NO
-                                        </option>
-                                    </select>
+                                <div class="item form-group">
+                                    <label asp-for="FCA_RegulatedLoan" class="col-form-label col-md-3 col-sm-3 label-align">
+                                        Is this an FCA regulated loan?
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 ">
+                                        <select asp-for="FCA_RegulatedLoan" id="fCA_RegulatedLoan" name="fCA_RegulatedLoan" class="form-control">
+                                            <option>
+                                                YES
+                                            </option>
+                                            <option>
+                                                NO
+                                            </option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-
-                            @*Accountant*@
-                        <div class="x_title">
-                            <h3>Accountant</h3>
-
-                            <div class="clearfix"></div>
-                        </div>
-
-                            <div class="item form-group">
-                                <label asp-for="AccountantName" class="col-form-label col-md-3 col-sm-3 label-align">
-                                    Name<span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 ">
-                                    <input asp-for="AccountantName" id="accountantName" name="accountantName" class="form-control" type="text">
+                                <div class="item form-group">
+                                    <label asp-for="WillApplicantOrFamilyMemOwn40PercentOfSecurityatmortgageTime" class="col-form-label col-md-3 col-sm-3 label-align">
+                                        Will the applicant or a close family relative occupy more than 40% of the proposed security at any time during the term of the mortgage?
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 ">
+                                        <select asp-for="WillApplicantOrFamilyMemOwn40PercentOfSecurityatmortgageTime" id="willApplicantOrFamilyMemOwn40PercentOfSecurityatmortgageTime" name="willApplicantOrFamilyMemOwn40PercentOfSecurityatmortgageTime" class="form-control">
+                                            <option>
+                                                YES
+                                            </option>
+                                            <option>
+                                                NO
+                                            </option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="item form-group">
-                                <label asp-for="AccountantCompany" class="col-form-label col-md-3 col-sm-3 label-align">
-                                    Company<span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 ">
-                                    <input asp-for="AccountantCompany" id="accountantCompany" name="accountantCompany" class="form-control" type="text">
-                                </div>
-                            </div>
-                            <div class="item form-group">
-                                <label asp-for="AccountantPhoneNo" class="col-form-label col-md-3 col-sm-3 label-align">
-                                    Phone No<span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 ">
-                                    <input asp-for="AccountantPhoneNo" id="accountantPhoneNo" name="accountantPhoneNo" class="form-control" type="text">
 
+                                <div class="item form-group">
+                                    <label asp-for="EverLivedinThisProperty" class="col-form-label col-md-3 col-sm-3 label-align">
+                                        Has the applicant ever lived in this property?
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 ">
+                                        <select asp-for="EverLivedinThisProperty" id="everLivedinThisProperty" name="everLivedinThisProperty" class="form-control">
+                                            <option>
+                                                YES
+                                            </option>
+                                            <option>
+                                                NO
+                                            </option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="item form-group">
-                                <label asp-for="AccountantEmail" class="col-form-label col-md-3 col-sm-3 label-align">
-                                    Email<span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 ">
-                                    <input asp-for="AccountantEmail" id="accountantEmail" name="accountantEmail" class="form-control" type="text">
 
+                                @*Accountant*@
+                                <div class="x_title">
+                                    <h3>Accountant</h3>
+
+                                    <div class="clearfix"></div>
                                 </div>
-                            </div>
-                            <div class="item form-group">
-                                <label asp-for="AccountantAddress" class="col-form-label col-md-3 col-sm-3 label-align">
-                                    Address<span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 ">
-                                    <input asp-for="AccountantAddress" id="accountantAddress" name="accountantAddress" class="form-control" type="text">
 
+                                <div class="item form-group">
+                                    <label asp-for="AccountantName" class="col-form-label col-md-3 col-sm-3 label-align">
+                                        Name<span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 ">
+                                        <input asp-for="AccountantName" id="accountantName" name="accountantName" class="form-control" type="text">
+                                    </div>
                                 </div>
-                            </div>
-
-
-                            <div class="ln_solid"></div>
-                            <div class="item form-group">
-                                <div class="col-md-6 col-sm-6 offset-md-3">
-                                    <button class="btn btn-primary" type="button">Cancel</button>
-                                    <button class="btn btn-primary" type="reset">Save</button>
-                                    <button type="submit" class="btn btn-success">Submit Application</button>
+                                <div class="item form-group">
+                                    <label asp-for="AccountantCompany" class="col-form-label col-md-3 col-sm-3 label-align">
+                                        Company<span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 ">
+                                        <input asp-for="AccountantCompany" id="accountantCompany" name="accountantCompany" class="form-control" type="text">
+                                    </div>
                                 </div>
-                            </div>
+                                <div class="item form-group">
+                                    <label asp-for="AccountantPhoneNo" class="col-form-label col-md-3 col-sm-3 label-align">
+                                        Phone No<span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 ">
+                                        <input asp-for="AccountantPhoneNo" id="accountantPhoneNo" name="accountantPhoneNo" class="form-control" type="text">
+
+                                    </div>
+                                </div>
+                                <div class="item form-group">
+                                    <label asp-for="AccountantEmail" class="col-form-label col-md-3 col-sm-3 label-align">
+                                        Email<span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 ">
+                                        <input asp-for="AccountantEmail" id="accountantEmail" name="accountantEmail" class="form-control" type="text">
+
+                                    </div>
+                                </div>
+                                <div class="item form-group">
+                                    <label asp-for="AccountantAddress" class="col-form-label col-md-3 col-sm-3 label-align">
+                                        Address<span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 ">
+                                        <input asp-for="AccountantAddress" id="accountantAddress" name="accountantAddress" class="form-control" type="text">
+
+                                    </div>
+                                </div>
+
+
+                                <div class="ln_solid"></div>
+                                <div class="item form-group">
+                                    <div class="col-md-6 col-sm-6 offset-md-3">
+                                        <button class="btn btn-primary" type="button">Cancel</button>
+                                        <button class="btn btn-primary" type="reset">Save</button>
+                                        <button type="submit" class="btn btn-success">Submit Application</button>
+                                    </div>
+                                </div>
 
                         </form>
                     </div>

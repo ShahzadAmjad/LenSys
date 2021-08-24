@@ -7,7 +7,7 @@ namespace LenSys.Models.AppBusniessFinance
 {
     public class AppBusniessFinanceSecurityDetails
     {
-        
+        public int SecurityDetailsId { get; set; }
         public string Notes { get; set; }
         public string LegalChargeOverProperty { get; set; }
 
