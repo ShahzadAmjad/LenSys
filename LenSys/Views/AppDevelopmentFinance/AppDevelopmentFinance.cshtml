@@ -123,9 +123,9 @@
 
 
                             @*Security Details table will come here*@
-                            
+
                             <div class="x_title">
-                                <h3>Security Details</h3>
+                                <h2>Security Details</h2>
 
                                 <div class="clearfix"></div>
                             </div>
@@ -146,56 +146,64 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @*@if ((IEnumerable<AppBusniessFinanceSecurityDetails>)ViewData["EmployeeData"].Count() > 0)
-                    {*@
-                                        @foreach (var securityDetails in (IEnumerable<AppDevelopmentFinanceSecurityDetails>)ViewData["SecurityDetailsList"])
 
+
+                                        @if ((List<AppDevelopmentFinanceSecurityDetails>)ViewData["SecurityDetailsList"] != null)
                                         {
-                                            var tm = "#myModal" + securityDetails.SecurityDetailsId;
-                                            var mid = "myModal" + securityDetails.SecurityDetailsId;
-                                            <tr>
-                                                <td>@securityDetails.SecurityDetailsId</td>
-                                                <td>@securityDetails.DescriptionOfProperty</td>
-                                                <td>@securityDetails.NameOfPropertyOwner</td>
-                                                <td>@securityDetails.City</td>
+                                            @foreach (var securityDetails in (IEnumerable<AppDevelopmentFinanceSecurityDetails>)ViewData["SecurityDetailsList"])
 
-                                                <td><a asp-controller="AppDevelopmentFinance" asp-action="EditSecuritydetail" class="btn btn-primary " asp-route-id="@securityDetails.SecurityDetailsId">Edit</a></td>
+                                            {
+                                                var tm = "#myModal" + securityDetails.SecurityDetailsId;
+                                                var mid = "myModal" + securityDetails.SecurityDetailsId;
+                                                <tr>
+                                                    <td>@securityDetails.SecurityDetailsId</td>
+                                                    <td>@securityDetails.DescriptionOfProperty</td>
+                                                    <td>@securityDetails.NameOfPropertyOwner</td>
+                                                    <td>@securityDetails.City</td>
 
-                                                <td>
+                                                    <td><a asp-controller="AppDevelopmentFinance" asp-action="EditSecuritydetail" class="btn btn-primary " asp-route-id="@securityDetails.SecurityDetailsId">Edit</a></td>
 
-                                                    <button type="button" class="btn btn-danger " data-toggle="modal" data-target="@tm">
-                                                        Delete
-                                                    </button>
+                                                    <td>
+
+                                                        <button type="button" class="btn btn-danger " data-toggle="modal" data-target="@tm">
+                                                            Delete
+                                                        </button>
 
 
-                                                    <div class="modal fade" id="@mid" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                                        <div class="modal-dialog">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    @*<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>*@
-                                                                    <h4 class="modal-title text-center" id="myModalLabel">Delete Security Detail</h4>
-                                                                    <button type="button" class="close " data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                    Are you sure want to delete this Security?
-                                                                </div>
-                                                                <div class="modal-footer">
+                                                        <div class="modal fade" id="@mid" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                            <div class="modal-dialog">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        @*<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>*@
+                                                                        <h4 class="modal-title text-center" id="myModalLabel">Delete Security Detail</h4>
+                                                                        <button type="button" class="close " data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        Are you sure want to delete this Security?
+                                                                    </div>
+                                                                    <div class="modal-footer">
 
-                                                                    <a asp-controller="AppDevelopmentFinance" asp-action="DeleteSecurityDetail" asp-route-Id="@securityDetails.SecurityDetailsId" id="deleteBtn" class="btn bg-danger mr-1">Delete</a>
-                                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                                        <a asp-controller="AppDevelopmentFinance" asp-action="DeleteSecurityDetail" asp-route-Id="@securityDetails.SecurityDetailsId" id="deleteBtn" class="btn bg-danger mr-1">Delete</a>
+                                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                                    </td>
+                                                </tr>
+                                            }
                                         }
-                                        @* } *@
                                     </tbody>
                                 </table>
                             </div>
 
                             @*Construction Fee*@
+
+                            <div class="x_title">
+                                <h2>Construction Fee</h2>
+                                <div class="clearfix"></div>
+                            </div>
+
                             <div class="item form-group">
                                 <label asp-for="Demolition" class="col-form-label col-md-3 col-sm-3 label-align">
                                     Demolition
@@ -327,7 +335,12 @@
 
 
                             @*Selling Costs*@
-                            <h3 style="color:black">Selling Cost</h3>
+                            
+                            <div class="x_title">
+                                <h2>Selling Cost</h2>
+                                <div class="clearfix"></div>
+                            </div>
+
                             <div class="item form-group">
                                 <label asp-for="EstateAgentFees" class="col-form-label col-md-3 col-sm-3 label-align">
                                     Estate Agent Fees
@@ -371,7 +384,11 @@
 
 
                             @*Project timescales*@
-                            <h3 style="color:black">Project timescales</h3>
+                        <div class="x_title">
+                            <h2>Project Timescales</h2>
+
+                            <div class="clearfix"></div>
+                        </div>
 
                             <div class="item form-group">
                                 <label asp-for="Acquistion" class="col-form-label col-md-3 col-sm-3 label-align">
@@ -457,8 +474,12 @@
                                         }</script>
                                 </div>
                             </div>
-                            @*Development Paln*@
-                            <h3 style="color:black">Development Plan</h3>
+                            @*Development Plan*@
+                        <div class="x_title">
+                            <h2>Development Plan</h2>
+
+                            <div class="clearfix"></div>
+                        </div>
 
                             <div class="item form-group">
                                 <label asp-for="DetailsOfPlainingPermission" class="col-form-label col-md-3 col-sm-3 label-align">
@@ -478,7 +499,12 @@
                             </div>
 
                             @*FCA Regulation*@
-                            <h3 style="color:black">FCA Regulations</h3>
+                        <div class="x_title">
+                            <h2>FCA Regulation</h2>
+
+                            <div class="clearfix"></div>
+                        </div>
+
                             <div class="item form-group">
                                 <label asp-for="WillApplicantOrFamilyMemOwn40PercentOfSecurityatmortgageTime" class="col-form-label col-md-3 col-sm-3 label-align">
                                     Will the applicant or a close family relative occupy more than 40% of the proposed security at any time during the term of the mortgage?

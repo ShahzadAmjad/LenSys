@@ -103,7 +103,7 @@
 
                             @*Security Details table will come here*@
                             <div class="x_title">
-                                <h3>Security Details</h3>
+                                <h2>Security Details</h2>
 
                                 <div class="clearfix"></div>
                             </div>
@@ -124,8 +124,8 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @*@if ((IEnumerable<AppBusniessFinanceSecurityDetails>)ViewData["EmployeeData"].Count() > 0)
-        {*@
+                                        @if ((List<AppBusniessFinanceSecurityDetails>)ViewData["SecurityDetailsList"]!=null)
+                                        {
                                         @foreach (var securityDetails in (IEnumerable<AppBusniessFinanceSecurityDetails>)ViewData["SecurityDetailsList"])
 
                                         {
@@ -168,7 +168,7 @@
                                                 </td>
                                             </tr>
                                         }
-                                        @* } *@
+                                         } 
                                     </tbody>
                                 </table>
                                 </div>
@@ -179,7 +179,7 @@
                                 @*FCA Regulation*@
 
                                 <div class="x_title">
-                                    <h3>FCA Regulation</h3>
+                                    <h2>FCA Regulation</h2>
 
                                     <div class="clearfix"></div>
                                 </div>
@@ -232,7 +232,7 @@
 
                                 @*Accountant*@
                                 <div class="x_title">
-                                    <h3>Accountant</h3>
+                                    <h2>Accountant</h2>
 
                                     <div class="clearfix"></div>
                                 </div>

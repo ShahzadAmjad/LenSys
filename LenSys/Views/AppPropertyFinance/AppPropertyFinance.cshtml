@@ -139,7 +139,7 @@
 
 
                             <div class="x_title">
-                                <h3>Security Details</h3>
+                                <h2>Security Details</h2>
 
                                 <div class="clearfix"></div>
                             </div>
@@ -160,8 +160,8 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @*@if ((IEnumerable<AppBusniessFinanceSecurityDetails>)ViewData["EmployeeData"].Count() > 0)
-                    {*@
+                                        @if ((List<AppPropertyFinanceSecurityDetails>)ViewData["SecurityDetailsList"] !=null)
+                                        {
                                         @foreach (var securityDetails in (IEnumerable<AppPropertyFinanceSecurityDetails>)ViewData["SecurityDetailsList"])
 
                                         {
@@ -204,13 +204,17 @@
                                                 </td>
                                             </tr>
                                         }
-                                        @* } *@
+                                         } 
                                     </tbody>
                                 </table>
                             </div>
 
                             @*FCA Regulation*@
-                            <h3 style="color:black"> FCA Regulation</h3>
+                        <div class="x_title">
+                            <h2>FCA Regulations</h2>
+
+                            <div class="clearfix"></div>
+                        </div>
                             <div class="item form-group">
                                 <label asp-for="FCA_RegulatedLoan" class="col-form-label col-md-3 col-sm-3 label-align">
                                     Is this an FCA regulated loan?
@@ -260,7 +264,11 @@
 
 
                             @*Accountant*@
-                            <h3 style="color:black">Accountant</h3>
+                        <div class="x_title">
+                            <h2>Accountant</h2>
+
+                            <div class="clearfix"></div>
+                        </div>
 
                             <div class="item form-group">
                                 <label asp-for="AccountantName" class="col-form-label col-md-3 col-sm-3 label-align">
@@ -308,7 +316,12 @@
 
 
                             @*Solicitor*@
-                            <h3 style="color:black"></h3>
+                        <div class="x_title">
+                            <h2>Solicitor</h2>
+
+                            <div class="clearfix"></div>
+                        </div>
+
                             <div class="item form-group">
                                 <label asp-for="SolicitorName" class="col-form-label col-md-3 col-sm-3 label-align">
                                     Solicitor Name
