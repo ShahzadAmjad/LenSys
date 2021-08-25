@@ -17,6 +17,17 @@ namespace LenSys.Controllers
             //return name;
             return View("AppDevelopmentFinance");
         }
+
+        [HttpGet]
+        public ViewResult EditSecurityDetail(int id)
+        {
+
+
+            //KeyPrincipals model = _keyPrincipalsRepository.GetKeyPrincipals(id);
+            //ViewBag.PageTitle = "Edit Key Principal";
+
+            return View("EditSecurityDetail");
+        }
         [HttpGet]
         public ViewResult AppDevelopmentFinance()
         {

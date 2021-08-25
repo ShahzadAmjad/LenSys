@@ -22,7 +22,7 @@ namespace LenSys.Models.AppDevelopmentFinance
         public int ExistStrategy { get; set; }
 
         //Security Details
-        public IEnumerable<AppDevelopmentFinanceSecurityDetails> securityDetails { get; set; }
+        public List<AppDevelopmentFinanceSecurityDetails> securityDetails { get; set; }
 
 
         //Construction Fees

@@ -16,6 +16,18 @@ namespace LenSys.Controllers
             //return name;
             return View("AppBusniessFinance");
         }
+
+        [HttpGet]
+        public ViewResult EditSecurityDetail(int id)
+        {
+            
+
+            //KeyPrincipals model = _keyPrincipalsRepository.GetKeyPrincipals(id);
+            //ViewBag.PageTitle = "Edit Key Principal";
+
+            return View("EditSecurityDetail");
+        }
+
         [HttpGet]
         public ViewResult AppBusniessFinance()
         {
@@ -42,6 +54,8 @@ namespace LenSys.Controllers
             };
            
             ViewData["SecurityDetailsList"] = _SecurityDetails;
+
+
 
             return View("AppBusniessFinance");
         }

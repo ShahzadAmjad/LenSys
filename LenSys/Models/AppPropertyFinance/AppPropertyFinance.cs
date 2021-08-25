@@ -20,7 +20,7 @@ namespace LenSys.Models.AppPropertyFinance
         public int SourceOfDeposit { get; set; }
 
         //Security Details
-        public IEnumerable<AppPropertyFinanceSecurityDetails> securityDetails { get; set; }
+        public List<AppPropertyFinanceSecurityDetails> securityDetails { get; set; }
 
         //FCA Regulations
 
