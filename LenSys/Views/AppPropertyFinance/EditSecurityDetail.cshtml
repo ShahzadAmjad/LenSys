@@ -8,7 +8,7 @@
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                <h3>Property Finance</h3>
+                <h3>Property Finance Application</h3>
             </div>
         </div>
         <div class="clearfix"></div>
@@ -27,6 +27,115 @@
                             <input hidden asp-for="SecurityDetailsId" />
 
 
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="@Model.SecurityType">
+                                    Security Type<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <select asp-for="@Model.SecurityType" id="securityType" name="securityType" class=" form-control">
+                                        <option>
+                                            Residential
+                                        </option>
+                                        <option>
+                                            Commercial
+                                        </option>
+                                        <option>
+                                            Semi-commercial
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="@Model.PropertyType" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Property Type <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input type="text" asp-for="@Model.PropertyType" id="propertyType" name="propertyType" required="required" class="form-control">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="@Model.AlreadyOwned">
+                                    Already Owned<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <select asp-for="@Model.AlreadyOwned" id="alreadyOwned" name="alreadyOwned" class=" form-control">
+                                        <option>
+                                            YES
+                                        </option>
+                                        <option>
+                                            NO
+                                        </option>
+
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label asp-for="@Model.NameOfPropertyOwner" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Name Of Property Owner
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="@Model.NameOfPropertyOwner" id="nameOfPropertyOwner" name="nameOfPropertyOwner" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="@Model.Tenure" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Tenure
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <select asp-for="@Model.Tenure" id="Tenure" name="Tenure" class=" form-control">
+                                        <option>
+                                            Freehold
+                                        </option>
+                                        <option>
+                                            Leasehold
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="@Model.YearsRemainingOnLeaseIfLeaseHold" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Years Remaining On Lease(If Leasehold)
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="@Model.YearsRemainingOnLeaseIfLeaseHold" id="YearsRemainingOnLeaseIfLeaseHold" name="percentageShareholding" class="form-control" type="text">
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label asp-for="@Model.PropertyValue" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Property Value
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="@Model.PropertyValue" id="propertyValue" name="propertyValue" class="form-control" type="text">
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label asp-for="@Model.OriginalPurchasePrice" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Purchase Price/Original Purchase Price
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="@Model.OriginalPurchasePrice" id="originalPurchasePrice" name="originalPurchasePrice" class="form-control" type="text">
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label asp-for="@Model.UseOfFunds" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Use Of Funds
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="@Model.UseOfFunds" id="useOfFunds" name="useOfFunds" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="@Model.Rent" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Rent
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="@Model.Rent" id="rent" name="rent" class="form-control" type="text">
+                                </div>
+                            </div>
 
 
 

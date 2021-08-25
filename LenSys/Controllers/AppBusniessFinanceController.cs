@@ -37,34 +37,8 @@ namespace LenSys.Controllers
         [HttpGet]
         public ViewResult AppBusniessFinance()
         {
-            //_SecurityDetails = new List<AppBusniessFinanceSecurityDetails>() 
-            //{
-            //    new AppBusniessFinanceSecurityDetails
-            //    {
-            //            SecurityDetailsId=1,
-            //            Notes="Security Property",
-            //            LegalChargeOverProperty="YES",
-            //            SecurityType= "Residential ",
-            //            PropertyType="1 Bed Appartment",
-            //            NameOfPropertyOwner = "John",
-            //            Tenure= 2,
-            //            YearsRemainingOnLeaseIfLeaseHold= 1,
-            //            PropertyValue= 5454,
-            //            OriginalPurchasePrice= 6000,
-            //            AddressForPropertyOfSecurity="Russia",
-            //            SecondLineAddress= "Cremlin",
-            //            City= "Moscow",
-            //            PostCode= 85000
-                       
-            //    }
-            //};
-
-
-           
+          
             ViewData["SecurityDetailsList"] = _appBusniessFinanceSecurityDetails.GetAllAppBusniessFinanceSecurityDetails();
-
-
-
             return View("AppBusniessFinance");
         }
         [HttpPost]

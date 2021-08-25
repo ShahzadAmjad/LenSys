@@ -8,7 +8,7 @@
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                <h3>Development Finance</h3>
+                <h3>Development Finance Application</h3>
             </div>
         </div>
         <div class="clearfix"></div>
@@ -26,7 +26,106 @@
 
                             <input hidden asp-for="SecurityDetailsId" />
 
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="@Model.SecurityType">
+                                    Security Type <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <select asp-for="@Model.SecurityType" id="securityType" name="securityType" class=" form-control">
+                                        <option>
+                                            Residential
+                                        </option>
+                                        <option>
+                                            Commercial
+                                        </option>
+                                        <option>
+                                            Semi-commercial
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
 
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="@Model.DescriptionOfProperty">
+                                    Description Of Property <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input type="text" asp-for="@Model.DescriptionOfProperty" id="descriptionOfProperty" name="descriptionOfProperty" required="required" class="form-control ">
+
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label asp-for="@Model.PropertyCurrentUse" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Property Current Use <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input type="text" asp-for="@Model.PropertyCurrentUse" id="propertyCurrentUse" name="propertyCurrentUse" required="required" class="form-control">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="@Model.NameOfPropertyOwner" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Name Of Property Owner
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="@Model.NameOfPropertyOwner" id="nameOfPropertyOwner" name="nameOfPropertyOwner" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="@Model.Tenure" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Tenure
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <select asp-for="@Model.Tenure" id="Tenure" name="Tenure" class=" form-control">
+                                        <option>
+                                            Freehold
+                                        </option>
+                                        <option>
+                                            Leasehold
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="@Model.YearsRemainingOnLeaseIfLeaseHold" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Years Remaining On Lease(If Leasehold)
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="@Model.YearsRemainingOnLeaseIfLeaseHold" id="YearsRemainingOnLeaseIfLeaseHold" name="percentageShareholding" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="@Model.AddressForPropertyOfSecurity" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Address for property to be used as security
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="@Model.AddressForPropertyOfSecurity" id="addressForPropertyOfSecurity" name="addressForPropertyOfSecurity" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="@Model.SecondLineAddress" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Second Line Address
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="@Model.SecondLineAddress" id="secondLineAddress" name="secondLineAddress" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="@Model.City" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    City
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="@Model.City" id="city" name="city" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="@Model.PostCode" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Post Code
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="@Model.PostCode" id="PostCode" name="PostCode" class="form-control" type="text">
+                                </div>
+                            </div>
 
 
 
