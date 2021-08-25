@@ -28,32 +28,51 @@ namespace LenSys.Models.AppBusniessFinance
                                     SecondLineAddress= "Cremlin",
                                     City= "Moscow",
                                     PostCode= 85000
+
                                 }
             };
         }
         public AppBusniessFinanceSecurityDetails Add(AppBusniessFinanceSecurityDetails appBusniessFinanceSecurityDetails)
         {
-            throw new NotImplementedException();
+            appBusniessFinanceSecurityDetails.SecurityDetailsId = _AppBusniessFinanceSecurityDetails.Max(e => e.SecurityDetailsId) + 1;
+            _AppBusniessFinanceSecurityDetails.Add(appBusniessFinanceSecurityDetails);
+            return appBusniessFinanceSecurityDetails;
         }
 
         public AppBusniessFinanceSecurityDetails Delete(int AppBusniessFinanceSecurityDetailsId)
         {
-            throw new NotImplementedException();
+            AppBusniessFinanceSecurityDetails appBusniessFinanceSecurityDetails = _AppBusniessFinanceSecurityDetails.FirstOrDefault(e => e.SecurityDetailsId == AppBusniessFinanceSecurityDetailsId);
+            if (appBusniessFinanceSecurityDetails != null)
+            {
+                _AppBusniessFinanceSecurityDetails.Remove(appBusniessFinanceSecurityDetails);
+            }
+            return appBusniessFinanceSecurityDetails;
         }
 
         public IEnumerable<AppBusniessFinanceSecurityDetails> GetAllAppBusniessFinanceSecurityDetails()
         {
-            throw new NotImplementedException();
+            return _AppBusniessFinanceSecurityDetails;
         }
 
         public AppBusniessFinanceSecurityDetails GetAppBusniessFinanceSecurityDetails(int AppBusniessFinanceSecurityDetailsId)
         {
-            throw new NotImplementedException();
+            return _AppBusniessFinanceSecurityDetails.FirstOrDefault(e => e.SecurityDetailsId == AppBusniessFinanceSecurityDetailsId);
         }
 
-        public AppBusniessFinanceSecurityDetails Update(AppBusniessFinanceSecurityDetails appBusniessFinanceSecurityDetailsChanges)
+        public AppBusniessFinanceSecurityDetails Update(AppBusniessFinanceSecurityDetails model)
         {
-            throw new NotImplementedException();
+            AppBusniessFinanceSecurityDetails appBusniessFinanceSecurityDetails = _AppBusniessFinanceSecurityDetails.FirstOrDefault(e => e.SecurityDetailsId == model.SecurityDetailsId);
+            if (appBusniessFinanceSecurityDetails != null)
+            {
+                //appBusniessFinanceSecurityDetails.KeyPrincipalsId = model.SecurityDetailsId;
+                //appBusniessFinanceSecurityDetails.Title = model.Title;
+                //appBusniessFinanceSecurityDetails.FirstName = model.FirstName;
+                //appBusniessFinanceSecurityDetails.MiddleName = model.MiddleName;
+                //appBusniessFinanceSecurityDetails.Surname = model.Surname;
+                //appBusniessFinanceSecurityDetails.Position = model.Position;
+                //appBusniessFinanceSecurityDetails.PercentageShareholding = model.PercentageShareholding;
+            }
+            return appBusniessFinanceSecurityDetails;
         }
     }
 }

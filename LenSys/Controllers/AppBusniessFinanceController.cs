@@ -9,7 +9,13 @@ namespace LenSys.Controllers
 {
     public class AppBusniessFinanceController : Controller
     {
-        public List<AppBusniessFinanceSecurityDetails> _SecurityDetails;
+        private IAppBusniessFinanceSecurityDetailsRepository _appBusniessFinanceSecurityDetails;
+        //public List<AppBusniessFinanceSecurityDetails> _SecurityDetails;
+
+        public AppBusniessFinanceController(IAppBusniessFinanceSecurityDetailsRepository appBusniessFinanceSecurityDetailsRepository)
+        {
+            _appBusniessFinanceSecurityDetails = appBusniessFinanceSecurityDetailsRepository;
+        }
         public ViewResult Index()
         {
             //String name = "Default Index Page";
@@ -22,38 +28,40 @@ namespace LenSys.Controllers
         {
             
 
-            //KeyPrincipals model = _keyPrincipalsRepository.GetKeyPrincipals(id);
-            //ViewBag.PageTitle = "Edit Key Principal";
+            AppBusniessFinanceSecurityDetails model = _appBusniessFinanceSecurityDetails.GetAppBusniessFinanceSecurityDetails(id);
+            //ViewBag.PageTitle = "Edit Security details";
 
-            return View("EditSecurityDetail");
+            return View("EditSecurityDetail",model);
         }
 
         [HttpGet]
         public ViewResult AppBusniessFinance()
         {
-            _SecurityDetails = new List<AppBusniessFinanceSecurityDetails>() 
-            {
-                new AppBusniessFinanceSecurityDetails
-                {
-                        SecurityDetailsId=1,
-                        Notes="Security Property",
-                        LegalChargeOverProperty="YES",
-                        SecurityType= "Residential ",
-                        PropertyType="1 Bed Appartment",
-                        NameOfPropertyOwner = "John",
-                        Tenure= 2,
-                        YearsRemainingOnLeaseIfLeaseHold= 1,
-                        PropertyValue= 5454,
-                        OriginalPurchasePrice= 6000,
-                        AddressForPropertyOfSecurity="Russia",
-                        SecondLineAddress= "Cremlin",
-                        City= "Moscow",
-                        PostCode= 85000
+            //_SecurityDetails = new List<AppBusniessFinanceSecurityDetails>() 
+            //{
+            //    new AppBusniessFinanceSecurityDetails
+            //    {
+            //            SecurityDetailsId=1,
+            //            Notes="Security Property",
+            //            LegalChargeOverProperty="YES",
+            //            SecurityType= "Residential ",
+            //            PropertyType="1 Bed Appartment",
+            //            NameOfPropertyOwner = "John",
+            //            Tenure= 2,
+            //            YearsRemainingOnLeaseIfLeaseHold= 1,
+            //            PropertyValue= 5454,
+            //            OriginalPurchasePrice= 6000,
+            //            AddressForPropertyOfSecurity="Russia",
+            //            SecondLineAddress= "Cremlin",
+            //            City= "Moscow",
+            //            PostCode= 85000
                        
-                }
-            };
+            //    }
+            //};
+
+
            
-            ViewData["SecurityDetailsList"] = _SecurityDetails;
+            ViewData["SecurityDetailsList"] = _appBusniessFinanceSecurityDetails.GetAllAppBusniessFinanceSecurityDetails();
 
 
 

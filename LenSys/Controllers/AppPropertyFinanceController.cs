@@ -9,7 +9,13 @@ namespace LenSys.Controllers
 {
     public class AppPropertyFinanceController : Controller
     {
-        public List<AppPropertyFinanceSecurityDetails> _SecurityDetails;
+        private IAppPropertyFinanceSecurityDetailsRepository _appPropertyFinanceSecurityDetails;
+        //public List<AppPropertyFinanceSecurityDetails> _SecurityDetails;
+
+        public AppPropertyFinanceController(IAppPropertyFinanceSecurityDetailsRepository appPropertyFinanceSecurityDetailsRepository)
+        {
+            _appPropertyFinanceSecurityDetails = appPropertyFinanceSecurityDetailsRepository;
+        }
         public ViewResult Index()
         {
             //String name = "Default Index Page";
@@ -22,41 +28,41 @@ namespace LenSys.Controllers
         {
 
 
-            //KeyPrincipals model = _keyPrincipalsRepository.GetKeyPrincipals(id);
+            AppPropertyFinanceSecurityDetails model = _appPropertyFinanceSecurityDetails.GetAppPropertysFinanceSecurityDetails(id);
             //ViewBag.PageTitle = "Edit Key Principal";
 
-            return View("EditSecurityDetail");
+            return View("EditSecurityDetail",model);
         }
         [HttpGet]
         public ViewResult AppPropertyFinance()
         {
-            _SecurityDetails = new List<AppPropertyFinanceSecurityDetails>()
-            {
-                new AppPropertyFinanceSecurityDetails
-                {
-                        SecurityDetailsId=1,
+            //_SecurityDetails = new List<AppPropertyFinanceSecurityDetails>()
+            //{
+            //    new AppPropertyFinanceSecurityDetails
+            //    {
+            //            SecurityDetailsId=1,
                        
-                        SecurityType= "Residential ",
-                        PropertyType="1 Bed Appartment",
+            //            SecurityType= "Residential ",
+            //            PropertyType="1 Bed Appartment",
                          
-                        AlreadyOwned="YES",
-                        NameOfPropertyOwner = "John",
-                        Tenure= 2,
-                        YearsRemainingOnLeaseIfLeaseHold= 1,
-                        PropertyValue= 5454,
-                        OriginalPurchasePrice= 6000,
-                        UseOfFunds="Security Money",
-                        Rent=50,
-                        HMO_MUFB="abc",
-                        AddressForPropertyOfSecurity="Russia",
-                        SecondLineAddress= "Cremlin",
-                        City= "Moscow",
-                        PostCode= 85000
+            //            AlreadyOwned="YES",
+            //            NameOfPropertyOwner = "John",
+            //            Tenure= 2,
+            //            YearsRemainingOnLeaseIfLeaseHold= 1,
+            //            PropertyValue= 5454,
+            //            OriginalPurchasePrice= 6000,
+            //            UseOfFunds="Security Money",
+            //            Rent=50,
+            //            HMO_MUFB="abc",
+            //            AddressForPropertyOfSecurity="Russia",
+            //            SecondLineAddress= "Cremlin",
+            //            City= "Moscow",
+            //            PostCode= 85000
 
-                }
-            };
+            //    }
+            //};
 
-            ViewData["SecurityDetailsList"] = _SecurityDetails;
+            ViewData["SecurityDetailsList"] = _appPropertyFinanceSecurityDetails.GetAllAppPropertyFinanceSecurityDetails();
 
             return View("AppPropertyFinance");
 

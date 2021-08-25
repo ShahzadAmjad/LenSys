@@ -9,7 +9,13 @@ namespace LenSys.Controllers
 {
     public class AppDevelopmentFinanceController: Controller
     {
-        public List<AppDevelopmentFinanceSecurityDetails> _SecurityDetails;
+        private IAppDevelopmentFinanceSecurityDetailsRepository _appDevelopmentFinanceSecurityDetails;
+        //public List<AppDevelopmentFinanceSecurityDetails> _SecurityDetails;
+        public AppDevelopmentFinanceController(IAppDevelopmentFinanceSecurityDetailsRepository appDevelopmentFinanceSecurityDetailsRepository)
+        {
+            _appDevelopmentFinanceSecurityDetails = appDevelopmentFinanceSecurityDetailsRepository;
+        }
+        
 
         public ViewResult Index()
         {
@@ -23,36 +29,36 @@ namespace LenSys.Controllers
         {
 
 
-            //KeyPrincipals model = _keyPrincipalsRepository.GetKeyPrincipals(id);
+            AppDevelopmentFinanceSecurityDetails model = _appDevelopmentFinanceSecurityDetails.GetAppDevelopmentFinanceSecurityDetails(id);
             //ViewBag.PageTitle = "Edit Key Principal";
 
-            return View("EditSecurityDetail");
+            return View("EditSecurityDetail",model);
         }
         [HttpGet]
         public ViewResult AppDevelopmentFinance()
         {
-            _SecurityDetails = new List<AppDevelopmentFinanceSecurityDetails>()
-            {
-                new AppDevelopmentFinanceSecurityDetails
-                {
-                        SecurityDetailsId=1,
+            //_SecurityDetails = new List<AppDevelopmentFinanceSecurityDetails>()
+            //{
+            //    new AppDevelopmentFinanceSecurityDetails
+            //    {
+            //            SecurityDetailsId=1,
                         
                         
-                        SecurityType= "Residential ",
-                        DescriptionOfProperty= "Residential Plot",
-                        PropertyCurrentUse="Abondon",                        
-                        NameOfPropertyOwner = "John",
-                        Tenure= 2,
-                        YearsRemainingOnLeaseIfLeaseHold= 1,
-                        AddressForPropertyOfSecurity="Russia",
-                        SecondLineAddress= "Cremlin",
-                        City= "Moscow",
-                        PostCode= 85000
+            //            SecurityType= "Residential ",
+            //            DescriptionOfProperty= "Residential Plot",
+            //            PropertyCurrentUse="Abondon",                        
+            //            NameOfPropertyOwner = "John",
+            //            Tenure= 2,
+            //            YearsRemainingOnLeaseIfLeaseHold= 1,
+            //            AddressForPropertyOfSecurity="Russia",
+            //            SecondLineAddress= "Cremlin",
+            //            City= "Moscow",
+            //            PostCode= 85000
 
-                }
-            };
+            //    }
+            //};
 
-            ViewData["SecurityDetailsList"] = _SecurityDetails;
+            ViewData["SecurityDetailsList"] = _appDevelopmentFinanceSecurityDetails.GetAllAppDevelopmentFinanceSecurityDetails();
 
             return View("AppDevelopmentFinance");
 

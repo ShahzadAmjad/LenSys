@@ -1,1 +1,50 @@
-﻿<h1>Edit Security Detail Property</h1>
+﻿@model AppPropertyFinanceSecurityDetails
+
+@{
+    ViewBag.Title = "Edit Property Finance Security Details";
+}
+
+<div class="" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Property Finance</h3>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 ">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Edit Security Details</h2>
+
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br />
+                        <form id="EditSecurityDetailsForm" data-parsley-validate class="form-horizontal form-label-left" asp-controller="AppPropertyFinance" asp-action="EditSecurityDetail" method="post">
+
+                            <input hidden asp-for="SecurityDetailsId" />
+
+
+
+
+
+                            <div class="ln_solid"></div>
+                            <div class="item form-group">
+                                <div class="col-md-6 col-sm-6 offset-md-3">
+                                    <a asp-controller="AppPropertyFinance" asp-action="AppPropertyFinance" class="btn btn-primary">Cancel</a>
+                                    @*<a asp-controller="BusniessKeyPrincipals" asp-action="EditKeyPrincipals" class="btn btn-primary">Update</a>*@
+                                    @*<button class="btn btn-primary" type="button">Cancel</button>*@
+                                    @*<button class="btn btn-primary" type="reset">Save</button>*@
+                                    <button type="submit" class="btn btn-success">Update</button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
