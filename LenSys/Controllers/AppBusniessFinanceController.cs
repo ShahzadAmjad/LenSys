@@ -24,6 +24,16 @@ namespace LenSys.Controllers
         }
 
         [HttpGet]
+        public IActionResult AddSecurityDetail(int id)
+        {
+
+            AppBusniessFinanceSecurityDetails securityDetails = new AppBusniessFinanceSecurityDetails();
+            return PartialView("_AddSecutityDetailBusniessPartialView", securityDetails);
+
+            //return View("EditSecurityDetail", model);
+        }
+
+        [HttpGet]
         public ViewResult EditSecurityDetail(int id)
         {
             
