@@ -29,7 +29,7 @@ namespace LenSys.Controllers
         {
 
             AppDevelopmentFinanceSecurityDetails securityDetails = new AppDevelopmentFinanceSecurityDetails();
-            return PartialView("_AddSecutityDetailBusniessPartialView", securityDetails);
+            return PartialView("_AddSecutityDetailDevelopmentPartialView", securityDetails);
 
             //return View("EditSecurityDetail", model);
         }
@@ -45,44 +45,24 @@ namespace LenSys.Controllers
         }
 
         [HttpGet]
-        public ViewResult EditSecurityDetail(int id)
+        public IActionResult EditSecurityDetail(int id)
         {
 
 
-            AppDevelopmentFinanceSecurityDetails model = _appDevelopmentFinanceSecurityDetails.GetAppDevelopmentFinanceSecurityDetails(id);
+            AppDevelopmentFinanceSecurityDetails securityDetails = _appDevelopmentFinanceSecurityDetails.GetAppDevelopmentFinanceSecurityDetails(id);
             //ViewBag.PageTitle = "Edit Key Principal";
 
-            return View("EditSecurityDetail",model);
+            //return View("EditSecurityDetail",model);
+
+            return PartialView("_EditSecurityDetailDevelopmentPartialView", securityDetails);
         }
         [HttpGet]
         public ViewResult AppDevelopmentFinance()
         {
-            //_SecurityDetails = new List<AppDevelopmentFinanceSecurityDetails>()
-            //{
-            //    new AppDevelopmentFinanceSecurityDetails
-            //    {
-            //            SecurityDetailsId=1,
-                        
-                        
-            //            SecurityType= "Residential ",
-            //            DescriptionOfProperty= "Residential Plot",
-            //            PropertyCurrentUse="Abondon",                        
-            //            NameOfPropertyOwner = "John",
-            //            Tenure= 2,
-            //            YearsRemainingOnLeaseIfLeaseHold= 1,
-            //            AddressForPropertyOfSecurity="Russia",
-            //            SecondLineAddress= "Cremlin",
-            //            City= "Moscow",
-            //            PostCode= 85000
-
-            //    }
-            //};
 
             ViewData["SecurityDetailsList"] = _appDevelopmentFinanceSecurityDetails.GetAllAppDevelopmentFinanceSecurityDetails();
 
             return View("AppDevelopmentFinance");
-
-            //return View();
         }
         [HttpPost]
         public IActionResult AppDevelopmentFinance(AppDevelopmentFinance appBusniessFinance)

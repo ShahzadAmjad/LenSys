@@ -24,15 +24,49 @@ namespace LenSys.Controllers
         }
 
         [HttpGet]
-        public ViewResult EditSecurityDetail(int id)
+        public IActionResult AddSecurityDetail()
+        {
+
+            AppPropertyFinanceSecurityDetails securityDetails = new AppPropertyFinanceSecurityDetails();
+            return PartialView("_AddSecutityDetailPropertyPartialView", securityDetails);
+
+            //return View("EditSecurityDetail", model);
+        }
+        [HttpPost]
+        public IActionResult AddSecurityDetail(AppPropertyFinanceSecurityDetails securityDetails)
+        {
+            _appPropertyFinanceSecurityDetails.Add(securityDetails);
+            //AppBusniessFinanceSecurityDetails securityDetails = new AppBusniessFinanceSecurityDetails();
+            //return PartialView("_AddSecutityDetailBusniessPartialView", securityDetails);
+
+            ViewData["SecurityDetailsList"] = _appPropertyFinanceSecurityDetails.GetAllAppPropertyFinanceSecurityDetails();
+            return View("AppPropertyFinance");
+        }
+
+
+        [HttpGet]
+        public IActionResult EditSecurityDetail(int id)
         {
 
 
-            AppPropertyFinanceSecurityDetails model = _appPropertyFinanceSecurityDetails.GetAppPropertysFinanceSecurityDetails(id);
-            //ViewBag.PageTitle = "Edit Key Principal";
+            AppPropertyFinanceSecurityDetails securityDetails = _appPropertyFinanceSecurityDetails.GetAppBusniessFinanceSecurityDetails(id);
+            //return View("EditSecurityDetail",model);
 
-            return View("EditSecurityDetail",model);
+            return PartialView("_EditSecutityDetailPropertyPartialView", securityDetails);
+
         }
+
+
+        //[HttpGet]
+        //public ViewResult EditSecurityDetail(int id)
+        //{
+
+
+        //    AppPropertyFinanceSecurityDetails model = _appPropertyFinanceSecurityDetails.GetAppPropertysFinanceSecurityDetails(id);
+        //    //ViewBag.PageTitle = "Edit Key Principal";
+
+        //    return View("EditSecurityDetail",model);
+        //}
         [HttpGet]
         public ViewResult AppPropertyFinance()
         {
