@@ -52,7 +52,7 @@ namespace LenSys.Controllers
             AppPropertyFinanceSecurityDetails securityDetails = _appPropertyFinanceSecurityDetails.GetAppPropertysFinanceSecurityDetails(id);
             //return View("EditSecurityDetail",model);
 
-            return PartialView("_EditSecutityDetailPropertyPartialView", securityDetails);
+            return PartialView("_EditSecurityDetailPropertyPartialView", securityDetails);
 
         }
 
