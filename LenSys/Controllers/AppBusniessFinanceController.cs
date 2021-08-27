@@ -24,7 +24,7 @@ namespace LenSys.Controllers
         }
 
         [HttpGet]
-        public IActionResult AddSecurityDetail(int id)
+        public IActionResult AddSecurityDetail()
         {
 
             AppBusniessFinanceSecurityDetails securityDetails = new AppBusniessFinanceSecurityDetails();
@@ -32,16 +32,28 @@ namespace LenSys.Controllers
 
             //return View("EditSecurityDetail", model);
         }
+        [HttpPost]
+        public IActionResult AddSecurityDetail(AppBusniessFinanceSecurityDetails securityDetails)
+        {
+            _appBusniessFinanceSecurityDetails.Add(securityDetails);
+            //AppBusniessFinanceSecurityDetails securityDetails = new AppBusniessFinanceSecurityDetails();
+            //return PartialView("_AddSecutityDetailBusniessPartialView", securityDetails);
+
+            ViewData["SecurityDetailsList"] = _appBusniessFinanceSecurityDetails.GetAllAppBusniessFinanceSecurityDetails();
+            return View("AppBusniessFinance");
+        }
+
 
         [HttpGet]
-        public ViewResult EditSecurityDetail(int id)
+        public IActionResult EditSecurityDetail(int id)
         {
             
 
-            AppBusniessFinanceSecurityDetails model = _appBusniessFinanceSecurityDetails.GetAppBusniessFinanceSecurityDetails(id);
-            //ViewBag.PageTitle = "Edit Security details";
+            AppBusniessFinanceSecurityDetails securityDetails = _appBusniessFinanceSecurityDetails.GetAppBusniessFinanceSecurityDetails(id);
+            //return View("EditSecurityDetail",model);
 
-            return View("EditSecurityDetail",model);
+            return PartialView("_EditSecurityDetailBusniessPartialView", securityDetails);
+
         }
 
         [HttpGet]

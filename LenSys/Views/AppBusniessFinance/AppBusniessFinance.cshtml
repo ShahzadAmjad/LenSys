@@ -112,16 +112,19 @@
                             </div>
 
                             @*Related To partial View*@
-                            <div id="PlaceHolderHere"></div>
+                            <div name="PlaceHolderHere" id="PlaceHolderHere">
+                                @*<partial name="_AddSecutityDetailBusniessPartialView" />*@
+                            </div>
 
 
                             <div class="mtop20">
-                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createSecurityDetailModal">Add New Security Details</button>
+                                @*Old modal Button*@
+                                @*<button type="button"  class="btn btn-success" data-toggle="modal" data-target="#createSecurityDetailModal">Add New Security Details</button>*@
                                 @*Razor Modal POP Button*@
-                                <button type="button" class="btn btn-success" data-toggle="ajax-modal" id="AddSecuritybtn" name="AddSecuritybtn"
-                                        data-target="#AddSecurityDetailModalBusniess" data-url="@Url.Action("AddSecurityDetail")">
-                                    Add Security Detail Razor
-                                </button>
+                            <button type="button" class="btn btn-success" data-toggle="ajax-modal" id="AddSecuritybtn" name="AddSecuritybtn"
+                                    data-target="#AddSecurityDetailModalBusniess" data-url="@Url.Action("AddSecurityDetail")">
+                                Add New Security Details
+                            </button>
                             </div>
 
                             <div class="mtop20">
@@ -150,7 +153,15 @@
                                                     <td>@securityDetails.NameOfPropertyOwner</td>
                                                     <td>@securityDetails.PropertyValue</td>
 
-                                                    <td><a asp-controller="AppBusniessFinance" asp-action="EditSecuritydetail" class="btn btn-primary " asp-route-id="@securityDetails.SecurityDetailsId">Edit</a></td>
+                                                    <td>
+                                                        @*<a asp-controller="AppBusniessFinance" asp-action="EditSecuritydetail"*@
+                                                        @*class="btn btn-primary " asp-route-id="@securityDetails.SecurityDetailsId">Edit</a>*@
+                                                        <button type="button" class="btn btn-success" data-toggle="Edit-modal" id="EditSecuritybtn" name="EditSecuritybtn"
+                                                                data-target="#EditSecurityDetailModalBusniess" onclick="EditSecurityBusniessOnclick(@securityDetails.SecurityDetailsId)"  data-url="@Url.Action("EditSecurityDetail")">
+                                                            Edit
+                                                        </button>
+
+                                                    </td>
 
                                                     <td>
 
@@ -186,161 +197,162 @@
                                 </table>
 
 
-                                @*Add New Security Detail Modal*@
+                                @*Add New Security Detail Modal Comment out*@
+                            <div>
+                                @*<div class="modal fade bd-example-modal-lg" id="createSecurityDetailModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog  modal-lg" role="form">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title text-center" id="myModalLabel">Add New Security</h4>
+                        <button type="button" class="close " data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
 
-                                <div class="modal fade bd-example-modal-lg" id="createSecurityDetailModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog  modal-lg" role="form">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h4 class="modal-title text-center" id="myModalLabel">Add New Security</h4>
-                                                <button type="button" class="close " data-dismiss="modal" aria-hidden="true">&times;</button>
-                                            </div>
+                    <div class="modal-body">
 
-                                            <div class="modal-body">
+                        <div class="item form-group">
+                            <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="@Model.securityDetails[1].Notes">
+                                Notes <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 ">
+                                <input type="text" asp-for="@Model.securityDetails[1].Notes" id="notes" name="notes" required="required" class="form-control ">
+                            </div>
+                        </div>
 
-                                                <div class="item form-group">
-                                                    <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="@Model.securityDetails[1].Notes">
-                                                        Notes <span class="required">*</span>
-                                                    </label>
-                                                    <div class="col-md-6 col-sm-6 ">
-                                                        <input type="text" asp-for="@Model.securityDetails[1].Notes" id="notes" name="notes" required="required" class="form-control ">
-                                                    </div>
-                                                </div>
+                        <div class="item form-group">
+                            <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="@Model.securityDetails[1].LegalChargeOverProperty">
+                                If Legal charge over property <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 ">
+                                <select asp-for="@Model.securityDetails[1].LegalChargeOverProperty" id="legalChargeOverProperty" name="legalChargeOverProperty" class=" form-control">
+                                    <option>
+                                        NO
+                                    </option>
+                                    <option>
+                                        YES
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
 
-                                                <div class="item form-group">
-                                                    <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="@Model.securityDetails[1].LegalChargeOverProperty">
-                                                        If Legal charge over property <span class="required">*</span>
-                                                    </label>
-                                                    <div class="col-md-6 col-sm-6 ">
-                                                        <select asp-for="@Model.securityDetails[1].LegalChargeOverProperty" id="legalChargeOverProperty" name="legalChargeOverProperty" class=" form-control">
-                                                            <option>
-                                                                NO
-                                                            </option>
-                                                            <option>
-                                                                YES
-                                                            </option>
-                                                        </select>
-                                                    </div>
-                                                </div>
+                        <div class="item form-group">
+                            <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="@Model.securityDetails[1].SecurityType">
+                                Security Type<span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 ">
+                                <select asp-for="@Model.securityDetails[1].SecurityType" id="securityType" name="securityType" class=" form-control">
+                                    <option>
+                                        Residential
+                                    </option>
+                                    <option>
+                                        Commercial
+                                    </option>
+                                    <option>
+                                        Semi-commercial
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="item form-group">
+                            <label asp-for="@Model.securityDetails[1].PropertyType" class="col-form-label col-md-3 col-sm-3 label-align">
+                                Property Type <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 ">
+                                <input type="text" asp-for="@Model.securityDetails[1].PropertyType" id="propertyType" name="propertyType" required="required" class="form-control">
+                            </div>
+                        </div>
+                        <div class="item form-group">
+                            <label asp-for="@Model.securityDetails[1].NameOfPropertyOwner" class="col-form-label col-md-3 col-sm-3 label-align">
+                                Name Of Property Owner
+                            </label>
+                            <div class="col-md-6 col-sm-6 ">
+                                <input asp-for="@Model.securityDetails[1].NameOfPropertyOwner" id="nameOfPropertyOwner" name="nameOfPropertyOwner" class="form-control" type="text">
+                            </div>
+                        </div>
+                        <div class="item form-group">
+                            <label asp-for="@Model.securityDetails[1].Tenure" class="col-form-label col-md-3 col-sm-3 label-align">
+                                Tenure
+                            </label>
+                            <div class="col-md-6 col-sm-6 ">
+                                <select asp-for="@Model.securityDetails[1].Tenure" id="Tenure" name="Tenure" class=" form-control">
+                                    <option>
+                                        Freehold
+                                    </option>
+                                    <option>
+                                        Leasehold
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="item form-group">
+                            <label asp-for="@Model.securityDetails[1].YearsRemainingOnLeaseIfLeaseHold" class="col-form-label col-md-3 col-sm-3 label-align">
+                                Years Remaining On Lease(If Leasehold)
+                            </label>
+                            <div class="col-md-6 col-sm-6 ">
+                                <input asp-for="@Model.securityDetails[1].YearsRemainingOnLeaseIfLeaseHold" id="YearsRemainingOnLeaseIfLeaseHold" name="percentageShareholding" class="form-control" type="text">
+                            </div>
+                        </div>
 
-                                                <div class="item form-group">
-                                                    <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="@Model.securityDetails[1].SecurityType">
-                                                        Security Type<span class="required">*</span>
-                                                    </label>
-                                                    <div class="col-md-6 col-sm-6 ">
-                                                        <select asp-for="@Model.securityDetails[1].SecurityType" id="securityType" name="securityType" class=" form-control">
-                                                            <option>
-                                                                Residential
-                                                            </option>
-                                                            <option>
-                                                                Commercial
-                                                            </option>
-                                                            <option>
-                                                                Semi-commercial
-                                                            </option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="item form-group">
-                                                    <label asp-for="@Model.securityDetails[1].PropertyType" class="col-form-label col-md-3 col-sm-3 label-align">
-                                                        Property Type <span class="required">*</span>
-                                                    </label>
-                                                    <div class="col-md-6 col-sm-6 ">
-                                                        <input type="text" asp-for="@Model.securityDetails[1].PropertyType" id="propertyType" name="propertyType" required="required" class="form-control">
-                                                    </div>
-                                                </div>
-                                                <div class="item form-group">
-                                                    <label asp-for="@Model.securityDetails[1].NameOfPropertyOwner" class="col-form-label col-md-3 col-sm-3 label-align">
-                                                        Name Of Property Owner
-                                                    </label>
-                                                    <div class="col-md-6 col-sm-6 ">
-                                                        <input asp-for="@Model.securityDetails[1].NameOfPropertyOwner" id="nameOfPropertyOwner" name="nameOfPropertyOwner" class="form-control" type="text">
-                                                    </div>
-                                                </div>
-                                                <div class="item form-group">
-                                                    <label asp-for="@Model.securityDetails[1].Tenure" class="col-form-label col-md-3 col-sm-3 label-align">
-                                                        Tenure
-                                                    </label>
-                                                    <div class="col-md-6 col-sm-6 ">
-                                                        <select asp-for="@Model.securityDetails[1].Tenure" id="Tenure" name="Tenure" class=" form-control">
-                                                            <option>
-                                                                Freehold
-                                                            </option>
-                                                            <option>
-                                                                Leasehold
-                                                            </option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="item form-group">
-                                                    <label asp-for="@Model.securityDetails[1].YearsRemainingOnLeaseIfLeaseHold" class="col-form-label col-md-3 col-sm-3 label-align">
-                                                        Years Remaining On Lease(If Leasehold)
-                                                    </label>
-                                                    <div class="col-md-6 col-sm-6 ">
-                                                        <input asp-for="@Model.securityDetails[1].YearsRemainingOnLeaseIfLeaseHold" id="YearsRemainingOnLeaseIfLeaseHold" name="percentageShareholding" class="form-control" type="text">
-                                                    </div>
-                                                </div>
+                        <div class="item form-group">
+                            <label asp-for="@Model.securityDetails[1].PropertyValue" class="col-form-label col-md-3 col-sm-3 label-align">
+                                Property Value
+                            </label>
+                            <div class="col-md-6 col-sm-6 ">
+                                <input asp-for="@Model.securityDetails[1].PropertyValue" id="propertyValue" name="propertyValue" class="form-control" type="text">
+                            </div>
+                        </div>
 
-                                                <div class="item form-group">
-                                                    <label asp-for="@Model.securityDetails[1].PropertyValue" class="col-form-label col-md-3 col-sm-3 label-align">
-                                                        Property Value
-                                                    </label>
-                                                    <div class="col-md-6 col-sm-6 ">
-                                                        <input asp-for="@Model.securityDetails[1].PropertyValue" id="propertyValue" name="propertyValue" class="form-control" type="text">
-                                                    </div>
-                                                </div>
+                        <div class="item form-group">
+                            <label asp-for="@Model.securityDetails[1].OriginalPurchasePrice" class="col-form-label col-md-3 col-sm-3 label-align">
+                                Purchase Price/Original Purchase Price
+                            </label>
+                            <div class="col-md-6 col-sm-6 ">
+                                <input asp-for="@Model.securityDetails[1].OriginalPurchasePrice" id="originalPurchasePrice" name="originalPurchasePrice" class="form-control" type="text">
+                            </div>
+                        </div>
 
-                                                <div class="item form-group">
-                                                    <label asp-for="@Model.securityDetails[1].OriginalPurchasePrice" class="col-form-label col-md-3 col-sm-3 label-align">
-                                                        Purchase Price/Original Purchase Price
-                                                    </label>
-                                                    <div class="col-md-6 col-sm-6 ">
-                                                        <input asp-for="@Model.securityDetails[1].OriginalPurchasePrice" id="originalPurchasePrice" name="originalPurchasePrice" class="form-control" type="text">
-                                                    </div>
-                                                </div>
+                        <div class="item form-group">
+                            <label asp-for="@Model.securityDetails[1].AddressForPropertyOfSecurity" class="col-form-label col-md-3 col-sm-3 label-align">
+                                Address for property to be used as security
+                            </label>
+                            <div class="col-md-6 col-sm-6 ">
+                                <input asp-for="@Model.securityDetails[1].AddressForPropertyOfSecurity" id="addressForPropertyOfSecurity" name="addressForPropertyOfSecurity" class="form-control" type="text">
+                            </div>
+                        </div>
+                        <div class="item form-group">
+                            <label asp-for="@Model.securityDetails[1].SecondLineAddress" class="col-form-label col-md-3 col-sm-3 label-align">
+                                Second Line Address
+                            </label>
+                            <div class="col-md-6 col-sm-6 ">
+                                <input asp-for="@Model.securityDetails[1].SecondLineAddress" id="secondLineAddress" name="secondLineAddress" class="form-control" type="text">
+                            </div>
+                        </div>
+                        <div class="item form-group">
+                            <label asp-for="@Model.securityDetails[1].City" class="col-form-label col-md-3 col-sm-3 label-align">
+                                City
+                            </label>
+                            <div class="col-md-6 col-sm-6 ">
+                                <input asp-for="@Model.securityDetails[1].City" id="city" name="city" class="form-control" type="text">
+                            </div>
+                        </div>
+                        <div class="item form-group">
+                            <label asp-for="@Model.securityDetails[1].PostCode" class="col-form-label col-md-3 col-sm-3 label-align">
+                                Post Code
+                            </label>
+                            <div class="col-md-6 col-sm-6 ">
+                                <input asp-for="@Model.securityDetails[1].PostCode" id="PostCode" name="PostCode" class="form-control" type="text">
+                            </div>
+                        </div>
 
-                                                <div class="item form-group">
-                                                    <label asp-for="@Model.securityDetails[1].AddressForPropertyOfSecurity" class="col-form-label col-md-3 col-sm-3 label-align">
-                                                        Address for property to be used as security
-                                                    </label>
-                                                    <div class="col-md-6 col-sm-6 ">
-                                                        <input asp-for="@Model.securityDetails[1].AddressForPropertyOfSecurity" id="addressForPropertyOfSecurity" name="addressForPropertyOfSecurity" class="form-control" type="text">
-                                                    </div>
-                                                </div>
-                                                <div class="item form-group">
-                                                    <label asp-for="@Model.securityDetails[1].SecondLineAddress" class="col-form-label col-md-3 col-sm-3 label-align">
-                                                        Second Line Address
-                                                    </label>
-                                                    <div class="col-md-6 col-sm-6 ">
-                                                        <input asp-for="@Model.securityDetails[1].SecondLineAddress" id="secondLineAddress" name="secondLineAddress" class="form-control" type="text">
-                                                    </div>
-                                                </div>
-                                                <div class="item form-group">
-                                                    <label asp-for="@Model.securityDetails[1].City" class="col-form-label col-md-3 col-sm-3 label-align">
-                                                        City
-                                                    </label>
-                                                    <div class="col-md-6 col-sm-6 ">
-                                                        <input asp-for="@Model.securityDetails[1].City" id="city" name="city" class="form-control" type="text">
-                                                    </div>
-                                                </div>
-                                                <div class="item form-group">
-                                                    <label asp-for="@Model.securityDetails[1].PostCode" class="col-form-label col-md-3 col-sm-3 label-align">
-                                                        Post Code
-                                                    </label>
-                                                    <div class="col-md-6 col-sm-6 ">
-                                                        <input asp-for="@Model.securityDetails[1].PostCode" id="PostCode" name="PostCode" class="form-control" type="text">
-                                                    </div>
-                                                </div>
+                    </div>
 
-                                            </div>
-
-                                            <div class="modal-footer">
-                                                <a asp-controller="AppBusniessFinance" asp-action="AddSecurity" id="AddPropertyBtn" class="btn btn-primary mr-1">Save</a>
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                    <div class="modal-footer">
+                        <a asp-controller="AppBusniessFinance" asp-action="AddSecurity" id="AddPropertyBtn" class="btn btn-primary mr-1">Save</a>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+                            </div>
 
                             </div>
 
@@ -348,7 +360,7 @@
 
 
                             @*FCA Regulation*@
-
+                        <div>
                             <div class="x_title">
                                 <h2>FCA Regulation</h2>
 
@@ -400,8 +412,10 @@
                                     </select>
                                 </div>
                             </div>
+                        </div>
 
                             @*Accountant*@
+                        <div>
                             <div class="x_title">
                                 <h2>Accountant</h2>
 
@@ -451,6 +465,7 @@
 
                                 </div>
                             </div>
+                        </div>
 
                             @*Submit Buttons*@
                             <div class="ln_solid"></div>
@@ -469,27 +484,65 @@
         </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    
     <script>
 
         var PlaceHolderElement = $('#PlaceHolderHere');
 
+        //Show modal on Add Button click
         $('button[data-toggle="ajax-modal" ]').click(function (event) {
-            alert("Hello");
+            
             var url = $(this).data('url');
+
             $.get(url).done(function (data) {
                 PlaceHolderElement.html(data);
-                PlaceHolderElement.find('.modal').modal('show');
+                $('#AddSecurityDetailModalBusniess').modal('show');
+                //PlaceHolderElement.find('.modal').modal('show');
             })
+        })
+
+        
+
+        function EditSecurityBusniessOnclick(routeId) {
+            //alert(String(routeId));
+
+            var url = $('#EditSecuritybtn').data('url') + "/" + routeId;
+            
+            $.get(url).done(function (data) {
+                PlaceHolderElement.html(data);
+                $('#EditSecurityDetailModalBusniess').modal('show');
+
+            })
+        }
+
+        //Save Modal Data Add Security
+        PlaceHolderElement.on('click', '[data-save="modal"]', function (event) {
+
+
+            var form = $(this).parents('.modal').find('form');
+            var form = $('#AddSecurityDetailModalBusniess').find('form');
+
+            //var form = $('#AddSecurityDetailform');
+
+            var actionurl = $('#AddSecurityDetailform').attr('action');
+            alert(String(actionurl));
+
+            var actionurl = "/AppBusniessFinance/AddSecurityDetail";
+            //alert(String(actionurl));
+
+            //var sendData = form.serialize();
+
+            var sendData = $('#AddSecurityDetailform').serialize();
+
+            //alert(String(actionurl));
+            $.post(actionurl, sendData).done(function (data) {
+                $('#AddSecurityDetailModalBusniess').modal('hide');
+            })
+
+
 
         })
 
-
-        //$(document).ready(function () {
-
-        //    $("#AddSecuritybtn").on('click', function () {
-        //        alert("button");
-        //    });
-        //});
 
 
     </script>
