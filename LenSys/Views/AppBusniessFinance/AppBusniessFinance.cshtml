@@ -154,9 +154,10 @@
                                                     <td>@securityDetails.PropertyValue</td>
 
                                                     <td>
+                                                        
                                                         @*<a asp-controller="AppBusniessFinance" asp-action="EditSecuritydetail"*@
                                                         @*class="btn btn-primary " asp-route-id="@securityDetails.SecurityDetailsId">Edit</a>*@
-                                                        <button type="button" class="btn btn-success" data-toggle="Edit-modal" id="EditSecuritybtn" name="EditSecuritybtn"
+                                                        <button type="button" style="width:80px;" class="btn btn-primary btn-sm" data-toggle="Edit-modal" id="EditSecuritybtn" name="EditSecuritybtn"
                                                                 data-target="#EditSecurityDetailModalBusniess" onclick="EditSecurityBusniessOnclick(@securityDetails.SecurityDetailsId)"  data-url="@Url.Action("EditSecurityDetail")">
                                                             Edit
                                                         </button>
@@ -165,7 +166,7 @@
 
                                                     <td>
 
-                                                        <button type="button" class="btn btn-danger " data-toggle="modal" data-target="@tm">
+                                                        <button type="button" style="width:80px;" class="btn btn-danger btn-sm" data-toggle="modal" data-target="@tm">
                                                             Delete
                                                         </button>
 
