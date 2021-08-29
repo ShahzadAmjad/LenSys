@@ -7,6 +7,7 @@ using LenSys.Models.BusniessLiabilities;
 using LenSys.Models.BusniessServiceability;
 using LenSys.Models.BusniessUploadDocument;
 using LenSys.Models.Home;
+using LenSys.Models.Home.AllApplications;
 using LenSys.Models.IndividualPropertySchedule;
 using LenSys.Models.IndividualUploadDocuments;
 using Microsoft.AspNetCore.Builder;
@@ -38,6 +39,7 @@ namespace LenSys
             services.AddSingleton<IAppBusniessFinanceSecurityDetailsRepository, MockAppBusniessFinanceSecurityDetailsRepository>();
             services.AddSingleton<IAppDevelopmentFinanceSecurityDetailsRepository, MockAppDevelopmentFinanceSecurityDetailsRepository>();
             services.AddSingleton<IAppPropertyFinanceSecurityDetailsRepository, MockAppPropertyFinanceSecurityDetailsRepository>();
+            services.AddSingleton<IAllApplicationsRepository, MockAllApplicationsRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

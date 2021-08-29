@@ -25,6 +25,22 @@
                         <form id="AppAssetFinanceForm" data-parsley-validate class="form-horizontal form-label-left" asp-controller="AppAssetFinance" asp-action="AppAssetFinance" method="post">
 
                             <div class="item form-group">
+                                <label asp-for="ApplicationType" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Application Type
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <select asp-for="ApplicationType" id="applicationType" name="applicationType" class="form-control">
+                                        <option>
+                                            Individual
+                                        </option>
+                                        <option>
+                                            Busniess
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="AssetType">
                                     Asset Type
                                 </label>
@@ -104,11 +120,11 @@
 
                             @*Supplier Details*@
                             <div class="x_title">
-                                <h2 >Supplier Details</h2>
+                                <h2>Supplier Details</h2>
 
                                 <div class="clearfix"></div>
                             </div>
-                            
+
 
                             <div class="item form-group">
                                 <label asp-for="CompanyName" class="col-form-label col-md-3 col-sm-3 label-align">

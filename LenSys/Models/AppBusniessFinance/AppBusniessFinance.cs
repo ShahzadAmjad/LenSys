@@ -8,6 +8,7 @@ namespace LenSys.Models.AppBusniessFinance
     public class AppBusniessFinance
     {
         //Loan Details
+        public string ApplicationType { get; set; }
         public int BusniessFinId { get; set; } 
         
         public string TypeOfFinance { get; set; }
