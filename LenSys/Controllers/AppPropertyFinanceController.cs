@@ -56,46 +56,10 @@ namespace LenSys.Controllers
 
         }
 
-
-        //[HttpGet]
-        //public ViewResult EditSecurityDetail(int id)
-        //{
-
-
-        //    AppPropertyFinanceSecurityDetails model = _appPropertyFinanceSecurityDetails.GetAppPropertysFinanceSecurityDetails(id);
-        //    //ViewBag.PageTitle = "Edit Key Principal";
-
-        //    return View("EditSecurityDetail",model);
-        //}
         [HttpGet]
         public ViewResult AppPropertyFinance()
         {
-            //_SecurityDetails = new List<AppPropertyFinanceSecurityDetails>()
-            //{
-            //    new AppPropertyFinanceSecurityDetails
-            //    {
-            //            SecurityDetailsId=1,
-                       
-            //            SecurityType= "Residential ",
-            //            PropertyType="1 Bed Appartment",
-                         
-            //            AlreadyOwned="YES",
-            //            NameOfPropertyOwner = "John",
-            //            Tenure= 2,
-            //            YearsRemainingOnLeaseIfLeaseHold= 1,
-            //            PropertyValue= 5454,
-            //            OriginalPurchasePrice= 6000,
-            //            UseOfFunds="Security Money",
-            //            Rent=50,
-            //            HMO_MUFB="abc",
-            //            AddressForPropertyOfSecurity="Russia",
-            //            SecondLineAddress= "Cremlin",
-            //            City= "Moscow",
-            //            PostCode= 85000
-
-            //    }
-            //};
-
+            
             ViewData["SecurityDetailsList"] = _appPropertyFinanceSecurityDetails.GetAllAppPropertyFinanceSecurityDetails();
 
             return View("AppPropertyFinance");

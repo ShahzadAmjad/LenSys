@@ -9,6 +9,12 @@ namespace LenSys.Controllers
 {
     public class AppAssetFinanceController : Controller
     {
+        private IAppAssetFinanceRepository _appAssetFinanceRepository;
+
+        public AppAssetFinanceController(IAppAssetFinanceRepository appAssetFinanceRepository)
+        {
+            _appAssetFinanceRepository = appAssetFinanceRepository;
+        }
         public ViewResult Index()
         {
             //String name = "Default Index Page";
@@ -25,13 +31,12 @@ namespace LenSys.Controllers
         {
             if (ModelState.IsValid)
             {
-                //Employee newEmployee = _emplyeeRepositry.Add(employee);
-                ////return View();
-                //return RedirectToAction("details", new { id = newEmployee.Id });
-                return View("Index","Home");
+                AppAssetFinance appAssetFinance1=_appAssetFinanceRepository.Add(appAssetFinance);
+
             }
 
-            return View();
+             return View();
+            //return JavaScript(alert(""));
         }
     }
 }

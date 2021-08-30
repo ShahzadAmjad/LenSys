@@ -1,4 +1,5 @@
 using LenSys.Models;
+using LenSys.Models.AppAssetFinance;
 using LenSys.Models.AppBusniessFinance;
 using LenSys.Models.AppDevelopmentFinance;
 using LenSys.Models.AppPropertyFinance;
@@ -13,6 +14,8 @@ using LenSys.Models.IndividualUploadDocuments;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
@@ -24,11 +27,23 @@ namespace LenSys
 {
     public class Startup
     {
+        private IConfiguration _config;
+
+        public Startup(IConfiguration config)
+        {
+            _config = config;
+        }
+
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContextPool<AppDbContext>(options => options.UseSqlServer(_config.GetConnectionString("LenSysDBConnection")));
+
             services.AddMvc(options => options.EnableEndpointRouting = false);
+
+
+
             services.AddSingleton<ILeadRepository, MockLeadRepository>();
             services.AddSingleton<IPropertyScheduleRepository, MockPropertyScheduleRepository>();
             services.AddSingleton<IKeyPrincipalsRepository, MockKeyPrincipalsRepository>();
@@ -36,6 +51,9 @@ namespace LenSys
             services.AddSingleton<IServiceabilityRepository, MockServicebilityRepository>();
             services.AddSingleton<IBusniessDocumentsRepository, MockBusniessDocumentsRepository>();
             services.AddSingleton<IindividualDocumentsRepository, MockIndividualDocumentsRepository>();
+
+            services.AddScoped<IAppAssetFinanceRepository, SQLAppAssetFinanceReository>();
+
             services.AddSingleton<IAppBusniessFinanceSecurityDetailsRepository, MockAppBusniessFinanceSecurityDetailsRepository>();
             services.AddSingleton<IAppDevelopmentFinanceSecurityDetailsRepository, MockAppDevelopmentFinanceSecurityDetailsRepository>();
             services.AddSingleton<IAppPropertyFinanceSecurityDetailsRepository, MockAppPropertyFinanceSecurityDetailsRepository>();

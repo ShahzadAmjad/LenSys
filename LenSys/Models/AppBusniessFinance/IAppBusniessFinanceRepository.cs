@@ -5,7 +5,12 @@ using System.Threading.Tasks;
 
 namespace LenSys.Models.AppBusniessFinance
 {
-    interface IAppBusniessFinanceRepository
+    public interface IAppBusniessFinanceRepository
     {
+        AppBusniessFinance GetAppBusniessFinance(int id);
+        IEnumerable<AppBusniessFinance> GetAllAppBusniessFinance();
+        AppBusniessFinance Add(AppBusniessFinance appBusniessFinance);
+        AppBusniessFinance Update(AppBusniessFinance appBusniessFinanceChanges);
+        AppBusniessFinance Delete(int id);
     }
 }

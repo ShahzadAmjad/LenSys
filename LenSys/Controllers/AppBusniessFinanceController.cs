@@ -10,11 +10,13 @@ namespace LenSys.Controllers
     public class AppBusniessFinanceController : Controller
     {
         private IAppBusniessFinanceSecurityDetailsRepository _appBusniessFinanceSecurityDetails;
+        private IAppBusniessFinanceRepository _appBusniessFinanceRepository;
         //public List<AppBusniessFinanceSecurityDetails> _SecurityDetails;
 
-        public AppBusniessFinanceController(IAppBusniessFinanceSecurityDetailsRepository appBusniessFinanceSecurityDetailsRepository)
+        public AppBusniessFinanceController(IAppBusniessFinanceSecurityDetailsRepository appBusniessFinanceSecurityDetailsRepository, IAppBusniessFinanceRepository appBusniessFinanceRepository)
         {
             _appBusniessFinanceSecurityDetails = appBusniessFinanceSecurityDetailsRepository;
+            _appBusniessFinanceRepository = appBusniessFinanceRepository;
         }
         public ViewResult Index()
         {
@@ -68,10 +70,8 @@ namespace LenSys.Controllers
         {
             if (ModelState.IsValid)
             {
-                //Employee newEmployee = _emplyeeRepositry.Add(employee);
-                ////return View();
-                //return RedirectToAction("details", new { id = newEmployee.Id });
-                return View("Index", "Home");
+                AppBusniessFinance appBusniessFinance1 = _appBusniessFinanceRepository.Add(appBusniessFinance);
+
             }
 
             return View();

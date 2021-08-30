@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -8,8 +9,10 @@ namespace LenSys.Models.AppDevelopmentFinance
     public class AppDevelopmentFinance
     {
         //Loan Details
-        public string ApplicationType { get; set; }
+        [Key]
         public int LoanId { get; set; }
+        public string ApplicationType { get; set; }
+        
         public int PurchasePrice { get; set; }
         public int MarketValueOfLand { get; set; }
         public int ConstructionCost { get; set; }

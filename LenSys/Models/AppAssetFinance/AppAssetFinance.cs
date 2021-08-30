@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -8,8 +9,11 @@ namespace LenSys.Models.AppAssetFinance
     public class AppAssetFinance
     {
         //Developer Assigned id//not by user
-        public string ApplicationType { get; set; }
+        [Key]
         public int AssetFinId { get; set; }
+
+        public string ApplicationType { get; set; }
+        
         public string AssetType { get; set; }
         public string Description { get; set; }
         public int PurchasePriceOfAssetValue { get; set; }
