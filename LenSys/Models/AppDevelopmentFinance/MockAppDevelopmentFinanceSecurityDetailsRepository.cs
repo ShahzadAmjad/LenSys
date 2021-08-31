@@ -12,25 +12,35 @@ namespace LenSys.Models.AppDevelopmentFinance
         {
             _AppDevelopmentFinanceSecurityDetails = new List<AppDevelopmentFinanceSecurityDetails>()
             {
-                                new AppDevelopmentFinanceSecurityDetails{
-                                    SecurityDetailsId=1,
-                                    SecurityType= "Residential ",
-                                    DescriptionOfProperty= "Residential Plot",
-                                    PropertyCurrentUse="Abondon",
-                                    NameOfPropertyOwner = "John",
-                                    Tenure= 2,
-                                    YearsRemainingOnLeaseIfLeaseHold= 1,
-                                    AddressForPropertyOfSecurity="Russia",
-                                    SecondLineAddress= "Cremlin",
-                                    City= "Moscow",
-                                    PostCode= 85000
+                                //new AppDevelopmentFinanceSecurityDetails{
+                                //    SecurityDetailsId=1,
+                                //    SecurityType= "Residential ",
+                                //    DescriptionOfProperty= "Residential Plot",
+                                //    PropertyCurrentUse="Abondon",
+                                //    NameOfPropertyOwner = "John",
+                                //    Tenure= 2,
+                                //    YearsRemainingOnLeaseIfLeaseHold= 1,
+                                //    AddressForPropertyOfSecurity="Russia",
+                                //    SecondLineAddress= "Cremlin",
+                                //    City= "Moscow",
+                                //    PostCode= 85000
 
-                                }
+                                //}
             };
         }
         public AppDevelopmentFinanceSecurityDetails Add(AppDevelopmentFinanceSecurityDetails appDevelopmentFinanceSecurityDetails)
         {
-            appDevelopmentFinanceSecurityDetails.SecurityDetailsId = _AppDevelopmentFinanceSecurityDetails.Max(e => e.SecurityDetailsId) + 1;
+            if (_AppDevelopmentFinanceSecurityDetails.Count == 0)
+            {
+                appDevelopmentFinanceSecurityDetails.SecurityDetailsId = 1;
+
+            }
+            else
+            {
+                appDevelopmentFinanceSecurityDetails.SecurityDetailsId = _AppDevelopmentFinanceSecurityDetails.Max(e => e.SecurityDetailsId) + 1;
+            }
+
+            
             _AppDevelopmentFinanceSecurityDetails.Add(appDevelopmentFinanceSecurityDetails);
             return appDevelopmentFinanceSecurityDetails;
         }

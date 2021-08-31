@@ -12,31 +12,40 @@ namespace LenSys.Models.AppPropertyFinance
         {
             _AppPropertyFinanceSecurityDetails = new List<AppPropertyFinanceSecurityDetails>()
             {
-                                new AppPropertyFinanceSecurityDetails{
-                                    SecurityDetailsId=1,
-                                    SecurityType= "Residential ",
-                                    PropertyType="1 Bed Appartment",
+                                //new AppPropertyFinanceSecurityDetails{
+                                //    SecurityDetailsId=1,
+                                //    SecurityType= "Residential ",
+                                //    PropertyType="1 Bed Appartment",
 
-                                    AlreadyOwned="YES",
-                                    NameOfPropertyOwner = "John",
-                                    Tenure= 2,
-                                    YearsRemainingOnLeaseIfLeaseHold= 1,
-                                    PropertyValue= 5454,
-                                    OriginalPurchasePrice= 6000,
-                                    UseOfFunds="Security Money",
-                                    Rent=50,
-                                    HMO_MUFB="abc",
-                                    AddressForPropertyOfSecurity="Russia",
-                                    SecondLineAddress= "Cremlin",
-                                    City= "Moscow",
-                                    PostCode= 85000
+                                //    AlreadyOwned="YES",
+                                //    NameOfPropertyOwner = "John",
+                                //    Tenure= 2,
+                                //    YearsRemainingOnLeaseIfLeaseHold= 1,
+                                //    PropertyValue= 5454,
+                                //    OriginalPurchasePrice= 6000,
+                                //    UseOfFunds="Security Money",
+                                //    Rent=50,
+                                //    HMO_MUFB="abc",
+                                //    AddressForPropertyOfSecurity="Russia",
+                                //    SecondLineAddress= "Cremlin",
+                                //    City= "Moscow",
+                                //    PostCode= 85000
 
-                                }
+                                //}
             };
         }
         public AppPropertyFinanceSecurityDetails Add(AppPropertyFinanceSecurityDetails appPropertyFinanceSecurityDetails)
         {
-            appPropertyFinanceSecurityDetails.SecurityDetailsId = _AppPropertyFinanceSecurityDetails.Max(e => e.SecurityDetailsId) + 1;
+            if (_AppPropertyFinanceSecurityDetails.Count == 0)
+            {
+                appPropertyFinanceSecurityDetails.SecurityDetailsId =  1;
+
+            }
+            else
+            {
+                appPropertyFinanceSecurityDetails.SecurityDetailsId = _AppPropertyFinanceSecurityDetails.Max(e => e.SecurityDetailsId) + 1;
+            }
+           
             _AppPropertyFinanceSecurityDetails.Add(appPropertyFinanceSecurityDetails);
             return appPropertyFinanceSecurityDetails;
         }
