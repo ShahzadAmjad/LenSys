@@ -14,7 +14,7 @@ namespace LenSys.Models.AppBusniessFinance
             _AppBusniessFinanceSecurityDetails = new List<AppBusniessFinanceSecurityDetails>()
             {
                                 new AppBusniessFinanceSecurityDetails{
-                                    SecurityDetailsId=1,
+                                    //SecurityDetailsId=1,
                                     Notes="Security Property",
                                     LegalChargeOverProperty="YES",
                                     SecurityType= "Residential ",
