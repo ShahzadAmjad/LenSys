@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -8,6 +9,8 @@ namespace LenSys.Models.AppDevelopmentFinance
     public class AppDevelopmentFinanceSecurityDetails
     {
         //Id filed for development
+
+        [Key]
         public int SecurityDetailsId { get; set; }
 
         public string SecurityType { get; set; }

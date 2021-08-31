@@ -68,8 +68,13 @@ namespace LenSys.Controllers
         [HttpPost]
         public IActionResult AppBusniessFinance(AppBusniessFinance appBusniessFinance)
         {
+            appBusniessFinance.AccountantPhoneNo = 87777;
+            //appBusniessFinance.BusniessFinId = 1;
+            appBusniessFinance.securityDetails = (List<AppBusniessFinanceSecurityDetails>)_appBusniessFinanceSecurityDetails.GetAllAppBusniessFinanceSecurityDetails();
+
             if (ModelState.IsValid)
             {
+
                 AppBusniessFinance appBusniessFinance1 = _appBusniessFinanceRepository.Add(appBusniessFinance);
 
             }

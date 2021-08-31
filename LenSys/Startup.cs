@@ -53,6 +53,9 @@ namespace LenSys
             services.AddSingleton<IindividualDocumentsRepository, MockIndividualDocumentsRepository>();
 
             services.AddScoped<IAppAssetFinanceRepository, SQLAppAssetFinanceReository>();
+            services.AddScoped<IAppBusniessFinanceRepository, SQLAppBusniessFinanceRepository>();
+            services.AddScoped<IAppDevelopmentFinanceRepository, SQLAppDevelopmentFinanceRepository>();
+            services.AddScoped<IAppPropertyFinanceRepository, SQLAppPropertyFinanceRepository>();
 
             services.AddSingleton<IAppBusniessFinanceSecurityDetailsRepository, MockAppBusniessFinanceSecurityDetailsRepository>();
             services.AddSingleton<IAppDevelopmentFinanceSecurityDetailsRepository, MockAppDevelopmentFinanceSecurityDetailsRepository>();
