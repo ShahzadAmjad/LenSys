@@ -13,28 +13,37 @@ namespace LenSys.Models.AppBusniessFinance
         {
             _AppBusniessFinanceSecurityDetails = new List<AppBusniessFinanceSecurityDetails>()
             {
-                                new AppBusniessFinanceSecurityDetails{
-                                    //SecurityDetailsId=1,
-                                    Notes="Security Property",
-                                    LegalChargeOverProperty="YES",
-                                    SecurityType= "Residential ",
-                                    PropertyType="1 Bed Appartment",
-                                    NameOfPropertyOwner = "John",
-                                    Tenure= 2,
-                                    YearsRemainingOnLeaseIfLeaseHold= 1,
-                                    PropertyValue= 5454,
-                                    OriginalPurchasePrice= 6000,
-                                    AddressForPropertyOfSecurity="Russia",
-                                    SecondLineAddress= "Cremlin",
-                                    City= "Moscow",
-                                    PostCode= 85000
+                                //new AppBusniessFinanceSecurityDetails{
+                                //    //SecurityDetailsId=1,
+                                //    Notes="Security Property",
+                                //    LegalChargeOverProperty="YES",
+                                //    SecurityType= "Residential ",
+                                //    PropertyType="1 Bed Appartment",
+                                //    NameOfPropertyOwner = "John",
+                                //    Tenure= 2,
+                                //    YearsRemainingOnLeaseIfLeaseHold= 1,
+                                //    PropertyValue= 5454,
+                                //    OriginalPurchasePrice= 6000,
+                                //    AddressForPropertyOfSecurity="Russia",
+                                //    SecondLineAddress= "Cremlin",
+                                //    City= "Moscow",
+                                //    PostCode= 85000
 
-                                }
+                                //}
             };
         }
         public AppBusniessFinanceSecurityDetails Add(AppBusniessFinanceSecurityDetails appBusniessFinanceSecurityDetails)
         {
-            appBusniessFinanceSecurityDetails.SecurityDetailsId = _AppBusniessFinanceSecurityDetails.Max(e => e.SecurityDetailsId) + 1;
+            if(_AppBusniessFinanceSecurityDetails.Count==0)
+            {
+                appBusniessFinanceSecurityDetails.SecurityDetailsId = 0;
+                
+            }
+            else
+            {
+                appBusniessFinanceSecurityDetails.SecurityDetailsId = _AppBusniessFinanceSecurityDetails.Max(e => e.SecurityDetailsId) + 1;
+            }
+            
             _AppBusniessFinanceSecurityDetails.Add(appBusniessFinanceSecurityDetails);
             return appBusniessFinanceSecurityDetails;
         }

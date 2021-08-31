@@ -9,7 +9,6 @@ namespace LenSys.Models.AppDevelopmentFinance
     public class AppDevelopmentFinanceSecurityDetails
     {
         //Id filed for development
-
         [Key]
         public int SecurityDetailsId { get; set; }
 

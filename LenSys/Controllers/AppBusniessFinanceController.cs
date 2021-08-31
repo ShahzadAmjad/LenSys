@@ -12,7 +12,7 @@ namespace LenSys.Controllers
         private IAppBusniessFinanceSecurityDetailsRepository _appBusniessFinanceSecurityDetails;
         private IAppBusniessFinanceRepository _appBusniessFinanceRepository;
         //public List<AppBusniessFinanceSecurityDetails> _SecurityDetails;
-
+        AppBusniessFinance GappBusniessFinance = new AppBusniessFinance();
         public AppBusniessFinanceController(IAppBusniessFinanceSecurityDetailsRepository appBusniessFinanceSecurityDetailsRepository, IAppBusniessFinanceRepository appBusniessFinanceRepository)
         {
             _appBusniessFinanceSecurityDetails = appBusniessFinanceSecurityDetailsRepository;
@@ -41,8 +41,11 @@ namespace LenSys.Controllers
             //AppBusniessFinanceSecurityDetails securityDetails = new AppBusniessFinanceSecurityDetails();
             //return PartialView("_AddSecutityDetailBusniessPartialView", securityDetails);
 
-            ViewData["SecurityDetailsList"] = _appBusniessFinanceSecurityDetails.GetAllAppBusniessFinanceSecurityDetails();
-            return View("AppBusniessFinance");
+            //ViewData["SecurityDetailsList"] = _appBusniessFinanceSecurityDetails.GetAllAppBusniessFinanceSecurityDetails();
+            AppBusniessFinance appBusniessFinance = new AppBusniessFinance();
+            //appBusniessFinance.securityDetails.Add(securityDetails);
+            appBusniessFinance.securityDetails = (List<AppBusniessFinanceSecurityDetails>)_appBusniessFinanceSecurityDetails.GetAllAppBusniessFinanceSecurityDetails();
+            return View("AppBusniessFinance", appBusniessFinance);
         }
 
 
@@ -61,25 +64,25 @@ namespace LenSys.Controllers
         [HttpGet]
         public ViewResult AppBusniessFinance()
         {
-          
-            ViewData["SecurityDetailsList"] = _appBusniessFinanceSecurityDetails.GetAllAppBusniessFinanceSecurityDetails();
-            return View("AppBusniessFinance");
+            AppBusniessFinance appBusniessFinance = new AppBusniessFinance();
+            appBusniessFinance.securityDetails= (List<AppBusniessFinanceSecurityDetails>)_appBusniessFinanceSecurityDetails.GetAllAppBusniessFinanceSecurityDetails();
+            //ViewData["SecurityDetailsList"] = _appBusniessFinanceSecurityDetails.GetAllAppBusniessFinanceSecurityDetails();
+            return View("AppBusniessFinance", appBusniessFinance);
         }
         [HttpPost]
         public IActionResult AppBusniessFinance(AppBusniessFinance appBusniessFinance)
         {
-            appBusniessFinance.AccountantPhoneNo = 87777;
-            //appBusniessFinance.BusniessFinId = 1;
             appBusniessFinance.securityDetails = (List<AppBusniessFinanceSecurityDetails>)_appBusniessFinanceSecurityDetails.GetAllAppBusniessFinanceSecurityDetails();
 
-            if (ModelState.IsValid)
+            //if (ModelState.IsValid)
             {
 
                 AppBusniessFinance appBusniessFinance1 = _appBusniessFinanceRepository.Add(appBusniessFinance);
-
             }
 
-            return View();
+            //AppBusniessFinance appBusniessFinance2 = new AppBusniessFinance();
+            appBusniessFinance.securityDetails = (List<AppBusniessFinanceSecurityDetails>)_appBusniessFinanceSecurityDetails.GetAllAppBusniessFinanceSecurityDetails();
+            return View("AppBusniessFinance", appBusniessFinance);
         }
     }
 }
