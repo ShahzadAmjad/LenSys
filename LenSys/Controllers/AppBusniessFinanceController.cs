@@ -43,7 +43,6 @@ namespace LenSys.Controllers
 
             //ViewData["SecurityDetailsList"] = _appBusniessFinanceSecurityDetails.GetAllAppBusniessFinanceSecurityDetails();
             AppBusniessFinance appBusniessFinance = new AppBusniessFinance();
-            //appBusniessFinance.securityDetails.Add(securityDetails);
             appBusniessFinance.securityDetails = (List<AppBusniessFinanceSecurityDetails>)_appBusniessFinanceSecurityDetails.GetAllAppBusniessFinanceSecurityDetails();
             return View("AppBusniessFinance", appBusniessFinance);
         }
@@ -65,6 +64,7 @@ namespace LenSys.Controllers
         public ViewResult AppBusniessFinance()
         {
             AppBusniessFinance appBusniessFinance = new AppBusniessFinance();
+
             appBusniessFinance.securityDetails= (List<AppBusniessFinanceSecurityDetails>)_appBusniessFinanceSecurityDetails.GetAllAppBusniessFinanceSecurityDetails();
             //ViewData["SecurityDetailsList"] = _appBusniessFinanceSecurityDetails.GetAllAppBusniessFinanceSecurityDetails();
             return View("AppBusniessFinance", appBusniessFinance);
@@ -75,14 +75,18 @@ namespace LenSys.Controllers
             appBusniessFinance.securityDetails = (List<AppBusniessFinanceSecurityDetails>)_appBusniessFinanceSecurityDetails.GetAllAppBusniessFinanceSecurityDetails();
 
             //if (ModelState.IsValid)
-            {
+            //{
 
                 AppBusniessFinance appBusniessFinance1 = _appBusniessFinanceRepository.Add(appBusniessFinance);
-            }
+           // }
 
-            //AppBusniessFinance appBusniessFinance2 = new AppBusniessFinance();
-            appBusniessFinance.securityDetails = (List<AppBusniessFinanceSecurityDetails>)_appBusniessFinanceSecurityDetails.GetAllAppBusniessFinanceSecurityDetails();
-            return View("AppBusniessFinance", appBusniessFinance);
+            
+            
+            AppBusniessFinance appBusniessFinance2 = new AppBusniessFinance();
+            var List= (List<AppBusniessFinanceSecurityDetails>)_appBusniessFinanceSecurityDetails.GetAllAppBusniessFinanceSecurityDetails();
+            List.Clear();
+            appBusniessFinance2.securityDetails = List;
+            return View("AppBusniessFinance", appBusniessFinance2);
         }
     }
 }

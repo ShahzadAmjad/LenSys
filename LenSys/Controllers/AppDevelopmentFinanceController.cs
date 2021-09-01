@@ -10,12 +10,13 @@ namespace LenSys.Controllers
     public class AppDevelopmentFinanceController: Controller
     {
         private IAppDevelopmentFinanceSecurityDetailsRepository _appDevelopmentFinanceSecurityDetails;
-        //public List<AppDevelopmentFinanceSecurityDetails> _SecurityDetails;
-        public AppDevelopmentFinanceController(IAppDevelopmentFinanceSecurityDetailsRepository appDevelopmentFinanceSecurityDetailsRepository)
+        private IAppDevelopmentFinanceRepository _appDevelopmentFinanceRepository;
+        public AppDevelopmentFinanceController(IAppDevelopmentFinanceSecurityDetailsRepository appDevelopmentFinanceSecurityDetailsRepository, IAppDevelopmentFinanceRepository appDevelopmentFinanceRepository)
         {
             _appDevelopmentFinanceSecurityDetails = appDevelopmentFinanceSecurityDetailsRepository;
+            _appDevelopmentFinanceRepository = appDevelopmentFinanceRepository;
         }
-        
+
 
         public ViewResult Index()
         {
@@ -40,8 +41,11 @@ namespace LenSys.Controllers
             //AppBusniessFinanceSecurityDetails securityDetails = new AppBusniessFinanceSecurityDetails();
             //return PartialView("_AddSecutityDetailBusniessPartialView", securityDetails);
 
-            ViewData["SecurityDetailsList"] = _appDevelopmentFinanceSecurityDetails.GetAllAppDevelopmentFinanceSecurityDetails();
-            return View("AppDevelopmentFinance");
+            //ViewData["SecurityDetailsList"] = _appDevelopmentFinanceSecurityDetails.GetAllAppDevelopmentFinanceSecurityDetails();
+            AppDevelopmentFinance appDevelopmentFinance = new AppDevelopmentFinance();
+            appDevelopmentFinance.securityDetails = (List<AppDevelopmentFinanceSecurityDetails>)_appDevelopmentFinanceSecurityDetails.GetAllAppDevelopmentFinanceSecurityDetails();
+
+            return View("AppDevelopmentFinance", appDevelopmentFinance);
         }
 
         [HttpGet]
@@ -60,22 +64,27 @@ namespace LenSys.Controllers
         public ViewResult AppDevelopmentFinance()
         {
 
-            ViewData["SecurityDetailsList"] = _appDevelopmentFinanceSecurityDetails.GetAllAppDevelopmentFinanceSecurityDetails();
-
-            return View("AppDevelopmentFinance");
+            //ViewData["SecurityDetailsList"] = _appDevelopmentFinanceSecurityDetails.GetAllAppDevelopmentFinanceSecurityDetails();
+            AppDevelopmentFinance appDevelopmentFinance = new AppDevelopmentFinance();
+            appDevelopmentFinance.securityDetails = (List<AppDevelopmentFinanceSecurityDetails>)_appDevelopmentFinanceSecurityDetails.GetAllAppDevelopmentFinanceSecurityDetails();
+            return View("AppDevelopmentFinance", appDevelopmentFinance);
         }
         [HttpPost]
-        public IActionResult AppDevelopmentFinance(AppDevelopmentFinance appBusniessFinance)
+        public IActionResult AppDevelopmentFinance(AppDevelopmentFinance appDevelopmentFinance)
         {
+            appDevelopmentFinance.securityDetails = (List<AppDevelopmentFinanceSecurityDetails>)_appDevelopmentFinanceSecurityDetails.GetAllAppDevelopmentFinanceSecurityDetails();
+
             if (ModelState.IsValid)
             {
-                //Employee newEmployee = _emplyeeRepositry.Add(employee);
-                ////return View();
-                //return RedirectToAction("details", new { id = newEmployee.Id });
-                return View("Index", "Home");
-            }
+                AppDevelopmentFinance appDevelopmentFinance1 = _appDevelopmentFinanceRepository.Add(appDevelopmentFinance);
 
-            return View();
+            }
+            //appDevelopmentFinance.securityDetails = (List<AppDevelopmentFinanceSecurityDetails>)_appDevelopmentFinanceSecurityDetails.GetAllAppDevelopmentFinanceSecurityDetails();
+            AppDevelopmentFinance appDevelopmentFinance2 = new AppDevelopmentFinance();
+            var List = (List<AppDevelopmentFinanceSecurityDetails>)_appDevelopmentFinanceSecurityDetails.GetAllAppDevelopmentFinanceSecurityDetails();
+            List.Clear();
+            appDevelopmentFinance2.securityDetails = List;
+            return View("AppDevelopmentFinance", appDevelopmentFinance2);
         }
     }
 }

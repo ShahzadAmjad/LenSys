@@ -10,11 +10,12 @@ namespace LenSys.Controllers
     public class AppPropertyFinanceController : Controller
     {
         private IAppPropertyFinanceSecurityDetailsRepository _appPropertyFinanceSecurityDetails;
-        //public List<AppPropertyFinanceSecurityDetails> _SecurityDetails;
+        private IAppPropertyFinanceRepository _appPropertyFinanceRepository;
 
-        public AppPropertyFinanceController(IAppPropertyFinanceSecurityDetailsRepository appPropertyFinanceSecurityDetailsRepository)
+        public AppPropertyFinanceController(IAppPropertyFinanceSecurityDetailsRepository appPropertyFinanceSecurityDetailsRepository, IAppPropertyFinanceRepository appPropertyFinanceRepository)
         {
             _appPropertyFinanceSecurityDetails = appPropertyFinanceSecurityDetailsRepository;
+            _appPropertyFinanceRepository = appPropertyFinanceRepository;
         }
         public ViewResult Index()
         {
@@ -39,8 +40,11 @@ namespace LenSys.Controllers
             //AppBusniessFinanceSecurityDetails securityDetails = new AppBusniessFinanceSecurityDetails();
             //return PartialView("_AddSecutityDetailBusniessPartialView", securityDetails);
 
-            ViewData["SecurityDetailsList"] = _appPropertyFinanceSecurityDetails.GetAllAppPropertyFinanceSecurityDetails();
-            return View("AppPropertyFinance");
+            //ViewData["SecurityDetailsList"] = _appPropertyFinanceSecurityDetails.GetAllAppPropertyFinanceSecurityDetails();
+            AppPropertyFinance appPropertyFinance = new AppPropertyFinance();
+            appPropertyFinance.securityDetails = (List<AppPropertyFinanceSecurityDetails>)_appPropertyFinanceSecurityDetails.GetAllAppPropertyFinanceSecurityDetails();
+
+            return View("AppPropertyFinance", appPropertyFinance);
         }
 
 
@@ -59,25 +63,33 @@ namespace LenSys.Controllers
         [HttpGet]
         public ViewResult AppPropertyFinance()
         {
-            
-            ViewData["SecurityDetailsList"] = _appPropertyFinanceSecurityDetails.GetAllAppPropertyFinanceSecurityDetails();
+
+            //ViewData["SecurityDetailsList"] = _appPropertyFinanceSecurityDetails.GetAllAppPropertyFinanceSecurityDetails();
+            AppPropertyFinance appPropertyFinance = new AppPropertyFinance();
+            appPropertyFinance.securityDetails = (List<AppPropertyFinanceSecurityDetails>)_appPropertyFinanceSecurityDetails.GetAllAppPropertyFinanceSecurityDetails();
 
             return View("AppPropertyFinance");
 
             //return View();
         }
         [HttpPost]
-        public IActionResult AppPropertyFinance(AppPropertyFinance appBusniessFinance)
+        public IActionResult AppPropertyFinance(AppPropertyFinance appPropertyFinance)
         {
+
+            appPropertyFinance.securityDetails = (List<AppPropertyFinanceSecurityDetails>)_appPropertyFinanceSecurityDetails.GetAllAppPropertyFinanceSecurityDetails();
+
             if (ModelState.IsValid)
             {
-                //Employee newEmployee = _emplyeeRepositry.Add(employee);
-                ////return View();
-                //return RedirectToAction("details", new { id = newEmployee.Id });
-                return View("Index", "Home");
-            }
+                AppPropertyFinance appPropertyFinance1 = _appPropertyFinanceRepository.Add(appPropertyFinance);
 
-            return View();
+            }
+            //appPropertyFinance.securityDetails = (List<AppPropertyFinanceSecurityDetails>)_appPropertyFinanceSecurityDetails.GetAllAppPropertyFinanceSecurityDetails();
+            AppPropertyFinance appPropertyFinance2 = new AppPropertyFinance();
+            var List = (List<AppPropertyFinanceSecurityDetails>)_appPropertyFinanceSecurityDetails.GetAllAppPropertyFinanceSecurityDetails();
+            List.Clear();
+            appPropertyFinance2.securityDetails = List;
+            return View("AppPropertyFinance", appPropertyFinance2);
+            
         }
     }
 }
