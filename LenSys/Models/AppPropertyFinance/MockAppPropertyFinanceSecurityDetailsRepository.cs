@@ -38,14 +38,14 @@ namespace LenSys.Models.AppPropertyFinance
         {
             if (_AppPropertyFinanceSecurityDetails.Count == 0)
             {
-                appPropertyFinanceSecurityDetails.SecurityDetailsId =  1;
+                appPropertyFinanceSecurityDetails.SecurityDetailsId = 1;
 
             }
             else
             {
                 appPropertyFinanceSecurityDetails.SecurityDetailsId = _AppPropertyFinanceSecurityDetails.Max(e => e.SecurityDetailsId) + 1;
             }
-           
+
             _AppPropertyFinanceSecurityDetails.Add(appPropertyFinanceSecurityDetails);
             return appPropertyFinanceSecurityDetails;
         }

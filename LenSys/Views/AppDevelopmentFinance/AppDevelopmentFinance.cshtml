@@ -170,9 +170,10 @@
                                     <tbody>
 
 
-                                        @if ((List<AppDevelopmentFinanceSecurityDetails>)ViewData["SecurityDetailsList"] != null)
+                                        @*@if ((List<AppDevelopmentFinanceSecurityDetails>)ViewData["SecurityDetailsList"] != null)*@
+                                        @if (Model.securityDetails.Count != 0)
                                         {
-                                            @foreach (var securityDetails in (IEnumerable<AppDevelopmentFinanceSecurityDetails>)ViewData["SecurityDetailsList"])
+                                            @foreach (var securityDetails in Model.securityDetails)
 
                                             {
                                                 var tm = "#myModal" + securityDetails.SecurityDetailsId;

@@ -167,9 +167,10 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @if ((List<AppPropertyFinanceSecurityDetails>)ViewData["SecurityDetailsList"] != null)
+                                        @*@if ((List<AppPropertyFinanceSecurityDetails>)ViewData["SecurityDetailsList"] != null)*@
+                                        @if (Model.securityDetails.Count != 0)
                                         {
-                                            @foreach (var securityDetails in (IEnumerable<AppPropertyFinanceSecurityDetails>)ViewData["SecurityDetailsList"])
+                                            @foreach (var securityDetails in Model.securityDetails)
 
                                             {
                                                 var tm = "#myModal" + securityDetails.SecurityDetailsId;
@@ -182,7 +183,7 @@
 
                                                     <td>
                                                         @*<a asp-controller="AppPropertyFinance" asp-action="EditSecuritydetail"
-                                                        class="btn btn-primary " asp-route-id="@securityDetails.SecurityDetailsId">Edit</a></td>*@
+                        class="btn btn-primary " asp-route-id="@securityDetails.SecurityDetailsId">Edit</a></td>*@
                                                         <button type="button" style="width:80px;" class="btn btn-primary btn-sm" data-toggle="Edit-modal" id="EditSecuritybtn" name="EditSecuritybtn"
                                                                 data-target="#EditSecurityDetailModalDevelopment" onclick="EditSecurityOnclick(@securityDetails.SecurityDetailsId)" data-url="@Url.Action("EditSecurityDetail")">
                                                             Edit

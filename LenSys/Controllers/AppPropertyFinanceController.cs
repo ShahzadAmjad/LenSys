@@ -68,17 +68,24 @@ namespace LenSys.Controllers
             AppPropertyFinance appPropertyFinance = new AppPropertyFinance();
             appPropertyFinance.securityDetails = (List<AppPropertyFinanceSecurityDetails>)_appPropertyFinanceSecurityDetails.GetAllAppPropertyFinanceSecurityDetails();
 
-            return View("AppPropertyFinance");
+            return View("AppPropertyFinance", appPropertyFinance);
 
             //return View();
         }
         [HttpPost]
         public IActionResult AppPropertyFinance(AppPropertyFinance appPropertyFinance)
         {
+            var List1 = (List<AppPropertyFinanceSecurityDetails>)_appPropertyFinanceSecurityDetails.GetAllAppPropertyFinanceSecurityDetails();
+            
+            foreach(var securitydetail in List1)
+            {
+                securitydetail.SecurityDetailsId = 0;
+            }
 
-            appPropertyFinance.securityDetails = (List<AppPropertyFinanceSecurityDetails>)_appPropertyFinanceSecurityDetails.GetAllAppPropertyFinanceSecurityDetails();
 
-            if (ModelState.IsValid)
+            appPropertyFinance.securityDetails = List1;
+
+            //if (ModelState.IsValid)
             {
                 AppPropertyFinance appPropertyFinance1 = _appPropertyFinanceRepository.Add(appPropertyFinance);
 
