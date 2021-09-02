@@ -72,19 +72,27 @@ namespace LenSys.Controllers
         [HttpPost]
         public IActionResult AppDevelopmentFinance(AppDevelopmentFinance appDevelopmentFinance)
         {
-            appDevelopmentFinance.securityDetails = (List<AppDevelopmentFinanceSecurityDetails>)_appDevelopmentFinanceSecurityDetails.GetAllAppDevelopmentFinanceSecurityDetails();
+            var securitydetailList = (List<AppDevelopmentFinanceSecurityDetails>)_appDevelopmentFinanceSecurityDetails.GetAllAppDevelopmentFinanceSecurityDetails();
+
+            //Primary key cannot be given so making it zeo for all
+            foreach (var securitydetail in securitydetailList)
+            {
+                securitydetail.SecurityDetailsId = 0;
+            }
+
+            appDevelopmentFinance.securityDetails = securitydetailList;
 
             if (ModelState.IsValid)
             {
                 AppDevelopmentFinance appDevelopmentFinance1 = _appDevelopmentFinanceRepository.Add(appDevelopmentFinance);
 
             }
-            //appDevelopmentFinance.securityDetails = (List<AppDevelopmentFinanceSecurityDetails>)_appDevelopmentFinanceSecurityDetails.GetAllAppDevelopmentFinanceSecurityDetails();
-            AppDevelopmentFinance appDevelopmentFinance2 = new AppDevelopmentFinance();
-            var List = (List<AppDevelopmentFinanceSecurityDetails>)_appDevelopmentFinanceSecurityDetails.GetAllAppDevelopmentFinanceSecurityDetails();
-            List.Clear();
-            appDevelopmentFinance2.securityDetails = List;
-            return View("AppDevelopmentFinance", appDevelopmentFinance2);
+            
+            appDevelopmentFinance = new AppDevelopmentFinance();          
+            securitydetailList.Clear();
+            appDevelopmentFinance.securityDetails = securitydetailList;
+            return View("AppDevelopmentFinance", appDevelopmentFinance);
+            //return View("AllApplications", "Home");
         }
     }
 }

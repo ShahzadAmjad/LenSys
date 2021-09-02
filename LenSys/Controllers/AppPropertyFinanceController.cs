@@ -75,27 +75,27 @@ namespace LenSys.Controllers
         [HttpPost]
         public IActionResult AppPropertyFinance(AppPropertyFinance appPropertyFinance)
         {
-            var List1 = (List<AppPropertyFinanceSecurityDetails>)_appPropertyFinanceSecurityDetails.GetAllAppPropertyFinanceSecurityDetails();
+            var securitydetailList = (List<AppPropertyFinanceSecurityDetails>)_appPropertyFinanceSecurityDetails.GetAllAppPropertyFinanceSecurityDetails();
             
-            foreach(var securitydetail in List1)
+            //Primary key cannot be given so making it zeo for all
+            foreach(var securitydetail in securitydetailList)
             {
                 securitydetail.SecurityDetailsId = 0;
             }
 
 
-            appPropertyFinance.securityDetails = List1;
+            appPropertyFinance.securityDetails = securitydetailList;
 
             //if (ModelState.IsValid)
             {
                 AppPropertyFinance appPropertyFinance1 = _appPropertyFinanceRepository.Add(appPropertyFinance);
 
             }
-            //appPropertyFinance.securityDetails = (List<AppPropertyFinanceSecurityDetails>)_appPropertyFinanceSecurityDetails.GetAllAppPropertyFinanceSecurityDetails();
-            AppPropertyFinance appPropertyFinance2 = new AppPropertyFinance();
-            var List = (List<AppPropertyFinanceSecurityDetails>)_appPropertyFinanceSecurityDetails.GetAllAppPropertyFinanceSecurityDetails();
-            List.Clear();
-            appPropertyFinance2.securityDetails = List;
-            return View("AppPropertyFinance", appPropertyFinance2);
+            
+            appPropertyFinance = new AppPropertyFinance();
+            securitydetailList.Clear();
+            appPropertyFinance.securityDetails = securitydetailList;
+            return View("AppPropertyFinance", appPropertyFinance);
             
         }
     }
