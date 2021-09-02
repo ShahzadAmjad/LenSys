@@ -11,6 +11,7 @@ namespace LenSys.Models.AppPropertyFinance
         //Id filed for development
         [Key]
         public int SecurityDetailsId { get; set; }
+
         public string SecurityType { get; set; }
         public string PropertyType { get; set; }
         public string AlreadyOwned { get; set; }

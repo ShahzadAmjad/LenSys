@@ -28,11 +28,8 @@ namespace LenSys.Controllers
         [HttpGet]
         public IActionResult AddSecurityDetail()
         {
-
             AppBusniessFinanceSecurityDetails securityDetails = new AppBusniessFinanceSecurityDetails();
             return PartialView("_AddSecutityDetailBusniessPartialView", securityDetails);
-
-            //return View("EditSecurityDetail", model);
         }
         [HttpPost]
         public IActionResult AddSecurityDetail(AppBusniessFinanceSecurityDetails securityDetails)
@@ -46,20 +43,32 @@ namespace LenSys.Controllers
             appBusniessFinance.securityDetails = (List<AppBusniessFinanceSecurityDetails>)_appBusniessFinanceSecurityDetails.GetAllAppBusniessFinanceSecurityDetails();
             return View("AppBusniessFinance", appBusniessFinance);
         }
-
-
         [HttpGet]
         public IActionResult EditSecurityDetail(int id)
         {
-            
-
             AppBusniessFinanceSecurityDetails securityDetails = _appBusniessFinanceSecurityDetails.GetAppBusniessFinanceSecurityDetails(id);
             //return View("EditSecurityDetail",model);
-
             return PartialView("_EditSecurityDetailBusniessPartialView", securityDetails);
-
         }
-
+        [HttpPost]
+        public IActionResult EditSecurityDetail(AppBusniessFinanceSecurityDetails appBusniessFinanceSecurityDetailsChanges)
+        {
+            //if (ModelState.IsValid)
+            {
+                _appBusniessFinanceSecurityDetails.Update(appBusniessFinanceSecurityDetailsChanges);
+            }
+            AppBusniessFinance appBusniessFinance = new AppBusniessFinance();
+            appBusniessFinance.securityDetails = (List<AppBusniessFinanceSecurityDetails>)_appBusniessFinanceSecurityDetails.GetAllAppBusniessFinanceSecurityDetails();
+            return View("AppBusniessFinance", appBusniessFinance);
+            //return View();
+        }
+        public ViewResult DeleteSecurityDetail(int id)
+        {
+            _appBusniessFinanceSecurityDetails.Delete(id);
+            AppBusniessFinance appBusniessFinance = new AppBusniessFinance();
+            appBusniessFinance.securityDetails = (List<AppBusniessFinanceSecurityDetails>)_appBusniessFinanceSecurityDetails.GetAllAppBusniessFinanceSecurityDetails();
+            return View("AppBusniessFinance", appBusniessFinance);
+        }
         [HttpGet]
         public ViewResult AppBusniessFinance()
         {

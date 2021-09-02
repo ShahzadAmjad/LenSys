@@ -13,23 +13,23 @@ namespace LenSys.Models.AppBusniessFinance
         {
             _AppBusniessFinanceSecurityDetails = new List<AppBusniessFinanceSecurityDetails>()
             {
-                                //new AppBusniessFinanceSecurityDetails{
-                                //    //SecurityDetailsId=1,
-                                //    Notes="Security Property",
-                                //    LegalChargeOverProperty="YES",
-                                //    SecurityType= "Residential ",
-                                //    PropertyType="1 Bed Appartment",
-                                //    NameOfPropertyOwner = "John",
-                                //    Tenure= 2,
-                                //    YearsRemainingOnLeaseIfLeaseHold= 1,
-                                //    PropertyValue= 5454,
-                                //    OriginalPurchasePrice= 6000,
-                                //    AddressForPropertyOfSecurity="Russia",
-                                //    SecondLineAddress= "Cremlin",
-                                //    City= "Moscow",
-                                //    PostCode= 85000
+                                new AppBusniessFinanceSecurityDetails{
+                                    SecurityDetailsId=1,
+                                    Notes="Security Property",
+                                    LegalChargeOverProperty="YES",
+                                    SecurityType= "Residential ",
+                                    PropertyType="1 Bed Appartment",
+                                    NameOfPropertyOwner = "John",
+                                    Tenure= 2,
+                                    YearsRemainingOnLeaseIfLeaseHold= 1,
+                                    PropertyValue= 5454,
+                                    OriginalPurchasePrice= 6000,
+                                    AddressForPropertyOfSecurity="Russia",
+                                    SecondLineAddress= "Cremlin",
+                                    City= "Moscow",
+                                    PostCode= 85000
 
-                                //}
+                                }
             };
         }
         public AppBusniessFinanceSecurityDetails Add(AppBusniessFinanceSecurityDetails appBusniessFinanceSecurityDetails)
@@ -73,13 +73,21 @@ namespace LenSys.Models.AppBusniessFinance
             AppBusniessFinanceSecurityDetails appBusniessFinanceSecurityDetails = _AppBusniessFinanceSecurityDetails.FirstOrDefault(e => e.SecurityDetailsId == model.SecurityDetailsId);
             if (appBusniessFinanceSecurityDetails != null)
             {
-                //appBusniessFinanceSecurityDetails.KeyPrincipalsId = model.SecurityDetailsId;
-                //appBusniessFinanceSecurityDetails.Title = model.Title;
-                //appBusniessFinanceSecurityDetails.FirstName = model.FirstName;
-                //appBusniessFinanceSecurityDetails.MiddleName = model.MiddleName;
-                //appBusniessFinanceSecurityDetails.Surname = model.Surname;
-                //appBusniessFinanceSecurityDetails.Position = model.Position;
-                //appBusniessFinanceSecurityDetails.PercentageShareholding = model.PercentageShareholding;
+                appBusniessFinanceSecurityDetails.Notes = model.Notes;
+                appBusniessFinanceSecurityDetails.LegalChargeOverProperty = model.LegalChargeOverProperty;
+                appBusniessFinanceSecurityDetails.SecurityType = model.SecurityType;
+                appBusniessFinanceSecurityDetails.PropertyType = model.PropertyType;
+                appBusniessFinanceSecurityDetails.NameOfPropertyOwner = model.NameOfPropertyOwner;
+                appBusniessFinanceSecurityDetails.Tenure = model.Tenure;
+                appBusniessFinanceSecurityDetails.YearsRemainingOnLeaseIfLeaseHold = model.YearsRemainingOnLeaseIfLeaseHold;
+
+                appBusniessFinanceSecurityDetails.PropertyValue = model.PropertyValue;
+                appBusniessFinanceSecurityDetails.OriginalPurchasePrice = model.OriginalPurchasePrice;
+                appBusniessFinanceSecurityDetails.AddressForPropertyOfSecurity = model.AddressForPropertyOfSecurity;
+                appBusniessFinanceSecurityDetails.SecondLineAddress = model.SecondLineAddress;
+                appBusniessFinanceSecurityDetails.City = model.City;
+                appBusniessFinanceSecurityDetails.PostCode = model.PostCode;
+
             }
             return appBusniessFinanceSecurityDetails;
         }

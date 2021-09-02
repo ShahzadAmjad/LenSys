@@ -59,7 +59,13 @@ namespace LenSys.Controllers
             return PartialView("_EditSecurityDetailPropertyPartialView", securityDetails);
 
         }
-
+        public ViewResult DeleteSecurityDetail(int id)
+        {
+            _appPropertyFinanceSecurityDetails.Delete(id);
+            AppPropertyFinance appPropertyFinance = new AppPropertyFinance();
+            appPropertyFinance.securityDetails = (List<AppPropertyFinanceSecurityDetails>)_appPropertyFinanceSecurityDetails.GetAllAppPropertyFinanceSecurityDetails();
+            return View("AppPropertyFinance", appPropertyFinance);
+        }
         [HttpGet]
         public ViewResult AppPropertyFinance()
         {

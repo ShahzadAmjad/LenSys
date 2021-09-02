@@ -389,14 +389,26 @@
                 $('#AddSecurityDetailModalBusniess').modal('hide');
                 
             })
-                
-            
-            
 
+        })
 
-        }).success(function () {
-            $("#tblSecurityDetails").load("/AppBusniessFinance/AppBusniessFinance");
-        });
+        //Save Edit Modal Data Add New Security detail
+        PlaceHolderElement.on('click', '[data-save="Editmodal"]', function (event) {
+
+            var form = $('#EditSecurityDetailform');
+
+            var actionurl = form.attr('action');
+
+            alert(String(actionurl));
+
+            var sendData = form.serialize();
+
+            $.post(actionurl, sendData).done(function (data) {
+                $('#EditSecurityDetailModalBusniess').modal('hide');
+
+            })
+
+        })
 
 
 

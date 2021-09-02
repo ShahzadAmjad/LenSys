@@ -12,26 +12,26 @@ namespace LenSys.Models.AppPropertyFinance
         {
             _AppPropertyFinanceSecurityDetails = new List<AppPropertyFinanceSecurityDetails>()
             {
-                                //new AppPropertyFinanceSecurityDetails{
-                                //    SecurityDetailsId=1,
-                                //    SecurityType= "Residential ",
-                                //    PropertyType="1 Bed Appartment",
+                                new AppPropertyFinanceSecurityDetails{
+                                    SecurityDetailsId=1,
+                                    SecurityType= "Residential ",
+                                    PropertyType="1 Bed Appartment",
 
-                                //    AlreadyOwned="YES",
-                                //    NameOfPropertyOwner = "John",
-                                //    Tenure= 2,
-                                //    YearsRemainingOnLeaseIfLeaseHold= 1,
-                                //    PropertyValue= 5454,
-                                //    OriginalPurchasePrice= 6000,
-                                //    UseOfFunds="Security Money",
-                                //    Rent=50,
-                                //    HMO_MUFB="abc",
-                                //    AddressForPropertyOfSecurity="Russia",
-                                //    SecondLineAddress= "Cremlin",
-                                //    City= "Moscow",
-                                //    PostCode= 85000
+                                    AlreadyOwned="YES",
+                                    NameOfPropertyOwner = "John",
+                                    Tenure= 2,
+                                    YearsRemainingOnLeaseIfLeaseHold= 1,
+                                    PropertyValue= 5454,
+                                    OriginalPurchasePrice= 6000,
+                                    UseOfFunds="Security Money",
+                                    Rent=50,
+                                    HMO_MUFB="abc",
+                                    AddressForPropertyOfSecurity="Russia",
+                                    SecondLineAddress= "Cremlin",
+                                    City= "Moscow",
+                                    PostCode= 85000
 
-                                //}
+                                }
             };
         }
         public AppPropertyFinanceSecurityDetails Add(AppPropertyFinanceSecurityDetails appPropertyFinanceSecurityDetails)
@@ -75,13 +75,24 @@ namespace LenSys.Models.AppPropertyFinance
             AppPropertyFinanceSecurityDetails appPropertysFinanceSecurityDetails = _AppPropertyFinanceSecurityDetails.FirstOrDefault(e => e.SecurityDetailsId == model.SecurityDetailsId);
             if (appPropertysFinanceSecurityDetails != null)
             {
-                //appBusniessFinanceSecurityDetails.KeyPrincipalsId = model.SecurityDetailsId;
-                //appBusniessFinanceSecurityDetails.Title = model.Title;
-                //appBusniessFinanceSecurityDetails.FirstName = model.FirstName;
-                //appBusniessFinanceSecurityDetails.MiddleName = model.MiddleName;
-                //appBusniessFinanceSecurityDetails.Surname = model.Surname;
-                //appBusniessFinanceSecurityDetails.Position = model.Position;
-                //appBusniessFinanceSecurityDetails.PercentageShareholding = model.PercentageShareholding;
+                appPropertysFinanceSecurityDetails.SecurityType = model.SecurityType;
+                appPropertysFinanceSecurityDetails.PropertyType = model.PropertyType;
+                appPropertysFinanceSecurityDetails.AlreadyOwned = model.AlreadyOwned;
+                appPropertysFinanceSecurityDetails.NameOfPropertyOwner = model.NameOfPropertyOwner;
+                appPropertysFinanceSecurityDetails.Tenure = model.Tenure;
+                appPropertysFinanceSecurityDetails.YearsRemainingOnLeaseIfLeaseHold = model.YearsRemainingOnLeaseIfLeaseHold;
+
+                appPropertysFinanceSecurityDetails.PropertyValue = model.PropertyValue;
+                appPropertysFinanceSecurityDetails.OriginalPurchasePrice = model.OriginalPurchasePrice;
+                appPropertysFinanceSecurityDetails.UseOfFunds = model.UseOfFunds;
+                appPropertysFinanceSecurityDetails.Rent = model.Rent;
+                appPropertysFinanceSecurityDetails.HMO_MUFB = model.HMO_MUFB;
+
+
+                appPropertysFinanceSecurityDetails.AddressForPropertyOfSecurity = model.AddressForPropertyOfSecurity;
+                appPropertysFinanceSecurityDetails.SecondLineAddress = model.SecondLineAddress;
+                appPropertysFinanceSecurityDetails.City = model.City;
+                appPropertysFinanceSecurityDetails.PostCode = model.PostCode;
             }
             return appPropertysFinanceSecurityDetails;
         }

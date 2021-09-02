@@ -12,20 +12,20 @@ namespace LenSys.Models.AppDevelopmentFinance
         {
             _AppDevelopmentFinanceSecurityDetails = new List<AppDevelopmentFinanceSecurityDetails>()
             {
-                                //new AppDevelopmentFinanceSecurityDetails{
-                                //    SecurityDetailsId=1,
-                                //    SecurityType= "Residential ",
-                                //    DescriptionOfProperty= "Residential Plot",
-                                //    PropertyCurrentUse="Abondon",
-                                //    NameOfPropertyOwner = "John",
-                                //    Tenure= 2,
-                                //    YearsRemainingOnLeaseIfLeaseHold= 1,
-                                //    AddressForPropertyOfSecurity="Russia",
-                                //    SecondLineAddress= "Cremlin",
-                                //    City= "Moscow",
-                                //    PostCode= 85000
+                                new AppDevelopmentFinanceSecurityDetails{
+                                    SecurityDetailsId=1,
+                                    SecurityType= "Residential ",
+                                    DescriptionOfProperty= "Residential Plot",
+                                    PropertyCurrentUse="Abondon",
+                                    NameOfPropertyOwner = "John",
+                                    Tenure= 2,
+                                    YearsRemainingOnLeaseIfLeaseHold= 1,
+                                    AddressForPropertyOfSecurity="Russia",
+                                    SecondLineAddress= "Cremlin",
+                                    City= "Moscow",
+                                    PostCode= 85000
 
-                                //}
+                                }
             };
         }
         public AppDevelopmentFinanceSecurityDetails Add(AppDevelopmentFinanceSecurityDetails appDevelopmentFinanceSecurityDetails)
@@ -69,14 +69,17 @@ namespace LenSys.Models.AppDevelopmentFinance
         {
             AppDevelopmentFinanceSecurityDetails appDevelopmentFinanceSecurityDetails = _AppDevelopmentFinanceSecurityDetails.FirstOrDefault(e => e.SecurityDetailsId == model.SecurityDetailsId);
             if (appDevelopmentFinanceSecurityDetails != null)
-            {
-                //appBusniessFinanceSecurityDetails.KeyPrincipalsId = model.SecurityDetailsId;
-                //appBusniessFinanceSecurityDetails.Title = model.Title;
-                //appBusniessFinanceSecurityDetails.FirstName = model.FirstName;
-                //appBusniessFinanceSecurityDetails.MiddleName = model.MiddleName;
-                //appBusniessFinanceSecurityDetails.Surname = model.Surname;
-                //appBusniessFinanceSecurityDetails.Position = model.Position;
-                //appBusniessFinanceSecurityDetails.PercentageShareholding = model.PercentageShareholding;
+            {   
+                appDevelopmentFinanceSecurityDetails.SecurityType = model.SecurityType;
+                appDevelopmentFinanceSecurityDetails.DescriptionOfProperty = model.DescriptionOfProperty;
+                appDevelopmentFinanceSecurityDetails.PropertyCurrentUse = model.PropertyCurrentUse;
+                appDevelopmentFinanceSecurityDetails.NameOfPropertyOwner = model.NameOfPropertyOwner;
+                appDevelopmentFinanceSecurityDetails.Tenure = model.Tenure;
+                appDevelopmentFinanceSecurityDetails.YearsRemainingOnLeaseIfLeaseHold = model.YearsRemainingOnLeaseIfLeaseHold;
+                appDevelopmentFinanceSecurityDetails.AddressForPropertyOfSecurity = model.AddressForPropertyOfSecurity;
+                appDevelopmentFinanceSecurityDetails.SecondLineAddress = model.SecondLineAddress;
+                appDevelopmentFinanceSecurityDetails.City = model.City;
+                appDevelopmentFinanceSecurityDetails.PostCode = model.PostCode;
             }
             return appDevelopmentFinanceSecurityDetails;
         }
