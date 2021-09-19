@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LenSys.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210831040954_InitialMigraionFourApps")]
-    partial class InitialMigraionFourApps
+    [Migration("20210917095115_initialMigrationLead")]
+    partial class initialMigrationLead
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -55,6 +55,9 @@ namespace LenSys.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("LeadId")
+                        .HasColumnType("int");
+
                     b.Property<int>("LoanAmount")
                         .HasColumnType("int");
 
@@ -74,6 +77,8 @@ namespace LenSys.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("AssetFinId");
+
+                    b.HasIndex("LeadId");
 
                     b.ToTable("AppAssetFinance");
                 });
@@ -520,6 +525,60 @@ namespace LenSys.Migrations
                     b.HasIndex("AppPropertyFinanceLoanId");
 
                     b.ToTable("AppPropertyFinanceSecurityDetails");
+                });
+
+            modelBuilder.Entity("LenSys.Models.Home.Lead", b =>
+                {
+                    b.Property<int>("LeadId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ApplicationType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("CompanyBusniessName")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("IntroducerName")
+                        .HasColumnType("int");
+
+                    b.Property<int>("LoanAmount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("LoanPurpose")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MiddleName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PhoneNo")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Surname")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("LeadId");
+
+                    b.ToTable("Lead");
+                });
+
+            modelBuilder.Entity("LenSys.Models.AppAssetFinance.AppAssetFinance", b =>
+                {
+                    b.HasOne("LenSys.Models.Home.Lead", "Lead")
+                        .WithMany()
+                        .HasForeignKey("LeadId");
+
+                    b.Navigation("Lead");
                 });
 
             modelBuilder.Entity("LenSys.Models.AppBusniessFinance.AppBusniessFinanceSecurityDetails", b =>

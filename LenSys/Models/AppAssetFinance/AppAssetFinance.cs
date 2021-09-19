@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LenSys.Models.Home;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace LenSys.Models.AppAssetFinance
         [Key]
         public int AssetFinId { get; set; }
 
+        public Lead Lead { get; set; }
         public string ApplicationType { get; set; }
         
         public string AssetType { get; set; }

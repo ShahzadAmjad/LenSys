@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LenSys.Models.Home;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace LenSys.Models.AppPropertyFinance
         //Loan Details
         [Key]
         public int LoanId { get; set; }
+        public Lead Lead { get; set; }
         public string LoanPurpose { get; set; }
         public int LoanAmount { get; set; }
         public string RateType { get; set; }

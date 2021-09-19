@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,6 +8,8 @@ namespace LenSys.Models.Home
 {
     public class Lead
     {
+        [Key]
+        public int LeadId { get; set; }
         public string LoanPurpose { get; set; }
         public int LoanAmount { get; set; }
         public int IntroducerName { get; set; }

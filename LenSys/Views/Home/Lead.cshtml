@@ -25,7 +25,7 @@
                     </div>
                     <div class="x_content">
                         <br />
-                        <form id="IndividualPersonalDetailsForm" data-parsley-validate class="form-horizontal form-label-left" asp-controller="IndividualPersonalDetails" asp-action="PersonalDetails" method="post">
+                        <form id="IndividualPersonalDetailsForm" data-parsley-validate class="form-horizontal form-label-left" asp-controller="Home" asp-action="Lead" method="post">
                             <div class="item form-group">
                                 <label asp-for="LoanPurpose" class="col-form-label col-md-3 col-sm-3 label-align">
                                     Loan Purpose
@@ -33,16 +33,16 @@
                                 <div class="col-md-6 col-sm-6 ">
                                     <select asp-for="LoanPurpose" id="loanPurpose" name="loanPurpose" class="form-control">
                                         <option>
-                                            Property finance
+                                            Asset finance                                            
                                         </option>
                                         <option>
                                             Business finance
                                         </option>
                                         <option>
-                                            Asset finance
-                                        </option>
-                                        <option>
                                             Development finance
+                                        </option>
+                                        <option>                             
+                                            Property finance
                                         </option>                                     
                                     </select>
                                 </div>
@@ -146,8 +146,9 @@
                             <div class="item form-group">
                                 <div class="col-md-6 col-sm-6 offset-md-3">
                                     <button class="btn btn-primary" type="button">Cancel</button>
-                                    <button class="btn btn-primary" type="reset">Add Individual</button>
-                                    <button type="submit" class="btn btn-success">Add Busniess</button>
+                                    <button class="btn btn-primary" type="reset">Reset</button>
+                                    <button type="submit" class="btn btn-success">Submit</button>
+                                    <a asp-controller="Home" asp-action="Lead"  id="leadBtn" class="btn btn-primary">SaveData</a>
                                 </div>
                             </div>
 

@@ -11,6 +11,17 @@
 
             <div class="modal-body">
                 <form action="EditSecurityDetail" id="EditSecurityDetailform" name="EditSecurityDetailform">
+
+                    <div class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="@Model.SecurityDetailsId">
+                            Security Details Id <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input type="text" asp-for="@Model.SecurityDetailsId" id="SecurityDetailsId" name="SecurityDetailsId" readonly class="form-control ">
+                        </div>
+                    </div>
+
+
                     <div class="item form-group">
                         <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="@Model.SecurityType">
                             Security Type <span class="required">*</span>
