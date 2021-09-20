@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LenSys.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210917095115_initialMigrationLead")]
-    partial class initialMigrationLead
+    [Migration("20210920061310_LeadIntegratedMigration")]
+    partial class LeadIntegratedMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -120,6 +120,9 @@ namespace LenSys.Migrations
                     b.Property<string>("FCA_RegulatedLoan")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("LeadId")
+                        .HasColumnType("int");
+
                     b.Property<int>("RepaymentTermMonths")
                         .HasColumnType("int");
 
@@ -133,6 +136,8 @@ namespace LenSys.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("BusniessFinId");
+
+                    b.HasIndex("LeadId");
 
                     b.ToTable("AppBusniessFinance");
                 });
@@ -266,6 +271,9 @@ namespace LenSys.Migrations
                     b.Property<int>("LandScapingCost")
                         .HasColumnType("int");
 
+                    b.Property<int?>("LeadId")
+                        .HasColumnType("int");
+
                     b.Property<int>("LegalFees")
                         .HasColumnType("int");
 
@@ -336,6 +344,8 @@ namespace LenSys.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("LoanId");
+
+                    b.HasIndex("LeadId");
 
                     b.ToTable("AppDevelopmentFinance");
                 });
@@ -418,6 +428,9 @@ namespace LenSys.Migrations
                     b.Property<string>("FCA_RegulatedLoan")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("LeadId")
+                        .HasColumnType("int");
+
                     b.Property<int>("LoanAmount")
                         .HasColumnType("int");
 
@@ -461,6 +474,8 @@ namespace LenSys.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("LoanId");
+
+                    b.HasIndex("LeadId");
 
                     b.ToTable("AppPropertyFinance");
                 });
@@ -581,6 +596,15 @@ namespace LenSys.Migrations
                     b.Navigation("Lead");
                 });
 
+            modelBuilder.Entity("LenSys.Models.AppBusniessFinance.AppBusniessFinance", b =>
+                {
+                    b.HasOne("LenSys.Models.Home.Lead", "Lead")
+                        .WithMany()
+                        .HasForeignKey("LeadId");
+
+                    b.Navigation("Lead");
+                });
+
             modelBuilder.Entity("LenSys.Models.AppBusniessFinance.AppBusniessFinanceSecurityDetails", b =>
                 {
                     b.HasOne("LenSys.Models.AppBusniessFinance.AppBusniessFinance", null)
@@ -588,11 +612,29 @@ namespace LenSys.Migrations
                         .HasForeignKey("AppBusniessFinanceBusniessFinId");
                 });
 
+            modelBuilder.Entity("LenSys.Models.AppDevelopmentFinance.AppDevelopmentFinance", b =>
+                {
+                    b.HasOne("LenSys.Models.Home.Lead", "Lead")
+                        .WithMany()
+                        .HasForeignKey("LeadId");
+
+                    b.Navigation("Lead");
+                });
+
             modelBuilder.Entity("LenSys.Models.AppDevelopmentFinance.AppDevelopmentFinanceSecurityDetails", b =>
                 {
                     b.HasOne("LenSys.Models.AppDevelopmentFinance.AppDevelopmentFinance", null)
                         .WithMany("securityDetails")
                         .HasForeignKey("AppDevelopmentFinanceLoanId");
+                });
+
+            modelBuilder.Entity("LenSys.Models.AppPropertyFinance.AppPropertyFinance", b =>
+                {
+                    b.HasOne("LenSys.Models.Home.Lead", "Lead")
+                        .WithMany()
+                        .HasForeignKey("LeadId");
+
+                    b.Navigation("Lead");
                 });
 
             modelBuilder.Entity("LenSys.Models.AppPropertyFinance.AppPropertyFinanceSecurityDetails", b =>

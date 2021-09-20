@@ -1,4 +1,4 @@
-﻿using LenSys.Models.IndividualAssetLiabilities;
+﻿using LenSys.Models.IndividualAsset;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LenSys.Models.IndividualAssetLiabilities
+namespace LenSys.Models.IndividualAsset
 {
     public class MockAssetRepository : IAssetRepository
     {

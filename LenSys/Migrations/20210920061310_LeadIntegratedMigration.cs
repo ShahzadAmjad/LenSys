@@ -3,16 +3,74 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace LenSys.Migrations
 {
-    public partial class initialMigrationLead : Migration
+    public partial class LeadIntegratedMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Lead",
+                columns: table => new
+                {
+                    LeadId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    LoanPurpose = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LoanAmount = table.Column<int>(type: "int", nullable: false),
+                    IntroducerName = table.Column<int>(type: "int", nullable: false),
+                    ApplicationType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CompanyBusniessName = table.Column<int>(type: "int", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    MiddleName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Surname = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNo = table.Column<int>(type: "int", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Lead", x => x.LeadId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AppAssetFinance",
+                columns: table => new
+                {
+                    AssetFinId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    LeadId = table.Column<int>(type: "int", nullable: true),
+                    ApplicationType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AssetType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PurchasePriceOfAssetValue = table.Column<int>(type: "int", nullable: false),
+                    Deposit = table.Column<int>(type: "int", nullable: false),
+                    LoanAmount = table.Column<int>(type: "int", nullable: false),
+                    VATincluded = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RepaymentTermMonths = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    BalloonPayment = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CompanyName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ContactName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Notes = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AppAssetFinance", x => x.AssetFinId);
+                    table.ForeignKey(
+                        name: "FK_AppAssetFinance_Lead_LeadId",
+                        column: x => x.LeadId,
+                        principalTable: "Lead",
+                        principalColumn: "LeadId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.CreateTable(
                 name: "AppBusniessFinance",
                 columns: table => new
                 {
                     BusniessFinId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    LeadId = table.Column<int>(type: "int", nullable: true),
                     ApplicationType = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TypeOfFinance = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AmountOfFinance = table.Column<int>(type: "int", nullable: false),
@@ -31,6 +89,12 @@ namespace LenSys.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AppBusniessFinance", x => x.BusniessFinId);
+                    table.ForeignKey(
+                        name: "FK_AppBusniessFinance_Lead_LeadId",
+                        column: x => x.LeadId,
+                        principalTable: "Lead",
+                        principalColumn: "LeadId",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -40,6 +104,7 @@ namespace LenSys.Migrations
                     LoanId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ApplicationType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LeadId = table.Column<int>(type: "int", nullable: true),
                     PurchasePrice = table.Column<int>(type: "int", nullable: false),
                     MarketValueOfLand = table.Column<int>(type: "int", nullable: false),
                     ConstructionCost = table.Column<int>(type: "int", nullable: false),
@@ -88,6 +153,12 @@ namespace LenSys.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AppDevelopmentFinance", x => x.LoanId);
+                    table.ForeignKey(
+                        name: "FK_AppDevelopmentFinance_Lead_LeadId",
+                        column: x => x.LeadId,
+                        principalTable: "Lead",
+                        principalColumn: "LeadId",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -96,6 +167,7 @@ namespace LenSys.Migrations
                 {
                     LoanId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    LeadId = table.Column<int>(type: "int", nullable: true),
                     LoanPurpose = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LoanAmount = table.Column<int>(type: "int", nullable: false),
                     RateType = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -122,29 +194,12 @@ namespace LenSys.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AppPropertyFinance", x => x.LoanId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Lead",
-                columns: table => new
-                {
-                    LeadId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    LoanPurpose = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LoanAmount = table.Column<int>(type: "int", nullable: false),
-                    IntroducerName = table.Column<int>(type: "int", nullable: false),
-                    ApplicationType = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CompanyBusniessName = table.Column<int>(type: "int", nullable: false),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    MiddleName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Surname = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PhoneNo = table.Column<int>(type: "int", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Lead", x => x.LeadId);
+                    table.ForeignKey(
+                        name: "FK_AppPropertyFinance_Lead_LeadId",
+                        column: x => x.LeadId,
+                        principalTable: "Lead",
+                        principalColumn: "LeadId",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -242,43 +297,14 @@ namespace LenSys.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "AppAssetFinance",
-                columns: table => new
-                {
-                    AssetFinId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    LeadId = table.Column<int>(type: "int", nullable: true),
-                    ApplicationType = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    AssetType = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PurchasePriceOfAssetValue = table.Column<int>(type: "int", nullable: false),
-                    Deposit = table.Column<int>(type: "int", nullable: false),
-                    LoanAmount = table.Column<int>(type: "int", nullable: false),
-                    VATincluded = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    RepaymentTermMonths = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    BalloonPayment = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CompanyName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ContactName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Notes = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AppAssetFinance", x => x.AssetFinId);
-                    table.ForeignKey(
-                        name: "FK_AppAssetFinance_Lead_LeadId",
-                        column: x => x.LeadId,
-                        principalTable: "Lead",
-                        principalColumn: "LeadId",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_AppAssetFinance_LeadId",
                 table: "AppAssetFinance",
+                column: "LeadId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AppBusniessFinance_LeadId",
+                table: "AppBusniessFinance",
                 column: "LeadId");
 
             migrationBuilder.CreateIndex(
@@ -287,9 +313,19 @@ namespace LenSys.Migrations
                 column: "AppBusniessFinanceBusniessFinId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_AppDevelopmentFinance_LeadId",
+                table: "AppDevelopmentFinance",
+                column: "LeadId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_AppDevelopmentFinanceSecurityDetails_AppDevelopmentFinanceLoanId",
                 table: "AppDevelopmentFinanceSecurityDetails",
                 column: "AppDevelopmentFinanceLoanId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AppPropertyFinance_LeadId",
+                table: "AppPropertyFinance",
+                column: "LeadId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AppPropertyFinanceSecurityDetails_AppPropertyFinanceLoanId",
@@ -312,9 +348,6 @@ namespace LenSys.Migrations
                 name: "AppPropertyFinanceSecurityDetails");
 
             migrationBuilder.DropTable(
-                name: "Lead");
-
-            migrationBuilder.DropTable(
                 name: "AppBusniessFinance");
 
             migrationBuilder.DropTable(
@@ -322,6 +355,9 @@ namespace LenSys.Migrations
 
             migrationBuilder.DropTable(
                 name: "AppPropertyFinance");
+
+            migrationBuilder.DropTable(
+                name: "Lead");
         }
     }
 }
