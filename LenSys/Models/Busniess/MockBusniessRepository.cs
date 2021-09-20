@@ -34,27 +34,62 @@ namespace LenSys.Models.Busniess
         }
         public Busniess Add(Busniess busniess)
         {
-            throw new NotImplementedException();
+            if (_busniess.Count == 0)
+            {
+                busniess.BusniessId = 0;
+
+            }
+            else
+            {
+                busniess.BusniessId = _busniess.Max(e => e.BusniessId) + 1;
+            }
+
+            _busniess.Add(busniess);
+            return busniess;
         }
 
         public Busniess Delete(int BusniessId)
         {
-            throw new NotImplementedException();
+            Busniess busniess = _busniess.FirstOrDefault(e => e.BusniessId == BusniessId);
+            if (_busniess != null)
+            {
+                _busniess.Remove(busniess);
+            }
+            return busniess;
         }
 
         public IEnumerable<Busniess> GetAllBusniess()
         {
-            throw new NotImplementedException();
+            return _busniess;
         }
 
         public Busniess GetBusniess(int BusniessId)
         {
-            throw new NotImplementedException();
+            return _busniess.FirstOrDefault(e => e.BusniessId == BusniessId);
         }
 
-        public Busniess Update(Busniess busniessChanges)
+        public Busniess Update(Busniess model)
         {
-            throw new NotImplementedException();
+            Busniess busniess = _busniess.FirstOrDefault(e => e.BusniessId == model.BusniessId);
+            if (busniess != null)
+            {
+                //appBusniessFinanceSecurityDetails.Notes = model.Notes;
+                //appBusniessFinanceSecurityDetails.LegalChargeOverProperty = model.LegalChargeOverProperty;
+                //appBusniessFinanceSecurityDetails.SecurityType = model.SecurityType;
+                //appBusniessFinanceSecurityDetails.PropertyType = model.PropertyType;
+                //appBusniessFinanceSecurityDetails.NameOfPropertyOwner = model.NameOfPropertyOwner;
+                //appBusniessFinanceSecurityDetails.Tenure = model.Tenure;
+                //appBusniessFinanceSecurityDetails.YearsRemainingOnLeaseIfLeaseHold = model.YearsRemainingOnLeaseIfLeaseHold;
+
+                //appBusniessFinanceSecurityDetails.PropertyValue = model.PropertyValue;
+                //appBusniessFinanceSecurityDetails.OriginalPurchasePrice = model.OriginalPurchasePrice;
+                //appBusniessFinanceSecurityDetails.AddressForPropertyOfSecurity = model.AddressForPropertyOfSecurity;
+                //appBusniessFinanceSecurityDetails.SecondLineAddress = model.SecondLineAddress;
+                //appBusniessFinanceSecurityDetails.City = model.City;
+                //appBusniessFinanceSecurityDetails.PostCode = model.PostCode;
+
+            }
+            return busniess;
         }
     }
 }
