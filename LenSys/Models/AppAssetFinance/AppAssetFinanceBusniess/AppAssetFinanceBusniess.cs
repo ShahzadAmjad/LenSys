@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LenSys.Models.AppAssetFinance
+namespace LenSys.Models.AppAssetFinance.AppAssetFinanceBusniess
 {
     public class AppAssetFinanceBusniess
     {
