@@ -14,6 +14,9 @@ namespace LenSys.Models.AppPropertyFinance
         [Key]
         public int LoanId { get; set; }
         public Lead Lead { get; set; }
+        public List<AppPropertyFinanceIndividual.AppPropertyFinanceIndividual> individuals { get; set; }
+        public List<AppPropertyFinanceBusniess.AppPropertyFinanceBusniess> busniesses { get; set; }
+
         public string LoanPurpose { get; set; }
         public int LoanAmount { get; set; }
         public string RateType { get; set; }

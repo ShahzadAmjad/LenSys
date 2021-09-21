@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,6 +8,8 @@ namespace LenSys.Models.IndividualAddressDetails
 {
     public class AddressDetails
     {
+        [Key]
+        public int AddressDetailsId { get; set; }
         public string FirstLineAddress { get; set; }
         public string SecondLineAddress { get; set; }
         public string City { get; set; }      

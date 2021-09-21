@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,6 +8,8 @@ namespace LenSys.Models.IndividualLiabilities
 {
     public class Liabilities
     {
+        [Key]
+        public int LiabilitiesId { get; set; }
         public int Overdraft { get; set; }
         public int ResidentialMortgage { get; set; }
         public int CarLoanHP { get; set; }

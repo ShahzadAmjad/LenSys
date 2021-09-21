@@ -13,6 +13,10 @@ namespace LenSys.Models.AppBusniessFinance
        [Key]
         public int BusniessFinId { get; set; }
         public Lead Lead { get; set; }
+
+        public List<AppBusniessFinanceIndividual.AppBusniessFinanceIndividual> individuals { get; set; }
+        public List<AppBusniessFinanceBusniess.AppBusniessFinanceBusniess> busniesses { get; set; }
+
         public string ApplicationType { get; set; }
         public string TypeOfFinance { get; set; }
         public int AmountOfFinance { get; set; }

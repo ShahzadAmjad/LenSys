@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,6 +8,8 @@ namespace LenSys.Models.IndividualIncomeExpenditure
 {
     public class MonthlyIncome
     {
+        [Key]
+        public int MonthlyIncomeId { get; set; }
         public int SalaryAfterTax { get; set; }
         public int DividendsAfterTax { get; set; }
         public int PartnerEaningAfterTax { get; set; }

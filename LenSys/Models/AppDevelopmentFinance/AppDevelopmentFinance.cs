@@ -12,8 +12,13 @@ namespace LenSys.Models.AppDevelopmentFinance
         //Loan Details
         [Key]
         public int LoanId { get; set; }
-        public string ApplicationType { get; set; }
+        
         public Lead Lead { get; set; }
+
+        public List<AppDevelopmentFinanceIndividual.AppDevelopmentFinanceIndividual> individuals { get; set; }
+        public List<AppDevelopmentFinanceBusniess.AppDevelopmentFinanceBusniess> busniesses { get; set; }
+
+        public string ApplicationType { get; set; }
         public int PurchasePrice { get; set; }
         public int MarketValueOfLand { get; set; }
         public int ConstructionCost { get; set; }

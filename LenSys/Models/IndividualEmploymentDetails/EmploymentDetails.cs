@@ -7,6 +7,7 @@ namespace LenSys.Models.IndividualEmploymentDetails
 {
     public class EmploymentDetails
     {
+        public int EmploymentDetailsId { get; set; }
         public string EmploymentStatus { get; set; }
         public string EmploymentType { get; set; }
         public int GrossSalary { get; set; }
