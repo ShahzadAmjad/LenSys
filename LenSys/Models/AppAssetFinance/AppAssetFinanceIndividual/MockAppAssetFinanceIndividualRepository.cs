@@ -68,7 +68,7 @@ namespace LenSys.Models.AppAssetFinance.AppAssetFinanceIndividual
             return _individual.FirstOrDefault(e => e.IndividualId == IndividualId);
         }
 
-        public AppAssetFinanceIndividual Update(AppAssetFinanceIndividual individualchanges)
+        public AppAssetFinanceIndividual Update(AppAssetFinanceIndividual model)
         {
             AppAssetFinanceIndividual individual = _individual.FirstOrDefault(e => e.IndividualId == model.IndividualId);
             if (individual != null)
