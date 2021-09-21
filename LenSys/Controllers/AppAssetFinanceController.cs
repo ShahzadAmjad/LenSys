@@ -21,6 +21,13 @@ namespace LenSys.Controllers
             //return name;
             return View("AppAssetFinance");
         }
+        public IActionResult AddLead()
+        {
+            //String name = "Default Index Page";
+            //return name;
+            return RedirectToAction("Lead","Home");
+
+        }
         [HttpGet]
         public ViewResult AppAssetFinance()
         {
@@ -38,5 +45,7 @@ namespace LenSys.Controllers
              return View();
             //return JavaScript(alert(""));
         }
+
+
     }
 }
