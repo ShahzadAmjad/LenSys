@@ -5,12 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Models\AppBusniessFinance\AppBusniessFinanceBusniess\" />
-    <Folder Include="Models\AppBusniessFinance\AppBusniessFinanceIndividual\" />
-    <Folder Include="Models\AppDevelopmentFinance\AppDevelopmentFinanceBusniess\" />
-    <Folder Include="Models\AppDevelopmentFinance\AppDevelopmentFinanceIndividual\" />
-    <Folder Include="Models\AppPropertyFinance\AppPropertyFinanceBusniess\" />
-    <Folder Include="Models\AppPropertyFinance\AppPropertyFinanceIndividual\" />
     <Folder Include="wwwroot\lib\" />
     <Folder Include="wwwroot\BusniessDocuments\" />
     <Folder Include="wwwroot\IndividualDocuments\" />
