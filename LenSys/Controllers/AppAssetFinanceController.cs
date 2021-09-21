@@ -1,4 +1,6 @@
 ﻿using LenSys.Models.AppAssetFinance;
+using LenSys.Models.AppAssetFinance.AppAssetFinanceBusniess;
+using LenSys.Models.AppAssetFinance.AppAssetFinanceIndividual;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,10 +12,14 @@ namespace LenSys.Controllers
     public class AppAssetFinanceController : Controller
     {
         private IAppAssetFinanceRepository _appAssetFinanceRepository;
+        private IAppAssetFinanceBusniessRepository _appAssetFinanceBusniessRepository;
+        private IAppAssetFinanceIndividualRepository _appAssetFinanceIndividualRepository;
 
-        public AppAssetFinanceController(IAppAssetFinanceRepository appAssetFinanceRepository)
+        public AppAssetFinanceController(IAppAssetFinanceRepository appAssetFinanceRepository, IAppAssetFinanceBusniessRepository appAssetFinanceBusniessRepository, IAppAssetFinanceIndividualRepository appAssetFinanceIndividualRepository)
         {
             _appAssetFinanceRepository = appAssetFinanceRepository;
+            _appAssetFinanceBusniessRepository = appAssetFinanceBusniessRepository;
+            _appAssetFinanceIndividualRepository = appAssetFinanceIndividualRepository;
         }
         public ViewResult Index()
         {
@@ -23,9 +29,16 @@ namespace LenSys.Controllers
         }
         public IActionResult AddLead()
         {
-            //String name = "Default Index Page";
-            //return name;
             return RedirectToAction("Lead","Home");
+        }
+        public IActionResult AddBusniess()
+        {
+            return RedirectToAction("BusniessDetails", "BusniessDetails");
+
+        }
+        public IActionResult AddIndividual()
+        {
+            return RedirectToAction("PersonalDetails", "IndividualPersonalDetails");
 
         }
         [HttpGet]

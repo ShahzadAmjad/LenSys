@@ -1,5 +1,7 @@
 using LenSys.Models;
 using LenSys.Models.AppAssetFinance;
+using LenSys.Models.AppAssetFinance.AppAssetFinanceBusniess;
+using LenSys.Models.AppAssetFinance.AppAssetFinanceIndividual;
 using LenSys.Models.AppBusniessFinance;
 using LenSys.Models.AppDevelopmentFinance;
 using LenSys.Models.AppPropertyFinance;
@@ -61,6 +63,9 @@ namespace LenSys
             services.AddSingleton<IAppDevelopmentFinanceSecurityDetailsRepository, MockAppDevelopmentFinanceSecurityDetailsRepository>();
             services.AddSingleton<IAppPropertyFinanceSecurityDetailsRepository, MockAppPropertyFinanceSecurityDetailsRepository>();
             services.AddSingleton<IAllApplicationsRepository, MockAllApplicationsRepository>();
+
+            services.AddScoped<IAppAssetFinanceBusniessRepository, MockAppAssetFinanceBusniessRepository>();
+            services.AddScoped<IAppAssetFinanceIndividualRepository, MockAppAssetFinanceIndividualRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

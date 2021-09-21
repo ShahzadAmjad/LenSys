@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LenSys.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210921102014_MigraionIndividualBusniessIncluded")]
-    partial class MigraionIndividualBusniessIncluded
+    [Migration("20210921155934_MigrationIndividualBusniessIncluded")]
+    partial class MigrationIndividualBusniessIncluded
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
