@@ -24,7 +24,6 @@ namespace LenSys.Controllers
             //return name;
             return View("AppBusniessFinance");
         }
-
         [HttpGet]
         public IActionResult AddSecurityDetail()
         {
@@ -35,10 +34,7 @@ namespace LenSys.Controllers
         public IActionResult AddSecurityDetail(AppBusniessFinanceSecurityDetails securityDetails)
         {
             _appBusniessFinanceSecurityDetails.Add(securityDetails);
-            //AppBusniessFinanceSecurityDetails securityDetails = new AppBusniessFinanceSecurityDetails();
-            //return PartialView("_AddSecutityDetailBusniessPartialView", securityDetails);
-
-            //ViewData["SecurityDetailsList"] = _appBusniessFinanceSecurityDetails.GetAllAppBusniessFinanceSecurityDetails();
+            
             AppBusniessFinance appBusniessFinance = new AppBusniessFinance();
             appBusniessFinance.securityDetails = (List<AppBusniessFinanceSecurityDetails>)_appBusniessFinanceSecurityDetails.GetAllAppBusniessFinanceSecurityDetails();
             return View("AppBusniessFinance", appBusniessFinance);

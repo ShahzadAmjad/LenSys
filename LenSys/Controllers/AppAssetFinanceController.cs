@@ -1,6 +1,7 @@
 ﻿using LenSys.Models.AppAssetFinance;
 using LenSys.Models.AppAssetFinance.AppAssetFinanceBusniess;
 using LenSys.Models.AppAssetFinance.AppAssetFinanceIndividual;
+using LenSys.Models.IndividualPersonalDetails;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -33,13 +34,28 @@ namespace LenSys.Controllers
         }
         public IActionResult AddBusniess()
         {
-            return RedirectToAction("BusniessDetails", "BusniessDetails");
+            AppAssetFinanceBusniess appAssetFinanceBusniess = new AppAssetFinanceBusniess();
+            appAssetFinanceBusniess.busniessDetails.CompanyBusniessName = "Temp";
+            _appAssetFinanceBusniessRepository.Add(appAssetFinanceBusniess);
 
+
+            //return RedirectToAction("BusniessDetails", "BusniessDetails");
+            return View("AppAssetFinance");
         }
         public IActionResult AddIndividual()
         {
-            return RedirectToAction("PersonalDetails", "IndividualPersonalDetails");
 
+            //return RedirectToAction("PersonalDetails", "IndividualPersonalDetails");
+            AppAssetFinanceIndividual appAssetFinanceIndividual = new AppAssetFinanceIndividual();
+
+            PersonalDetails individualPersonalDetails = new PersonalDetails { FirstName = "Temp" };
+
+            appAssetFinanceIndividual.personalDetails= individualPersonalDetails;
+            _appAssetFinanceIndividualRepository.Add(appAssetFinanceIndividual);
+
+
+            //return RedirectToAction("BusniessDetails", "BusniessDetails");
+            return View("AppAssetFinance");
         }
         [HttpGet]
         public ViewResult AppAssetFinance()

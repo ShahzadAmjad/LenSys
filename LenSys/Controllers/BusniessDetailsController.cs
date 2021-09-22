@@ -21,15 +21,19 @@ namespace LenSys.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult BusniessDetails(BusniessDetails individual)
+        public IActionResult BusniessDetails(BusniessDetails busniessDetails)
         {
-            if (ModelState.IsValid)
-            {
-                //Employee newEmployee = _emplyeeRepositry.Add(employee);
-                ////return View();
-                //return RedirectToAction("details", new { id = newEmployee.Id });
-                return View("BusniessDetails");
-            }
+            //TempData["mydata"] = busniessDetails;
+
+            //return RedirectToAction("Index", "Home2");
+
+            //if (ModelState.IsValid)
+            //{
+            //    //Employee newEmployee = _emplyeeRepositry.Add(employee);
+            //    ////return View();
+            //    //return RedirectToAction("details", new { id = newEmployee.Id });
+            //    return View("BusniessDetails");
+            //}
 
             return View();
         }

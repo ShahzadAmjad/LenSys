@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LenSys.Models.IndividualPersonalDetails;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,27 +11,15 @@ namespace LenSys.Models.AppAssetFinance.AppAssetFinanceIndividual
         private List<AppAssetFinanceIndividual> _individual;
         public MockAppAssetFinanceIndividualRepository()
         {
-            //_individual = new List<Individual>()
-            //{
-            //                    new Individual{
+            PersonalDetails individualPersonalDetails = new PersonalDetails { FirstName = "Happy" };
+            _individual = new List<AppAssetFinanceIndividual>()
+            {
+                                new AppAssetFinanceIndividual{
+                                   
+                                    personalDetails=individualPersonalDetails
 
-            //                        SecurityDetailsId=1,
-            //                        Notes="Security Property",
-            //                        LegalChargeOverProperty="YES",
-            //                        SecurityType= "Residential ",
-            //                        PropertyType="1 Bed Appartment",
-            //                        NameOfPropertyOwner = "John",
-            //                        Tenure= 2,
-            //                        YearsRemainingOnLeaseIfLeaseHold= 1,
-            //                        PropertyValue= 5454,
-            //                        OriginalPurchasePrice= 6000,
-            //                        AddressForPropertyOfSecurity="Russia",
-            //                        SecondLineAddress= "Cremlin",
-            //                        City= "Moscow",
-            //                        PostCode= 85000
-
-            //                    }
-            //};
+                                }
+            };
         }
         public AppAssetFinanceIndividual Add(AppAssetFinanceIndividual individual)
         {
