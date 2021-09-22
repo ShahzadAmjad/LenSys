@@ -10,27 +10,15 @@ namespace LenSys.Models.AppAssetFinance.AppAssetFinanceBusniess
         private List<AppAssetFinanceBusniess> _busniess;
         public MockAppAssetFinanceBusniessRepository()
         {
-            //_busniess = new List<Busniess>()
-            //{
-            //                    new Busniess{
+            BusniessDetails.BusniessDetails busniessDetails = new Models.BusniessDetails.BusniessDetails { CompanyBusniessName="HS company"};
+            _busniess = new List<AppAssetFinanceBusniess>()
+            {
+                                new AppAssetFinanceBusniess{
 
-            //                        SecurityDetailsId=1,
-            //                        Notes="Security Property",
-            //                        LegalChargeOverProperty="YES",
-            //                        SecurityType= "Residential ",
-            //                        PropertyType="1 Bed Appartment",
-            //                        NameOfPropertyOwner = "John",
-            //                        Tenure= 2,
-            //                        YearsRemainingOnLeaseIfLeaseHold= 1,
-            //                        PropertyValue= 5454,
-            //                        OriginalPurchasePrice= 6000,
-            //                        AddressForPropertyOfSecurity="Russia",
-            //                        SecondLineAddress= "Cremlin",
-            //                        City= "Moscow",
-            //                        PostCode= 85000
+                                    busniessDetails=busniessDetails
 
-            //                    }
-            //};
+                                }
+            };
         }
         public AppAssetFinanceBusniess Add(AppAssetFinanceBusniess busniess)
         {

@@ -1,6 +1,7 @@
 ﻿using LenSys.Models.AppAssetFinance;
 using LenSys.Models.AppAssetFinance.AppAssetFinanceBusniess;
 using LenSys.Models.AppAssetFinance.AppAssetFinanceIndividual;
+using LenSys.Models.BusniessDetails;
 using LenSys.Models.IndividualPersonalDetails;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -35,7 +36,9 @@ namespace LenSys.Controllers
         public IActionResult AddBusniess()
         {
             AppAssetFinanceBusniess appAssetFinanceBusniess = new AppAssetFinanceBusniess();
-            appAssetFinanceBusniess.busniessDetails.CompanyBusniessName = "Temp";
+
+            BusniessDetails busniessDetails = new BusniessDetails { CompanyBusniessName = "Temp" };
+            appAssetFinanceBusniess.busniessDetails=busniessDetails;
             _appAssetFinanceBusniessRepository.Add(appAssetFinanceBusniess);
 
 
