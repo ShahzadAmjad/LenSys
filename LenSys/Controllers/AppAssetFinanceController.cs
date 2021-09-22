@@ -39,31 +39,46 @@ namespace LenSys.Controllers
 
             BusniessDetails busniessDetails = new BusniessDetails { CompanyBusniessName = "Temp" };
             appAssetFinanceBusniess.busniessDetails=busniessDetails;
-            _appAssetFinanceBusniessRepository.Add(appAssetFinanceBusniess);
+             _appAssetFinanceBusniessRepository.Add(appAssetFinanceBusniess);
 
+            AppAssetFinance appAssetFinance = new AppAssetFinance();
+            appAssetFinance.busniesses = (List<AppAssetFinanceBusniess>)_appAssetFinanceBusniessRepository.GetAllBusniess();
+            appAssetFinance.individuals = (List<AppAssetFinanceIndividual>)_appAssetFinanceIndividualRepository.GetAllIndividual();
 
+            return View("AppAssetFinance", appAssetFinance);
             //return RedirectToAction("BusniessDetails", "BusniessDetails");
-            return View("AppAssetFinance");
+            //return View("AppAssetFinance");
         }
         public IActionResult AddIndividual()
         {
 
             //return RedirectToAction("PersonalDetails", "IndividualPersonalDetails");
             AppAssetFinanceIndividual appAssetFinanceIndividual = new AppAssetFinanceIndividual();
-
             PersonalDetails individualPersonalDetails = new PersonalDetails { FirstName = "Temp" };
-
             appAssetFinanceIndividual.personalDetails= individualPersonalDetails;
             _appAssetFinanceIndividualRepository.Add(appAssetFinanceIndividual);
 
 
+
+            AppAssetFinance appAssetFinance = new AppAssetFinance();
+            appAssetFinance.busniesses = (List<AppAssetFinanceBusniess>)_appAssetFinanceBusniessRepository.GetAllBusniess();
+            appAssetFinance.individuals = (List<AppAssetFinanceIndividual>)_appAssetFinanceIndividualRepository.GetAllIndividual();
+           
+            return View("AppAssetFinance", appAssetFinance);
             //return RedirectToAction("BusniessDetails", "BusniessDetails");
-            return View("AppAssetFinance");
+            //return View("AppAssetFinance");
         }
         [HttpGet]
         public ViewResult AppAssetFinance()
         {
-            return View();
+            AppAssetFinance appAssetFinance = new AppAssetFinance();
+            appAssetFinance.busniesses = (List<AppAssetFinanceBusniess>)_appAssetFinanceBusniessRepository.GetAllBusniess();
+            appAssetFinance.individuals = (List<AppAssetFinanceIndividual>)_appAssetFinanceIndividualRepository.GetAllIndividual();
+            //ViewData["SecurityDetailsList"] = _appBusniessFinanceSecurityDetails.GetAllAppBusniessFinanceSecurityDetails();
+            return View("AppAssetFinance", appAssetFinance);
+
+
+            //return View();
         }
         [HttpPost]
         public IActionResult AppAssetFinance(AppAssetFinance appAssetFinance)

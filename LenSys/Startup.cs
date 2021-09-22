@@ -64,8 +64,8 @@ namespace LenSys
             services.AddSingleton<IAppPropertyFinanceSecurityDetailsRepository, MockAppPropertyFinanceSecurityDetailsRepository>();
             services.AddSingleton<IAllApplicationsRepository, MockAllApplicationsRepository>();
 
-            services.AddScoped<IAppAssetFinanceBusniessRepository, MockAppAssetFinanceBusniessRepository>();
-            services.AddScoped<IAppAssetFinanceIndividualRepository, MockAppAssetFinanceIndividualRepository>();
+            services.AddSingleton<IAppAssetFinanceBusniessRepository, MockAppAssetFinanceBusniessRepository>();
+            services.AddSingleton<IAppAssetFinanceIndividualRepository, MockAppAssetFinanceIndividualRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
