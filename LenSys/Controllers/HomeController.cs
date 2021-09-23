@@ -52,8 +52,9 @@ namespace LenSys.Controllers
             {
                 if(lead.LoanPurpose=="Asset finance")
                 {
-                    AppAssetFinance appAssetFinance = new AppAssetFinance();
+                    AppAssetFinance appAssetFinance = new AppAssetFinance { CompanyName=lead.CompanyBusniessName , ApplicationType=lead.LoanPurpose};
 
+                    
                     appAssetFinance.Lead = lead;
                     _appAssetFinanceRepository.Add(appAssetFinance);
 
@@ -109,14 +110,14 @@ namespace LenSys.Controllers
         }
         public ViewResult DeleteApplication(int id)
         {
-            _allApplicationsRepository.Delete(id);
-            var RemainingApplications = _allApplicationsRepository.GetAllApplications();
+            _allApplicationsRepository.DeleteAssetFinanceApplication(id);
+            var RemainingApplications = _allApplicationsRepository.GetAllAssetFinanceApplication();
             
             return View("AllApplications", RemainingApplications);
         }
-        public ViewResult EditApplication(int id)
+        public IActionResult EditApplication(int id)
         {
-            //AppAssetFinance AppAssetFinanceApplication= _allApplicationsRepository.get
+            AppAssetFinance AppAssetFinanceApplication = _allApplicationsRepository.GetAssetFinanceApplication(id);
 
             //AllApplications application = _allApplicationsRepository.GetApplication(id);
 
@@ -139,7 +140,7 @@ namespace LenSys.Controllers
 
             //return View("AllApplications");
 
-            return View("AppAssetFinance", "AppAssetFinance");
+            return RedirectToAction("AppAssetFinance", "AppAssetFinance", AppAssetFinanceApplication);
         }
 
         

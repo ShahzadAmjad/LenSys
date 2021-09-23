@@ -15,7 +15,7 @@
             <tr>
                 <th id="keyPrincipalId">Application Id</th>
                 <th id="firstName" class="hideCol hideHideCol_2">Type</th>
-                <th id="position" class="hideCol hideHideCol_3">Company Name</th>
+                <th id="position" class="hideCol hideHideCol_3">Loan Purpose</th>
                 <th>Default</th>
                 <th>Edit</th>
                 <th>Delete</th>
@@ -29,47 +29,51 @@
                 {
                     var tm = "#myModal" + application.AssetFinId;
                     var mid = "myModal" + application.AssetFinId;
-                    <tr>
-                        <td>APP0000 @application.AssetFinId</td>
-                        <td>@application.ApplicationType</td>
-                        <td>@application.CompanyName</td>
-                        
-                        <td>
-                            <button type="button" style="width:80px;" class="btn btn-primary btn-sm" >
-                                Default
-                            </button>
-                        </td>
+            <tr>
+                <td>APP0000 @application.AssetFinId</td>
+                @*<td>@application.Lead.ApplicationType</td>
+                <td>@application.Lead.LoanPurpose</td>*@
+                <td>@application.ApplicationType</td>
+                <td>@application.CompanyName</td>
 
-                        <td><a asp-controller="Home" asp-action="EditApplication" asp-route-Id="@application.AssetFinId" style="width:80px;" class="btn btn-warning btn-sm" >Edit</a></td>
+                <td>
+                    <button type="button" style="width:80px;" class="btn btn-primary btn-sm">
+                        Default
+                    </button>
+                </td>
 
-                        <td>
+                <td>
+                    <a asp-controller="Home" asp-action="EditApplication" asp-route-Id="@application.AssetFinId" id="EditBtn" class="btn btn-primary mr-1">Edit</a>
+                </td>
 
-                            <button type="button" style="width:80px;" class="btn btn-danger btn-sm" data-toggle="modal" data-target="@tm">
-                                Delete
-                            </button>
+                <td>
+
+                    <button type="button" style="width:80px;" class="btn btn-danger btn-sm" data-toggle="modal" data-target="@tm">
+                        Delete
+                    </button>
 
 
-                            <div class="modal fade" id="@mid" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            @*<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>*@
-                                            <h4 class="modal-title text-center" id="myModalLabel">Delete Application</h4>
-                                            <button type="button" class="close " data-dismiss="modal" aria-hidden="true">&times;</button>
-                                        </div>
-                                        <div class="modal-body">
-                                            Are you sure want to delete this Application?
-                                        </div>
-                                        <div class="modal-footer">
+                    <div class="modal fade" id="@mid" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    @*<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>*@
+                                    <h4 class="modal-title text-center" id="myModalLabel">Delete Application</h4>
+                                    <button type="button" class="close " data-dismiss="modal" aria-hidden="true">&times;</button>
+                                </div>
+                                <div class="modal-body">
+                                    Are you sure want to delete this Application?
+                                </div>
+                                <div class="modal-footer">
 
-                                            <a asp-controller="Home" asp-action="DeleteApplication" asp-route-Id="@application.AssetFinId" id="deleteBtn" class="btn bg-danger mr-1">Delete</a>
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                        </div>
-                                    </div>
+                                    <a asp-controller="Home" asp-action="DeleteApplication" asp-route-Id="@application.AssetFinId" id="deleteBtn" class="btn bg-danger mr-1">Delete</a>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                 </div>
                             </div>
-                        </td>
-                    </tr>
+                        </div>
+                    </div>
+                </td>
+            </tr>
                 }
             }
         </tbody>

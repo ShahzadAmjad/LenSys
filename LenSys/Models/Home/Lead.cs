@@ -12,9 +12,9 @@ namespace LenSys.Models.Home
         public int LeadId { get; set; }
         public string LoanPurpose { get; set; }
         public int LoanAmount { get; set; }
-        public int IntroducerName { get; set; }
+        public string IntroducerName { get; set; }
         public string ApplicationType { get; set; }
-        public int CompanyBusniessName { get; set; }
+        public string CompanyBusniessName { get; set; }
         public string Title { get; set; }
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
