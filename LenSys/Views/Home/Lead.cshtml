@@ -33,7 +33,7 @@
                                 <div class="col-md-6 col-sm-6 ">
                                     <select asp-for="LoanPurpose" id="loanPurpose" name="loanPurpose" class="form-control">
                                         <option>
-                                            Asset finance                                            
+                                            Asset finance
                                         </option>
                                         <option>
                                             Business finance
@@ -41,15 +41,15 @@
                                         <option>
                                             Development finance
                                         </option>
-                                        <option>                             
+                                        <option>
                                             Property finance
-                                        </option>                                     
+                                        </option>
                                     </select>
                                 </div>
                             </div>
                             <div class="item form-group">
                                 <label asp-for="LoanAmount" class="col-form-label col-md-3 col-sm-3 label-align">
-                                Loan Amount
+                                    Loan Amount
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
                                     <input asp-for="LoanAmount" id="loanAmount" name="loanAmount" class="form-control" type="text">
@@ -115,16 +115,18 @@
                             </div>
                             <div class="item form-group">
                                 <label asp-for="FirstName" class="col-form-label col-md-3 col-sm-3 label-align">
-                                    First Name <span class="required">*</span>
+                                    First Name
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input type="text" asp-for="FirstName" id="first-name" name="first-name" required="required" class="form-control">
+                                    <input asp-for="FirstName" id="FirstName" name="FirstName" class="form-control" type="text">
                                 </div>
                             </div>
                             <div class="item form-group">
-                                <label asp-for="MiddleName" class="col-form-label col-md-3 col-sm-3 label-align">Middle Name / Initial</label>
+                                <label asp-for="MiddleName" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Middle Name
+                                </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input asp-for="MiddleName" id="middle-name" name="middle-name" class="form-control" type="text">
+                                    <input asp-for="MiddleName" id="middleName" name="middleName" class="form-control" type="text">
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -139,7 +141,14 @@
                                     <input asp-for="PhoneNo" id="phoneNo" name="phoneNo" class="form-control" type="text">
                                 </div>
                             </div>
-
+                            <div class="item form-group">
+                                <label asp-for="Email" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Email
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="Email" id="email" name="email" class="form-control" type="text">
+                                </div>
+                            </div>
 
 
                             <div class="ln_solid"></div>
@@ -148,7 +157,7 @@
                                     <button class="btn btn-primary" type="button">Cancel</button>
                                     <button class="btn btn-primary" type="reset">Reset</button>
                                     <button type="submit" class="btn btn-success">Submit</button>
-                                    
+
                                 </div>
                             </div>
 
