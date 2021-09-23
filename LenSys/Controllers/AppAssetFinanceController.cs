@@ -83,13 +83,28 @@ namespace LenSys.Controllers
         [HttpPost]
         public IActionResult AppAssetFinance(AppAssetFinance appAssetFinance)
         {
-            if (ModelState.IsValid)
-            {
+            appAssetFinance.busniesses = (List<AppAssetFinanceBusniess>)_appAssetFinanceBusniessRepository.GetAllBusniess();
+            appAssetFinance.individuals = (List<AppAssetFinanceIndividual>)_appAssetFinanceIndividualRepository.GetAllIndividual();
+
+
+            //if (ModelState.IsValid)
+            //{
                 AppAssetFinance appAssetFinance1=_appAssetFinanceRepository.Add(appAssetFinance);
 
-            }
+            //}
 
-             return View();
+
+            //AppAssetFinance 
+            appAssetFinance = new AppAssetFinance();
+            appAssetFinance.individuals = (List<AppAssetFinanceIndividual>)_appAssetFinanceIndividualRepository.ClearIndividualList();
+            appAssetFinance.busniesses = (List<AppAssetFinanceBusniess>)_appAssetFinanceBusniessRepository.ClearBusniessList();
+            //appAssetFinance.securityDetails = List;
+            //return View("AppBusniessFinance", appBusniessFinance2);
+
+
+
+
+            return View("AppAssetFinance", appAssetFinance);
             //return JavaScript(alert(""));
         }
 

@@ -36,6 +36,12 @@ namespace LenSys.Models.AppAssetFinance.AppAssetFinanceBusniess
             return busniess;
         }
 
+        public IEnumerable<AppAssetFinanceBusniess> ClearBusniessList()
+        {
+            _busniess.Clear();
+            return _busniess;
+        }
+
         public AppAssetFinanceBusniess Delete(int BusniessId)
         {
             AppAssetFinanceBusniess busniess = _busniess.FirstOrDefault(e => e.BusniessId == BusniessId);

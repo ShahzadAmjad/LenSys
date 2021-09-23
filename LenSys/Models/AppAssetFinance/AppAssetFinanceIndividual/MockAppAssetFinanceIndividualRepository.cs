@@ -37,6 +37,12 @@ namespace LenSys.Models.AppAssetFinance.AppAssetFinanceIndividual
             return individual;
         }
 
+        public IEnumerable<AppAssetFinanceIndividual> ClearIndividualList()
+        {
+            _individual.Clear();
+            return _individual;
+        }
+
         public AppAssetFinanceIndividual Delete(int IndividualId)
         {
             AppAssetFinanceIndividual individual = _individual.FirstOrDefault(e => e.IndividualId == IndividualId);

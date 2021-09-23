@@ -12,5 +12,7 @@ namespace LenSys.Models.AppAssetFinance.AppAssetFinanceIndividual
         AppAssetFinanceIndividual Add(AppAssetFinanceIndividual individual);
         AppAssetFinanceIndividual Update(AppAssetFinanceIndividual individualchanges);
         AppAssetFinanceIndividual Delete(int IndividualId);
+
+        IEnumerable<AppAssetFinanceIndividual> ClearIndividualList();
     }
 }

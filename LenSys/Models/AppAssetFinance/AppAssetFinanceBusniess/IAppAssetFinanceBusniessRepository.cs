@@ -12,5 +12,7 @@ namespace LenSys.Models.AppAssetFinance.AppAssetFinanceBusniess
         AppAssetFinanceBusniess Add(AppAssetFinanceBusniess busniess);
         AppAssetFinanceBusniess Update(AppAssetFinanceBusniess busniessChanges);
         AppAssetFinanceBusniess Delete(int BusniessId);
+
+        IEnumerable<AppAssetFinanceBusniess> ClearBusniessList();
     }
 }
