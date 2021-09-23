@@ -35,6 +35,11 @@ namespace LenSys.Models.Home.AllApplications
             return keyPrincipals;
         }
 
+        public AppAssetFinance.AppAssetFinance DeleteAssetFinanceApplication(int ApplicationId)
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<AllApplications> GetAllApplications()
         {
             return _allApplications;
@@ -48,6 +53,11 @@ namespace LenSys.Models.Home.AllApplications
         public AllApplications GetApplication(int appId)
         {
             return _allApplications.FirstOrDefault(e => e.AppID == appId);
+        }
+
+        public AppAssetFinance.AppAssetFinance GetAssetFinanceApplication(int Id)
+        {
+            throw new NotImplementedException();
         }
 
         public AllApplications Update(AllApplications ApplicationsChanges)
