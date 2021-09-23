@@ -101,8 +101,11 @@ namespace LenSys.Controllers
         }
         public ViewResult AllApplications()
         {
-            var model = _allApplicationsRepository.GetAllApplications();
-            return View(model);
+            var appAssetFinanceApplication=_allApplicationsRepository.GetAllAssetFinanceApplication();
+            //var model = _allApplicationsRepository.GetAllApplications();
+            //return View(model);
+
+            return View(appAssetFinanceApplication);
         }
         public ViewResult DeleteApplication(int id)
         {
@@ -113,26 +116,30 @@ namespace LenSys.Controllers
         }
         public ViewResult EditApplication(int id)
         {
-            AllApplications application = _allApplicationsRepository.GetApplication(id);
+            //AppAssetFinance AppAssetFinanceApplication= _allApplicationsRepository.get
 
-            if(application.FinanceType=="Asset Finance")
-            {
-                return View("AppAssetFinance", "AppAssetFinance");
-            }
-            else if (application.FinanceType == "Busniess Finance")
-            {
-                return View("AppBusniessFinance", "AppBusniessFinance");
-            }
-            else if (application.FinanceType == "Development Finace")
-            {
-                return View("AppDevelopmentFinance", "AppDevelopmentFinance");
-            }
-            else if (application.FinanceType == "Property Finace")
-            {
-                return View("AppPropertyFinance", "AppPropertyFinance");
-            }
+            //AllApplications application = _allApplicationsRepository.GetApplication(id);
 
-            return View("AllApplications");
+            //if(application.FinanceType=="Asset Finance")
+            //{
+            //    return View("AppAssetFinance", "AppAssetFinance");
+            //}
+            //else if (application.FinanceType == "Busniess Finance")
+            //{
+            //    return View("AppBusniessFinance", "AppBusniessFinance");
+            //}
+            //else if (application.FinanceType == "Development Finace")
+            //{
+            //    return View("AppDevelopmentFinance", "AppDevelopmentFinance");
+            //}
+            //else if (application.FinanceType == "Property Finace")
+            //{
+            //    return View("AppPropertyFinance", "AppPropertyFinance");
+            //}
+
+            //return View("AllApplications");
+
+            return View("AppAssetFinance", "AppAssetFinance");
         }
 
         

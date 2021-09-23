@@ -93,16 +93,12 @@ namespace LenSys.Controllers
 
             //}
 
-
             //AppAssetFinance 
             appAssetFinance = new AppAssetFinance();
             appAssetFinance.individuals = (List<AppAssetFinanceIndividual>)_appAssetFinanceIndividualRepository.ClearIndividualList();
             appAssetFinance.busniesses = (List<AppAssetFinanceBusniess>)_appAssetFinanceBusniessRepository.ClearBusniessList();
             //appAssetFinance.securityDetails = List;
             //return View("AppBusniessFinance", appBusniessFinance2);
-
-
-
 
             return View("AppAssetFinance", appAssetFinance);
             //return JavaScript(alert(""));

@@ -40,6 +40,11 @@ namespace LenSys.Models.Home.AllApplications
             return _allApplications;
         }
 
+        public IEnumerable<AppAssetFinance.AppAssetFinance> GetAllAssetFinanceApplication()
+        {
+            throw new NotImplementedException();
+        }
+
         public AllApplications GetApplication(int appId)
         {
             return _allApplications.FirstOrDefault(e => e.AppID == appId);

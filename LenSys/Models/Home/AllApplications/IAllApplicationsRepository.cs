@@ -9,6 +9,8 @@ namespace LenSys.Models.Home.AllApplications
     {
         AllApplications GetApplication(int KeyPrincipalsId);
         IEnumerable<AllApplications> GetAllApplications();
+
+        IEnumerable<AppAssetFinance.AppAssetFinance> GetAllAssetFinanceApplication();
         AllApplications Add(AllApplications Applications);
         AllApplications Update(AllApplications ApplicationsChanges);
         AllApplications Delete(int ApplicationId);

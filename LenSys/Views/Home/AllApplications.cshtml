@@ -1,9 +1,13 @@
-﻿@model IEnumerable<AllApplications>
+﻿@model IEnumerable<AppAssetFinance>
 
 @{
-    ViewBag.Title = "All Applications";
+    ViewBag.Title = "All Asset Applications";
 }
 
+<div class="x_title">
+    <h2>Asset Finance Applications</h2>
+    <div class="clearfix"></div>
+</div>
 
 <div class="mtop20">
     <table id="tblBusniessKeyPrincipals" class="table table-bordered table-hover table-striped">
@@ -11,7 +15,7 @@
             <tr>
                 <th id="keyPrincipalId">Application Id</th>
                 <th id="firstName" class="hideCol hideHideCol_2">Type</th>
-                <th id="position" class="hideCol hideHideCol_3">Finance</th>
+                <th id="position" class="hideCol hideHideCol_3">Company Name</th>
                 <th>Default</th>
                 <th>Edit</th>
                 <th>Delete</th>
@@ -23,12 +27,12 @@
                 @foreach (var application in Model)
 
                 {
-                    var tm = "#myModal" + application.AppID;
-                    var mid = "myModal" + application.AppID;
+                    var tm = "#myModal" + application.AssetFinId;
+                    var mid = "myModal" + application.AssetFinId;
                     <tr>
-                        <td>APP0000 @application.AppID</td>
-                        <td>@application.Category</td>
-                        <td>@application.FinanceType</td>
+                        <td>APP0000 @application.AssetFinId</td>
+                        <td>@application.ApplicationType</td>
+                        <td>@application.CompanyName</td>
                         
                         <td>
                             <button type="button" style="width:80px;" class="btn btn-primary btn-sm" >
@@ -36,7 +40,7 @@
                             </button>
                         </td>
 
-                        <td><a  style="width:80px;" class="btn btn-warning btn-sm" >Edit</a></td>
+                        <td><a asp-controller="Home" asp-action="EditApplication" asp-route-Id="@application.AssetFinId" style="width:80px;" class="btn btn-warning btn-sm" >Edit</a></td>
 
                         <td>
 
@@ -58,7 +62,7 @@
                                         </div>
                                         <div class="modal-footer">
 
-                                            <a asp-controller="Home" asp-action="DeleteApplication" asp-route-Id="@application.AppID" id="deleteBtn" class="btn bg-danger mr-1">Delete</a>
+                                            <a asp-controller="Home" asp-action="DeleteApplication" asp-route-Id="@application.AssetFinId" id="deleteBtn" class="btn bg-danger mr-1">Delete</a>
                                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                         </div>
                                     </div>
