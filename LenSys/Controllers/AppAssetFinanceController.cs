@@ -16,7 +16,7 @@ namespace LenSys.Controllers
         private IAppAssetFinanceRepository _appAssetFinanceRepository;
         private IAppAssetFinanceBusniessRepository _appAssetFinanceBusniessRepository;
         private IAppAssetFinanceIndividualRepository _appAssetFinanceIndividualRepository;
-
+        public static int appID;
         public AppAssetFinanceController(IAppAssetFinanceRepository appAssetFinanceRepository, IAppAssetFinanceBusniessRepository appAssetFinanceBusniessRepository, IAppAssetFinanceIndividualRepository appAssetFinanceIndividualRepository)
         {
             _appAssetFinanceRepository = appAssetFinanceRepository;
@@ -41,7 +41,7 @@ namespace LenSys.Controllers
             appAssetFinanceBusniess.busniessDetails=busniessDetails;
              _appAssetFinanceBusniessRepository.Add(appAssetFinanceBusniess);
 
-            AppAssetFinance appAssetFinance = new AppAssetFinance();
+            AppAssetFinance appAssetFinance = _appAssetFinanceRepository.GetAppAssetFinance(appID); //new AppAssetFinance();
             appAssetFinance.busniesses = (List<AppAssetFinanceBusniess>)_appAssetFinanceBusniessRepository.GetAllBusniess();
             appAssetFinance.individuals = (List<AppAssetFinanceIndividual>)_appAssetFinanceIndividualRepository.GetAllIndividual();
 
@@ -60,7 +60,7 @@ namespace LenSys.Controllers
 
 
 
-            AppAssetFinance appAssetFinance = new AppAssetFinance();
+            AppAssetFinance appAssetFinance = _appAssetFinanceRepository.GetAppAssetFinance(appID); //new AppAssetFinance();
             appAssetFinance.busniesses = (List<AppAssetFinanceBusniess>)_appAssetFinanceBusniessRepository.GetAllBusniess();
             appAssetFinance.individuals = (List<AppAssetFinanceIndividual>)_appAssetFinanceIndividualRepository.GetAllIndividual();
            
@@ -71,6 +71,9 @@ namespace LenSys.Controllers
         [HttpGet]
         public ViewResult AppAssetFinance(int id)
         {
+            //Saving to global id
+            appID = id;
+
             AppAssetFinance AppAssetFinanceApplication = _appAssetFinanceRepository.GetAppAssetFinance(id);
             
             //Fetched from db in Future

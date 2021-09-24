@@ -40,8 +40,14 @@ namespace LenSys.Models.AppAssetFinance
 
         public AppAssetFinance GetAppAssetFinance(int id)
         {
-            
-            return Context.AppAssetFinance.Find(id); 
+            AppAssetFinance appAssetFinance= Context.AppAssetFinance.Find(id);
+            //return Context.AppAssetFinance.Find(id); 
+            //AppAssetFinanceIndividual.AppAssetFinanceIndividual individual = new AppAssetFinanceIndividual.AppAssetFinanceIndividual();
+
+            //individual = Context.a
+
+
+            return appAssetFinance;
         }
 
         public AppAssetFinance Update(AppAssetFinance AppAssetFinanceChanges)
