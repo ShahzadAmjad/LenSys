@@ -1,5 +1,7 @@
 ﻿using LenSys.Models;
 using LenSys.Models.AppAssetFinance;
+using LenSys.Models.AppAssetFinance.AppAssetFinanceBusniess;
+using LenSys.Models.AppAssetFinance.AppAssetFinanceIndividual;
 using LenSys.Models.AppBusniessFinance;
 using LenSys.Models.AppDevelopmentFinance;
 using LenSys.Models.AppPropertyFinance;
@@ -20,18 +22,24 @@ namespace LenSys.Controllers
         private IAppBusniessFinanceRepository _appBusniessFinanceRepository;
         private IAppDevelopmentFinanceRepository _appDevelopmentFinanceRepository;
         private IAppPropertyFinanceRepository _appPropertyFinanceRepository;
+        private IAppAssetFinanceBusniessRepository _appAssetFinanceBusniessRepository;
+        private IAppAssetFinanceIndividualRepository _appAssetFinanceIndividualRepository;
 
         public HomeController(IAllApplicationsRepository allApplicationsRepository,
             IAppAssetFinanceRepository appAssetFinanceRepository,
             IAppBusniessFinanceRepository appBusniessFinanceRepository,
             IAppDevelopmentFinanceRepository appDevelopmentFinanceRepository,
-            IAppPropertyFinanceRepository appPropertyFinanceRepository)
+            IAppPropertyFinanceRepository appPropertyFinanceRepository, 
+            IAppAssetFinanceIndividualRepository appAssetFinanceIndividualRepository,
+            IAppAssetFinanceBusniessRepository appAssetFinanceBusniessRepository)
         {
             this._allApplicationsRepository = allApplicationsRepository;
             _appAssetFinanceRepository = appAssetFinanceRepository;
             _appBusniessFinanceRepository = appBusniessFinanceRepository;
             _appDevelopmentFinanceRepository = appDevelopmentFinanceRepository;
             _appPropertyFinanceRepository = appPropertyFinanceRepository;
+            _appAssetFinanceIndividualRepository = appAssetFinanceIndividualRepository;
+            _appAssetFinanceBusniessRepository = appAssetFinanceBusniessRepository;
         }
         public ViewResult Index()
         {
@@ -117,7 +125,13 @@ namespace LenSys.Controllers
         }
         public IActionResult EditApplication(int id)
         {
-            AppAssetFinance AppAssetFinanceApplication = _allApplicationsRepository.GetAssetFinanceApplication(id);
+            //AppAssetFinance AppAssetFinanceApplication = _allApplicationsRepository.GetAssetFinanceApplication(id);
+
+            //AppAssetFinanceApplication.busniesses = (List<AppAssetFinanceBusniess>)_appAssetFinanceBusniessRepository.GetAllBusniess();
+            //AppAssetFinanceApplication.individuals = (List<AppAssetFinanceIndividual>)_appAssetFinanceIndividualRepository.GetAllIndividual();
+
+
+
 
             //AllApplications application = _allApplicationsRepository.GetApplication(id);
 
@@ -140,7 +154,7 @@ namespace LenSys.Controllers
 
             //return View("AllApplications");
 
-            return RedirectToAction("AppAssetFinance", "AppAssetFinance", AppAssetFinanceApplication);
+            return RedirectToAction("AppAssetFinance", "AppAssetFinance", new { id = id });
         }
 
         

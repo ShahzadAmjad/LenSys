@@ -69,17 +69,26 @@ namespace LenSys.Controllers
             //return View("AppAssetFinance");
         }
         [HttpGet]
-        public ViewResult AppAssetFinance()
+        public ViewResult AppAssetFinance(int id)
         {
-            AppAssetFinance appAssetFinance = new AppAssetFinance();
-            appAssetFinance.busniesses = (List<AppAssetFinanceBusniess>)_appAssetFinanceBusniessRepository.GetAllBusniess();
-            appAssetFinance.individuals = (List<AppAssetFinanceIndividual>)_appAssetFinanceIndividualRepository.GetAllIndividual();
-            //ViewData["SecurityDetailsList"] = _appBusniessFinanceSecurityDetails.GetAllAppBusniessFinanceSecurityDetails();
-            return View("AppAssetFinance", appAssetFinance);
+            AppAssetFinance AppAssetFinanceApplication = _appAssetFinanceRepository.GetAppAssetFinance(id);
+            
+            //Fetched from db in Future
+            AppAssetFinanceApplication.busniesses = (List<AppAssetFinanceBusniess>)_appAssetFinanceBusniessRepository.GetAllBusniess();
+            AppAssetFinanceApplication.individuals = (List<AppAssetFinanceIndividual>)_appAssetFinanceIndividualRepository.GetAllIndividual();
 
+
+            //AppAssetFinance appAssetFinance = new AppAssetFinance();
+            //appAssetFinance.busniesses = (List<AppAssetFinanceBusniess>)_appAssetFinanceBusniessRepository.GetAllBusniess();
+            //appAssetFinance.individuals = (List<AppAssetFinanceIndividual>)_appAssetFinanceIndividualRepository.GetAllIndividual();
+
+            //return View("AppAssetFinance", appAssetFinance);
 
             //return View();
+            return View("AppAssetFinance", AppAssetFinanceApplication);
         }
+
+        //Update AppAssetFinance
         [HttpPost]
         public IActionResult AppAssetFinance(AppAssetFinance appAssetFinance)
         {
@@ -89,7 +98,7 @@ namespace LenSys.Controllers
 
             //if (ModelState.IsValid)
             //{
-                AppAssetFinance appAssetFinance1=_appAssetFinanceRepository.Add(appAssetFinance);
+                AppAssetFinance appAssetFinance1=_appAssetFinanceRepository.Update(appAssetFinance);
 
             //}
 
@@ -100,7 +109,9 @@ namespace LenSys.Controllers
             //appAssetFinance.securityDetails = List;
             //return View("AppBusniessFinance", appBusniessFinance2);
 
-            return View("AppAssetFinance", appAssetFinance);
+            //return View("AppAssetFinance", appAssetFinance);
+
+            return RedirectToAction("AllApplications", "Home");
             //return JavaScript(alert(""));
         }
 

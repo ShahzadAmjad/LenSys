@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LenSys.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210921155934_MigrationIndividualBusniessIncluded")]
-    partial class MigrationIndividualBusniessIncluded
+    [Migration("20210924053311_LeadUpdatedMigration")]
+    partial class LeadUpdatedMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -1121,8 +1121,8 @@ namespace LenSys.Migrations
                     b.Property<string>("ApplicationType")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CompanyBusniessName")
-                        .HasColumnType("int");
+                    b.Property<string>("CompanyBusniessName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
@@ -1130,8 +1130,8 @@ namespace LenSys.Migrations
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("IntroducerName")
-                        .HasColumnType("int");
+                    b.Property<string>("IntroducerName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("LoanAmount")
                         .HasColumnType("int");

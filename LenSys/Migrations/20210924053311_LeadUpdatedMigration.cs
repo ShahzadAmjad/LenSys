@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace LenSys.Migrations
 {
-    public partial class MigrationIndividualBusniessIncluded : Migration
+    public partial class LeadUpdatedMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -148,9 +148,9 @@ namespace LenSys.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     LoanPurpose = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LoanAmount = table.Column<int>(type: "int", nullable: false),
-                    IntroducerName = table.Column<int>(type: "int", nullable: false),
+                    IntroducerName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ApplicationType = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CompanyBusniessName = table.Column<int>(type: "int", nullable: false),
+                    CompanyBusniessName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     MiddleName = table.Column<string>(type: "nvarchar(max)", nullable: true),
