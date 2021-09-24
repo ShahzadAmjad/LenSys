@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LenSys.Models.Home;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -40,7 +41,11 @@ namespace LenSys.Models.AppAssetFinance
 
         public AppAssetFinance GetAppAssetFinance(int id)
         {
-            AppAssetFinance appAssetFinance= Context.AppAssetFinance.Find(id);
+            AppAssetFinance appAssetFinance= Context.AppAssetFinance.Find(id);  //Context.AppAssetFinance.Where(h=>h.AssetFinId);
+
+            //Lead lead = new Lead();
+
+            
             //return Context.AppAssetFinance.Find(id); 
             //AppAssetFinanceIndividual.AppAssetFinanceIndividual individual = new AppAssetFinanceIndividual.AppAssetFinanceIndividual();
 
