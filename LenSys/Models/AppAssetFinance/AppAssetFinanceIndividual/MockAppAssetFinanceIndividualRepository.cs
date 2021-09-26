@@ -63,6 +63,12 @@ namespace LenSys.Models.AppAssetFinance.AppAssetFinanceIndividual
             return _individual.FirstOrDefault(e => e.IndividualId == IndividualId);
         }
 
+        public IEnumerable<AppAssetFinanceIndividual> SetIndividualList(IEnumerable<AppAssetFinanceIndividual> IndividualList)
+        {
+            _individual = (List<AppAssetFinanceIndividual>)IndividualList;
+            return _individual;
+        }
+
         public AppAssetFinanceIndividual Update(AppAssetFinanceIndividual model)
         {
             AppAssetFinanceIndividual individual = _individual.FirstOrDefault(e => e.IndividualId == model.IndividualId);

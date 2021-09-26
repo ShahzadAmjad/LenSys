@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -24,7 +25,10 @@ namespace LenSys.Models.Home.AllApplications
 
         public AppAssetFinance.AppAssetFinance DeleteAssetFinanceApplication(int id)
         {
-            AppAssetFinance.AppAssetFinance appAssetFinance = Context.AppAssetFinance.Find(id);
+            IEnumerable<AppAssetFinance.AppAssetFinance> appAssetFinanceLst = Context.AppAssetFinance.Where(h => h.AssetFinId == id).Include("Lead").Include("individuals").Include("busniesses");
+            
+
+            AppAssetFinance.AppAssetFinance appAssetFinance = appAssetFinanceLst.First(); //Context.AppAssetFinance.Find(id);
             if (appAssetFinance != null)
             {
                 Context.AppAssetFinance.Remove(appAssetFinance);

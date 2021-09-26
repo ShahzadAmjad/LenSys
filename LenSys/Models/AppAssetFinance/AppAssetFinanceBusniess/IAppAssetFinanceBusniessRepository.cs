@@ -7,6 +7,7 @@ namespace LenSys.Models.AppAssetFinance.AppAssetFinanceBusniess
 {
     public interface IAppAssetFinanceBusniessRepository
     {
+        IEnumerable<AppAssetFinanceBusniess> SetBusniessList(IEnumerable<AppAssetFinanceBusniess> BusniessList);
         AppAssetFinanceBusniess GetBusniess(int BusniessId);
         IEnumerable<AppAssetFinanceBusniess> GetAllBusniess();
         AppAssetFinanceBusniess Add(AppAssetFinanceBusniess busniess);

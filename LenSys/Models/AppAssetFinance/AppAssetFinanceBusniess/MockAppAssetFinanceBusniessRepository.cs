@@ -62,6 +62,12 @@ namespace LenSys.Models.AppAssetFinance.AppAssetFinanceBusniess
             return _busniess.FirstOrDefault(e => e.BusniessId == BusniessId);
         }
 
+        public IEnumerable<AppAssetFinanceBusniess> SetBusniessList(IEnumerable<AppAssetFinanceBusniess> BusniessList)
+        {
+            _busniess = (List<AppAssetFinanceBusniess>)BusniessList;
+            return _busniess;
+        }
+
         public AppAssetFinanceBusniess Update(AppAssetFinanceBusniess model)
         {
             AppAssetFinanceBusniess busniess = _busniess.FirstOrDefault(e => e.BusniessId == model.BusniessId);

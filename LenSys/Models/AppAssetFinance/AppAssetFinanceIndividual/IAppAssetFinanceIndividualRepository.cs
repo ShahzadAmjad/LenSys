@@ -7,6 +7,7 @@ namespace LenSys.Models.AppAssetFinance.AppAssetFinanceIndividual
 {
     public interface IAppAssetFinanceIndividualRepository
     {
+        IEnumerable<AppAssetFinanceIndividual> SetIndividualList(IEnumerable<AppAssetFinanceIndividual> IndividualList);
         AppAssetFinanceIndividual GetIndividual(int IndividualId);
         IEnumerable<AppAssetFinanceIndividual> GetAllIndividual();
         AppAssetFinanceIndividual Add(AppAssetFinanceIndividual individual);

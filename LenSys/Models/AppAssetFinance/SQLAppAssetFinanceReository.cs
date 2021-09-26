@@ -1,4 +1,5 @@
 ﻿using LenSys.Models.Home;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,18 +42,18 @@ namespace LenSys.Models.AppAssetFinance
 
         public AppAssetFinance GetAppAssetFinance(int id)
         {
-            AppAssetFinance appAssetFinance= Context.AppAssetFinance.Find(id);  //Context.AppAssetFinance.Where(h=>h.AssetFinId);
-
+            IEnumerable < AppAssetFinance> appAssetFinance = Context.AppAssetFinance.Where(h => h.AssetFinId==id).Include("Lead").Include("individuals").Include("busniesses");
+            AppAssetFinance appAssetFinance1 = appAssetFinance.First();
             //Lead lead = new Lead();
 
-            
-            //return Context.AppAssetFinance.Find(id); 
+
+           // return Context.AppAssetFinance.Find(id);
             //AppAssetFinanceIndividual.AppAssetFinanceIndividual individual = new AppAssetFinanceIndividual.AppAssetFinanceIndividual();
 
             //individual = Context.a
 
 
-            return appAssetFinance;
+            return appAssetFinance1;
         }
 
         public AppAssetFinance Update(AppAssetFinance AppAssetFinanceChanges)

@@ -95,7 +95,10 @@ namespace LenSys.Controllers
                 //Employee newEmployee = _emplyeeRepositry.Add(employee);
                 ////return View();
                 //return RedirectToAction("details", new { id = newEmployee.Id });
-                return View("Lead");
+                //return View("Lead");
+
+                var appAssetFinanceApplication = _allApplicationsRepository.GetAllAssetFinanceApplication();
+                return View("AllApplications", appAssetFinanceApplication);
             }
 
             //return View("Lead");

@@ -7,6 +7,7 @@ namespace LenSys.Models.AppAssetFinance
 {
    public interface IAppAssetFinanceRepository
     {
+        
         AppAssetFinance GetAppAssetFinance(int KeyPrincipalsId);
         IEnumerable<AppAssetFinance> GetAllAppAssetFinance();
         AppAssetFinance Add(AppAssetFinance keyPrincipals);
