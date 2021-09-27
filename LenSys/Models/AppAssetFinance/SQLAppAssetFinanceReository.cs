@@ -42,7 +42,14 @@ namespace LenSys.Models.AppAssetFinance
 
         public AppAssetFinance GetAppAssetFinance(int id)
         {
-             AppAssetFinance appAssetFinance = Context.AppAssetFinance.Where(h => h.AssetFinId==id).Include("Lead").Include("individuals").Include("busniesses").FirstOrDefault();
+             AppAssetFinance appAssetFinance = Context.AppAssetFinance
+                .Include(x => x.Lead)
+                .Include(x=>x.individuals)
+                    .ThenInclude(y=>y.personalDetails)
+                .Include(x => x.busniesses)
+                    .ThenInclude(z => z.busniessDetails)
+                .Where(h => h.AssetFinId == id)
+                .FirstOrDefault();
 
             //ThenInclude("PersonalDetails")
            // return Context.AppAssetFinance.Find(id);
