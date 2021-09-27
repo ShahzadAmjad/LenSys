@@ -64,12 +64,10 @@
                                             @*<td>@individual.personalDetails.FirstName</td>*@
 
                                         <td>
-                                            <a asp-controller="AppAssetFinance" asp-action="DeleteIndividual" asp-route-Id="@individual.IndividualId" id="AddIndividualPersonalDetails" class="btn btn-primary btn-sm">
+                                            <a asp-controller="AppAssetFinance" asp-action="AddIndividualPersonalDetails" asp-route-Id="@individual.IndividualId" id="AddIndividualPersonalDetails" class="btn btn-primary btn-sm">
                                                 Personal Details
                                             </a>
-                                            <button type="button" class="btn btn-primary btn-sm" id="EditIndividualbtn" name="EditIndividualbtn">
-                                                Personal Details
-                                            </button>
+                                            
                                             <button type="button" class="btn btn-primary btn-sm" id="EditIndividualbtn" name="EditIndividualbtn">
                                                 Address
                                             </button>

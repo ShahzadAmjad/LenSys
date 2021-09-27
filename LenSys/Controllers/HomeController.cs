@@ -43,9 +43,8 @@ namespace LenSys.Controllers
         }
         public ViewResult Index()
         {
-            //String name = "Default Index Page";
-            //return name;
-            return View("Lead");
+            var appAssetFinanceApplication = _allApplicationsRepository.GetAllAssetFinanceApplication();
+            return View("AllApplications", appAssetFinanceApplication);
         }
         [HttpGet]
         public ViewResult Lead()

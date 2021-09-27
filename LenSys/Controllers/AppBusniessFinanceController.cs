@@ -77,6 +77,11 @@ namespace LenSys.Controllers
         [HttpPost]
         public IActionResult AppBusniessFinance(AppBusniessFinance appBusniessFinance)
         {
+            foreach(AppBusniessFinanceSecurityDetails SecurityDetails in _appBusniessFinanceSecurityDetails.GetAllAppBusniessFinanceSecurityDetails())
+            {
+                SecurityDetails.SecurityDetailsId = 0;
+            }
+
             appBusniessFinance.securityDetails = (List<AppBusniessFinanceSecurityDetails>)_appBusniessFinanceSecurityDetails.GetAllAppBusniessFinanceSecurityDetails();
 
             //if (ModelState.IsValid)

@@ -26,8 +26,8 @@ namespace LenSys.Models.AppAssetFinance
 
         public AppAssetFinance Delete(int id)
         {
-            AppAssetFinance appAssetFinance = Context.AppAssetFinance.Find(id);
-            if(appAssetFinance!=null)
+            AppAssetFinance appAssetFinance = Context.AppAssetFinance.Where(h => h.AssetFinId == id).Include("Lead").Include("individuals").Include("busniesses").FirstOrDefault(); //Context.AppAssetFinance.Find(id);
+            if (appAssetFinance!=null)
             {
                 Context.AppAssetFinance.Remove(appAssetFinance);
                 Context.SaveChanges();
@@ -42,18 +42,16 @@ namespace LenSys.Models.AppAssetFinance
 
         public AppAssetFinance GetAppAssetFinance(int id)
         {
-            IEnumerable < AppAssetFinance> appAssetFinance = Context.AppAssetFinance.Where(h => h.AssetFinId==id).Include("Lead").Include("individuals").Include("busniesses");
-            AppAssetFinance appAssetFinance1 = appAssetFinance.First();
-            //Lead lead = new Lead();
+             AppAssetFinance appAssetFinance = Context.AppAssetFinance.Where(h => h.AssetFinId==id).Include("Lead").Include("individuals").Include("busniesses").FirstOrDefault();
 
-
+            //ThenInclude("PersonalDetails")
            // return Context.AppAssetFinance.Find(id);
             //AppAssetFinanceIndividual.AppAssetFinanceIndividual individual = new AppAssetFinanceIndividual.AppAssetFinanceIndividual();
 
             //individual = Context.a
 
 
-            return appAssetFinance1;
+            return appAssetFinance;
         }
 
         public AppAssetFinance Update(AppAssetFinance AppAssetFinanceChanges)
