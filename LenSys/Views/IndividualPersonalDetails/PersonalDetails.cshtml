@@ -45,17 +45,19 @@
                                     </div>
                                 </div>
                                 <div class="item form-group">
-                                    <label asp-for="FirstName" class="col-form-label col-md-3 col-sm-3 label-align">
-                                        First Name <span class="required">*</span>
+                                    <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="FirstName">
+                                        First Name<span class="required">*</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 ">
-                                        <input type="text" asp-for="FirstName" id="first-name" name="first-name" required="required" class="form-control">
+                                        <input type="text" asp-for="FirstName" id="FirstName" name="FirstName" required="required" class="form-control ">
                                     </div>
                                 </div>
                                 <div class="item form-group">
-                                    <label asp-for="MiddleName" class="col-form-label col-md-3 col-sm-3 label-align">Middle Name / Initial</label>
+                                    <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="MiddleName">
+                                        Middle Name
+                                    </label>
                                     <div class="col-md-6 col-sm-6 ">
-                                        <input asp-for="MiddleName" id="middle-name" name="middle-name" class="form-control" type="text">
+                                        <input type="text" asp-for="MiddleName" id="MiddleName" name="MiddleName" required="required" class="form-control ">
                                     </div>
                                 </div>
                                 <div class="item form-group">
@@ -65,9 +67,19 @@
                                     </div>
                                 </div>
                                 <div class="item form-group">
-                                    <label asp-for="PhoneNo" class="col-form-label col-md-3 col-sm-3 label-align">Phone No</label>
+                                    <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="PhoneNo">
+                                        Phone No
+                                    </label>
                                     <div class="col-md-6 col-sm-6 ">
-                                        <input asp-for="PhoneNo" id="phoneNo" name="phoneNo" class="form-control" type="text">
+                                        <input type="text" asp-for="PhoneNo" id="PhoneNo" name="PhoneNo" required="required" class="form-control ">
+                                    </div>
+                                </div>
+                                <div class="item form-group">
+                                    <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="Email">
+                                        Email
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 ">
+                                        <input type="text" asp-for="Email" id="Email" name="Email" required="required" class="form-control ">
                                     </div>
                                 </div>
                                 <div class="item form-group">
@@ -114,6 +126,16 @@
                                         </select>
                                     </div>
                                 </div>
+
+                                <div class="item form-group">
+                                    <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="LengthOfResidencyYears">
+                                        Length Of Residency Years
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 ">
+                                        <input type="text" asp-for="LengthOfResidencyYears" id="LengthOfResidencyYears" name="LengthOfResidencyYears" required="required" class="form-control ">
+                                    </div>
+                                </div>
+
                                 <div class="item form-group">
                                     <label asp-for="MaritalStatus" class="col-form-label col-md-3 col-sm-3 label-align">Marital Status</label>
                                     <div class="col-md-6 col-sm-6 ">

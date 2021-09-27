@@ -116,8 +116,8 @@ namespace LenSys.Controllers
             
 
             AppAssetFinance AppAssetFinanceApplication = _appAssetFinanceRepository.GetAppAssetFinance(id);
-            _appAssetFinanceBusniessRepository.SetBusniessList(AppAssetFinanceApplication.busniesses);
-            _appAssetFinanceIndividualRepository.SetIndividualList(AppAssetFinanceApplication.individuals);
+            //_appAssetFinanceBusniessRepository.SetBusniessList(AppAssetFinanceApplication.busniesses);
+            //_appAssetFinanceIndividualRepository.SetIndividualList(AppAssetFinanceApplication.individuals);
 
             //Saving to global variables
             lead = AppAssetFinanceApplication.Lead;
@@ -132,11 +132,13 @@ namespace LenSys.Controllers
             foreach (AppAssetFinanceIndividual individual in _appAssetFinanceIndividualRepository.GetAllIndividual())
             {
                 individual.IndividualId = 0;
+                individual.personalDetails.PersonalDetailsId = 0;
             }
 
             foreach (AppAssetFinanceBusniess busniess in _appAssetFinanceBusniessRepository.GetAllBusniess())
             {
                 busniess.BusniessId = 0;
+                busniess.busniessDetails.BusniessDetailsId = 0;
             }
 
             appAssetFinance.busniesses = (List<AppAssetFinanceBusniess>)_appAssetFinanceBusniessRepository.GetAllBusniess();

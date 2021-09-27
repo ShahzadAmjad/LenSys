@@ -127,7 +127,10 @@ namespace LenSys.Controllers
         }
         public IActionResult EditApplication(int id)
         {
-            //AppAssetFinance AppAssetFinanceApplication = _allApplicationsRepository.GetAssetFinanceApplication(id);
+            AppAssetFinance AppAssetFinanceApplication = _appAssetFinanceRepository.GetAppAssetFinance(id); //_allApplicationsRepository.GetAssetFinanceApplication(id);
+            
+            _appAssetFinanceBusniessRepository.SetBusniessList(AppAssetFinanceApplication.busniesses);
+            _appAssetFinanceIndividualRepository.SetIndividualList(AppAssetFinanceApplication.individuals);
 
             //AppAssetFinanceApplication.busniesses = (List<AppAssetFinanceBusniess>)_appAssetFinanceBusniessRepository.GetAllBusniess();
             //AppAssetFinanceApplication.individuals = (List<AppAssetFinanceIndividual>)_appAssetFinanceIndividualRepository.GetAllIndividual();
