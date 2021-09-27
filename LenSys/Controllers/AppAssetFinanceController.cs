@@ -68,6 +68,12 @@ namespace LenSys.Controllers
             //return RedirectToAction("BusniessDetails", "BusniessDetails");
             //return View("AppAssetFinance");
         }
+        public IActionResult AddIndividualPersonalDetails(int individualId)
+        {
+
+            return View();
+        }
+
         [HttpGet]
         public ViewResult AppAssetFinance(int id)
         {
