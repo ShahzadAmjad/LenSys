@@ -38,17 +38,8 @@ namespace LenSys.Controllers
 
             AppAssetFinanceIndividual appAssetFinanceIndividual = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId);
 
-            
-            //if (ModelState.IsValid)
-            {
-                appAssetFinanceIndividual.personalDetails = personalDetails;
-                //Employee newEmployee = _emplyeeRepositry.Add(employee);
-                ////return View();
-                //return RedirectToAction("details", new { id = newEmployee.Id });
-                return RedirectToAction("AppAssetFinance", "AppAssetFinance", new { id = id });
-            }
-
-            //return View();
+            appAssetFinanceIndividual.personalDetails = personalDetails;
+            return RedirectToAction("AppAssetFinance", "AppAssetFinance", new { id = id });
         }
 
 

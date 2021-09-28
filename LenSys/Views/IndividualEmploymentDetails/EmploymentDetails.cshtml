@@ -23,7 +23,14 @@
                     <div class="x_content">
                         <br />
                         <form id="IndividualEmploymentDetailsForm" data-parsley-validate class="form-horizontal form-label-left" asp-controller="IndividualEmploymentDetails" asp-action="EmploymentDetails" method="post">
-
+                            <div class="item form-group">
+                                <label asp-for="EmploymentDetailsId" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Id<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="EmploymentDetailsId" id="EmploymentDetailsId" name="EmploymentDetailsId" readonly class="form-control" type="text">
+                                </div>
+                            </div>
                             <div class="item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="EmploymentStatus">
                                     Employment Status<span class="required">*</span>
@@ -73,7 +80,8 @@
 
                             <div class="item form-group">
                                 <label asp-for="JobTitle" class="col-form-label col-md-3 col-sm-3 label-align">
-                                Job Title</label>
+                                    Job Title
+                                </label>
                                 <div class="col-md-6 col-sm-6 ">
                                     <input asp-for="JobTitle" id="jobTitle" name="jobTitle" class="form-control" type="text">
                                 </div>
@@ -100,7 +108,8 @@
 
                             <div class="item form-group">
                                 <label asp-for="EmployersName" class="col-form-label col-md-3 col-sm-3 label-align">
-                                Employer's Name </label>
+                                    Employer's Name
+                                </label>
                                 <div class="col-md-6 col-sm-6 ">
                                     <input asp-for="EmployersName" id="employersName" name="employersName" class="form-control" type="text">
                                 </div>
@@ -132,7 +141,7 @@
                                     <input asp-for="LatestEarnedIncomeYearThree" id="latestEarnedIncomeYearThree" name="latestEarnedIncomeYearThree" class="form-control" type="text">
                                 </div>
                             </div>
-                           
+
 
 
 
