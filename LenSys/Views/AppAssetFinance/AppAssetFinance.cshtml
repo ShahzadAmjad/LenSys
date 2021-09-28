@@ -64,11 +64,11 @@
                                             @*<td>@individual.personalDetails.FirstName</td>*@
 
                                         <td>
-                                            <a asp-controller="AppAssetFinance" asp-action="AddIndividualPersonalDetails" asp-route-Id="@individual.IndividualId" id="AddIndividualPersonalDetails" class="btn btn-primary btn-sm">
-                                                Personal Details
+                                            <a asp-controller="AppAssetFinance" asp-action="EditIndividual" asp-route-Id="@individual.IndividualId" id="AddIndividualPersonalDetails" class="btn btn-primary btn-sm">
+                                                Default
                                             </a>
                                             
-                                            <button type="button" class="btn btn-primary btn-sm" id="EditIndividualbtn" name="EditIndividualbtn">
+                                            @*<button type="button" class="btn btn-primary btn-sm" id="EditIndividualbtn" name="EditIndividualbtn">
                                                 Address
                                             </button>
                                             <button type="button" class="btn btn-primary btn-sm" id="EditIndividualbtn" name="EditIndividualbtn">
@@ -94,7 +94,7 @@
                                             </button>
                                             <button type="button" class="btn btn-primary btn-sm" id="EditIndividualbtn" name="EditIndividualbtn">
                                                 Documents
-                                            </button>
+                                            </button>*@
                                         </td>
 
                                             <td>
@@ -167,23 +167,26 @@
                                             <td>Temporary field</td>
                                             @*<td>@busniess.busniessDetails.CompanyBusniessName</td>*@
 
-                                            <td>
-                                                <button type="button"  class="btn btn-primary btn-sm" id="EditIndividualbtn" name="EditIndividualbtn">
-                                                    Busniess Details
-                                                </button>
-                                                <button type="button"  class="btn btn-primary btn-sm" id="EditIndividualbtn" name="EditIndividualbtn">
-                                                    Key Principals
-                                                </button>
-                                                <button type="button"  class="btn btn-primary btn-sm" id="EditIndividualbtn" name="EditIndividualbtn">
-                                                    Busniess Liability
-                                                </button>
-                                                <button type="button"  class="btn btn-primary btn-sm" id="EditIndividualbtn" name="EditIndividualbtn">
-                                                    Serviceability
-                                                </button>
-                                                <button type="button"  class="btn btn-primary btn-sm" id="EditIndividualbtn" name="EditIndividualbtn">
-                                                    Documents
-                                                </button>
-                                            </td>
+                                        <td>
+                                            <a asp-controller="AppAssetFinance" asp-action="EditBusniess" asp-route-Id="@busniess.BusniessId" id="AddIndividualPersonalDetails" class="btn btn-primary btn-sm">
+                                                Default
+                                            </a>
+                                            @*<button type="button"  class="btn btn-primary btn-sm" id="EditIndividualbtn" name="EditIndividualbtn">
+            Busniess Details
+        </button>
+        <button type="button"  class="btn btn-primary btn-sm" id="EditIndividualbtn" name="EditIndividualbtn">
+            Key Principals
+        </button>
+        <button type="button"  class="btn btn-primary btn-sm" id="EditIndividualbtn" name="EditIndividualbtn">
+            Busniess Liability
+        </button>
+        <button type="button"  class="btn btn-primary btn-sm" id="EditIndividualbtn" name="EditIndividualbtn">
+            Serviceability
+        </button>
+        <button type="button"  class="btn btn-primary btn-sm" id="EditIndividualbtn" name="EditIndividualbtn">
+            Documents
+        </button>*@
+                                        </td>
 
                                             <td>
                                                 <button type="button" style="width:80px;" class="btn btn-danger btn-sm" data-toggle="modal" data-target="@tm">

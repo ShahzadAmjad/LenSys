@@ -1,4 +1,6 @@
-﻿using LenSys.Models.BusniessDetails;
+﻿using LenSys.Models.AppAssetFinance.AppAssetFinanceBusniess;
+using LenSys.Models.AppAssetFinance.AppAssetFinanceIndividual;
+using LenSys.Models.BusniessDetails;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,6 +11,11 @@ namespace LenSys.Controllers
 {
     public class BusniessDetailsController:Controller
     {
+        private IAppAssetFinanceBusniessRepository _appAssetFinanceBusniessRepository;
+        public BusniessDetailsController(IAppAssetFinanceBusniessRepository appAssetFinanceBusniessRepository)
+        {
+            _appAssetFinanceBusniessRepository = appAssetFinanceBusniessRepository;
+        }
         public ViewResult Index()
         {
             //String name = "Default Index Page";
@@ -18,25 +25,25 @@ namespace LenSys.Controllers
         [HttpGet]
         public ViewResult BusniessDetails()
         {
-            return View();
+            int BusniessId = AppAssetFinanceController.BusniessID;
+            BusniessDetails busniessDetails = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId).busniessDetails;
+
+            return View(busniessDetails);
+            //return View();
         }
         [HttpPost]
         public IActionResult BusniessDetails(BusniessDetails busniessDetails)
         {
-            //TempData["mydata"] = busniessDetails;
+            int id = AppAssetFinanceController.appID;
+            int BusniessId = AppAssetFinanceController.BusniessID;
 
-            //return RedirectToAction("Index", "Home2");
+            AppAssetFinanceBusniess appAssetFinanceBusniess = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId);
 
             //if (ModelState.IsValid)
-            //{
-            //    //Employee newEmployee = _emplyeeRepositry.Add(employee);
-            //    ////return View();
-            //    //return RedirectToAction("details", new { id = newEmployee.Id });
-            //    return View("BusniessDetails");
-            //}
-
-            return View();
+            {
+                appAssetFinanceBusniess.busniessDetails = busniessDetails;
+                return RedirectToAction("AppAssetFinance", "AppAssetFinance", new { id = id });
+            }
         }
-
     }
 }

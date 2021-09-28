@@ -4,6 +4,7 @@ using LenSys.Models.AppAssetFinance.AppAssetFinanceBusniess;
 using LenSys.Models.AppAssetFinance.AppAssetFinanceIndividual;
 using LenSys.Models.BusniessDetails;
 using LenSys.Models.Home;
+using LenSys.Models.IndividualAddressDetails;
 using LenSys.Models.IndividualPersonalDetails;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -20,6 +21,7 @@ namespace LenSys.Controllers
         private IAppAssetFinanceIndividualRepository _appAssetFinanceIndividualRepository;
         public static int appID;
         public static int IndividualID;
+        public static int BusniessID;
 
         public static Lead lead;
         public AppAssetFinanceController(IAppAssetFinanceRepository appAssetFinanceRepository, IAppAssetFinanceBusniessRepository appAssetFinanceBusniessRepository, IAppAssetFinanceIndividualRepository appAssetFinanceIndividualRepository)
@@ -65,12 +67,20 @@ namespace LenSys.Controllers
             return View("AppAssetFinance", appAssetFinance);
 
         }
+        public IActionResult EditBusniess(int id)
+        {
+            BusniessID = id;
+            //SiteGlobalVariables._IndividualId = id;
+            return RedirectToAction("BusniessDetails", "BusniessDetails");
+            //, new { id = id }
+        }
         public IActionResult AddIndividual()
         {
 
             //return RedirectToAction("PersonalDetails", "IndividualPersonalDetails");
             AppAssetFinanceIndividual appAssetFinanceIndividual = new AppAssetFinanceIndividual();
             PersonalDetails individualPersonalDetails = new PersonalDetails { FirstName = "Temp" };
+            //AddressDetails IndividualAddressDetails = new AddressDetails { City = "Temp" };
             appAssetFinanceIndividual.personalDetails= individualPersonalDetails;
             _appAssetFinanceIndividualRepository.Add(appAssetFinanceIndividual);
 
@@ -94,39 +104,28 @@ namespace LenSys.Controllers
 
             return View("AppAssetFinance", appAssetFinance);
         }
-        public IActionResult AddIndividualPersonalDetails(int id)
+        public IActionResult EditIndividual(int id)
         {
-            //AppAssetFinanceIndividual appAssetFinanceIndividual = _appAssetFinanceIndividualRepository.GetIndividual(individualId);
-            ////PersonalDetails individualPersonalDetails = appAssetFinanceIndividual.personalDetails;
-            //int individualPersonalDetailsId = appAssetFinanceIndividual.personalDetails.PersonalDetailsId;
-
-            //return View();
-
             IndividualID = id;
             //SiteGlobalVariables._IndividualId = id;
             return RedirectToAction("PersonalDetails", "IndividualPersonalDetails");
             //, new { id = id }
         }
-
         [HttpGet]
         public ViewResult AppAssetFinance(int id)
         {
             //Saving to global variables
             appID = id;
             
-
             AppAssetFinance AppAssetFinanceApplication = _appAssetFinanceRepository.GetAppAssetFinance(id);
             //_appAssetFinanceBusniessRepository.SetBusniessList(AppAssetFinanceApplication.busniesses);
             //_appAssetFinanceIndividualRepository.SetIndividualList(AppAssetFinanceApplication.individuals);
-
+            AppAssetFinanceApplication.busniesses = (List<AppAssetFinanceBusniess>)_appAssetFinanceBusniessRepository.GetAllBusniess();
+            AppAssetFinanceApplication.individuals = (List<AppAssetFinanceIndividual>)_appAssetFinanceIndividualRepository.GetAllIndividual();
             //Saving to global variables
-            lead = AppAssetFinanceApplication.Lead;
-           
+            lead = AppAssetFinanceApplication.Lead;          
             return View("AppAssetFinance", AppAssetFinanceApplication);
         }
-
-        
-
         //Update AppAssetFinance
         [HttpPost]
         public IActionResult AppAssetFinance(AppAssetFinance appAssetFinance)
@@ -151,6 +150,7 @@ namespace LenSys.Controllers
 
             //if (ModelState.IsValid)
             //{
+            //Delete Old Record and add new one due to List multiple not updated
             _appAssetFinanceRepository.Delete(appID);
 
             appAssetFinance.AssetFinId = 0;
