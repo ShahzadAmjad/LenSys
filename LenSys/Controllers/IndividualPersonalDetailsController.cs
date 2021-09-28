@@ -28,8 +28,6 @@ namespace LenSys.Controllers
             int IndividualId = AppAssetFinanceController.IndividualID;
             PersonalDetails individualPersonalDetails=_appAssetFinanceIndividualRepository.GetIndividual(IndividualId).personalDetails;
             
-
-
             return View(individualPersonalDetails);
         }
         [HttpPost]

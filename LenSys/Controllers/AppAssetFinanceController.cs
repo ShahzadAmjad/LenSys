@@ -125,6 +125,8 @@ namespace LenSys.Controllers
             return View("AppAssetFinance", AppAssetFinanceApplication);
         }
 
+        
+
         //Update AppAssetFinance
         [HttpPost]
         public IActionResult AppAssetFinance(AppAssetFinance appAssetFinance)
