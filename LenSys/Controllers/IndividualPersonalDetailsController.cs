@@ -18,9 +18,11 @@ namespace LenSys.Controllers
         }
         public ViewResult Index()
         {
-            //String name = "Default Index Page";
-            //return name;
-            return View("PersonalDetails");
+            int IndividualId = AppAssetFinanceController.IndividualID;
+            PersonalDetails individualPersonalDetails = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId).personalDetails;
+
+            //return View(individualPersonalDetails);
+            return View("PersonalDetails", individualPersonalDetails);
         }
         [HttpGet]
         public ViewResult PersonalDetails()
@@ -39,7 +41,8 @@ namespace LenSys.Controllers
             AppAssetFinanceIndividual appAssetFinanceIndividual = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId);
 
             appAssetFinanceIndividual.personalDetails = personalDetails;
-            return RedirectToAction("AppAssetFinance", "AppAssetFinance", new { id = id });
+            //return RedirectToAction("AppAssetFinance", "AppAssetFinance", new { id = id });
+            return View();
         }
 
 

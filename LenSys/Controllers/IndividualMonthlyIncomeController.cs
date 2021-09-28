@@ -1,4 +1,5 @@
-﻿using LenSys.Models.IndividualIncomeExpenditure;
+﻿using LenSys.Models.AppAssetFinance.AppAssetFinanceIndividual;
+using LenSys.Models.IndividualIncomeExpenditure;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,27 +10,45 @@ namespace LenSys.Controllers
 {
     public class IndividualMonthlyIncomeController : Controller
     {
+        private IAppAssetFinanceIndividualRepository _appAssetFinanceIndividualRepository;
+        public IndividualMonthlyIncomeController(IAppAssetFinanceIndividualRepository appAssetFinanceIndividualRepository)
+        {
+            _appAssetFinanceIndividualRepository = appAssetFinanceIndividualRepository;
+        }
         public ViewResult Index()
         {
-            //String name = "Default Index Page";
-            //return name;
-            return View("MonthlyIncome");
+            int IndividualId = AppAssetFinanceController.IndividualID;
+            MonthlyIncome monthlyIncome = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId).monthlyIncome;
+
+            return View(monthlyIncome);
+            //return View("MonthlyIncome", monthlyIncome);
         }
         [HttpGet]
         public ViewResult MonthlyIncome()
         {
-            return View();
+            int IndividualId = AppAssetFinanceController.IndividualID;
+            MonthlyIncome monthlyIncome = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId).monthlyIncome;
+
+            return View(monthlyIncome);
+            //return View();
         }
         [HttpPost]
-        public IActionResult MonthlyIncome(MonthlyIncome incomeExpenditure)
+        public IActionResult MonthlyIncome(MonthlyIncome income)
         {
-            if (ModelState.IsValid)
-            {
-                //Employee newEmployee = _emplyeeRepositry.Add(employee);
-                ////return View();
-                //return RedirectToAction("details", new { id = newEmployee.Id });
-                return View("MonthlyIncome");
-            }
+            int id = AppAssetFinanceController.appID;
+            int IndividualId = AppAssetFinanceController.IndividualID;
+
+            AppAssetFinanceIndividual appAssetFinanceIndividual = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId);
+
+            appAssetFinanceIndividual.monthlyIncome = income;
+            //return RedirectToAction("AppAssetFinance", "AppAssetFinance", new { id = id });
+            //if (ModelState.IsValid)
+            //{
+            //    //Employee newEmployee = _emplyeeRepositry.Add(employee);
+            //    ////return View();
+            //    //return RedirectToAction("details", new { id = newEmployee.Id });
+            //    return View("MonthlyIncome");
+            //}
 
             return View();
         }
