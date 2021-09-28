@@ -17,6 +17,7 @@ namespace LenSys.Controllers
 {
     public class HomeController: Controller
     {
+        
         private readonly IAllApplicationsRepository _allApplicationsRepository;
         private IAppAssetFinanceRepository _appAssetFinanceRepository;
         private IAppBusniessFinanceRepository _appBusniessFinanceRepository;
@@ -24,7 +25,7 @@ namespace LenSys.Controllers
         private IAppPropertyFinanceRepository _appPropertyFinanceRepository;
         private IAppAssetFinanceBusniessRepository _appAssetFinanceBusniessRepository;
         private IAppAssetFinanceIndividualRepository _appAssetFinanceIndividualRepository;
-
+        public static int EditAssetFinanceAppID;
         public HomeController(IAllApplicationsRepository allApplicationsRepository,
             IAppAssetFinanceRepository appAssetFinanceRepository,
             IAppBusniessFinanceRepository appBusniessFinanceRepository,
@@ -127,6 +128,7 @@ namespace LenSys.Controllers
         }
         public IActionResult EditApplication(int id)
         {
+            EditAssetFinanceAppID = id;
             AppAssetFinance AppAssetFinanceApplication = _appAssetFinanceRepository.GetAppAssetFinance(id); //_allApplicationsRepository.GetAssetFinanceApplication(id);
             
             _appAssetFinanceBusniessRepository.SetBusniessList(AppAssetFinanceApplication.busniesses);

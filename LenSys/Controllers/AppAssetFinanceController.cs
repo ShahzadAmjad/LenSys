@@ -3,9 +3,21 @@ using LenSys.Models.AppAssetFinance;
 using LenSys.Models.AppAssetFinance.AppAssetFinanceBusniess;
 using LenSys.Models.AppAssetFinance.AppAssetFinanceIndividual;
 using LenSys.Models.BusniessDetails;
+using LenSys.Models.BusniessKeyPrincipals;
+using LenSys.Models.BusniessLiabilities;
+using LenSys.Models.BusniessServiceability;
+using LenSys.Models.BusniessUploadDocument;
 using LenSys.Models.Home;
 using LenSys.Models.IndividualAddressDetails;
+using LenSys.Models.IndividualAsset;
+using LenSys.Models.IndividualCreditHistory;
+using LenSys.Models.IndividualEmploymentDetails;
+using LenSys.Models.IndividualIncomeExpenditure;
+using LenSys.Models.IndividualLiabilities;
+using LenSys.Models.IndividualMonthlyExpenditure;
 using LenSys.Models.IndividualPersonalDetails;
+using LenSys.Models.IndividualPropertySchedule;
+using LenSys.Models.IndividualUploadDocuments;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -19,6 +31,7 @@ namespace LenSys.Controllers
         private IAppAssetFinanceRepository _appAssetFinanceRepository;
         private IAppAssetFinanceBusniessRepository _appAssetFinanceBusniessRepository;
         private IAppAssetFinanceIndividualRepository _appAssetFinanceIndividualRepository;
+        //Shared Variables
         public static int appID;
         public static int IndividualID;
         public static int BusniessID;
@@ -45,8 +58,18 @@ namespace LenSys.Controllers
             AppAssetFinanceBusniess appAssetFinanceBusniess = new AppAssetFinanceBusniess();
 
             BusniessDetails busniessDetails = new BusniessDetails { CompanyBusniessName = "Temp" };
+            List<KeyPrincipals> keyPrincipals =new List<KeyPrincipals>(){new KeyPrincipals{Title = "Temp",FirstName = "Temp"}};
+            List<BusniessLiabilities> busniessLiabilities = new List<BusniessLiabilities>(){new BusniessLiabilities{Lender="Temp", OrigionalLoanAmount=123} };
+            List<Serviceability> serviceability = new List<Serviceability>(){new Serviceability{ Year=(DateTime.Now.Year).ToString(),TurnOver=123}};
+            BusniessDocuments busniessDocuments = new BusniessDocuments { DocumentName="Temp" };
+
             appAssetFinanceBusniess.busniessDetails=busniessDetails;
-             _appAssetFinanceBusniessRepository.Add(appAssetFinanceBusniess);
+            appAssetFinanceBusniess.keyPrincipals = keyPrincipals;
+            appAssetFinanceBusniess.busniessLiabilities = busniessLiabilities;
+            appAssetFinanceBusniess.serviceability = serviceability;
+            appAssetFinanceBusniess.busniessDocuments = busniessDocuments;
+
+            _appAssetFinanceBusniessRepository.Add(appAssetFinanceBusniess);
 
             AppAssetFinance appAssetFinance = _appAssetFinanceRepository.GetAppAssetFinance(appID); //new AppAssetFinance();
             appAssetFinance.busniesses = (List<AppAssetFinanceBusniess>)_appAssetFinanceBusniessRepository.GetAllBusniess();
@@ -75,13 +98,30 @@ namespace LenSys.Controllers
             //, new { id = id }
         }
         public IActionResult AddIndividual()
-        {
-
-            //return RedirectToAction("PersonalDetails", "IndividualPersonalDetails");
+        {     
             AppAssetFinanceIndividual appAssetFinanceIndividual = new AppAssetFinanceIndividual();
             PersonalDetails individualPersonalDetails = new PersonalDetails { FirstName = "Temp" };
-            //AddressDetails IndividualAddressDetails = new AddressDetails { City = "Temp" };
+            AddressDetails IndividualAddressDetails = new AddressDetails { City = "Temp" };
+            EmploymentDetails IndividualEmploymentDetails = new EmploymentDetails { EmployersName = "Temp" };
+            MonthlyIncome monthlyIncome = new MonthlyIncome { DividendsAfterTax = 555 };
+            MonthlyExpenditure monthlyExpenditure = new MonthlyExpenditure {CarInsuranceRoadTax=123 };
+            Asset asset = new Asset { Cash = 654 };
+            Liabilities liabilities = new Liabilities { NetAssets = 45000 };
+            List<PropertySchedule> _propertySchedule= new List<PropertySchedule>(){new PropertySchedule{Owner="Temp", PropertyAddress="Temp"}};
+            CreditHistory creditHistory = new CreditHistory { CriminalConvictions = "Temp" };
+            IndividualDocuments individualDocuments = new IndividualDocuments { DocumentName = "Temp" };
+                 
             appAssetFinanceIndividual.personalDetails= individualPersonalDetails;
+            appAssetFinanceIndividual.addressDetails = IndividualAddressDetails;
+            appAssetFinanceIndividual.employmentDetails = IndividualEmploymentDetails;
+            appAssetFinanceIndividual.monthlyIncome = monthlyIncome;
+            appAssetFinanceIndividual.monthlyExpenditure = monthlyExpenditure;
+            appAssetFinanceIndividual.asset = asset;
+            appAssetFinanceIndividual.liabilities = liabilities;
+            appAssetFinanceIndividual.propertySchedule = _propertySchedule;
+            appAssetFinanceIndividual.creditHistory = creditHistory;
+            appAssetFinanceIndividual.individualDocuments = individualDocuments;
+
             _appAssetFinanceIndividualRepository.Add(appAssetFinanceIndividual);
 
 
@@ -112,12 +152,13 @@ namespace LenSys.Controllers
             //, new { id = id }
         }
         [HttpGet]
-        public ViewResult AppAssetFinance(int id)
+        public ViewResult AppAssetFinance()
         {
-            //Saving to global variables
-            appID = id;
             
-            AppAssetFinance AppAssetFinanceApplication = _appAssetFinanceRepository.GetAppAssetFinance(id);
+            //Saving to global variables
+            appID = HomeController.EditAssetFinanceAppID; ;
+            
+            AppAssetFinance AppAssetFinanceApplication = _appAssetFinanceRepository.GetAppAssetFinance(appID);
             //_appAssetFinanceBusniessRepository.SetBusniessList(AppAssetFinanceApplication.busniesses);
             //_appAssetFinanceIndividualRepository.SetIndividualList(AppAssetFinanceApplication.individuals);
             AppAssetFinanceApplication.busniesses = (List<AppAssetFinanceBusniess>)_appAssetFinanceBusniessRepository.GetAllBusniess();
@@ -134,12 +175,38 @@ namespace LenSys.Controllers
             {
                 individual.IndividualId = 0;
                 individual.personalDetails.PersonalDetailsId = 0;
+                individual.addressDetails.AddressDetailsId = 0;
+                individual.employmentDetails.EmploymentDetailsId = 0;
+                individual.monthlyIncome.MonthlyIncomeId = 0;
+                individual.monthlyExpenditure.MonthlyExpenditureId = 0;
+                individual.asset.AssetId = 0;
+                individual.liabilities.LiabilitiesId = 0;
+                foreach(PropertySchedule property in individual.propertySchedule)
+                {
+                    property.PropertyId = 0;
+                }
+                individual.creditHistory.CreditHistoryId = 0;
+                individual.individualDocuments.DocumentId = 0;
             }
 
             foreach (AppAssetFinanceBusniess busniess in _appAssetFinanceBusniessRepository.GetAllBusniess())
             {
                 busniess.BusniessId = 0;
                 busniess.busniessDetails.BusniessDetailsId = 0;
+                foreach (KeyPrincipals keyPrincipal in busniess.keyPrincipals)
+                {
+                    keyPrincipal.KeyPrincipalsId = 0;
+                }
+                foreach (BusniessLiabilities liabilities in busniess.busniessLiabilities)
+                {
+                    liabilities.BusniessLiabilityId = 0;
+                }
+                foreach (Serviceability serviceability in busniess.serviceability)
+                {
+                    serviceability.ServiceabilityId = 0;
+                }
+
+                busniess.busniessDocuments.DocumentId = 0;
             }
 
             appAssetFinance.busniesses = (List<AppAssetFinanceBusniess>)_appAssetFinanceBusniessRepository.GetAllBusniess();
