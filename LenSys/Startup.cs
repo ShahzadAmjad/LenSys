@@ -40,7 +40,7 @@ namespace LenSys
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContextPool<AppDbContext>(options => options.UseSqlServer(_config.GetConnectionString("LenSysDBConnection")));
+            services.AddDbContextPool<AppDbContext>(options => options.UseSqlServer(_config.GetConnectionString("LenSysDBConnection"), sqlServerOptions => sqlServerOptions.CommandTimeout(60)));
 
             services.AddMvc(options => options.EnableEndpointRouting = false);
 

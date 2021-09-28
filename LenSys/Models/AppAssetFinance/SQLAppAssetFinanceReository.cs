@@ -42,46 +42,48 @@ namespace LenSys.Models.AppAssetFinance
 
         public AppAssetFinance GetAppAssetFinance(int id)
         {
-             AppAssetFinance appAssetFinance = Context.AppAssetFinance
-                .Include(x => x.Lead)
-                .Include(x=>x.individuals)
-                    .ThenInclude(y=>y.personalDetails)
-                .Include(a => a.individuals)
-                    .ThenInclude(b => b.addressDetails)
-                .Include(x => x.individuals)
-                    .ThenInclude(y => y.employmentDetails)
-                .Include(x => x.individuals)
-                    .ThenInclude(y => y.monthlyIncome)
-                .Include(x => x.individuals)
-                    .ThenInclude(y => y.monthlyExpenditure)
-                .Include(x => x.individuals)
-                    .ThenInclude(y => y.asset)
-                .Include(x => x.individuals)
-                    .ThenInclude(y => y.liabilities)
-                .Include(x => x.individuals)
-                    .ThenInclude(y => y.propertySchedule)
-                .Include(x => x.individuals)
-                    .ThenInclude(y => y.creditHistory)
-                .Include(x => x.individuals)
-                    .ThenInclude(y => y.individualDocuments)
-                .Include(x => x.busniesses)
-                    .ThenInclude(z => z.busniessDetails)
-                .Include(x => x.busniesses)
-                    .ThenInclude(z => z.keyPrincipals)
-                .Include(x => x.busniesses)
-                    .ThenInclude(z => z.busniessLiabilities)
-                .Include(x => x.busniesses)
-                    .ThenInclude(z => z.serviceability)
-                .Include(x => x.busniesses)
-                    .ThenInclude(z => z.busniessDocuments)
-                .Where(h => h.AssetFinId == id)
-                .FirstOrDefault();
+            AppAssetFinance appAssetFinance = Context.AppAssetFinance
+               .Include(x => x.Lead)
+               .Include(x => x.individuals)
+                   .ThenInclude(y => y.personalDetails)
+               .Include(a => a.individuals)
+                   .ThenInclude(b => b.addressDetails)
+               .Include(x => x.individuals)
+                   .ThenInclude(y => y.employmentDetails)
+               .Include(x => x.individuals)
+                   .ThenInclude(y => y.monthlyIncome)
+               .Include(x => x.individuals)
+                   .ThenInclude(y => y.monthlyExpenditure)
+               .Include(x => x.individuals)
+                   .ThenInclude(y => y.asset)
+               .Include(x => x.individuals)
+                   .ThenInclude(y => y.liabilities)
+               .Include(x => x.individuals)
+                   .ThenInclude(y => y.propertySchedule)
+               .Include(x => x.individuals)
+                   .ThenInclude(y => y.creditHistory)
+               .Include(x => x.individuals)
+                   .ThenInclude(y => y.individualDocuments)
+               .Include(x => x.busniesses)
+                   .ThenInclude(z => z.busniessDetails)
+               .Include(x => x.busniesses)
+                   .ThenInclude(z => z.keyPrincipals)
+               .Include(x => x.busniesses)
+                   .ThenInclude(z => z.busniessLiabilities)
+               .Include(x => x.busniesses)
+                   .ThenInclude(z => z.serviceability)
+               .Include(x => x.busniesses)
+                   .ThenInclude(z => z.busniessDocuments)
+               .Where(h => h.AssetFinId == id)
+               .FirstOrDefault();
 
             //ThenInclude("PersonalDetails")
-           // return Context.AppAssetFinance.Find(id);
-            //AppAssetFinanceIndividual.AppAssetFinanceIndividual individual = new AppAssetFinanceIndividual.AppAssetFinanceIndividual();
-
-            //individual = Context.a
+            //return Context.AppAssetFinance.Find(id);
+            //var dbProfile = db.Profiles.SingleOrDefault(x => x.SiteId == Int32.Parse(id));
+            //dbProfile.Include(x => x.Interests).Load();
+            //dbProfile.Include(x => x.Pets).Load();
+            //dbProfile.Include(x => x.Networks).Load();
+            //dbProfile.Include(x => x.PersonalityTraits).Load();
 
 
             return appAssetFinance;
