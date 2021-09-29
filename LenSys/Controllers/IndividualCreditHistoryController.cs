@@ -1,4 +1,5 @@
-﻿using LenSys.Models.IndividualCreditHistory;
+﻿using LenSys.Models.AppAssetFinance.AppAssetFinanceIndividual;
+using LenSys.Models.IndividualCreditHistory;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,27 +10,44 @@ namespace LenSys.Controllers
 {
     public class IndividualCreditHistoryController:Controller
     {
+        private IAppAssetFinanceIndividualRepository _appAssetFinanceIndividualRepository;
+        public IndividualCreditHistoryController(IAppAssetFinanceIndividualRepository appAssetFinanceIndividualRepository)
+        {
+            _appAssetFinanceIndividualRepository = appAssetFinanceIndividualRepository;
+        }
+
         public ViewResult Index()
         {
-            //String name = "Default Index Page";
-            //return name;
-            return View("CreditHistory");
+            int IndividualId = AppAssetFinanceController.IndividualID;
+            CreditHistory creditHistory = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId).creditHistory;
+            return View("CreditHistory", creditHistory);
         }
         [HttpGet]
         public ViewResult CreditHistory()
         {
-            return View();
+            int IndividualId = AppAssetFinanceController.IndividualID;
+            CreditHistory creditHistory = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId).creditHistory;
+
+            return View(creditHistory);
         }
         [HttpPost]
         public IActionResult CreditHistory(CreditHistory creditHistory)
         {
-            if (ModelState.IsValid)
-            {
-                //Employee newEmployee = _emplyeeRepositry.Add(employee);
-                ////return View();
-                //return RedirectToAction("details", new { id = newEmployee.Id });
-                return View("CreditHistory");
-            }
+            int id = AppAssetFinanceController.appID;
+            int IndividualId = AppAssetFinanceController.IndividualID;
+
+            AppAssetFinanceIndividual appAssetFinanceIndividual = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId);
+
+            appAssetFinanceIndividual.creditHistory = creditHistory;
+            //return RedirectToAction("AppAssetFinance", "AppAssetFinance", new { id = id });
+            
+            //if (ModelState.IsValid)
+            //{
+            //    //Employee newEmployee = _emplyeeRepositry.Add(employee);
+            //    ////return View();
+            //    //return RedirectToAction("details", new { id = newEmployee.Id });
+            //    return View("CreditHistory");
+            //}
 
             return View();
         }

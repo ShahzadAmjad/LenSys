@@ -22,8 +22,15 @@
                     </div>
                     <div class="x_content">
                         <br />
-                        <form id="IndividualCreditHistoryForm" data-parsley-validate class="form-horizontal form-label-left" asp-controller="IndividualAddressDetails" asp-action="AddressDetails" method="post">
-
+                        <form id="IndividualCreditHistoryForm" data-parsley-validate class="form-horizontal form-label-left" asp-controller="IndividualCreditHistory" asp-action="CreditHistory" method="post">
+                            <div class="item form-group">
+                                <label asp-for="CreditHistoryId" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Id
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input type="text" asp-for="CreditHistoryId" id="CreditHistoryId" name="CreditHistoryId" readonly class="form-control">
+                                </div>
+                            </div>
                             <div class="item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="PersonalCreditRating">
                                     How would you describe your personal credit rating?
@@ -70,7 +77,7 @@
                                 </div>
                             </div>
 
-                            
+
 
                             <div class="item form-group">
                                 <label asp-for="LegalAction" class="col-form-label col-md-3 col-sm-3 label-align">
@@ -83,7 +90,7 @@
 
 
 
-                           
+
 
                             <div class="item form-group">
                                 <label asp-for="GuarantorOnLoan" class="col-form-label col-md-3 col-sm-3 label-align">
@@ -102,7 +109,7 @@
                                     <input type="text" asp-for="CriminalConvictions" id="criminalConvictions" name="criminalConvictions" required="required" class="form-control">
                                 </div>
                             </div>
-                            
+
 
 
 
@@ -110,8 +117,8 @@
                             <div class="item form-group">
                                 <div class="col-md-6 col-sm-6 offset-md-3">
                                     <button class="btn btn-primary" type="button">Cancel</button>
-                                    <button class="btn btn-primary" type="reset">Save</button>
-                                    <button type="submit" class="btn btn-success">Save & Countinue</button>
+                                    <button class="btn btn-primary" type="reset">Reset</button>
+                                    <button type="submit" class="btn btn-success">Save</button>
                                 </div>
                             </div>
 

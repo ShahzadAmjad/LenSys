@@ -22,8 +22,15 @@
                     </div>
                     <div class="x_content">
                         <br />
-                        <form id="IndividualAssetForm" data-parsley-validate class="form-horizontal form-label-left" asp-controller="IndividualAssetLiabilities" asp-action="AssetLiabilities" method="post">
-
+                        <form id="IndividualAssetForm" data-parsley-validate class="form-horizontal form-label-left" asp-controller="IndividualAsset" asp-action="Asset" method="post">
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="AssetId">
+                                    Id
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input type="text" asp-for="AssetId" id="AssetId" name="AssetId" readonly class="form-control ">
+                                </div>
+                            </div>
                             <div class="item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="Cash">
                                     Cash<span class="required">*</span>
@@ -81,8 +88,8 @@
                             <div class="item form-group">
                                 <div class="col-md-6 col-sm-6 offset-md-3">
                                     <button class="btn btn-primary" type="button">Cancel</button>
-                                    <button class="btn btn-primary" type="reset">Save</button>
-                                    <button type="submit" class="btn btn-success">Save & Countinue</button>
+                                    <button class="btn btn-primary" type="reset">Reset</button>
+                                    <button type="submit" class="btn btn-success">Save</button>
                                 </div>
                             </div>
 

@@ -1,4 +1,5 @@
-﻿using LenSys.Models.IndividualLiabilities;
+﻿using LenSys.Models.AppAssetFinance.AppAssetFinanceIndividual;
+using LenSys.Models.IndividualLiabilities;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,27 +10,42 @@ namespace LenSys.Controllers
 {
     public class IndividualLiabilitiesController:Controller
     {
+        private IAppAssetFinanceIndividualRepository _appAssetFinanceIndividualRepository;
+        public IndividualLiabilitiesController(IAppAssetFinanceIndividualRepository appAssetFinanceIndividualRepository)
+        {
+            _appAssetFinanceIndividualRepository = appAssetFinanceIndividualRepository;
+        }
         public ViewResult Index()
         {
-            //String name = "Default Index Page";
-            //return name;
-            return View("Liabilities");
+            int IndividualId = AppAssetFinanceController.IndividualID;
+            Liabilities liabilities = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId).liabilities;
+
+            return View("Liabilities",liabilities);
         }
         [HttpGet]
         public ViewResult Liabilities()
         {
-            return View();
+            int IndividualId = AppAssetFinanceController.IndividualID;
+            Liabilities liabilities = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId).liabilities;
+
+            return View(liabilities);
         }
         [HttpPost]
-        public IActionResult Liabilities(Liabilities monthlyExpenditure)
+        public IActionResult Liabilities(Liabilities liabilities)
         {
-            if (ModelState.IsValid)
-            {
-                //Employee newEmployee = _emplyeeRepositry.Add(employee);
-                ////return View();
-                //return RedirectToAction("details", new { id = newEmployee.Id });
-                return View("Liabilities");
-            }
+            int id = AppAssetFinanceController.appID;
+            int IndividualId = AppAssetFinanceController.IndividualID;
+
+            AppAssetFinanceIndividual appAssetFinanceIndividual = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId);
+
+            appAssetFinanceIndividual.liabilities = liabilities;
+            //if (ModelState.IsValid)
+            //{
+            //    //Employee newEmployee = _emplyeeRepositry.Add(employee);
+            //    ////return View();
+            //    //return RedirectToAction("details", new { id = newEmployee.Id });
+            //    return View("Liabilities");
+            //}
 
             return View();
         }
