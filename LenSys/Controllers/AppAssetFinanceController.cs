@@ -154,17 +154,23 @@ namespace LenSys.Controllers
         [HttpGet]
         public ViewResult AppAssetFinance()
         {
-            
+            AppAssetFinance AppAssetFinanceApplication;
             //Saving to global variables
-            appID = HomeController.EditAssetFinanceAppID; ;
-            
-            AppAssetFinance AppAssetFinanceApplication = _appAssetFinanceRepository.GetAppAssetFinance(appID);
-            //_appAssetFinanceBusniessRepository.SetBusniessList(AppAssetFinanceApplication.busniesses);
-            //_appAssetFinanceIndividualRepository.SetIndividualList(AppAssetFinanceApplication.individuals);
-            AppAssetFinanceApplication.busniesses = (List<AppAssetFinanceBusniess>)_appAssetFinanceBusniessRepository.GetAllBusniess();
-            AppAssetFinanceApplication.individuals = (List<AppAssetFinanceIndividual>)_appAssetFinanceIndividualRepository.GetAllIndividual();
-            //Saving to global variables
-            lead = AppAssetFinanceApplication.Lead;          
+            appID = HomeController.EditAssetFinanceAppID; 
+
+            if(appID==0)
+            {
+                AppAssetFinanceApplication = new AppAssetFinance();
+            }
+            else
+            {
+                AppAssetFinanceApplication = _appAssetFinanceRepository.GetAppAssetFinance(appID);
+                AppAssetFinanceApplication.busniesses = (List<AppAssetFinanceBusniess>)_appAssetFinanceBusniessRepository.GetAllBusniess();
+                AppAssetFinanceApplication.individuals = (List<AppAssetFinanceIndividual>)_appAssetFinanceIndividualRepository.GetAllIndividual();
+                //Saving to global variables
+                lead = AppAssetFinanceApplication.Lead;
+            }
+
             return View("AppAssetFinance", AppAssetFinanceApplication);
         }
         //Update AppAssetFinance

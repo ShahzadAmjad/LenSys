@@ -31,8 +31,7 @@ namespace LenSys.Controllers
             {
                 busniessDetails = new BusniessDetails();
             }
-
-             busniessDetails = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId).busniessDetails;
+            busniessDetails = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId).busniessDetails;
 
             return View(busniessDetails);
             //return View();
