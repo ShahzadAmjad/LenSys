@@ -22,8 +22,12 @@ namespace LenSys.Controllers
         public ViewResult Index()
         {
             int BusniessId = AppAssetFinanceController.BusniessID;
-            IEnumerable<Serviceability> serviceabilities = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId).serviceability;
-            _serviceabilityRepository.SetServiceabilityList(serviceabilities);
+            if(BusniessId!=0)
+            {
+                IEnumerable<Serviceability> serviceabilities = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId).serviceability;
+                _serviceabilityRepository.SetServiceabilityList(serviceabilities);
+
+            }
 
             var model = _serviceabilityRepository.GetAllServiceability();
             //return View("AllServiceability", model);
@@ -38,9 +42,12 @@ namespace LenSys.Controllers
         public ViewResult AllServiceability()
         {
             int BusniessId = AppAssetFinanceController.BusniessID;
-            IEnumerable<Serviceability> serviceabilities = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId).serviceability;
-            _serviceabilityRepository.SetServiceabilityList(serviceabilities);
+            if (BusniessId != 0)
+            {
+                IEnumerable<Serviceability> serviceabilities = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId).serviceability;
+                _serviceabilityRepository.SetServiceabilityList(serviceabilities);
 
+            }
             var model = _serviceabilityRepository.GetAllServiceability();
 
             ServiceabilityCreateViewModel viewmodel = new ServiceabilityCreateViewModel();

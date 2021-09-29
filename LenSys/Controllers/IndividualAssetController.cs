@@ -17,8 +17,17 @@ namespace LenSys.Controllers
         }
         public ViewResult Index()
         {
+            Asset asset;
             int IndividualId = AppAssetFinanceController.IndividualID;
-            Asset asset = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId).asset;
+            if(IndividualId==0)
+            {
+                asset = new Asset();
+            }
+            else
+            {
+                asset = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId).asset;
+            }
+
 
             return View("Asset",asset);
         }

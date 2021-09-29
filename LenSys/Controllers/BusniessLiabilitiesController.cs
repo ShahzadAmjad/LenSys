@@ -21,8 +21,12 @@ namespace LenSys.Controllers
         public ViewResult Index()
         {
             int BusniessId = AppAssetFinanceController.BusniessID;
-            IEnumerable<BusniessLiabilities> busniessLiabilities = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId).busniessLiabilities;
-            _busniessLiabilitiesRepository.SetBusniessLiabilitiesList(busniessLiabilities);
+            if(BusniessId!=0)
+            {
+                IEnumerable<BusniessLiabilities> busniessLiabilities = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId).busniessLiabilities;
+                _busniessLiabilitiesRepository.SetBusniessLiabilitiesList(busniessLiabilities);
+
+            }
 
 
             var model = _busniessLiabilitiesRepository.GetAllBusniessLiabilities();
@@ -37,9 +41,12 @@ namespace LenSys.Controllers
         public ViewResult AllBusniessLiabilities()
         {
             int BusniessId = AppAssetFinanceController.BusniessID;
-            IEnumerable<BusniessLiabilities> busniessLiabilities = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId).busniessLiabilities;
-            _busniessLiabilitiesRepository.SetBusniessLiabilitiesList(busniessLiabilities);
+            if (BusniessId != 0)
+            {
+                IEnumerable<BusniessLiabilities> busniessLiabilities = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId).busniessLiabilities;
+                _busniessLiabilitiesRepository.SetBusniessLiabilitiesList(busniessLiabilities);
 
+            }
             var model = _busniessLiabilitiesRepository.GetAllBusniessLiabilities();
 
             BusniessLiabilitiesCreateViewModel viewmodel = new BusniessLiabilitiesCreateViewModel();

@@ -21,8 +21,11 @@ namespace LenSys.Controllers
         public ViewResult Index()
         {
             int IndividualId = AppAssetFinanceController.IndividualID;
-            IEnumerable <PropertySchedule> propertySchedulesList  = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId).propertySchedule;
-            _propertyScheduleRepositry.SetPropertyScheduleList(propertySchedulesList);
+            if (IndividualId != 0)
+            {
+                IEnumerable<PropertySchedule> propertySchedulesList = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId).propertySchedule;
+                _propertyScheduleRepositry.SetPropertyScheduleList(propertySchedulesList);
+            }
 
             var model = _propertyScheduleRepositry.GetAllPropertySchedule();
             //return View("AllProperties",model);
@@ -36,9 +39,11 @@ namespace LenSys.Controllers
         public ViewResult AllProperties()
         {
             int IndividualId = AppAssetFinanceController.IndividualID;
-            IEnumerable<PropertySchedule> propertySchedulesList = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId).propertySchedule;
-            _propertyScheduleRepositry.SetPropertyScheduleList(propertySchedulesList);
-
+            if (IndividualId != 0)
+            {
+                IEnumerable<PropertySchedule> propertySchedulesList = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId).propertySchedule;
+                _propertyScheduleRepositry.SetPropertyScheduleList(propertySchedulesList);
+            }
 
             var model = _propertyScheduleRepositry.GetAllPropertySchedule();
             //var tuple= new Tuple<ModelBinderAttribute,>

@@ -17,15 +17,31 @@ namespace LenSys.Controllers
         }
         public ViewResult Index()
         {
-            //String name = "Default Index Page";
-            //return name;
-            return View("AddressDetails");
+            AddressDetails addressDetails;
+            int IndividualId = AppAssetFinanceController.IndividualID;
+            if (IndividualId == 0)
+            {
+                addressDetails = new AddressDetails();
+            }
+            else
+            {
+                addressDetails = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId).addressDetails;
+            }
+            return View("AddressDetails",addressDetails);
         }
         [HttpGet]
         public ViewResult AddressDetails()
         {
+            AddressDetails addressDetails;
             int IndividualId = AppAssetFinanceController.IndividualID;
-            AddressDetails addressDetails = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId).addressDetails;
+            if(IndividualId==0)
+            {
+                addressDetails = new AddressDetails();
+            }
+            else
+            {
+                addressDetails = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId).addressDetails;
+            }
 
             return View(addressDetails);
             //return View();

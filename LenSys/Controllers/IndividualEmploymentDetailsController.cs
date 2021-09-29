@@ -17,16 +17,32 @@ namespace LenSys.Controllers
         }
         public ViewResult Index()
         {
-            //String name = "Default Index Page";
-            //return name;
-            return View("EmploymentDetails");
+            EmploymentDetails employmentDetails;
+            int IndividualId = AppAssetFinanceController.IndividualID;
+            if (IndividualId == 0)
+            {
+                employmentDetails = new EmploymentDetails();
+            }
+            else
+            {
+                employmentDetails = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId).employmentDetails;
+            }
+
+            return View("EmploymentDetails", employmentDetails);
         }
         [HttpGet]
         public ViewResult EmploymentDetails()
         {
+            EmploymentDetails employmentDetails;
             int IndividualId = AppAssetFinanceController.IndividualID;
-            EmploymentDetails employmentDetails = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId).employmentDetails;
-
+            if (IndividualId == 0)
+            {
+                employmentDetails = new EmploymentDetails();
+            }
+            else
+            {
+                employmentDetails = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId).employmentDetails;
+            }
             return View(employmentDetails);
             //return View();
         }

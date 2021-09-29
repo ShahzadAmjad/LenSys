@@ -17,8 +17,17 @@ namespace LenSys.Controllers
         }
         public ViewResult Index()
         {
+            MonthlyIncome monthlyIncome;
             int IndividualId = AppAssetFinanceController.IndividualID;
-            MonthlyIncome monthlyIncome = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId).monthlyIncome;
+            if (IndividualId == 0)
+            {
+                monthlyIncome = new MonthlyIncome();
+            }
+            else
+            {
+                 monthlyIncome = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId).monthlyIncome;
+            }
+            
 
             return View(monthlyIncome);
             //return View("MonthlyIncome", monthlyIncome);
@@ -26,9 +35,16 @@ namespace LenSys.Controllers
         [HttpGet]
         public ViewResult MonthlyIncome()
         {
+            MonthlyIncome monthlyIncome;
             int IndividualId = AppAssetFinanceController.IndividualID;
-            MonthlyIncome monthlyIncome = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId).monthlyIncome;
-
+            if (IndividualId == 0)
+            {
+                monthlyIncome = new MonthlyIncome();
+            }
+            else
+            {
+                monthlyIncome = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId).monthlyIncome;
+            }
             return View(monthlyIncome);
             //return View();
         }

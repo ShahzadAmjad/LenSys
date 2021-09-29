@@ -21,9 +21,11 @@ namespace LenSys.Controllers
         public ViewResult Index()
         {
             int BusniessId = AppAssetFinanceController.BusniessID;
-            IEnumerable<KeyPrincipals> keyPrincipals = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId).keyPrincipals;
-            _keyPrincipalsRepository.SetKeyPrincipalsList(keyPrincipals);
-
+            if (BusniessId != 0)
+            {
+                IEnumerable<KeyPrincipals> keyPrincipals = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId).keyPrincipals;
+                _keyPrincipalsRepository.SetKeyPrincipalsList(keyPrincipals);
+            }
 
             var model = _keyPrincipalsRepository.GetAllKeyPrincipals();
             //return View("AllKeyPrincipals", model);    
@@ -36,8 +38,13 @@ namespace LenSys.Controllers
         public ViewResult AllKeyPrincipals()
         {
             int BusniessId = AppAssetFinanceController.BusniessID;
-            IEnumerable<KeyPrincipals> keyPrincipals = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId).keyPrincipals;
-            _keyPrincipalsRepository.SetKeyPrincipalsList(keyPrincipals);
+
+            if(BusniessId!=0)
+            {
+                IEnumerable<KeyPrincipals> keyPrincipals = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId).keyPrincipals;
+                _keyPrincipalsRepository.SetKeyPrincipalsList(keyPrincipals);
+            }
+            
 
             var model = _keyPrincipalsRepository.GetAllKeyPrincipals();
 

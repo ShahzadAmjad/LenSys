@@ -18,9 +18,19 @@ namespace LenSys.Controllers
         }
         public ViewResult Index()
         {
-            //String name = "Default Index Page";
-            //return name;
-            return View("BusniessDetails");
+            BusniessDetails busniessDetails;
+            int BusniessId = AppAssetFinanceController.BusniessID;
+            if (BusniessId == 0)
+            {
+                busniessDetails = new BusniessDetails();
+            }
+            else
+            {
+                busniessDetails = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId).busniessDetails;
+
+            }
+
+            return View("BusniessDetails",busniessDetails);
         }
         [HttpGet]
         public ViewResult BusniessDetails()
@@ -31,7 +41,10 @@ namespace LenSys.Controllers
             {
                 busniessDetails = new BusniessDetails();
             }
-            busniessDetails = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId).busniessDetails;
+            else
+            {
+                busniessDetails = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId).busniessDetails;
+            }
 
             return View(busniessDetails);
             //return View();

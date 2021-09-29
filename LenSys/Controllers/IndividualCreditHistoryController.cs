@@ -18,16 +18,32 @@ namespace LenSys.Controllers
 
         public ViewResult Index()
         {
+            CreditHistory creditHistory;
             int IndividualId = AppAssetFinanceController.IndividualID;
-            CreditHistory creditHistory = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId).creditHistory;
+            if(IndividualId==0)
+            {
+                creditHistory = new CreditHistory();
+            }
+            else
+            {
+                creditHistory = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId).creditHistory;
+            }
+            
             return View("CreditHistory", creditHistory);
         }
         [HttpGet]
         public ViewResult CreditHistory()
         {
+            CreditHistory creditHistory;
             int IndividualId = AppAssetFinanceController.IndividualID;
-            CreditHistory creditHistory = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId).creditHistory;
-
+            if (IndividualId == 0)
+            {
+                creditHistory = new CreditHistory();
+            }
+            else
+            {
+                creditHistory = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId).creditHistory;
+            }
             return View(creditHistory);
         }
         [HttpPost]

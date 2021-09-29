@@ -17,17 +17,32 @@ namespace LenSys.Controllers
         }
         public ViewResult Index()
         {
+            Liabilities liabilities;
             int IndividualId = AppAssetFinanceController.IndividualID;
-            Liabilities liabilities = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId).liabilities;
+            if(IndividualId==0)
+            {
+                liabilities = new Liabilities();
+            }
+            else
+            {
+                liabilities = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId).liabilities;
+            }
 
             return View("Liabilities",liabilities);
         }
         [HttpGet]
         public ViewResult Liabilities()
         {
+            Liabilities liabilities;
             int IndividualId = AppAssetFinanceController.IndividualID;
-            Liabilities liabilities = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId).liabilities;
-
+            if (IndividualId == 0)
+            {
+                liabilities = new Liabilities();
+            }
+            else
+            {
+                liabilities = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId).liabilities;
+            }
             return View(liabilities);
         }
         [HttpPost]

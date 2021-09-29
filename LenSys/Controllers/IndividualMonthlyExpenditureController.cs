@@ -17,8 +17,17 @@ namespace LenSys.Controllers
         }
         public ViewResult Index()
         {
+            MonthlyExpenditure monthlyExpenditure;
             int IndividualId = AppAssetFinanceController.IndividualID;
-            MonthlyExpenditure monthlyExpenditure= _appAssetFinanceIndividualRepository.GetIndividual(IndividualId).monthlyExpenditure;
+            if (IndividualId == 0)
+            {
+                monthlyExpenditure = new MonthlyExpenditure();
+            }
+            else
+            {
+                monthlyExpenditure = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId).monthlyExpenditure;
+            }
+             
 
             //return View(individualPersonalDetails);
            
@@ -27,8 +36,16 @@ namespace LenSys.Controllers
         [HttpGet]
         public ViewResult MonthlyExpenditure()
         {
+            MonthlyExpenditure monthlyExpenditure;
             int IndividualId = AppAssetFinanceController.IndividualID;
-            MonthlyExpenditure monthlyExpenditure = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId).monthlyExpenditure;
+            if (IndividualId == 0)
+            {
+                monthlyExpenditure = new MonthlyExpenditure();
+            }
+            else
+            {
+                monthlyExpenditure = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId).monthlyExpenditure;
+            }
             return View(monthlyExpenditure);
         }
         [HttpPost]
