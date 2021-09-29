@@ -25,6 +25,12 @@ namespace LenSys.Models.BusniessServiceability
             return serviceability;
         }
 
+        public IEnumerable<Serviceability> ClearServiceabilityList()
+        {
+            _serviceability.Clear();
+            return _serviceability;
+        }
+
         public Serviceability Delete(int id)
         {
             Serviceability serviceability = _serviceability.FirstOrDefault(e => e.ServiceabilityId == id);
@@ -43,6 +49,13 @@ namespace LenSys.Models.BusniessServiceability
         public Serviceability GetServiceability(int serviceabilityId)
         {
             return _serviceability.FirstOrDefault(e => e.ServiceabilityId == serviceabilityId);
+        }
+
+        public IEnumerable<Serviceability> SetServiceabilityList(IEnumerable<Serviceability> BusniessServiceabilityList)
+        {
+            _serviceability = (List<Serviceability>)BusniessServiceabilityList;
+
+            return _serviceability;
         }
 
         public Serviceability Update(Serviceability model)

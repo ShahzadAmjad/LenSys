@@ -27,6 +27,12 @@ namespace LenSys.Models.BusniessKeyPrincipals
             return keyPrincipals;
         }
 
+        public IEnumerable<KeyPrincipals> ClearKeyPrincipalsList()
+        {
+            _keyPrincipals.Clear();
+            return _keyPrincipals;
+        }
+
         public KeyPrincipals Delete(int keyPrincipalsId)
         {
             KeyPrincipals keyPrincipals = _keyPrincipals.FirstOrDefault(e => e.KeyPrincipalsId == keyPrincipalsId);
@@ -46,6 +52,12 @@ namespace LenSys.Models.BusniessKeyPrincipals
         public KeyPrincipals GetKeyPrincipals(int keyPrincipalsId)
         {
             return _keyPrincipals.FirstOrDefault(e => e.KeyPrincipalsId == keyPrincipalsId);
+        }
+
+        public IEnumerable<KeyPrincipals> SetKeyPrincipalsList(IEnumerable<KeyPrincipals> keyPrincipalsList)
+        {
+            _keyPrincipals = (List<KeyPrincipals>)keyPrincipalsList;
+            return _keyPrincipals;
         }
 
         public KeyPrincipals Update(KeyPrincipals model)

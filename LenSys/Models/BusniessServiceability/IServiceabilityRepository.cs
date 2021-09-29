@@ -8,7 +8,8 @@ namespace LenSys.Models.BusniessServiceability
    public interface IServiceabilityRepository
     {
         Serviceability Add(Serviceability serviceability);
-
+        IEnumerable<Serviceability> ClearServiceabilityList();
+        IEnumerable<Serviceability> SetServiceabilityList(IEnumerable<Serviceability> BusniessServiceabilityList);
         Serviceability GetServiceability(int serviceabilityId);
         IEnumerable<Serviceability> GetAllServiceability();
         Serviceability Update(Serviceability serviceability);

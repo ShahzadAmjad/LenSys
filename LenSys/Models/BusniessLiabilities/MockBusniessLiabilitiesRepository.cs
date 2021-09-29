@@ -32,6 +32,12 @@ namespace LenSys.Models.BusniessLiabilities
             return busniessLiabilities;
         }
 
+        public IEnumerable<BusniessLiabilities> ClearBusniessLiabilitiesList()
+        {
+            _busniessLiabilities.Clear();
+            return _busniessLiabilities;
+        }
+
         public BusniessLiabilities Delete(int id)
         {
             BusniessLiabilities busniessLiabilities = _busniessLiabilities.FirstOrDefault(e => e.BusniessLiabilityId == id);
@@ -50,6 +56,12 @@ namespace LenSys.Models.BusniessLiabilities
         public BusniessLiabilities GetBusniessLiabilities(int busniessLiabilityId)
         {
             return _busniessLiabilities.FirstOrDefault(e => e.BusniessLiabilityId == busniessLiabilityId);
+        }
+
+        public IEnumerable<BusniessLiabilities> SetBusniessLiabilitiesList(IEnumerable<BusniessLiabilities> BusniessLiabilitiesList)
+        {
+            _busniessLiabilities = (List<BusniessLiabilities>)BusniessLiabilitiesList;
+            return _busniessLiabilities;
         }
 
         public BusniessLiabilities Update(BusniessLiabilities model)
