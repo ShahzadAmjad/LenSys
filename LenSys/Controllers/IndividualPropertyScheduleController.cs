@@ -1,4 +1,5 @@
-﻿using LenSys.Models.IndividualPropertySchedule;
+﻿using LenSys.Models.AppAssetFinance.AppAssetFinanceIndividual;
+using LenSys.Models.IndividualPropertySchedule;
 using LenSys.ViewModels.IndividualPropertySchedule;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -11,12 +12,18 @@ namespace LenSys.Controllers
     public class IndividualPropertyScheduleController:Controller
     {
         private IPropertyScheduleRepository _propertyScheduleRepositry;
-        public IndividualPropertyScheduleController(IPropertyScheduleRepository propertyScheduleRepository)
+        private IAppAssetFinanceIndividualRepository _appAssetFinanceIndividualRepository;
+        public IndividualPropertyScheduleController(IPropertyScheduleRepository propertyScheduleRepository, IAppAssetFinanceIndividualRepository appAssetFinanceIndividualRepository)
         {
             _propertyScheduleRepositry = propertyScheduleRepository;
+            _appAssetFinanceIndividualRepository = appAssetFinanceIndividualRepository;
         }
         public ViewResult Index()
         {
+            int IndividualId = AppAssetFinanceController.IndividualID;
+            IEnumerable <PropertySchedule> propertySchedulesList  = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId).propertySchedule;
+            _propertyScheduleRepositry.SetPropertyScheduleList(propertySchedulesList);
+
             var model = _propertyScheduleRepositry.GetAllPropertySchedule();
             //return View("AllProperties",model);
             PropertyScheduleCreateViewModel viewmodel = new PropertyScheduleCreateViewModel();
@@ -28,6 +35,11 @@ namespace LenSys.Controllers
         [HttpGet]
         public ViewResult AllProperties()
         {
+            int IndividualId = AppAssetFinanceController.IndividualID;
+            IEnumerable<PropertySchedule> propertySchedulesList = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId).propertySchedule;
+            _propertyScheduleRepositry.SetPropertyScheduleList(propertySchedulesList);
+
+
             var model = _propertyScheduleRepositry.GetAllPropertySchedule();
             //var tuple= new Tuple<ModelBinderAttribute,>
             PropertyScheduleCreateViewModel viewmodel = new PropertyScheduleCreateViewModel();
@@ -49,13 +61,17 @@ namespace LenSys.Controllers
                 viewmodel._propertySchedule = updatedProperties;
                 viewmodel.propertySchedule = new PropertySchedule();
 
+                //copy from personaldetail controler
+                int id = AppAssetFinanceController.appID;
+                int IndividualId = AppAssetFinanceController.IndividualID;
+                AppAssetFinanceIndividual appAssetFinanceIndividual = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId);
+                appAssetFinanceIndividual.propertySchedule = (List<PropertySchedule>)updatedProperties;
+
                 return View("AllProperties", viewmodel);
                 //return RedirectToAction("AllProperties", updatedProperties);
             }
             return View();
         }
-
-
         [HttpGet]
         public ViewResult EditProperty(int id)
         {
@@ -72,7 +88,12 @@ namespace LenSys.Controllers
                 _propertyScheduleRepositry.Update(propertyScheduleChange);
 
                 var updatedProperties = _propertyScheduleRepositry.GetAllPropertySchedule();
-                
+
+                int id = AppAssetFinanceController.appID;
+                int IndividualId = AppAssetFinanceController.IndividualID;
+                AppAssetFinanceIndividual appAssetFinanceIndividual = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId);
+                appAssetFinanceIndividual.propertySchedule = (List<PropertySchedule>)updatedProperties;
+
                 return RedirectToAction("AllProperties", updatedProperties);
             }
 
@@ -81,10 +102,16 @@ namespace LenSys.Controllers
         public ViewResult DeleteProperty(int id)
         {
             _propertyScheduleRepositry.Delete(id);
-            var RemainingProperties = _propertyScheduleRepositry.GetAllPropertySchedule();
-            return View("AllProperties", RemainingProperties);
-        }
+            var updatedProperties = _propertyScheduleRepositry.GetAllPropertySchedule();
 
+            int AppId = AppAssetFinanceController.appID;
+            int IndividualId = AppAssetFinanceController.IndividualID;
+            AppAssetFinanceIndividual appAssetFinanceIndividual = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId);
+            appAssetFinanceIndividual.propertySchedule = (List<PropertySchedule>)updatedProperties;
+
+
+            return View("AllProperties", updatedProperties);
+        }
         [HttpGet]
         public ViewResult PropertySchedule()
         {
@@ -98,6 +125,13 @@ namespace LenSys.Controllers
                 PropertySchedule property = _propertyScheduleRepositry.Add(propertySchedule);
 
                 var updatedProperties = _propertyScheduleRepositry.GetAllPropertySchedule();
+
+                int id = AppAssetFinanceController.appID;
+                int IndividualId = AppAssetFinanceController.IndividualID;
+                AppAssetFinanceIndividual appAssetFinanceIndividual = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId);
+                appAssetFinanceIndividual.propertySchedule = (List<PropertySchedule>)updatedProperties;
+
+
                 return RedirectToAction("AllProperties", updatedProperties);
             }
             return View();

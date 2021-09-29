@@ -9,8 +9,10 @@ namespace LenSys.Models.IndividualPropertySchedule
     {
         
         PropertySchedule Add(PropertySchedule propertySchedule);
+        IEnumerable<PropertySchedule> ClearPropertyScheduleList();
         PropertySchedule GetPropertySchedule(int propertyId);
         IEnumerable<PropertySchedule> GetAllPropertySchedule();
+        IEnumerable<PropertySchedule> SetPropertyScheduleList(IEnumerable<PropertySchedule> PropertyScheduleList);
         PropertySchedule Update(PropertySchedule propertyScheduleChanges);
         PropertySchedule Delete(int id);
     }

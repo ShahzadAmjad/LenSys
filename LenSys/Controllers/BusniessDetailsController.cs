@@ -26,6 +26,8 @@ namespace LenSys.Controllers
         public ViewResult BusniessDetails()
         {
             int BusniessId = AppAssetFinanceController.BusniessID;
+            //if (BusniessId!=null )
+            
             BusniessDetails busniessDetails = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId).busniessDetails;
 
             return View(busniessDetails);

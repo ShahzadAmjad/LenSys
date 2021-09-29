@@ -41,6 +41,11 @@ namespace LenSys.Models.IndividualPropertySchedule
             _propertySchedule.Add(propertySchedule);
             return propertySchedule;
         }
+        public IEnumerable<PropertySchedule> ClearPropertyScheduleList()
+        {
+            _propertySchedule.Clear();
+            return _propertySchedule;
+        }
 
         public PropertySchedule Delete(int propertyId)
         {
@@ -60,6 +65,12 @@ namespace LenSys.Models.IndividualPropertySchedule
         public PropertySchedule GetPropertySchedule(int propertyId)
         {
             return _propertySchedule.FirstOrDefault(e => e.PropertyId == propertyId);
+        }
+
+        public IEnumerable<PropertySchedule> SetPropertyScheduleList(IEnumerable<PropertySchedule> propertySchedules)
+        {
+            _propertySchedule = (List<PropertySchedule>)propertySchedules;
+            return _propertySchedule;
         }
 
         public PropertySchedule Update(PropertySchedule model)

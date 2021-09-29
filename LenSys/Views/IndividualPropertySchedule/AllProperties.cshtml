@@ -7,8 +7,8 @@
 }
 
 <div class="mtop20">
-    @*<a asp-controller="IndividualPropertySchedule" asp-action="PropertySchedule" class="btn btn-success">Add New Property Schedule</a>*@
-    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createPropertyModel">Add New Property Schedule</button>
+    <a asp-controller="IndividualPropertySchedule" asp-action="PropertySchedule" class="btn btn-success">Add New Property Schedule</a>
+    @*<button type="button" class="btn btn-success" data-toggle="modal" data-target="#createPropertyModel">Add New Property Schedule</button>*@
 </div>
 
 
@@ -81,14 +81,14 @@
                     <button type="button" class="close " data-dismiss="modal" aria-hidden="true">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <div class="item form-group">
+                    @*<div class="item form-group">
                         <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="@Model.propertySchedule.PropertyId">
                             Property Id<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 ">
                             <input type="text" asp-for="@Model.propertySchedule.PropertyId" id="propertyId" name="propertyId" required="required" class="form-control ">
                         </div>
-                    </div>
+                    </div>*@
                     <div class="item form-group">
                         <label asp-for="@Model.propertySchedule.Owner" class="col-form-label col-md-3 col-sm-3 label-align">
                             Owner <span class="required">*</span>
@@ -274,7 +274,7 @@
                 </div>
                 <div class="modal-footer">
 
-                    <a asp-controller="IndividualPropertySchedule" asp-action="AllProperties" id="AddPropertyBtn" class="btn btn-primary mr-1">Save</a>
+                    <a asp-controller="IndividualPropertySchedule" asp-action="PropertySchedule" id="AddPropertyBtn" class="btn btn-primary mr-1">Save</a>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
