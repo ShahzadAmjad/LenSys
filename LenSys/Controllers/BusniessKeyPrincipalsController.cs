@@ -1,4 +1,5 @@
-﻿using LenSys.Models.BusniessKeyPrincipals;
+﻿using LenSys.Models.AppAssetFinance.AppAssetFinanceBusniess;
+using LenSys.Models.BusniessKeyPrincipals;
 using LenSys.ViewModels.BusniessKeyPrincipals;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -11,12 +12,19 @@ namespace LenSys.Controllers
     public class BusniessKeyPrincipalsController:Controller
     {
         private IKeyPrincipalsRepository _keyPrincipalsRepository;
-        public BusniessKeyPrincipalsController(IKeyPrincipalsRepository keyPrincipalsRepository)
+        private IAppAssetFinanceBusniessRepository _appAssetFinanceBusniessRepository;
+        public BusniessKeyPrincipalsController(IKeyPrincipalsRepository keyPrincipalsRepository, IAppAssetFinanceBusniessRepository appAssetFinanceBusniessRepository)
         {
             _keyPrincipalsRepository = keyPrincipalsRepository;
+            _appAssetFinanceBusniessRepository = appAssetFinanceBusniessRepository;
         }
         public ViewResult Index()
         {
+            int BusniessId = AppAssetFinanceController.BusniessID;
+            IEnumerable<KeyPrincipals> keyPrincipals = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId).keyPrincipals;
+            _keyPrincipalsRepository.SetKeyPrincipalsList(keyPrincipals);
+
+
             var model = _keyPrincipalsRepository.GetAllKeyPrincipals();
             //return View("AllKeyPrincipals", model);    
             KeyPrincipalsCreateViewModel viewmodel = new KeyPrincipalsCreateViewModel();
@@ -27,6 +35,10 @@ namespace LenSys.Controllers
         }
         public ViewResult AllKeyPrincipals()
         {
+            int BusniessId = AppAssetFinanceController.BusniessID;
+            IEnumerable<KeyPrincipals> keyPrincipals = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId).keyPrincipals;
+            _keyPrincipalsRepository.SetKeyPrincipalsList(keyPrincipals);
+
             var model = _keyPrincipalsRepository.GetAllKeyPrincipals();
 
             KeyPrincipalsCreateViewModel viewmodel = new KeyPrincipalsCreateViewModel();
@@ -54,6 +66,12 @@ namespace LenSys.Controllers
                 _keyPrincipalsRepository.Update(keyPrincipalsChange);
 
                 var updatedKeyPrincipalsLst = _keyPrincipalsRepository.GetAllKeyPrincipals();
+                
+                int BusniessId = AppAssetFinanceController.BusniessID;
+                AppAssetFinanceBusniess appAssetFinanceBusniess = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId);
+                appAssetFinanceBusniess.keyPrincipals = (List<KeyPrincipals>)updatedKeyPrincipalsLst;
+
+                
 
                 return RedirectToAction("AllKeyPrincipals", updatedKeyPrincipalsLst);
                 //return View("AllKeyPrincipals");
@@ -66,7 +84,16 @@ namespace LenSys.Controllers
         {
             _keyPrincipalsRepository.Delete(id);
             var RemainingProperties = _keyPrincipalsRepository.GetAllKeyPrincipals();
-            return View("AllKeyPrincipals", RemainingProperties);
+            
+            int BusniessId = AppAssetFinanceController.BusniessID;
+            AppAssetFinanceBusniess appAssetFinanceBusniess = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId);
+            appAssetFinanceBusniess.keyPrincipals = (List<KeyPrincipals>)RemainingProperties;
+
+            KeyPrincipalsCreateViewModel viewmodel = new KeyPrincipalsCreateViewModel();
+            viewmodel._keyPrincipals = RemainingProperties;
+            viewmodel.keyPrincipals = new KeyPrincipals();
+
+            return View("AllKeyPrincipals", viewmodel);
         }
 
 
@@ -83,7 +110,17 @@ namespace LenSys.Controllers
                 KeyPrincipals keyPrincipals = _keyPrincipalsRepository.Add(keyPrincipals1);
 
                 var updatedKeyPrincipals = _keyPrincipalsRepository.GetAllKeyPrincipals();
-                return RedirectToAction("AllKeyPrincipals", updatedKeyPrincipals);
+
+
+                int BusniessId = AppAssetFinanceController.BusniessID;
+                AppAssetFinanceBusniess appAssetFinanceBusniess = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId);
+                appAssetFinanceBusniess.keyPrincipals = (List<KeyPrincipals>)updatedKeyPrincipals;
+
+                KeyPrincipalsCreateViewModel viewmodel = new KeyPrincipalsCreateViewModel();
+                viewmodel._keyPrincipals = updatedKeyPrincipals;
+                viewmodel.keyPrincipals = new KeyPrincipals();
+
+                return RedirectToAction("AllKeyPrincipals", viewmodel);
             }
 
             return View();

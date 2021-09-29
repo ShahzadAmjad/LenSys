@@ -27,9 +27,17 @@ namespace LenSys.Controllers
         [HttpGet]
         public ViewResult PersonalDetails()
         {
+            PersonalDetails individualPersonalDetails;
             int IndividualId = AppAssetFinanceController.IndividualID;
-            PersonalDetails individualPersonalDetails=_appAssetFinanceIndividualRepository.GetIndividual(IndividualId).personalDetails;
-            
+            if(IndividualId==0)
+            {
+                individualPersonalDetails = new PersonalDetails();
+            }
+            else
+            {
+                individualPersonalDetails = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId).personalDetails;
+            }
+
             return View(individualPersonalDetails);
         }
         [HttpPost]

@@ -109,8 +109,11 @@ namespace LenSys.Controllers
             AppAssetFinanceIndividual appAssetFinanceIndividual = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId);
             appAssetFinanceIndividual.propertySchedule = (List<PropertySchedule>)updatedProperties;
 
+            PropertyScheduleCreateViewModel viewmodel = new PropertyScheduleCreateViewModel();
+            viewmodel._propertySchedule = updatedProperties;
+            viewmodel.propertySchedule = new PropertySchedule();
 
-            return View("AllProperties", updatedProperties);
+            return View("AllProperties", viewmodel);
         }
         [HttpGet]
         public ViewResult PropertySchedule()

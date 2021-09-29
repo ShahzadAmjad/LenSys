@@ -1,4 +1,5 @@
-﻿using LenSys.Models.BusniessServiceability;
+﻿using LenSys.Models.AppAssetFinance.AppAssetFinanceBusniess;
+using LenSys.Models.BusniessServiceability;
 using LenSys.ViewModels.BusniessServiceability;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -11,13 +12,19 @@ namespace LenSys.Controllers
     public class BusniessServiceabilityController:Controller
     {
         private IServiceabilityRepository _serviceabilityRepository;
+        private IAppAssetFinanceBusniessRepository _appAssetFinanceBusniessRepository;
 
-        public BusniessServiceabilityController(IServiceabilityRepository serviceabilityRepository)
+        public BusniessServiceabilityController(IServiceabilityRepository serviceabilityRepository, IAppAssetFinanceBusniessRepository appAssetFinanceBusniessRepository)
         {
             _serviceabilityRepository = serviceabilityRepository;
+            _appAssetFinanceBusniessRepository = appAssetFinanceBusniessRepository;
         }
         public ViewResult Index()
         {
+            int BusniessId = AppAssetFinanceController.BusniessID;
+            IEnumerable<Serviceability> serviceabilities = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId).serviceability;
+            _serviceabilityRepository.SetServiceabilityList(serviceabilities);
+
             var model = _serviceabilityRepository.GetAllServiceability();
             //return View("AllServiceability", model);
             ServiceabilityCreateViewModel viewmodel = new ServiceabilityCreateViewModel();
@@ -30,6 +37,10 @@ namespace LenSys.Controllers
 
         public ViewResult AllServiceability()
         {
+            int BusniessId = AppAssetFinanceController.BusniessID;
+            IEnumerable<Serviceability> serviceabilities = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId).serviceability;
+            _serviceabilityRepository.SetServiceabilityList(serviceabilities);
+
             var model = _serviceabilityRepository.GetAllServiceability();
 
             ServiceabilityCreateViewModel viewmodel = new ServiceabilityCreateViewModel();
@@ -56,6 +67,11 @@ namespace LenSys.Controllers
 
                 var updatedServiceability = _serviceabilityRepository.GetAllServiceability();
 
+                int BusniessId = AppAssetFinanceController.BusniessID;
+                AppAssetFinanceBusniess appAssetFinanceBusniess = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId);
+                appAssetFinanceBusniess.serviceability = (List<Serviceability>)updatedServiceability;
+
+
                 return RedirectToAction("AllServiceability", updatedServiceability);
             }
 
@@ -65,7 +81,16 @@ namespace LenSys.Controllers
         {
             _serviceabilityRepository.Delete(id);
             var RemainingServiceability = _serviceabilityRepository.GetAllServiceability();
-            return View("AllServiceability", RemainingServiceability);
+
+            int BusniessId = AppAssetFinanceController.BusniessID;
+            AppAssetFinanceBusniess appAssetFinanceBusniess = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId);
+            appAssetFinanceBusniess.serviceability = (List<Serviceability>)RemainingServiceability;
+
+            ServiceabilityCreateViewModel viewmodel = new ServiceabilityCreateViewModel();
+            viewmodel._serviceability = RemainingServiceability;
+            viewmodel.serviceability = new Serviceability();
+
+            return View("AllServiceability", viewmodel);
         }
 
 
@@ -82,6 +107,11 @@ namespace LenSys.Controllers
                 Serviceability serviceability1 = _serviceabilityRepository.Add(serviceability);
 
                 var updatedServiceability = _serviceabilityRepository.GetAllServiceability();
+
+                int BusniessId = AppAssetFinanceController.BusniessID;
+                AppAssetFinanceBusniess appAssetFinanceBusniess = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId);
+                appAssetFinanceBusniess.serviceability = (List<Serviceability>)updatedServiceability;
+
                 return RedirectToAction("AllServiceability", updatedServiceability);
             }
 
