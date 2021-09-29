@@ -25,10 +25,14 @@ namespace LenSys.Controllers
         [HttpGet]
         public ViewResult BusniessDetails()
         {
+            BusniessDetails busniessDetails;
             int BusniessId = AppAssetFinanceController.BusniessID;
-            //if (BusniessId!=null )
-            
-            BusniessDetails busniessDetails = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId).busniessDetails;
+            if ( BusniessId == 0)
+            {
+                busniessDetails = new BusniessDetails();
+            }
+
+             busniessDetails = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId).busniessDetails;
 
             return View(busniessDetails);
             //return View();
