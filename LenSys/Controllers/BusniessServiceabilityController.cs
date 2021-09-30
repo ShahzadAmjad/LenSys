@@ -21,13 +21,13 @@ namespace LenSys.Controllers
         }
         public ViewResult Index()
         {
-            int BusniessId = AppAssetFinanceController.BusniessID;
-            if(BusniessId!=0)
-            {
-                IEnumerable<Serviceability> serviceabilities = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId).serviceability;
-                _serviceabilityRepository.SetServiceabilityList(serviceabilities);
+            //int BusniessId = AppAssetFinanceController.BusniessID;
+            //if(BusniessId!=0)
+            //{
+            //    IEnumerable<Serviceability> serviceabilities = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId).serviceability;
+            //    _serviceabilityRepository.SetServiceabilityList(serviceabilities);
 
-            }
+            //}
 
             var model = _serviceabilityRepository.GetAllServiceability();
             //return View("AllServiceability", model);
@@ -41,13 +41,14 @@ namespace LenSys.Controllers
 
         public ViewResult AllServiceability()
         {
-            int BusniessId = AppAssetFinanceController.BusniessID;
-            if (BusniessId != 0)
-            {
-                IEnumerable<Serviceability> serviceabilities = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId).serviceability;
-                _serviceabilityRepository.SetServiceabilityList(serviceabilities);
 
-            }
+            //int BusniessId = AppAssetFinanceController.BusniessID;
+            //if (BusniessId != 0)
+            //{
+            //    IEnumerable<Serviceability> serviceabilities = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId).serviceability;
+            //    _serviceabilityRepository.SetServiceabilityList(serviceabilities);
+
+            //}
             var model = _serviceabilityRepository.GetAllServiceability();
 
             ServiceabilityCreateViewModel viewmodel = new ServiceabilityCreateViewModel();
@@ -74,9 +75,9 @@ namespace LenSys.Controllers
 
                 var updatedServiceability = _serviceabilityRepository.GetAllServiceability();
 
-                int BusniessId = AppAssetFinanceController.BusniessID;
-                AppAssetFinanceBusniess appAssetFinanceBusniess = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId);
-                appAssetFinanceBusniess.serviceability = (List<Serviceability>)updatedServiceability;
+                //int BusniessId = AppAssetFinanceController.BusniessID;
+                //AppAssetFinanceBusniess appAssetFinanceBusniess = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId);
+                //appAssetFinanceBusniess.serviceability = (List<Serviceability>)updatedServiceability;
 
 
                 return RedirectToAction("AllServiceability", updatedServiceability);
@@ -89,9 +90,9 @@ namespace LenSys.Controllers
             _serviceabilityRepository.Delete(id);
             var RemainingServiceability = _serviceabilityRepository.GetAllServiceability();
 
-            int BusniessId = AppAssetFinanceController.BusniessID;
-            AppAssetFinanceBusniess appAssetFinanceBusniess = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId);
-            appAssetFinanceBusniess.serviceability = (List<Serviceability>)RemainingServiceability;
+            //int BusniessId = AppAssetFinanceController.BusniessID;
+            //AppAssetFinanceBusniess appAssetFinanceBusniess = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId);
+            //appAssetFinanceBusniess.serviceability = (List<Serviceability>)RemainingServiceability;
 
             ServiceabilityCreateViewModel viewmodel = new ServiceabilityCreateViewModel();
             viewmodel._serviceability = RemainingServiceability;
@@ -106,6 +107,8 @@ namespace LenSys.Controllers
         {
             return View();
         }
+
+        //For External View
         [HttpPost]
         public IActionResult Serviceability(Serviceability serviceability)
         {
@@ -115,9 +118,9 @@ namespace LenSys.Controllers
 
                 var updatedServiceability = _serviceabilityRepository.GetAllServiceability();
 
-                int BusniessId = AppAssetFinanceController.BusniessID;
-                AppAssetFinanceBusniess appAssetFinanceBusniess = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId);
-                appAssetFinanceBusniess.serviceability = (List<Serviceability>)updatedServiceability;
+                //int BusniessId = AppAssetFinanceController.BusniessID;
+                //AppAssetFinanceBusniess appAssetFinanceBusniess = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId);
+                //appAssetFinanceBusniess.serviceability = (List<Serviceability>)updatedServiceability;
 
                 return RedirectToAction("AllServiceability", updatedServiceability);
             }
