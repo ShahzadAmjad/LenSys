@@ -187,7 +187,7 @@ namespace LenSys.Controllers
                 individual.monthlyExpenditure.MonthlyExpenditureId = 0;
                 individual.asset.AssetId = 0;
                 individual.liabilities.LiabilitiesId = 0;
-                foreach(PropertySchedule property in individual.propertySchedule)
+                foreach (PropertySchedule property in individual.propertySchedule)
                 {
                     property.PropertyId = 0;
                 }
@@ -223,16 +223,18 @@ namespace LenSys.Controllers
 
             //if (ModelState.IsValid)
             //{
+
             //Delete Old Record and add new one due to List multiple not updated
-            _appAssetFinanceRepository.Delete(appID);
+             _appAssetFinanceRepository.Delete(appID);
 
             appAssetFinance.AssetFinId = 0;
             AppAssetFinance appAssetFinance1=_appAssetFinanceRepository.Add(appAssetFinance);
+
+
+
+           //AppAssetFinance appAssetFinance1=_appAssetFinanceRepository.Update(appAssetFinance);
+
             lead = new Lead();
-
-            //AppAssetFinance appAssetFinance1=_appAssetFinanceRepository.Update(appAssetFinance);
-
-
 
             //}
 

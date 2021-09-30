@@ -121,7 +121,8 @@ namespace LenSys.Controllers
         }
         public ViewResult DeleteApplication(int id)
         {
-            _allApplicationsRepository.DeleteAssetFinanceApplication(id);
+            _appAssetFinanceRepository.Delete(id);
+            //_allApplicationsRepository.DeleteAssetFinanceApplication(id);
             var RemainingApplications = _allApplicationsRepository.GetAllAssetFinanceApplication();
             
             return View("AllApplications", RemainingApplications);
