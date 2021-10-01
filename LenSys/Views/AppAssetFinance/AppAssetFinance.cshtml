@@ -60,8 +60,8 @@
                                         var mid = "myModal" + individual.IndividualId;
                                         <tr>
                                             <td>@individual.IndividualId</td>
-                                            <td>Temporary Field</td>
-                                            @*<td>@individual.personalDetails.FirstName</td>*@
+                                            @*<td>Temporary Field</td>*@
+                                            <td>@individual.personalDetails.FirstName</td>
 
                                         <td>
                                             <a asp-controller="AppAssetFinance" asp-action="EditIndividual" asp-route-Id="@individual.IndividualId" id="AddIndividualPersonalDetails" class="btn btn-primary btn-sm">
@@ -164,8 +164,8 @@
                                         var mid = "myModal" + busniess.BusniessId;
                                         <tr>
                                             <td>@busniess.BusniessId</td>
-                                            <td>Temporary field</td>
-                                            @*<td>@busniess.busniessDetails.CompanyBusniessName</td>*@
+                                            @*<td>Temporary field</td>*@
+                                            <td>@busniess.busniessDetails.CompanyBusniessName</td>
 
                                         <td>
                                             <a asp-controller="AppAssetFinance" asp-action="EditBusniess" asp-route-Id="@busniess.BusniessId" id="AddIndividualPersonalDetails" class="btn btn-primary btn-sm">

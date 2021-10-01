@@ -53,29 +53,57 @@ namespace LenSys.Controllers
 
             return View("AllProperties", viewmodel);
         }
-        [HttpPost]
-        public IActionResult AllProperties(PropertyScheduleCreateViewModel propertyScheduleViewModel)
-        {
-            if (ModelState.IsValid)
-            {
-                PropertySchedule property = _propertyScheduleRepositry.Add(propertyScheduleViewModel.propertySchedule);
+        //Not called
+        //[HttpPost]
+        //public IActionResult AllProperties(PropertyScheduleCreateViewModel propertyScheduleViewModel)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        PropertySchedule property = _propertyScheduleRepositry.Add(propertyScheduleViewModel.propertySchedule);
 
+        //        var updatedProperties = _propertyScheduleRepositry.GetAllPropertySchedule();
+
+        //        PropertyScheduleCreateViewModel viewmodel = new PropertyScheduleCreateViewModel();
+        //        viewmodel._propertySchedule = updatedProperties;
+        //        viewmodel.propertySchedule = new PropertySchedule();
+
+        //        //copy from personaldetail controler
+        //        int id = AppAssetFinanceController.appID;
+        //        int IndividualId = AppAssetFinanceController.IndividualID;
+        //        AppAssetFinanceIndividual appAssetFinanceIndividual = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId);
+        //        appAssetFinanceIndividual.propertySchedule = (List<PropertySchedule>)updatedProperties;
+
+        //        return View("AllProperties", viewmodel);
+        //        //return RedirectToAction("AllProperties", updatedProperties);
+        //    }
+        //    return View();
+        //}
+        [HttpGet]
+        public IActionResult AddPropertySchedule()
+        {
+            PropertySchedule propertySchedule = new PropertySchedule();
+            return PartialView("_AddPropertySchedulePartialView", propertySchedule);           
+        }
+        [HttpPost]
+        public IActionResult AddPropertySchedule(PropertySchedule propertySchedule)
+        {
+           // if (ModelState.IsValid)
+            {
+                PropertySchedule property = _propertyScheduleRepositry.Add(propertySchedule);
                 var updatedProperties = _propertyScheduleRepositry.GetAllPropertySchedule();
+
+                int IndividualId = AppAssetFinanceController.IndividualID;
+                AppAssetFinanceIndividual appAssetFinanceIndividual = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId);
+                appAssetFinanceIndividual.propertySchedule = (List<PropertySchedule>)updatedProperties;
 
                 PropertyScheduleCreateViewModel viewmodel = new PropertyScheduleCreateViewModel();
                 viewmodel._propertySchedule = updatedProperties;
                 viewmodel.propertySchedule = new PropertySchedule();
 
-                //copy from personaldetail controler
-                int id = AppAssetFinanceController.appID;
-                int IndividualId = AppAssetFinanceController.IndividualID;
-                AppAssetFinanceIndividual appAssetFinanceIndividual = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId);
-                appAssetFinanceIndividual.propertySchedule = (List<PropertySchedule>)updatedProperties;
-
                 return View("AllProperties", viewmodel);
-                //return RedirectToAction("AllProperties", updatedProperties);
             }
-            return View();
+
+            //return View();
         }
         [HttpGet]
         public ViewResult EditProperty(int id)
