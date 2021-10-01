@@ -61,7 +61,7 @@ namespace LenSys.Controllers
         public IActionResult AddServiceability()
         {
             Serviceability serviceability = new Serviceability();
-            return PartialView("_AddBusniessLiabilitiesPartialView", serviceability);
+            return PartialView("_AddBusniessServiceabilityPartialView", serviceability);
         }
         [HttpPost]
         public IActionResult AddServiceability(Serviceability serviceability)
@@ -80,7 +80,7 @@ namespace LenSys.Controllers
                 viewmodel._serviceability = updatedServiceability;
                 viewmodel.serviceability = new Serviceability();
 
-                return RedirectToAction("AllBusniessLiabilities", viewmodel);
+                return RedirectToAction("AllServiceability", viewmodel);
             }
 
             //return View();

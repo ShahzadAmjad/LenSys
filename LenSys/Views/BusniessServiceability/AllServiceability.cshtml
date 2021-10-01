@@ -151,9 +151,9 @@
 
         //Show modal on Add Button click
         $('button[data-toggle="ajax-modal" ]').click(function (event) {
-
+            
             var url = $(this).data('url');
-
+            
             $.get(url).done(function (data) {
                 PlaceHolderElement.html(data);
                 $('#AddBusniessServiceabilty').modal('show');
@@ -161,7 +161,7 @@
         })
         //Save Modal Data Add New Security detail
         PlaceHolderElement.on('click', '[data-save="modal"]', function (event) {
-
+            
             var form = $('#AddServiceabilityform');
 
             var actionurl = form.attr('action');
