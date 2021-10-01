@@ -60,7 +60,8 @@ namespace LenSys.Controllers
             //if (ModelState.IsValid)
             {
                 appAssetFinanceBusniess.busniessDetails = busniessDetails;
-                return RedirectToAction("AppAssetFinance", "AppAssetFinance", new { id = id });
+                //return RedirectToAction("AppAssetFinance", "AppAssetFinance", new { id = id });
+                return View();
             }
         }
     }
