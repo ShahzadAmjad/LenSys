@@ -55,6 +55,35 @@ namespace LenSys.Controllers
             return View("AllKeyPrincipals", viewmodel);
         }
         [HttpGet]
+        public IActionResult AddKeyPrincipals()
+        {
+            KeyPrincipals keyPrincipals = new KeyPrincipals();
+            return PartialView("_AddKeyPrincipalPartialView", keyPrincipals);
+        }
+        [HttpPost]
+        public IActionResult AddKeyPrincipals(KeyPrincipals keyPrincipals1)
+        {
+            //if (ModelState.IsValid)
+            {
+                KeyPrincipals keyPrincipals = _keyPrincipalsRepository.Add(keyPrincipals1);
+
+                var updatedKeyPrincipals = _keyPrincipalsRepository.GetAllKeyPrincipals();
+
+
+                int BusniessId = AppAssetFinanceController.BusniessID;
+                AppAssetFinanceBusniess appAssetFinanceBusniess = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId);
+                appAssetFinanceBusniess.keyPrincipals = (List<KeyPrincipals>)updatedKeyPrincipals;
+
+                KeyPrincipalsCreateViewModel viewmodel = new KeyPrincipalsCreateViewModel();
+                viewmodel._keyPrincipals = updatedKeyPrincipals;
+                viewmodel.keyPrincipals = new KeyPrincipals();
+
+                return RedirectToAction("AllKeyPrincipals", viewmodel);
+            }
+
+            //return View();
+        }
+        [HttpGet]
         public ViewResult EditKeyPrincipals(int id)
         {
             //var model = _keyPrincipalsRepository.GetAllKeyPrincipals();
@@ -86,7 +115,6 @@ namespace LenSys.Controllers
 
             return View();
         }
-
         public ViewResult DeleteKeyPrincipal(int id)
         {
             _keyPrincipalsRepository.Delete(id);
@@ -102,8 +130,6 @@ namespace LenSys.Controllers
 
             return View("AllKeyPrincipals", viewmodel);
         }
-
-
         [HttpGet]
         public ViewResult KeyPrincipals()
         {

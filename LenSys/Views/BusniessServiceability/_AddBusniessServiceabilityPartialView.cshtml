@@ -1,0 +1,68 @@
+﻿@model Serviceability
+@*Add New ProperySchedule Modal*@
+
+<div class="modal fade bd-example-modal-lg" id="AddBusniessServiceabilty" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title text-center" id="myModalLabel">Add New Busniess Serviceability</h4>
+                <button type="button" class="close " data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+
+            <div class="modal-body" id="ModalBody">
+
+                <form action="AddSeviceability" id="AddServiceabilityform" name="AddServiceabilityform">
+
+                    @*<div class="item form-group">
+            <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="ServiceabilityId">
+                Serviceability Id<span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 ">
+                <input type="text" asp-for=" ServiceabilityId" id="serviceabilityId" name="serviceabilityId" required="required" class="form-control ">
+            </div>
+        </div>*@
+                    <div class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="Year">
+                            Year (Most recent)<span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input type="text" asp-for="Year" id="year" name="year" required="required" class="form-control ">
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label asp-for="TurnOver" class="col-form-label col-md-3 col-sm-3 label-align">
+                            Turnover <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input type="text" asp-for="TurnOver" id="turnOver" name="turnOver" required="required" class="form-control">
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label asp-for="NetProfit" class="col-form-label col-md-3 col-sm-3 label-align">
+                            Net Profit
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input asp-for="NetProfit" id="netProfit" name="netProfit" class="form-control" type="text">
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label asp-for="EBITDA" class="col-form-label col-md-3 col-sm-3 label-align"> EBITDA</label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input asp-for="EBITDA" id="eBITDA" name="eBITDA" class="form-control" type="text">
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+
+            <div class="modal-footer">
+                @*data-save="modal"*@
+                @*<a asp-controller="AllProperties" action="post" asp-action="AddPropertySchedule" id="AddPropertyBtn" class="btn btn-primary mr-1">Save ASP</a>*@
+                <button type="button" class="btn btn-primary" data-save="modal">Save</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+            </div>
+        </div>
+    </div>
+</div>

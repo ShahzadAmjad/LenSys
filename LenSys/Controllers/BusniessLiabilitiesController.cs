@@ -77,7 +77,34 @@ namespace LenSys.Controllers
 
             return View();
         }
+        [HttpGet]
+        public IActionResult AddBusniessLiabilities()
+        {
+            BusniessLiabilities busniessLiabilities = new BusniessLiabilities();
+            return PartialView("_AddBusniessLiabilitiesPartialView", busniessLiabilities);
+        }
+        [HttpPost]
+        public IActionResult AddBusniessLiabilities(BusniessLiabilities busniessLiabilities)
+        {
+            //if (ModelState.IsValid)
+            {
+                BusniessLiabilities busniessLiabilities1 = _busniessLiabilitiesRepository.Add(busniessLiabilities);
 
+                var updatedbusniessLiabilities = _busniessLiabilitiesRepository.GetAllBusniessLiabilities();
+
+                int BusniessId = AppAssetFinanceController.BusniessID;
+                AppAssetFinanceBusniess appAssetFinanceBusniess = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId);
+                appAssetFinanceBusniess.busniessLiabilities = (List<BusniessLiabilities>)updatedbusniessLiabilities;
+
+                BusniessLiabilitiesCreateViewModel viewmodel = new BusniessLiabilitiesCreateViewModel();
+                viewmodel._busniessLiabilities = updatedbusniessLiabilities;
+                viewmodel.busniessLiabilities = new BusniessLiabilities();
+
+                return RedirectToAction("AllBusniessLiabilities", viewmodel);
+            }
+
+            //return View();
+        }
         [HttpGet]
         public ViewResult EditBusniessLiabilities(int id)
         {

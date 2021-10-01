@@ -1,5 +1,4 @@
-﻿
-@model PropertyScheduleCreateViewModel
+﻿@model PropertyScheduleCreateViewModel
 
 
 @{
@@ -74,7 +73,7 @@
         </tbody>
     </table>
 
-    @*Add New Property Modal*@
+    @*Add New Property Modal(Not Used at this time)*@
 
     <div class="modal fade bd-example-modal-lg" id="createPropertyModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog  modal-lg" role="form">
@@ -303,7 +302,7 @@
 
             $.get(url).done(function (data) {
                 PlaceHolderElement.html(data);
-                $('#AddPropertyScheduleModalIndividual').modal('show');               
+                $('#AddPropertyScheduleModalIndividual').modal('show');
             })
         })
         //Save Modal Data Add New Security detail
@@ -317,13 +316,12 @@
 
             $.post(actionurl, sendData).done(function (data) {
                 $('#AddPropertyScheduleModalIndividual').modal('hide');
+                //Reload Page after data Insertion
                 window.location.reload();
             })
         })
 
-        //function refreshPage() {
-        //    window.location.reload();
-        //}
+
     </script>
 
 </div>
