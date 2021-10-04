@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace LenSys.Models.AppAssetFinance
 {
-    public class MockAppAssetFinanceRepository : IAppAssetFinanceRepository
+    public class MockAppAssetFinanceRepository //: IAppAssetFinanceRepository
     {
         public AppAssetFinance Add(AppAssetFinance keyPrincipals)
         {
@@ -23,6 +23,11 @@ namespace LenSys.Models.AppAssetFinance
         }
 
         public AppAssetFinance GetAppAssetFinance(int KeyPrincipalsId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public AppAssetFinance GetAppAssetFinance_EditHome(int KeyPrincipalsId)
         {
             throw new NotImplementedException();
         }

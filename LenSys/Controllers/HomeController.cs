@@ -127,7 +127,7 @@ namespace LenSys.Controllers
         public IActionResult EditApplication(int id)
         {
             EditAssetFinanceAppID = id;
-            AppAssetFinance AppAssetFinanceApplication = _appAssetFinanceRepository.GetAppAssetFinance(id); //_allApplicationsRepository.GetAssetFinanceApplication(id);
+            AppAssetFinance AppAssetFinanceApplication = _appAssetFinanceRepository.GetAppAssetFinance_EditHome(id); //_allApplicationsRepository.GetAssetFinanceApplication(id);
             
             _appAssetFinanceBusniessRepository.SetBusniessList(AppAssetFinanceApplication.busniesses);
             _appAssetFinanceIndividualRepository.SetIndividualList(AppAssetFinanceApplication.individuals);
