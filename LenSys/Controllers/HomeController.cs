@@ -44,7 +44,7 @@ namespace LenSys.Controllers
         }
         public ViewResult Index()
         {
-            var appAssetFinanceApplication = _allApplicationsRepository.GetAllAssetFinanceApplication();
+            var appAssetFinanceApplication = _appAssetFinanceRepository.GetAllAppAssetFinance();
             return View("AllApplications", appAssetFinanceApplication);
         }
         [HttpGet]
@@ -97,7 +97,7 @@ namespace LenSys.Controllers
                 //return RedirectToAction("details", new { id = newEmployee.Id });
                 //return View("Lead");
 
-                var appAssetFinanceApplication = _allApplicationsRepository.GetAllAssetFinanceApplication();
+                var appAssetFinanceApplication = _appAssetFinanceRepository.GetAllAppAssetFinance();
                 return View("AllApplications", appAssetFinanceApplication);
             }
 
@@ -113,10 +113,7 @@ namespace LenSys.Controllers
         }
         public ViewResult AllApplications()
         {
-            var appAssetFinanceApplication=_allApplicationsRepository.GetAllAssetFinanceApplication();
-            //var model = _allApplicationsRepository.GetAllApplications();
-            //return View(model);
-
+            var appAssetFinanceApplication = _appAssetFinanceRepository.GetAllAppAssetFinance();
             return View(appAssetFinanceApplication);
         }
         public ViewResult DeleteApplication(int id)
