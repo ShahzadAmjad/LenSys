@@ -18,7 +18,7 @@ namespace LenSys.Models.AppAssetFinance
         public List<AppAssetFinanceIndividual.AppAssetFinanceIndividual> individuals { get; set; }
         public List<AppAssetFinanceBusniess.AppAssetFinanceBusniess> busniesses { get; set; }
 
-        public string ApplicationType { get; set; }
+        //public string ApplicationType { get; set; }
         
         public string AssetType { get; set; }
         public string Description { get; set; }

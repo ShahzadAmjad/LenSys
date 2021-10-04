@@ -102,7 +102,7 @@ namespace LenSys.Controllers
         public IActionResult EditBusniess(int id)
         {
             BusniessID = id;
-            //SiteGlobalVariables._IndividualId = id;
+
             return RedirectToAction("BusniessDetails", "BusniessDetails");
             //, new { id = id }
         }
@@ -159,7 +159,7 @@ namespace LenSys.Controllers
         public IActionResult EditIndividual(int id)
         {
             IndividualID = id;
-            //SiteGlobalVariables._IndividualId = id;
+             
             return RedirectToAction("PersonalDetails", "IndividualPersonalDetails");
             //, new { id = id }
         }
@@ -227,38 +227,22 @@ namespace LenSys.Controllers
                 busniess.busniessDocuments.DocumentId = 0;
             }
 
+            lead.LeadId = 0;
+            appAssetFinance.AssetFinId = 0;
+
             appAssetFinance.busniesses = (List<AppAssetFinanceBusniess>)_appAssetFinanceBusniessRepository.GetAllBusniess();
             appAssetFinance.individuals = (List<AppAssetFinanceIndividual>)_appAssetFinanceIndividualRepository.GetAllIndividual();
 
-            lead.LeadId = 0;
             appAssetFinance.Lead = lead;
 
-            //if (ModelState.IsValid)
-            //{
 
             //Delete Old Record and add new one due to List multiple not updated
-             _appAssetFinanceRepository.Delete(appID);
+            // _appAssetFinanceRepository.Delete(appID);            
+            //AppAssetFinance appAssetFinance1=_appAssetFinanceRepository.Add(appAssetFinance);
 
-            appAssetFinance.AssetFinId = 0;
-            AppAssetFinance appAssetFinance1=_appAssetFinanceRepository.Add(appAssetFinance);
+            AppAssetFinance appAssetFinance1 = _appAssetFinanceRepository.Update(appAssetFinance);
 
-
-
-           //AppAssetFinance appAssetFinance1=_appAssetFinanceRepository.Update(appAssetFinance);
-
-            lead = new Lead();
-
-            //}
-
-            //AppAssetFinance 
-            //appAssetFinance = new AppAssetFinance();
-            //appAssetFinance.individuals = (List<AppAssetFinanceIndividual>)_appAssetFinanceIndividualRepository.ClearIndividualList();
-            //appAssetFinance.busniesses = (List<AppAssetFinanceBusniess>)_appAssetFinanceBusniessRepository.ClearBusniessList();
-
-            //appAssetFinance.securityDetails = List;
-            //return View("AppBusniessFinance", appBusniessFinance2);
-
-            //return View("AppAssetFinance", appAssetFinance);
+            //lead = new Lead();
 
             return RedirectToAction("AllApplications", "Home");
             //return JavaScript(alert(""));
