@@ -27,7 +27,16 @@ namespace LenSys.Models.BusniessLiabilities
         }
         public BusniessLiabilities Add(BusniessLiabilities busniessLiabilities)
         {
-            busniessLiabilities.BusniessLiabilityId = _busniessLiabilities.Max(e => e.BusniessLiabilityId) + 1;
+            if (_busniessLiabilities.Count == 0)
+            {
+                busniessLiabilities.BusniessLiabilityId = 1;
+
+            }
+            else
+            {
+                busniessLiabilities.BusniessLiabilityId = _busniessLiabilities.Max(e => e.BusniessLiabilityId) + 1;
+            }
+            
             _busniessLiabilities.Add(busniessLiabilities);
             return busniessLiabilities;
         }

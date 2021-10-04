@@ -20,7 +20,16 @@ namespace LenSys.Models.BusniessServiceability
         }
         public Serviceability Add(Serviceability serviceability)
         {
-            serviceability.ServiceabilityId = _serviceability.Max(e => e.ServiceabilityId) + 1;
+            if (_serviceability.Count == 0)
+            {
+                serviceability.ServiceabilityId = 1;
+
+            }
+            else
+            {
+                serviceability.ServiceabilityId = _serviceability.Max(e => e.ServiceabilityId) + 1;
+            }
+            
             _serviceability.Add(serviceability);
             return serviceability;
         }
