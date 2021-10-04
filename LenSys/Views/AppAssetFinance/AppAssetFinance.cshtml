@@ -51,82 +51,58 @@
                             </thead>
                             <tbody>
                                 @*@if ((List<AppBusniessFinanceSecurityDetails>)ViewData["SecurityDetailsList"] != null)*@
-                                @if (Model.individuals.Count != 0)
+                                @if (Model.individuals!=null)
                                 {
-                                    @foreach (var individual in Model.individuals)
-
+                                    @if (Model.individuals.Count != 0)
                                     {
-                                        var tm = "#myModal" + individual.IndividualId;
-                                        var mid = "myModal" + individual.IndividualId;
-                                        <tr>
-                                            <td>@individual.IndividualId</td>
-                                            @*<td>Temporary Field</td>*@
-                                            <td>@individual.personalDetails.FirstName</td>
+                                        @foreach (var individual in Model.individuals)
 
-                                        <td>
-                                            <a asp-controller="AppAssetFinance" asp-action="EditIndividual" asp-route-Id="@individual.IndividualId" id="AddIndividualPersonalDetails" class="btn btn-primary btn-sm">
-                                                Default
-                                            </a>
-                                            
-                                            @*<button type="button" class="btn btn-primary btn-sm" id="EditIndividualbtn" name="EditIndividualbtn">
-                                                Address
-                                            </button>
-                                            <button type="button" class="btn btn-primary btn-sm" id="EditIndividualbtn" name="EditIndividualbtn">
-                                                Employment
-                                            </button>
-                                            <button type="button" class="btn btn-primary btn-sm" id="EditIndividualbtn" name="EditIndividualbtn">
-                                                Income
-                                            </button>
-                                            <button type="button" class="btn btn-primary btn-sm" id="EditIndividualbtn" name="EditIndividualbtn">
-                                                Expenditure
-                                            </button>
-                                            <button type="button" class="btn btn-primary btn-sm" id="EditIndividualbtn" name="EditIndividualbtn">
-                                                Assets
-                                            </button>
-                                            <button type="button" class="btn btn-primary btn-sm" id="EditIndividualbtn" name="EditIndividualbtn">
-                                                Liabilities
-                                            </button>
-                                            <button type="button" class="btn btn-primary btn-sm" id="EditIndividualbtn" name="EditIndividualbtn">
-                                                Property
-                                            </button>
-                                            <button type="button" class="btn btn-primary btn-sm" id="EditIndividualbtn" name="EditIndividualbtn">
-                                                Credit History
-                                            </button>
-                                            <button type="button" class="btn btn-primary btn-sm" id="EditIndividualbtn" name="EditIndividualbtn">
-                                                Documents
-                                            </button>*@
-                                        </td>
+                                        {
+                                            var tm = "#myModal" + individual.IndividualId;
+                                            var mid = "myModal" + individual.IndividualId;
+                                            <tr>
+                                                <td>@individual.IndividualId</td>
+                                                @*<td>Temporary Field</td>*@
+                                                <td>@individual.personalDetails.FirstName</td>
 
-                                            <td>
-                                                <button type="button" style="width:80px;" class="btn btn-danger btn-sm" data-toggle="modal" data-target="@tm">
-                                                    Delete
-                                                </button>
+                                                <td>
+                                                    <a asp-controller="AppAssetFinance" asp-action="EditIndividual" asp-route-Id="@individual.IndividualId" id="AddIndividualPersonalDetails" class="btn btn-primary btn-sm">
+                                                        Default
+                                                    </a>
 
-                                                @*Delete Model for Individual*@
-                                                <div class="modal fade" id="@mid" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                @*<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>*@
-                                                                <h4 class="modal-title text-center" id="myModalLabel">Delete Individual</h4>
-                                                                <button type="button" class="close " data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                Are you sure want to delete this Individual?
-                                                            </div>
-                                                            <div class="modal-footer">
+                                                </td>
 
-                                                                <a asp-controller="AppAssetFinance" asp-action="DeleteIndividual" asp-route-Id="@individual.IndividualId" id="deleteBtn" class="btn bg-danger mr-1">Delete</a>
-                                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                <td>
+                                                    <button type="button" style="width:80px;" class="btn btn-danger btn-sm" data-toggle="modal" data-target="@tm">
+                                                        Delete
+                                                    </button>
+
+                                                    @*Delete Model for Individual*@
+                                                    <div class="modal fade" id="@mid" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    @*<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>*@
+                                                                    <h4 class="modal-title text-center" id="myModalLabel">Delete Individual</h4>
+                                                                    <button type="button" class="close " data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    Are you sure want to delete this Individual?
+                                                                </div>
+                                                                <div class="modal-footer">
+
+                                                                    <a asp-controller="AppAssetFinance" asp-action="DeleteIndividual" asp-route-Id="@individual.IndividualId" id="deleteBtn" class="btn bg-danger mr-1">Delete</a>
+                                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                                </td>
+                                            </tr>
+                                        }
                                     }
                                 }
-                            </tbody>
+                                </tbody>
                         </table>
                     </div>
                     <br />
@@ -154,70 +130,59 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @*@if ((List<AppBusniessFinanceSecurityDetails>)ViewData["SecurityDetailsList"] != null)*@
-                                @if (Model.busniesses.Count != 0)
+                                @if (Model.busniesses != null)
                                 {
-                                    @foreach (var busniess in Model.busniesses)
-
+                                    @*@if ((List<AppBusniessFinanceSecurityDetails>)ViewData["SecurityDetailsList"] != null)*@
+                                    @if (Model.busniesses.Count != 0)
                                     {
-                                        var tm = "#myModal" + busniess.BusniessId;
-                                        var mid = "myModal" + busniess.BusniessId;
-                                        <tr>
-                                            <td>@busniess.BusniessId</td>
-                                            @*<td>Temporary field</td>*@
-                                            <td>@busniess.busniessDetails.CompanyBusniessName</td>
+                                        @foreach (var busniess in Model.busniesses)
 
-                                        <td>
-                                            <a asp-controller="AppAssetFinance" asp-action="EditBusniess" asp-route-Id="@busniess.BusniessId" id="AddIndividualPersonalDetails" class="btn btn-primary btn-sm">
-                                                Default
-                                            </a>
-                                            @*<button type="button"  class="btn btn-primary btn-sm" id="EditIndividualbtn" name="EditIndividualbtn">
-            Busniess Details
-        </button>
-        <button type="button"  class="btn btn-primary btn-sm" id="EditIndividualbtn" name="EditIndividualbtn">
-            Key Principals
-        </button>
-        <button type="button"  class="btn btn-primary btn-sm" id="EditIndividualbtn" name="EditIndividualbtn">
-            Busniess Liability
-        </button>
-        <button type="button"  class="btn btn-primary btn-sm" id="EditIndividualbtn" name="EditIndividualbtn">
-            Serviceability
-        </button>
-        <button type="button"  class="btn btn-primary btn-sm" id="EditIndividualbtn" name="EditIndividualbtn">
-            Documents
-        </button>*@
-                                        </td>
+                                        {
+                                            var tm = "#myModal" + busniess.BusniessId;
+                                            var mid = "myModal" + busniess.BusniessId;
+                                            <tr>
+                                                <td>@busniess.BusniessId</td>
+                                                @*<td>Temporary field</td>*@
+                                                <td>@busniess.busniessDetails.CompanyBusniessName</td>
 
-                                            <td>
-                                                <button type="button" style="width:80px;" class="btn btn-danger btn-sm" data-toggle="modal" data-target="@tm">
-                                                    Delete
-                                                </button>
+                                                <td>
+                                                    <a asp-controller="AppAssetFinance" asp-action="EditBusniess" asp-route-Id="@busniess.BusniessId" id="AddIndividualPersonalDetails" class="btn btn-primary btn-sm">
+                                                        Default
+                                                    </a>
 
-                                                @*Delete Model for Individual*@
-                                                <div class="modal fade" id="@mid" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                @*<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>*@
-                                                                <h4 class="modal-title text-center" id="myModalLabel">Delete Individual</h4>
-                                                                <button type="button" class="close " data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                Are you sure want to delete this Busniess?
-                                                            </div>
-                                                            <div class="modal-footer">
+                                                </td>
 
-                                                                <a asp-controller="AppAssetFinance" asp-action="DeleteBusniess" asp-route-Id="@busniess.BusniessId" id="deleteBtn" class="btn bg-danger mr-1">Delete</a>
-                                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                <td>
+                                                    <button type="button" style="width:80px;" class="btn btn-danger btn-sm" data-toggle="modal" data-target="@tm">
+                                                        Delete
+                                                    </button>
+
+                                                    @*Delete Model for Individual*@
+                                                    <div class="modal fade" id="@mid" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    @*<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>*@
+                                                                    <h4 class="modal-title text-center" id="myModalLabel">Delete Individual</h4>
+                                                                    <button type="button" class="close " data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    Are you sure want to delete this Busniess?
+                                                                </div>
+                                                                <div class="modal-footer">
+
+                                                                    <a asp-controller="AppAssetFinance" asp-action="DeleteBusniess" asp-route-Id="@busniess.BusniessId" id="deleteBtn" class="btn bg-danger mr-1">Delete</a>
+                                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                                </td>
+                                            </tr>
+                                        }
                                     }
                                 }
-                            </tbody>
+                                </tbody>
                         </table>
                     </div>
 
@@ -408,8 +373,9 @@
                             <div class="ln_solid"></div>
                             <div class="item form-group">
                                 <div class="col-md-6 col-sm-6 offset-md-3">
-                                    <button class="btn btn-primary" type="button">Cancel</button>
-                                    <button class="btn btn-primary" type="reset">Reset</button>
+                                    <a asp-controller="Home" asp-action="AllApplications"  id="CancelBtn" class="btn btn-primary ">Cancel</a>
+                                    @*<button class="btn btn-primary" type="button">Cancel</button>*@
+                                    @*<button class="btn btn-primary" type="reset">Reset</button>*@
                                     <button type="submit" class="btn btn-success">Submit Application</button>
                                 </div>
                             </div>

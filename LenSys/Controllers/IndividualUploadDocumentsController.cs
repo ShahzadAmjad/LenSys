@@ -64,7 +64,8 @@ namespace LenSys.Controllers
 
                 //var updatedServiceability = _iindividualDocumentsRepository.GetAllServiceability();
                 //return RedirectToAction("AllServiceability", updatedServiceability);
-                return RedirectToAction("Index", "Home");
+                //return RedirectToAction("Index", "Home");
+                return View();
             }
 
             return View();

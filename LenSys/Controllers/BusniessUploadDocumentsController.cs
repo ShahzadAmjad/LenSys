@@ -55,9 +55,7 @@ namespace LenSys.Controllers
 
                 BusniessDocuments busniessDocuments1 = _busniessDocumentsRepository.UploadDocument(busniessDocuments);
 
-                //var updatedServiceability = _serviceabilityRepository.GetAllServiceability();
-                //return RedirectToAction("AllServiceability", updatedServiceability);
-                return RedirectToAction("Index", "Home");
+                return View();
             }
 
             return View();

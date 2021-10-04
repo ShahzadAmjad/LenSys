@@ -12,15 +12,15 @@ namespace LenSys.Models.BusniessLiabilities
         {
             _busniessLiabilities = new List<BusniessLiabilities>()
             {
-                new BusniessLiabilities{BusniessLiabilityId=1,Lender="John", OrigionalLoanAmount=50000,
-                    OutstandingBalance=3000, MonthlyPayment=20000,InitialTerm="7",RemainingTerm="4",Rate=5,
-                    FixedOrVariable="Fixed", FixedTerm="Fixed", CommitmentTerm=10, EarlyRepaymentCharge=2250},
-                new BusniessLiabilities{BusniessLiabilityId=2,Lender="Mary", OrigionalLoanAmount=50000,
-                    OutstandingBalance=3000, MonthlyPayment=20000,InitialTerm="7",RemainingTerm="4",Rate=5,
-                    FixedOrVariable="Fixed", FixedTerm="Fixed", CommitmentTerm=10, EarlyRepaymentCharge=2250},
-                new BusniessLiabilities{BusniessLiabilityId=3,Lender="ALY", OrigionalLoanAmount=50000,
-                    OutstandingBalance=3000, MonthlyPayment=20000,InitialTerm="7",RemainingTerm="4",Rate=5,
-                    FixedOrVariable="Fixed", FixedTerm="Fixed", CommitmentTerm=10, EarlyRepaymentCharge=2250}
+                //new BusniessLiabilities{BusniessLiabilityId=1,Lender="John", OrigionalLoanAmount=50000,
+                //    OutstandingBalance=3000, MonthlyPayment=20000,InitialTerm="7",RemainingTerm="4",Rate=5,
+                //    FixedOrVariable="Fixed", FixedTerm="Fixed", CommitmentTerm=10, EarlyRepaymentCharge=2250},
+                //new BusniessLiabilities{BusniessLiabilityId=2,Lender="Mary", OrigionalLoanAmount=50000,
+                //    OutstandingBalance=3000, MonthlyPayment=20000,InitialTerm="7",RemainingTerm="4",Rate=5,
+                //    FixedOrVariable="Fixed", FixedTerm="Fixed", CommitmentTerm=10, EarlyRepaymentCharge=2250},
+                //new BusniessLiabilities{BusniessLiabilityId=3,Lender="ALY", OrigionalLoanAmount=50000,
+                //    OutstandingBalance=3000, MonthlyPayment=20000,InitialTerm="7",RemainingTerm="4",Rate=5,
+                //    FixedOrVariable="Fixed", FixedTerm="Fixed", CommitmentTerm=10, EarlyRepaymentCharge=2250}
 
 
             };

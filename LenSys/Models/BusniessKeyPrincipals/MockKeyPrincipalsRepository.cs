@@ -12,17 +12,26 @@ namespace LenSys.Models.BusniessKeyPrincipals
         {
             _keyPrincipals = new List<KeyPrincipals>()
             {
-                                new KeyPrincipals{KeyPrincipalsId=1,Title="John", FirstName="John",
-                    MiddleName="Peter",  Surname="ALY",Position="CEO",PercentageShareholding="50"},
-                                new KeyPrincipals{KeyPrincipalsId=2,Title="Mary", FirstName="Mary",
-                    MiddleName="Peter",  Surname="ALY",Position="MD",PercentageShareholding="25"},
-                                new KeyPrincipals{KeyPrincipalsId=3,Title="ALY", FirstName="ALY",
-                    MiddleName="Peter",  Surname="ALY",Position="GM",PercentageShareholding="10"}
+                    //            new KeyPrincipals{KeyPrincipalsId=1,Title="John", FirstName="John",
+                    //MiddleName="Peter",  Surname="ALY",Position="CEO",PercentageShareholding="50"},
+                    //            new KeyPrincipals{KeyPrincipalsId=2,Title="Mary", FirstName="Mary",
+                    //MiddleName="Peter",  Surname="ALY",Position="MD",PercentageShareholding="25"},
+                    //            new KeyPrincipals{KeyPrincipalsId=3,Title="ALY", FirstName="ALY",
+                    //MiddleName="Peter",  Surname="ALY",Position="GM",PercentageShareholding="10"}
             };
         }
         public KeyPrincipals Add(KeyPrincipals keyPrincipals)
         {
-            keyPrincipals.KeyPrincipalsId = _keyPrincipals.Max(e => e.KeyPrincipalsId) + 1;
+            if (_keyPrincipals.Count == 0)
+            {
+                keyPrincipals.KeyPrincipalsId = 1;
+
+            }
+            else
+            {
+                keyPrincipals.KeyPrincipalsId = _keyPrincipals.Max(e => e.KeyPrincipalsId) + 1;
+            }
+            
             _keyPrincipals.Add(keyPrincipals);
             return keyPrincipals;
         }

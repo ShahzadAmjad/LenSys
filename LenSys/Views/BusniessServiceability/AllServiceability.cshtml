@@ -71,7 +71,7 @@
         </tbody>
     </table>
 
-
+    <a asp-controller="AppAssetFinance" asp-action="AppAssetFinance" class="btn btn-primary">Go to Main Application</a>
     @*Add New Serviceability Modal(Not Used at this time)*@
 
     <div class="modal fade bd-example-modal-lg" id="createServiceabilityModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -151,9 +151,9 @@
 
         //Show modal on Add Button click
         $('button[data-toggle="ajax-modal" ]').click(function (event) {
-            
+
             var url = $(this).data('url');
-            
+
             $.get(url).done(function (data) {
                 PlaceHolderElement.html(data);
                 $('#AddBusniessServiceabilty').modal('show');
@@ -161,7 +161,7 @@
         })
         //Save Modal Data Add New Security detail
         PlaceHolderElement.on('click', '[data-save="modal"]', function (event) {
-            
+
             var form = $('#AddServiceabilityform');
 
             var actionurl = form.attr('action');
