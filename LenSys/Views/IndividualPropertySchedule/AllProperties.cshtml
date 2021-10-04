@@ -1,5 +1,4 @@
-﻿
-@model PropertyScheduleCreateViewModel
+﻿@model PropertyScheduleCreateViewModel
 
 
 @{
@@ -7,8 +6,12 @@
 }
 
 <div class="mtop20">
-    <a asp-controller="IndividualPropertySchedule" asp-action="PropertySchedule" class="btn btn-success">Add New Property Schedule</a>
+    @*<a asp-controller="IndividualPropertySchedule" asp-action="PropertySchedule" class="btn btn-success">Add New Property Schedule</a>*@
     @*<button type="button" class="btn btn-success" data-toggle="modal" data-target="#createPropertyModel">Add New Property Schedule</button>*@
+    <button type="button" class="btn btn-success" data-toggle="ajax-modal" id="AddPropertybtn" name="AddPropertybtn"
+            data-target="#AddPropertyScheduleModalIndividual" data-url="@Url.Action("AddPropertySchedule")">
+        Add New Property Schedule
+    </button>
 </div>
 
 
@@ -69,8 +72,8 @@
             }
         </tbody>
     </table>
-
-    @*Add New Property Modal*@
+    <a asp-controller="AppAssetFinance" asp-action="AppAssetFinance" class="btn btn-primary">Go to Main Application</a>
+    @*Add New Property Modal(Not Used at this time)*@
 
     <div class="modal fade bd-example-modal-lg" id="createPropertyModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog  modal-lg" role="form">
@@ -82,13 +85,13 @@
                 </div>
                 <div class="modal-body">
                     @*<div class="item form-group">
-                        <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="@Model.propertySchedule.PropertyId">
-                            Property Id<span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 ">
-                            <input type="text" asp-for="@Model.propertySchedule.PropertyId" id="propertyId" name="propertyId" required="required" class="form-control ">
-                        </div>
-                    </div>*@
+                            <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="@Model.propertySchedule.PropertyId">
+                                Property Id<span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 ">
+                                <input type="text" asp-for="@Model.propertySchedule.PropertyId" id="propertyId" name="propertyId" required="required" class="form-control ">
+                            </div>
+                        </div>*@
                     <div class="item form-group">
                         <label asp-for="@Model.propertySchedule.Owner" class="col-form-label col-md-3 col-sm-3 label-align">
                             Owner <span class="required">*</span>
@@ -121,11 +124,11 @@
                         <div class="col-md-6 col-sm-6 ">
                             <input asp-for="@Model.propertySchedule.PurchaseDate" id="purchaseDate" name="purchaseDate" class="date-picker form-control" placeholder="dd-mm-yyyy" type="text" required="required" onfocus="this.type='date'" onmouseover="this.type='date'" onclick="this.type='date'" onblur="this.type='text'" onmouseout="timeFunctionLong(this)">
                             <script>
-                                        function timeFunctionLong(input) {
-                                            setTimeout(function () {
-                                                input.type = 'text';
-                                            }, 60000);
-                                        }</script>
+                                function timeFunctionLong(input) {
+                                    setTimeout(function () {
+                                        input.type = 'text';
+                                    }, 60000);
+                                }</script>
                         </div>
                     </div>
 
@@ -273,7 +276,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-default" >Save</button>
+                    <button type="submit" class="btn btn-default">Save</button>
                     @*<a asp-controller="IndividualPropertySchedule" asp-action="PropertySchedule" id="AddPropertyBtn" class="btn btn-primary mr-1">Save</a>*@
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
@@ -281,5 +284,44 @@
         </div>
     </div>
 
+    @*Related To partial View*@
+    <div name="PlaceHolderHere" id="PlaceHolderHere">
+        @*<partial name="_AddSecutityDetailBusniessPartialView" />*@
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script>
+
+        var PlaceHolderElement = $('#PlaceHolderHere');
+
+        //Show modal on Add Button click
+        $('button[data-toggle="ajax-modal" ]').click(function (event) {
+
+            var url = $(this).data('url');
+
+            $.get(url).done(function (data) {
+                PlaceHolderElement.html(data);
+                $('#AddPropertyScheduleModalIndividual').modal('show');
+            })
+        })
+        //Save Modal Data Add New Security detail
+        PlaceHolderElement.on('click', '[data-save="modal"]', function (event) {
+
+            var form = $('#AddPropertyScheduleform');
+
+            var actionurl = form.attr('action');
+
+            var sendData = form.serialize();
+
+            $.post(actionurl, sendData).done(function (data) {
+                $('#AddPropertyScheduleModalIndividual').modal('hide');
+                //Reload Page after data Insertion
+                window.location.reload();
+            })
+        })
+
+
+    </script>
 
 </div>

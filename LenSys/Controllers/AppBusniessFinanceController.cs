@@ -11,8 +11,6 @@ namespace LenSys.Controllers
     {
         private IAppBusniessFinanceSecurityDetailsRepository _appBusniessFinanceSecurityDetails;
         private IAppBusniessFinanceRepository _appBusniessFinanceRepository;
-        //public List<AppBusniessFinanceSecurityDetails> _SecurityDetails;
-        //AppBusniessFinance GappBusniessFinance = new AppBusniessFinance();
         public AppBusniessFinanceController(IAppBusniessFinanceSecurityDetailsRepository appBusniessFinanceSecurityDetailsRepository, IAppBusniessFinanceRepository appBusniessFinanceRepository)
         {
             _appBusniessFinanceSecurityDetails = appBusniessFinanceSecurityDetailsRepository;

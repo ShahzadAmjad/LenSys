@@ -14,18 +14,18 @@ namespace LenSys.Models.AppAssetFinance.AppAssetFinanceIndividual
             PersonalDetails individualPersonalDetails = new PersonalDetails { FirstName = "Happy" };
             _individual = new List<AppAssetFinanceIndividual>()
             {
-                                new AppAssetFinanceIndividual{
+                                //new AppAssetFinanceIndividual{
                                    
-                                    personalDetails=individualPersonalDetails
+                                //    personalDetails=individualPersonalDetails
 
-                                }
+                                //}
             };
         }
         public AppAssetFinanceIndividual Add(AppAssetFinanceIndividual individual)
         {
             if (_individual.Count == 0)
             {
-                individual.IndividualId = 0;
+                individual.IndividualId = 1;
 
             }
             else

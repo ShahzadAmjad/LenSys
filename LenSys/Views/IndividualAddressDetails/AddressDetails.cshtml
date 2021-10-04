@@ -23,7 +23,7 @@
                     <div class="x_content">
                         <br />
                         <form id="IndividualAddressDetailsForm" data-parsley-validate class="form-horizontal form-label-left" asp-controller="IndividualAddressDetails" asp-action="AddressDetails" method="post">
-                            <div class="item form-group">
+                            <div class="item form-group" hidden>
                                 <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="AddressDetailsId">
                                     Id<span class="required">*</span>
                                 </label>
@@ -187,9 +187,10 @@
                             <div class="ln_solid"></div>
                             <div class="item form-group">
                                 <div class="col-md-6 col-sm-6 offset-md-3">
-                                    <button class="btn btn-primary" type="button">Cancel</button>
-                                    <button class="btn btn-primary" type="reset">Reset</button>
-                                    <button type="submit" class="btn btn-success">Save & Countinue</button>
+                                    <a asp-controller="AppAssetFinance" asp-action="AppAssetFinance" class="btn btn-primary">Go to Main Application</a>
+                                    @*<button class="btn btn-primary" type="button">Cancel</button>
+        <button class="btn btn-primary" type="reset">Reset</button>*@
+                                    <button type="submit" class="btn btn-success">Save</button>
                                 </div>
                             </div>
 

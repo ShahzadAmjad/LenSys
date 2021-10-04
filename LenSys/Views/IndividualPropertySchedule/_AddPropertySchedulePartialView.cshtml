@@ -1,0 +1,217 @@
+﻿@model PropertySchedule
+@*Add New ProperySchedule Modal*@
+
+<div class="modal fade bd-example-modal-lg" id="AddPropertyScheduleModalIndividual" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title text-center" id="myModalLabel">Add New Propery Schedule</h4>
+                <button type="button" class="close " data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+
+            <div class="modal-body" id="ModalBody">
+
+                <form action="AddPropertySchedule" id="AddPropertyScheduleform" name="AddPropertyScheduleform">
+
+                    @*<div class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="@Model.PropertyId">
+                           Property Id
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input type="text" asp-for="@Model.PropertyId" id="propertyId" name="propertyId" readonly class="form-control ">
+                        </div>
+                    </div>*@
+                    <div class="item form-group">
+                        <label asp-for="@Model.Owner" class="col-form-label col-md-3 col-sm-3 label-align">
+                            Owner <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input type="text" asp-for="@Model.Owner" id="Owner" name="owner" required="required" class="form-control">
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label asp-for="@Model.PropertyAddress" class="col-form-label col-md-3 col-sm-3 label-align">
+                            Property Address<span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input asp-for="@Model.PropertyAddress" id="propertyAddress" name="propertyAddress" class="form-control" type="text">
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label asp-for="@Model.Lender" class="col-form-label col-md-3 col-sm-3 label-align">
+                            Lender<span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input asp-for="@Model.Lender" id="lender" name="lender" class="form-control" type="text">
+                        </div>
+                    </div>
+
+                    <div class="item form-group">
+                        <label asp-for="@Model.PurchaseDate" class="col-form-label col-md-3 col-sm-3 label-align">
+                            Purchase Date <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input asp-for="@Model.PurchaseDate" id="purchaseDate" name="purchaseDate" class="date-picker form-control" placeholder="dd-mm-yyyy" type="text" required="required" onfocus="this.type='date'" onmouseover="this.type='date'" onclick="this.type='date'" onblur="this.type='text'" onmouseout="timeFunctionLong(this)">
+                            <script>
+                                        function timeFunctionLong(input) {
+                                            setTimeout(function () {
+                                                input.type = 'text';
+                                            }, 60000);
+                                        }</script>
+                        </div>
+                    </div>
+
+                    <div class="item form-group">
+                        <label asp-for="@Model.PurchasePrice" class="col-form-label col-md-3 col-sm-3 label-align">
+                            Purchase Price
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input asp-for="@Model.PurchasePrice" id="purchasePrice" name="purchasePrice" class="form-control" type="text">
+                        </div>
+                    </div>
+
+
+
+                    <div class="item form-group">
+                        <label asp-for="@Model.OrigionalMortgageAmount" class="col-form-label col-md-3 col-sm-3 label-align">
+                            Origional Mortgage Amount
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input asp-for="@Model.OrigionalMortgageAmount" id="origionalMortgageAmount" name="origionalMortgageAmount" class="form-control" type="text">
+                        </div>
+                    </div>
+
+                    <div class="item form-group">
+                        <label asp-for="@Model.CurrentMarketValue" class="col-form-label col-md-3 col-sm-3 label-align">
+                            Current Market Value
+                            <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input asp-for="@Model.CurrentMarketValue" id="currentMarketValue" name="currentMarketValue" class="form-control" type="text">
+                        </div>
+                    </div>
+
+                    <div class="item form-group">
+                        <label asp-for="@Model.OutstandingMortgage" class="col-form-label col-md-3 col-sm-3 label-align">
+                            Outstanding Mortgage <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input type="text" asp-for="@Model.OutstandingMortgage" id="outstandingMortgage" name="outstandingMortgage" required="required" class="form-control">
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label asp-for="@Model.RemainingTerm" class="col-form-label col-md-3 col-sm-3 label-align">
+                            Remaining Term
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input asp-for="@Model.RemainingTerm" id="remainingTerm" name="remainingTerm" class="form-control" type="text">
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label asp-for="@Model.TypeOfRate" class="col-form-label col-md-3 col-sm-3 label-align">
+                            Type Of Rate
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <select asp-for="@Model.TypeOfRate" id="typeOfRate" name="typeOfRate" class="form-control">
+                                <option>Variable</option>
+                                <option>Fixed</option>
+                                <option>Any</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="item form-group">
+                        <label asp-for="@Model.InterestRate" class="col-form-label col-md-3 col-sm-3 label-align">
+                            Interest Rate <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input asp-for="@Model.InterestRate" id="interestRate" name="interestRate" class="form-control" type="text">
+                        </div>
+                    </div>
+
+                    <div class="item form-group">
+                        <label asp-for="@Model.RentPcm" class="col-form-label col-md-3 col-sm-3 label-align">
+                            Rent pcm <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input asp-for="@Model.RentPcm" id="rentPcm" name="rentPcm" class="form-control" type="text">
+                        </div>
+                    </div>
+
+                    <div class="item form-group">
+                        <label asp-for="@Model.MortgagePcm" class="col-form-label col-md-3 col-sm-3 label-align">
+                            Mortgage pcm
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input asp-for="@Model.MortgagePcm" id="mortgagePcm" name="mortgagePcm" class="form-control" type="text">
+                        </div>
+                    </div>
+
+
+
+                    <div class="item form-group">
+                        <label asp-for="@Model.LTV" class="col-form-label col-md-3 col-sm-3 label-align">
+                            LTV
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input asp-for="@Model.LTV" id="lTV" name="lTV" class="form-control" type="text">
+                        </div>
+                    </div>
+
+                    <div class="item form-group">
+                        <label asp-for="@Model.PropertyType" class="col-form-label col-md-3 col-sm-3 label-align">
+                            Property Type
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <select asp-for="@Model.PropertyType" id="propertyType" name="propertyType" class="form-control">
+                                <option>Commercial</option>
+                                <option>Residential</option>
+                                <option>Semi-Commercial</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="item form-group">
+                        <label asp-for="@Model.PropertyDescription" class="col-form-label col-md-3 col-sm-3 label-align">
+                            Property Description <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input type="text" asp-for="@Model.PropertyDescription" id="propertyDescription" name="propertyDescription" required="required" class="form-control">
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label asp-for="@Model.TypeOfTenancyLeaseASTBoth" class="col-form-label col-md-3 col-sm-3 label-align">
+                            Type Of Tenancy Lease/AST/Both
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <select asp-for="@Model.TypeOfTenancyLeaseASTBoth" id="typeOfTenancyLeaseASTBoth" name="typeOfTenancyLeaseASTBoth" class="form-control">
+                                <option>Lease</option>
+                                <option>AST</option>
+                                <option>Both</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label asp-for="@Model.RemainingTermOfLease" class="col-form-label col-md-3 col-sm-3 label-align">
+                            Remaining Term Of Lease
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input asp-for="@Model.RemainingTermOfLease" id="remainingTermOfLease" name="remainingTermOfLease" class="form-control" type="text">
+                        </div>
+                    </div>
+
+
+                </form>
+
+            </div>
+
+            <div class="modal-footer">
+                @*data-save="modal"*@
+                @*<a asp-controller="AllProperties" action="post" asp-action="AddPropertySchedule" id="AddPropertyBtn" class="btn btn-primary mr-1">Save ASP</a>*@
+                <button type="button" class="btn btn-primary" data-save="modal">Save</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+            </div>
+        </div>
+    </div>
+</div>

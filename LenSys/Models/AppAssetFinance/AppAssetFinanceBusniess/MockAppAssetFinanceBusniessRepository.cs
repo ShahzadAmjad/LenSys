@@ -13,18 +13,18 @@ namespace LenSys.Models.AppAssetFinance.AppAssetFinanceBusniess
             BusniessDetails.BusniessDetails busniessDetails = new Models.BusniessDetails.BusniessDetails { CompanyBusniessName="HS company"};
             _busniess = new List<AppAssetFinanceBusniess>()
             {
-                                new AppAssetFinanceBusniess{
+                                //new AppAssetFinanceBusniess{
 
-                                    busniessDetails=busniessDetails
+                                //    busniessDetails=busniessDetails
 
-                                }
+                                //}
             };
         }
         public AppAssetFinanceBusniess Add(AppAssetFinanceBusniess busniess)
         {
             if (_busniess.Count == 0)
             {
-                busniess.BusniessId = 0;
+                busniess.BusniessId = 1;
 
             }
             else

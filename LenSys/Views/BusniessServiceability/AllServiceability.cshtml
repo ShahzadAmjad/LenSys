@@ -5,8 +5,12 @@
 }
 
 <div class="mtop20">
-    <a asp-controller="BusniessServiceability" asp-action="Serviceability" class="btn btn-success">Add New Busniess Serviceability</a>
+    @*<a asp-controller="BusniessServiceability" asp-action="Serviceability" class="btn btn-success">Add New Busniess Serviceability</a>*@
     @*<button type="button" class="btn btn-success" data-toggle="modal" data-target="#createServiceabilityModel">Add New Busniess Serviceability</button>*@
+    <button type="button" class="btn btn-success" data-toggle="ajax-modal" id="AddBusniessServiceabilitybtn" name="AddBusniessServiceabilitybtn"
+            data-target="#AddBusniessServiceabilty" data-url="@Url.Action("AddServiceability")">
+        Add New Busniess Serviceability
+    </button>
 </div>
 
 
@@ -67,8 +71,8 @@
         </tbody>
     </table>
 
-
-    @*Add New Serviceability Modal*@
+    <a asp-controller="AppAssetFinance" asp-action="AppAssetFinance" class="btn btn-primary">Go to Main Application</a>
+    @*Add New Serviceability Modal(Not Used at this time)*@
 
     <div class="modal fade bd-example-modal-lg" id="createServiceabilityModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog  modal-lg" role="form">
@@ -82,48 +86,48 @@
 
                     <form id="BusniessServiceabilityForm" data-parsley-validate class="form-horizontal form-label-left" asp-controller="BusniessServiceability" asp-action="Serviceability" method="post">
 
-                        
-                            <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="@Model.serviceability.ServiceabilityId">
-                                    Serviceability Id<span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 ">
-                                    <input type="text" asp-for=" @Model.serviceability.ServiceabilityId" id="serviceabilityId" name="serviceabilityId" required="required" class="form-control ">
-                                </div>
+
+                        <div class="item form-group">
+                            <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="@Model.serviceability.ServiceabilityId">
+                                Serviceability Id<span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 ">
+                                <input type="text" asp-for=" @Model.serviceability.ServiceabilityId" id="serviceabilityId" name="serviceabilityId" required="required" class="form-control ">
                             </div>
-                            <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="@Model.serviceability.Year">
-                                    Year (Most recent)<span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 ">
-                                    <input type="text" asp-for="@Model.serviceability.Year" id="year" name="year" required="required" class="form-control ">
-                                </div>
+                        </div>
+                        <div class="item form-group">
+                            <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="@Model.serviceability.Year">
+                                Year (Most recent)<span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 ">
+                                <input type="text" asp-for="@Model.serviceability.Year" id="year" name="year" required="required" class="form-control ">
                             </div>
-                            <div class="item form-group">
-                                <label asp-for="@Model.serviceability.TurnOver" class="col-form-label col-md-3 col-sm-3 label-align">
-                                    Turnover <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 ">
-                                    <input type="text" asp-for="@Model.serviceability.TurnOver" id="turnOver" name="turnOver" required="required" class="form-control">
-                                </div>
+                        </div>
+                        <div class="item form-group">
+                            <label asp-for="@Model.serviceability.TurnOver" class="col-form-label col-md-3 col-sm-3 label-align">
+                                Turnover <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 ">
+                                <input type="text" asp-for="@Model.serviceability.TurnOver" id="turnOver" name="turnOver" required="required" class="form-control">
                             </div>
-                            <div class="item form-group">
-                                <label asp-for="@Model.serviceability.NetProfit" class="col-form-label col-md-3 col-sm-3 label-align">
-                                    Net Profit
-                                </label>
-                                <div class="col-md-6 col-sm-6 ">
-                                    <input asp-for="@Model.serviceability.NetProfit" id="netProfit" name="netProfit" class="form-control" type="text">
-                                </div>
+                        </div>
+                        <div class="item form-group">
+                            <label asp-for="@Model.serviceability.NetProfit" class="col-form-label col-md-3 col-sm-3 label-align">
+                                Net Profit
+                            </label>
+                            <div class="col-md-6 col-sm-6 ">
+                                <input asp-for="@Model.serviceability.NetProfit" id="netProfit" name="netProfit" class="form-control" type="text">
                             </div>
-                            <div class="item form-group">
-                                <label asp-for="@Model.serviceability.EBITDA" class="col-form-label col-md-3 col-sm-3 label-align"> EBITDA</label>
-                                <div class="col-md-6 col-sm-6 ">
-                                    <input asp-for="@Model.serviceability.EBITDA" id="eBITDA" name="eBITDA" class="form-control" type="text">
-                                </div>
+                        </div>
+                        <div class="item form-group">
+                            <label asp-for="@Model.serviceability.EBITDA" class="col-form-label col-md-3 col-sm-3 label-align"> EBITDA</label>
+                            <div class="col-md-6 col-sm-6 ">
+                                <input asp-for="@Model.serviceability.EBITDA" id="eBITDA" name="eBITDA" class="form-control" type="text">
                             </div>
+                        </div>
 
 
-                        </form>
+                    </form>
 
                 </div>
                 <div class="modal-footer">
@@ -135,5 +139,43 @@
         </div>
     </div>
 
+    @*Related To partial View*@
+    <div name="PlaceHolderHere" id="PlaceHolderHere">
+        @*<partial name="_AddSecutityDetailBusniessPartialView" />*@
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script>
+
+        var PlaceHolderElement = $('#PlaceHolderHere');
+
+        //Show modal on Add Button click
+        $('button[data-toggle="ajax-modal" ]').click(function (event) {
+
+            var url = $(this).data('url');
+
+            $.get(url).done(function (data) {
+                PlaceHolderElement.html(data);
+                $('#AddBusniessServiceabilty').modal('show');
+            })
+        })
+        //Save Modal Data Add New Security detail
+        PlaceHolderElement.on('click', '[data-save="modal"]', function (event) {
+
+            var form = $('#AddServiceabilityform');
+
+            var actionurl = form.attr('action');
+
+            var sendData = form.serialize();
+
+            $.post(actionurl, sendData).done(function (data) {
+                $('#AddBusniessServiceabilty').modal('hide');
+                //Reload Page after data Insertion
+                window.location.reload();
+            })
+        })
+
+
+    </script>
 
 </div>

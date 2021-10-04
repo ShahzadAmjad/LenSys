@@ -1,0 +1,97 @@
+﻿@model KeyPrincipals
+@*Add New ProperySchedule Modal*@
+
+<div class="modal fade bd-example-modal-lg" id="AddBusniessKeyPrincipals" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title text-center" id="myModalLabel">Add New Key Principal</h4>
+                <button type="button" class="close " data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+
+            <div class="modal-body" id="ModalBody">
+
+                <form action="AddKeyPrincipals" id="AddKeyPrincipalsform" name="AddKeyPrincipalsform">
+                    @*<div class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="KeyPrincipalsId">
+                            ID <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input type="text" asp-for="KeyPrincipalsId" id="keyPrincipalsId" name="keyPrincipalsId" required="required" class="form-control ">
+                        </div>
+                    </div>*@
+
+                    <div class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="Title">
+                            Title<span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input type="text" asp-for="Title" id="title" name="title" required="required" class="form-control ">
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label asp-for="FirstName" class="col-form-label col-md-3 col-sm-3 label-align">
+                            First Name <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input type="text" asp-for="FirstName" id="firstName" name="firstName" required="required" class="form-control">
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label asp-for="MiddleName" class="col-form-label col-md-3 col-sm-3 label-align">Middle Name / Initial</label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input asp-for="MiddleName" id="middle-name" name="middle-name" class="form-control" type="text">
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label asp-for="Surname" class="col-form-label col-md-3 col-sm-3 label-align"> Surname</label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input asp-for="Surname" id="surname" name="surname" class="form-control" type="text">
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label asp-for="Position" class="col-form-label col-md-3 col-sm-3 label-align">Position (*MultiSelect)</label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <select asp-for="Position" id="position" name="position" class=" form-control" multiple>
+                                <option>
+                                    Director & Shareholder
+                                </option>
+                                <option>
+                                    Director
+                                </option>
+                                <option>
+                                    Shareholder
+                                </option>
+                                <option>
+                                    Partner
+                                </option>
+                                <option>
+                                    Guarantor
+                                </option>
+
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="item form-group">
+                        <label asp-for="PercentageShareholding" class="col-form-label col-md-3 col-sm-3 label-align">
+                            Percentage Shareholding
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input asp-for="PercentageShareholding" id="percentageShareholding" name="percentageShareholding" class="form-control" type="text">
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+
+            <div class="modal-footer">
+                @*data-save="modal"*@
+                @*<a asp-controller="AllProperties" action="post" asp-action="AddPropertySchedule" id="AddPropertyBtn" class="btn btn-primary mr-1">Save ASP</a>*@
+                <button type="button" class="btn btn-primary" data-save="modal">Save</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -47,7 +47,7 @@ namespace LenSys.Controllers
         {
             //String name = "Default Index Page";
             //return name;
-            return View("AppAssetFinance");
+            return View();
         }
         public IActionResult AddLead()
         {
@@ -57,11 +57,20 @@ namespace LenSys.Controllers
         {
             AppAssetFinanceBusniess appAssetFinanceBusniess = new AppAssetFinanceBusniess();
 
-            BusniessDetails busniessDetails = new BusniessDetails { CompanyBusniessName = "Temp" };
-            List<KeyPrincipals> keyPrincipals =new List<KeyPrincipals>(){new KeyPrincipals{Title = "Temp",FirstName = "Temp"}};
-            List<BusniessLiabilities> busniessLiabilities = new List<BusniessLiabilities>(){new BusniessLiabilities{Lender="Temp", OrigionalLoanAmount=123} };
-            List<Serviceability> serviceability = new List<Serviceability>(){new Serviceability{ Year=(DateTime.Now.Year).ToString(),TurnOver=123}};
-            BusniessDocuments busniessDocuments = new BusniessDocuments { DocumentName="Temp" };
+            BusniessDetails busniessDetails = new BusniessDetails { CompanyBusniessName = "" };
+            List<KeyPrincipals> keyPrincipals =new List<KeyPrincipals>()
+            {
+                //new KeyPrincipals{Title = "",FirstName = ""}
+            };
+            List<BusniessLiabilities> busniessLiabilities = new List<BusniessLiabilities>()
+            {
+                //new BusniessLiabilities{Lender="", OrigionalLoanAmount=0} 
+            };
+            List<Serviceability> serviceability = new List<Serviceability>()
+            {
+                //new Serviceability{ Year=(DateTime.Now.Year).ToString(),TurnOver=0}
+            };
+            BusniessDocuments busniessDocuments = new BusniessDocuments { DocumentName="" };
 
             appAssetFinanceBusniess.busniessDetails=busniessDetails;
             appAssetFinanceBusniess.keyPrincipals = keyPrincipals;
@@ -100,16 +109,19 @@ namespace LenSys.Controllers
         public IActionResult AddIndividual()
         {     
             AppAssetFinanceIndividual appAssetFinanceIndividual = new AppAssetFinanceIndividual();
-            PersonalDetails individualPersonalDetails = new PersonalDetails { FirstName = "Temp" };
-            AddressDetails IndividualAddressDetails = new AddressDetails { City = "Temp" };
-            EmploymentDetails IndividualEmploymentDetails = new EmploymentDetails { EmployersName = "Temp" };
-            MonthlyIncome monthlyIncome = new MonthlyIncome { DividendsAfterTax = 555 };
-            MonthlyExpenditure monthlyExpenditure = new MonthlyExpenditure {CarInsuranceRoadTax=123 };
+            PersonalDetails individualPersonalDetails = new PersonalDetails { FirstName = "" };
+            AddressDetails IndividualAddressDetails = new AddressDetails { City = "" };
+            EmploymentDetails IndividualEmploymentDetails = new EmploymentDetails { EmployersName = "" };
+            MonthlyIncome monthlyIncome = new MonthlyIncome { DividendsAfterTax = 0 };
+            MonthlyExpenditure monthlyExpenditure = new MonthlyExpenditure {CarInsuranceRoadTax=0 };
             Asset asset = new Asset { Cash = 654 };
-            Liabilities liabilities = new Liabilities { NetAssets = 45000 };
-            List<PropertySchedule> _propertySchedule= new List<PropertySchedule>(){new PropertySchedule{Owner="Temp", PropertyAddress="Temp"}};
-            CreditHistory creditHistory = new CreditHistory { CriminalConvictions = "Temp" };
-            IndividualDocuments individualDocuments = new IndividualDocuments { DocumentName = "Temp" };
+            Liabilities liabilities = new Liabilities { NetAssets = 0 };
+            List<PropertySchedule> _propertySchedule= new List<PropertySchedule>()
+            {
+                //new PropertySchedule{Owner="", PropertyAddress=""}
+            };
+            CreditHistory creditHistory = new CreditHistory { CriminalConvictions = "" };
+            IndividualDocuments individualDocuments = new IndividualDocuments { DocumentName = "" };
                  
             appAssetFinanceIndividual.personalDetails= individualPersonalDetails;
             appAssetFinanceIndividual.addressDetails = IndividualAddressDetails;

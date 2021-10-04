@@ -44,7 +44,7 @@ namespace LenSys.Controllers
         }
         public ViewResult Index()
         {
-            var appAssetFinanceApplication = _allApplicationsRepository.GetAllAssetFinanceApplication();
+            var appAssetFinanceApplication = _appAssetFinanceRepository.GetAllAppAssetFinance();
             return View("AllApplications", appAssetFinanceApplication);
         }
         [HttpGet]
@@ -97,7 +97,7 @@ namespace LenSys.Controllers
                 //return RedirectToAction("details", new { id = newEmployee.Id });
                 //return View("Lead");
 
-                var appAssetFinanceApplication = _allApplicationsRepository.GetAllAssetFinanceApplication();
+                var appAssetFinanceApplication = _appAssetFinanceRepository.GetAllAppAssetFinance();
                 return View("AllApplications", appAssetFinanceApplication);
             }
 
@@ -113,10 +113,7 @@ namespace LenSys.Controllers
         }
         public ViewResult AllApplications()
         {
-            var appAssetFinanceApplication=_allApplicationsRepository.GetAllAssetFinanceApplication();
-            //var model = _allApplicationsRepository.GetAllApplications();
-            //return View(model);
-
+            var appAssetFinanceApplication = _appAssetFinanceRepository.GetAllAppAssetFinance();
             return View(appAssetFinanceApplication);
         }
         public ViewResult DeleteApplication(int id)
@@ -130,7 +127,7 @@ namespace LenSys.Controllers
         public IActionResult EditApplication(int id)
         {
             EditAssetFinanceAppID = id;
-            AppAssetFinance AppAssetFinanceApplication = _appAssetFinanceRepository.GetAppAssetFinance(id); //_allApplicationsRepository.GetAssetFinanceApplication(id);
+            AppAssetFinance AppAssetFinanceApplication = _appAssetFinanceRepository.GetAppAssetFinance_EditHome(id); //_allApplicationsRepository.GetAssetFinanceApplication(id);
             
             _appAssetFinanceBusniessRepository.SetBusniessList(AppAssetFinanceApplication.busniesses);
             _appAssetFinanceIndividualRepository.SetIndividualList(AppAssetFinanceApplication.individuals);
@@ -164,8 +161,6 @@ namespace LenSys.Controllers
 
             return RedirectToAction("AppAssetFinance", "AppAssetFinance", new { id = id });
         }
-
-        
 
     }
 }

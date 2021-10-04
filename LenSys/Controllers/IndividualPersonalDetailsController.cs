@@ -61,7 +61,7 @@ namespace LenSys.Controllers
             //return RedirectToAction("AppAssetFinance", "AppAssetFinance", new { id = id });
             return View();
         }
-
+        
 
     }
 }

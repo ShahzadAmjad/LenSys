@@ -5,8 +5,12 @@
 }
 
 <div class="mtop20">
-    <a asp-controller="BusniessLiabilities" asp-action="BusniessLiabilities" class="btn btn-success">Add New Busniess Liability</a>
+    @*<a asp-controller="BusniessLiabilities" asp-action="BusniessLiabilities" class="btn btn-success">Add New Busniess Liability</a>*@
     @*<button type="button" class="btn btn-success" data-toggle="modal" data-target="#createBusniessLiabilityModel">Add New Busniess Liability</button>*@
+    <button type="button" class="btn btn-success" data-toggle="ajax-modal" id="AddBusniessLiabilitiesbtn" name="AddBusniessLiabilitiesbtn"
+            data-target="#AddBusniessLiabilities" data-url="@Url.Action("AddBusniessLiabilities")">
+        Add New Busniess Liability
+    </button>
 </div>
 
 
@@ -69,8 +73,8 @@
             }
         </tbody>
     </table>
-
-    @*Add New Busniess Liability Modal*@
+    <a asp-controller="AppAssetFinance" asp-action="AppAssetFinance" class="btn btn-primary">Go to Main Application</a>
+    @*Add New Busniess Liability Modal(Not Used at this time)*@
 
     <div class="modal fade bd-example-modal-lg" id="createBusniessLiabilityModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog  modal-lg" role="form">
@@ -205,7 +209,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button  class="btn btn-primary mr-1" type="submit" >Save</button>
+                    <button class="btn btn-primary mr-1" type="submit">Save</button>
                     @*<a asp-controller="BusniessLiabilities" asp-action="AllBusniessLiabilities" id="AddPropertyBtn" class="btn btn-primary mr-1">Save</a>*@
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
@@ -213,6 +217,43 @@
         </div>
     </div>
 
+    @*Related To partial View*@
+    <div name="PlaceHolderHere" id="PlaceHolderHere">
+        @*<partial name="_AddSecutityDetailBusniessPartialView" />*@
+    </div>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script>
+
+        var PlaceHolderElement = $('#PlaceHolderHere');
+
+        //Show modal on Add Button click
+        $('button[data-toggle="ajax-modal" ]').click(function (event) {
+
+            var url = $(this).data('url');
+
+            $.get(url).done(function (data) {
+                PlaceHolderElement.html(data);
+                $('#AddBusniessLiabilities').modal('show');
+            })
+        })
+        //Save Modal Data Add New Security detail
+        PlaceHolderElement.on('click', '[data-save="modal"]', function (event) {
+
+            var form = $('#AddBusniessLiabilitiesform');
+
+            var actionurl = form.attr('action');
+
+            var sendData = form.serialize();
+
+            $.post(actionurl, sendData).done(function (data) {
+                $('#AddBusniessLiabilities').modal('hide');
+                //Reload Page after data Insertion
+                window.location.reload();
+            })
+        })
+
+
+    </script>
 
 </div>

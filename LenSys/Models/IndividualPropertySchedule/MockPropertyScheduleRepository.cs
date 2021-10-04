@@ -13,23 +13,23 @@ namespace LenSys.Models.IndividualPropertySchedule
         {
             _propertySchedule = new List<PropertySchedule>()
             {
-                new PropertySchedule{PropertyId=1,Owner="Mary", PropertyAddress="Istanbul", 
-                    Lender="Peter", PurchaseDate=DateTime.Today, PurchasePrice=20000,
-                    OrigionalMortgageAmount=15000,CurrentMarketValue=25000,OutstandingMortgage=5000,
-                    RemainingTerm=2, TypeOfRate="Fixed", InterestRate=10, RentPcm=2250, LTV="ssas", MortgagePcm=1500 ,
-                    PropertyType="Semi-Commercial", PropertyDescription="One bed apartment",TypeOfTenancyLeaseASTBoth="Lease",RemainingTermOfLease=5},
+                //new PropertySchedule{PropertyId=1,Owner="Mary", PropertyAddress="Istanbul", 
+                //    Lender="Peter", PurchaseDate=DateTime.Today, PurchasePrice=20000,
+                //    OrigionalMortgageAmount=15000,CurrentMarketValue=25000,OutstandingMortgage=5000,
+                //    RemainingTerm=2, TypeOfRate="Fixed", InterestRate=10, RentPcm=2250, LTV="ssas", MortgagePcm=1500 ,
+                //    PropertyType="Semi-Commercial", PropertyDescription="One bed apartment",TypeOfTenancyLeaseASTBoth="Lease",RemainingTermOfLease=5},
                 
-                new PropertySchedule{PropertyId=2,Owner="John", PropertyAddress="Istanbul",
-                    Lender="Peter", PurchaseDate=DateTime.Today, PurchasePrice=20000,
-                    OrigionalMortgageAmount=15000,CurrentMarketValue=25000,OutstandingMortgage=5000,
-                    RemainingTerm=2, TypeOfRate="Fixed", InterestRate=10, RentPcm=2250, LTV="ssas", MortgagePcm=1500 ,
-                    PropertyType="Semi-Commercial", PropertyDescription="One bed apartment",TypeOfTenancyLeaseASTBoth="Lease",RemainingTermOfLease=5},
+                //new PropertySchedule{PropertyId=2,Owner="John", PropertyAddress="Istanbul",
+                //    Lender="Peter", PurchaseDate=DateTime.Today, PurchasePrice=20000,
+                //    OrigionalMortgageAmount=15000,CurrentMarketValue=25000,OutstandingMortgage=5000,
+                //    RemainingTerm=2, TypeOfRate="Fixed", InterestRate=10, RentPcm=2250, LTV="ssas", MortgagePcm=1500 ,
+                //    PropertyType="Semi-Commercial", PropertyDescription="One bed apartment",TypeOfTenancyLeaseASTBoth="Lease",RemainingTermOfLease=5},
 
-                new PropertySchedule{PropertyId=3,Owner="Aly", PropertyAddress="Istanbul",
-                    Lender="Peter", PurchaseDate=DateTime.Today, PurchasePrice=20000,
-                    OrigionalMortgageAmount=15000,CurrentMarketValue=25000,OutstandingMortgage=5000,
-                    RemainingTerm=2, TypeOfRate="Fixed", InterestRate=10, RentPcm=2250, LTV="ssas", MortgagePcm=1500 ,
-                    PropertyType="Semi-Commercial", PropertyDescription="One bed apartment",TypeOfTenancyLeaseASTBoth="Lease",RemainingTermOfLease=5}
+                //new PropertySchedule{PropertyId=3,Owner="Aly", PropertyAddress="Istanbul",
+                //    Lender="Peter", PurchaseDate=DateTime.Today, PurchasePrice=20000,
+                //    OrigionalMortgageAmount=15000,CurrentMarketValue=25000,OutstandingMortgage=5000,
+                //    RemainingTerm=2, TypeOfRate="Fixed", InterestRate=10, RentPcm=2250, LTV="ssas", MortgagePcm=1500 ,
+                //    PropertyType="Semi-Commercial", PropertyDescription="One bed apartment",TypeOfTenancyLeaseASTBoth="Lease",RemainingTermOfLease=5}
 
             };
 
@@ -37,7 +37,16 @@ namespace LenSys.Models.IndividualPropertySchedule
 
         public PropertySchedule Add(PropertySchedule propertySchedule)
         {
-            propertySchedule.PropertyId = _propertySchedule.Max(e => e.PropertyId) + 1;
+            if (_propertySchedule.Count == 0)
+            {
+                propertySchedule.PropertyId = 1;
+
+            }
+            else
+            {
+                propertySchedule.PropertyId = _propertySchedule.Max(e => e.PropertyId) + 1;
+            }
+            
             _propertySchedule.Add(propertySchedule);
             return propertySchedule;
         }

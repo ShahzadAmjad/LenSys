@@ -5,8 +5,12 @@
 }
 
 <div class="mtop20">
-    <a asp-controller="BusniessKeyPrincipals" asp-action="KeyPrincipals" class="btn btn-success">Add New Key Principal</a>
+    @*<a asp-controller="BusniessKeyPrincipals" asp-action="KeyPrincipals" class="btn btn-success">Add New Key Principal</a>*@
     @*<button type="button" class="btn btn-success" data-toggle="modal" data-target="#createKeyPrincipalModal">Add New Key Principal</button>*@
+    <button type="button" class="btn btn-success" data-toggle="ajax-modal" id="AddKeyPrincipalsbtn" name="AddKeyPrincipalsbtn"
+            data-target="#AddBusniessKeyPrincipals" data-url="@Url.Action("AddKeyPrincipals")">
+        Add New Key Principal
+    </button>
 </div>
 
 
@@ -72,8 +76,8 @@
         </tbody>
     </table>
 
-
-    @*Add New Key Principal Modal*@
+    <a asp-controller="AppAssetFinance" asp-action="AppAssetFinance" class="btn btn-primary">Go to Main Application</a>
+    @*Add New Key Principal Modal(Not Used at this time)*@
 
     <div class="modal fade bd-example-modal-lg" id="createKeyPrincipalModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog  modal-lg" role="form">
@@ -169,6 +173,43 @@
         </div>
     </div>
 
+    @*Related To partial View*@
+    <div name="PlaceHolderHere" id="PlaceHolderHere">
+        @*<partial name="_AddSecutityDetailBusniessPartialView" />*@
+    </div>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script>
+
+        var PlaceHolderElement = $('#PlaceHolderHere');
+
+        //Show modal on Add Button click
+        $('button[data-toggle="ajax-modal" ]').click(function (event) {
+
+            var url = $(this).data('url');
+
+            $.get(url).done(function (data) {
+                PlaceHolderElement.html(data);
+                $('#AddBusniessKeyPrincipals').modal('show');
+            })
+        })
+        //Save Modal Data Add New Security detail
+        PlaceHolderElement.on('click', '[data-save="modal"]', function (event) {
+
+            var form = $('#AddKeyPrincipalsform');
+
+            var actionurl = form.attr('action');
+
+            var sendData = form.serialize();
+
+            $.post(actionurl, sendData).done(function (data) {
+                $('#AddBusniessKeyPrincipals').modal('hide');
+                //Reload Page after data Insertion
+                window.location.reload();
+            })
+        })
+
+
+    </script>
 
 </div>

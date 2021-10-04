@@ -38,7 +38,6 @@ namespace LenSys.Controllers
 
             return View("AllServiceability", viewmodel);
         }
-
         public ViewResult AllServiceability()
         {
 
@@ -58,6 +57,35 @@ namespace LenSys.Controllers
 
             return View("AllServiceability", viewmodel);
         }
+        [HttpGet]
+        public IActionResult AddServiceability()
+        {
+            Serviceability serviceability = new Serviceability();
+            return PartialView("_AddBusniessServiceabilityPartialView", serviceability);
+        }
+        [HttpPost]
+        public IActionResult AddServiceability(Serviceability serviceability)
+        {
+            //if (ModelState.IsValid)
+            {
+                Serviceability serviceability1 = _serviceabilityRepository.Add(serviceability);
+
+                var updatedServiceability = _serviceabilityRepository.GetAllServiceability();
+
+                int BusniessId = AppAssetFinanceController.BusniessID;
+                AppAssetFinanceBusniess appAssetFinanceBusniess = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId);
+                appAssetFinanceBusniess.serviceability = (List<Serviceability>)updatedServiceability;
+
+                ServiceabilityCreateViewModel viewmodel = new ServiceabilityCreateViewModel();
+                viewmodel._serviceability = updatedServiceability;
+                viewmodel.serviceability = new Serviceability();
+
+                return RedirectToAction("AllServiceability", viewmodel);
+            }
+
+            //return View();
+        }
+
         [HttpGet]
         public ViewResult EditServiceability(int id)
         {
@@ -100,14 +128,11 @@ namespace LenSys.Controllers
 
             return View("AllServiceability", viewmodel);
         }
-
-
         [HttpGet]
         public ViewResult Serviceability()
         {
             return View();
         }
-
         //For External View
         [HttpPost]
         public IActionResult Serviceability(Serviceability serviceability)

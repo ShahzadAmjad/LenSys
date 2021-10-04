@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<AppAssetFinance>
 
 @{
-    ViewBag.Title = "All Asset Applications";
+    ViewBag.Title = "All Applications";
 }
 
 <div class="x_title">
@@ -16,7 +16,7 @@
                 <th id="keyPrincipalId">Application Id</th>
                 <th id="firstName" class="hideCol hideHideCol_2">Type</th>
                 <th id="position" class="hideCol hideHideCol_3">Loan Purpose</th>
-                <th>Default</th>
+                @*<th>Default</th>*@
                 <th>Edit</th>
                 <th>Delete</th>
             </tr>
@@ -30,17 +30,23 @@
                     var tm = "#myModal" + application.AssetFinId;
                     var mid = "myModal" + application.AssetFinId;
             <tr>
-                <td>APP0000 @application.AssetFinId</td>
-                @*<td>@application.Lead.ApplicationType</td>
-                <td>@application.Lead.LoanPurpose</td>*@
-                <td>@application.ApplicationType</td>
-                <td>@application.CompanyName</td>
+
+
+
 
                 <td>
+                    APP0000 @application.AssetFinId
+                </td>
+                <td>@application.Lead.LoanPurpose</td>
+                
+                @*<td>@application.ApplicationType</td>*@
+                <td>@application.CompanyName</td>
+
+                @*<td>
                     <button type="button" style="width:80px;" class="btn btn-primary btn-sm">
                         Default
                     </button>
-                </td>
+                </td>*@
 
                 <td>
                     <a asp-controller="Home" asp-action="EditApplication" asp-route-Id="@application.AssetFinId" id="EditBtn" style="width:80px;" class="btn btn-primary btn-sm">Edit</a>
@@ -78,4 +84,10 @@
             }
         </tbody>
     </table>
+    <script>
+        function RemoveSpace(str) {
+            return str.replace(/\s/g, '');
+        }
+
+    </script>
 </div>
