@@ -18,8 +18,6 @@ namespace LenSys.Models.AppAssetFinance
             Context = context;
         }
 
-        
-
         public AppAssetFinance Add(AppAssetFinance appAssetFinance)
         {
             Context.AppAssetFinance.Add(appAssetFinance);
