@@ -10,6 +10,7 @@ namespace LenSys.Models.AppAssetFinance
         
         AppAssetFinance GetAppAssetFinance(int KeyPrincipalsId);
         AppAssetFinance GetAppAssetFinance_EditHome(int KeyPrincipalsId);
+        AppAssetFinance GetAppAssetFinance_appAssetFinance(int KeyPrincipalsId);
         IEnumerable<AppAssetFinance> GetAllAppAssetFinance();
         //IEnumerable<AppAssetFinance> GetAllAppAssetFinance_AllApplicationPage();
         AppAssetFinance Add(AppAssetFinance keyPrincipals);
