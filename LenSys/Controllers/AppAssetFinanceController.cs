@@ -79,6 +79,7 @@ namespace LenSys.Controllers
             appAssetFinanceBusniess.busniessDocuments = busniessDocuments;
 
             _appAssetFinanceBusniessRepository.Add(appAssetFinanceBusniess);
+            _appAssetFinanceRepository.AddBusniess(appAssetFinanceBusniess);
 
             AppAssetFinance appAssetFinance = _appAssetFinanceRepository.GetAppAssetFinance(appID); //new AppAssetFinance();
             appAssetFinance.busniesses = (List<AppAssetFinanceBusniess>)_appAssetFinanceBusniessRepository.GetAllBusniess();
@@ -109,34 +110,37 @@ namespace LenSys.Controllers
         public IActionResult AddIndividual()
         {     
             AppAssetFinanceIndividual appAssetFinanceIndividual = new AppAssetFinanceIndividual();
-            PersonalDetails individualPersonalDetails = new PersonalDetails { FirstName = "" };
-            AddressDetails IndividualAddressDetails = new AddressDetails { City = "" };
-            EmploymentDetails IndividualEmploymentDetails = new EmploymentDetails { EmployersName = "" };
-            MonthlyIncome monthlyIncome = new MonthlyIncome { DividendsAfterTax = 0 };
-            MonthlyExpenditure monthlyExpenditure = new MonthlyExpenditure {CarInsuranceRoadTax=0 };
-            Asset asset = new Asset { Cash = 654 };
-            Liabilities liabilities = new Liabilities { NetAssets = 0 };
-            List<PropertySchedule> _propertySchedule= new List<PropertySchedule>()
-            {
-                //new PropertySchedule{Owner="", PropertyAddress=""}
-            };
-            CreditHistory creditHistory = new CreditHistory { CriminalConvictions = "" };
-            IndividualDocuments individualDocuments = new IndividualDocuments { DocumentName = "" };
-                 
-            appAssetFinanceIndividual.personalDetails= individualPersonalDetails;
-            appAssetFinanceIndividual.addressDetails = IndividualAddressDetails;
-            appAssetFinanceIndividual.employmentDetails = IndividualEmploymentDetails;
-            appAssetFinanceIndividual.monthlyIncome = monthlyIncome;
-            appAssetFinanceIndividual.monthlyExpenditure = monthlyExpenditure;
-            appAssetFinanceIndividual.asset = asset;
-            appAssetFinanceIndividual.liabilities = liabilities;
-            appAssetFinanceIndividual.propertySchedule = _propertySchedule;
-            appAssetFinanceIndividual.creditHistory = creditHistory;
-            appAssetFinanceIndividual.individualDocuments = individualDocuments;
+
+
+            //PersonalDetails individualPersonalDetails = new PersonalDetails { PersonalDetailsId=1, FirstName = "" };
+            //AddressDetails IndividualAddressDetails = new AddressDetails { AddressDetailsId=1, City = "" };
+            //EmploymentDetails IndividualEmploymentDetails = new EmploymentDetails {EmploymentDetailsId = 1, EmployersName = "" };
+            //MonthlyIncome monthlyIncome = new MonthlyIncome {MonthlyIncomeId = 1, DividendsAfterTax = 0 };
+            //MonthlyExpenditure monthlyExpenditure = new MonthlyExpenditure {MonthlyExpenditureId = 1, CarInsuranceRoadTax = 0 };
+            //Asset asset = new Asset {AssetId = 1, Cash = 654 };
+            //Liabilities liabilities = new Liabilities {LiabilitiesId = 1, NetAssets = 0 };
+            //List<PropertySchedule> _propertySchedule = new List<PropertySchedule>()
+            //{
+            //    new PropertySchedule{PropertyId=1, Owner="", PropertyAddress=""}
+            //};
+            //CreditHistory creditHistory = new CreditHistory {CreditHistoryId = 1, CriminalConvictions = "" };
+            //IndividualDocuments individualDocuments = new IndividualDocuments { DocumentId = 1, DocumentName = "" };
+
+            //appAssetFinanceIndividual.IndividualId = 1;
+            //appAssetFinanceIndividual.personalDetails = individualPersonalDetails;
+            //appAssetFinanceIndividual.addressDetails = IndividualAddressDetails;
+            //appAssetFinanceIndividual.employmentDetails = IndividualEmploymentDetails;
+            //appAssetFinanceIndividual.monthlyIncome = monthlyIncome;
+            //appAssetFinanceIndividual.monthlyExpenditure = monthlyExpenditure;
+            //appAssetFinanceIndividual.asset = asset;
+            //appAssetFinanceIndividual.liabilities = liabilities;
+            //appAssetFinanceIndividual.propertySchedule = _propertySchedule;
+            //appAssetFinanceIndividual.creditHistory = creditHistory;
+            //appAssetFinanceIndividual.individualDocuments = individualDocuments;
 
             _appAssetFinanceIndividualRepository.Add(appAssetFinanceIndividual);
 
-
+            _appAssetFinanceRepository.AddIndividual(appAssetFinanceIndividual);
 
             AppAssetFinance appAssetFinance = _appAssetFinanceRepository.GetAppAssetFinance(appID); //new AppAssetFinance();
             appAssetFinance.busniesses = (List<AppAssetFinanceBusniess>)_appAssetFinanceBusniessRepository.GetAllBusniess();

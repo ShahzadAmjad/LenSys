@@ -13,6 +13,8 @@ namespace LenSys.Models.AppAssetFinance
         IEnumerable<AppAssetFinance> GetAllAppAssetFinance();
         //IEnumerable<AppAssetFinance> GetAllAppAssetFinance_AllApplicationPage();
         AppAssetFinance Add(AppAssetFinance keyPrincipals);
+        AppAssetFinance AddIndividual(AppAssetFinanceIndividual.AppAssetFinanceIndividual individual);
+        AppAssetFinance AddBusniess(AppAssetFinanceBusniess.AppAssetFinanceBusniess busniess);
         AppAssetFinance Update(AppAssetFinance keyPrincipalsChanges);
         AppAssetFinance Delete(int KeyPrincipalsId);
     }

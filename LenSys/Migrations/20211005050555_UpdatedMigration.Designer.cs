@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LenSys.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210925143532_TrailMigration")]
-    partial class TrailMigration
+    [Migration("20211005050555_UpdatedMigration")]
+    partial class UpdatedMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -29,9 +29,6 @@ namespace LenSys.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Address")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ApplicationType")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("AssetType")

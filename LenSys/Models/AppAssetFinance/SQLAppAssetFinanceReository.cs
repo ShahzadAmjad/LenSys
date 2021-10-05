@@ -1,4 +1,5 @@
-﻿using LenSys.Models.BusniessKeyPrincipals;
+﻿using LenSys.Controllers;
+using LenSys.Models.BusniessKeyPrincipals;
 using LenSys.Models.BusniessServiceability;
 using LenSys.Models.Home;
 using LenSys.Models.IndividualPropertySchedule;
@@ -21,6 +22,25 @@ namespace LenSys.Models.AppAssetFinance
         public AppAssetFinance Add(AppAssetFinance appAssetFinance)
         {
             Context.AppAssetFinance.Add(appAssetFinance);
+            Context.SaveChanges();
+            return appAssetFinance;
+        }
+
+        public AppAssetFinance AddIndividual(AppAssetFinanceIndividual.AppAssetFinanceIndividual individual)
+        {
+            int id = HomeController.EditAssetFinanceAppID;
+            //var appAssetFinance = Context.AppAssetFinance.Single(e => e.AssetFinId == id);
+            //var appAssetFinance =Context.AppAssetFinance.Where(h => h.AssetFinId == id).Include("individuals").FirstOrDefault();
+            var appAssetFinance=GetAppAssetFinance(id);
+            appAssetFinance.individuals. Add(individual);
+            Context.SaveChanges();
+            return appAssetFinance;
+        }
+        public AppAssetFinance AddBusniess(AppAssetFinanceBusniess.AppAssetFinanceBusniess busniess)
+        {
+            int id = HomeController.EditAssetFinanceAppID;
+            var appAssetFinance = Context.AppAssetFinance.Where(h => h.AssetFinId == id).Include("busniesses").FirstOrDefault(); 
+            appAssetFinance.busniesses.Add(busniess);
             Context.SaveChanges();
             return appAssetFinance;
         }
@@ -165,15 +185,6 @@ namespace LenSys.Models.AppAssetFinance
                .Where(h => h.AssetFinId == id)
                .FirstOrDefault();
 
-            //ThenInclude("PersonalDetails")
-            //return Context.AppAssetFinance.Find(id);
-            //var dbProfile = db.Profiles.SingleOrDefault(x => x.SiteId == Int32.Parse(id));
-            //dbProfile.Include(x => x.Interests).Load();
-            //dbProfile.Include(x => x.Pets).Load();
-            //dbProfile.Include(x => x.Networks).Load();
-            //dbProfile.Include(x => x.PersonalityTraits).Load();
-
-
             return appAssetFinance;
         }
 
@@ -220,8 +231,16 @@ namespace LenSys.Models.AppAssetFinance
 
         public AppAssetFinance Update(AppAssetFinance AppAssetFinanceChanges)
         {
-            var appAssetFinance= Context.AppAssetFinance.Attach(AppAssetFinanceChanges);
+            //var appAssetFinance=new AppAssetFinance();
+
+            var appAssetFinance = Context.AppAssetFinance.Attach(AppAssetFinanceChanges);
             appAssetFinance.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+
+            //Context.AppAssetFinance.Update(AppAssetFinanceChanges);
+
+
+
+
             Context.SaveChanges();
             return AppAssetFinanceChanges;
         }

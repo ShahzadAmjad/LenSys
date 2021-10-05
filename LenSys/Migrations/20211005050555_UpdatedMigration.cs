@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace LenSys.Migrations
 {
-    public partial class LeadUpdatedMigration : Migration
+    public partial class UpdatedMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -262,7 +262,6 @@ namespace LenSys.Migrations
                     AssetFinId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     LeadId = table.Column<int>(type: "int", nullable: true),
-                    ApplicationType = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AssetType = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PurchasePriceOfAssetValue = table.Column<int>(type: "int", nullable: false),
