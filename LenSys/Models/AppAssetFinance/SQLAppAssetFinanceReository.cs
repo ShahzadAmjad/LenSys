@@ -241,7 +241,8 @@ namespace LenSys.Models.AppAssetFinance
             {
                 //Update Main application Part
                 Context.Entry(ExistingappAssetFinance).CurrentValues.SetValues(AppAssetFinanceChanges);
-
+                //var appAssetFinance = Context.AppAssetFinance.Attach(AppAssetFinanceChanges);
+                //appAssetFinance.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                 // Delete children Individual
                 foreach (var existingChild in ExistingappAssetFinance.individuals.ToList())
                 {
@@ -308,19 +309,8 @@ namespace LenSys.Models.AppAssetFinance
                     if (existingChild != null)
                     {
                         //Hint: Remove inner childs of Busniess
-                        //Context.Entry(existingChild).CurrentValues.SetValues(ChildBusniess);()
-                        ExistingappAssetFinance.busniesses.Remove(ChildBusniess);
-                        var newChildAppAssetFinanceBusniess = new AppAssetFinanceBusniess.AppAssetFinanceBusniess
-                        {
-                            //BusniessId = ChildBusniess.BusniessId,
-                            busniessDetails = ChildBusniess.busniessDetails,
-                            keyPrincipals = ChildBusniess.keyPrincipals,
-                            busniessLiabilities = ChildBusniess.busniessLiabilities,
-                            serviceability = ChildBusniess.serviceability,
-                            busniessDocuments = ChildBusniess.busniessDocuments,
-
-                        };
-                        ExistingappAssetFinance.busniesses.Add(newChildAppAssetFinanceBusniess);
+                        Context.Entry(existingChild).CurrentValues.SetValues(ChildBusniess);
+                       
                     }
 
                     // Insert child
@@ -340,6 +330,7 @@ namespace LenSys.Models.AppAssetFinance
                     }
                 }
                 Context.SaveChanges();
+
                 return AppAssetFinanceChanges;
             }
 
