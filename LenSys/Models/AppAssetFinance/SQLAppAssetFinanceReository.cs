@@ -274,7 +274,16 @@ namespace LenSys.Models.AppAssetFinance
                     // Update child
                     if (existingChild != null)
                     {
-                        Context.Entry(existingChild).CurrentValues.SetValues(Childindivdual);
+                        Context.Entry(existingChild.personalDetails).CurrentValues.SetValues(Childindivdual.personalDetails);
+                        Context.Entry(existingChild.addressDetails).CurrentValues.SetValues(Childindivdual.addressDetails);
+                        Context.Entry(existingChild.employmentDetails).CurrentValues.SetValues(Childindivdual.employmentDetails);
+                        Context.Entry(existingChild.monthlyIncome).CurrentValues.SetValues(Childindivdual.monthlyIncome);
+                        Context.Entry(existingChild.monthlyExpenditure).CurrentValues.SetValues(Childindivdual.monthlyExpenditure);
+                        Context.Entry(existingChild.asset).CurrentValues.SetValues(Childindivdual.asset);
+                        Context.Entry(existingChild.liabilities).CurrentValues.SetValues(Childindivdual.liabilities);
+                        //Context.Entry(existingChild.propertySchedule).CurrentValues.SetValues(Childindivdual.propertySchedule);
+                        Context.Entry(existingChild.creditHistory).CurrentValues.SetValues(Childindivdual.creditHistory);
+                        Context.Entry(existingChild.individualDocuments).CurrentValues.SetValues(Childindivdual.individualDocuments);
                     }
 
                     // Insert child
@@ -309,8 +318,13 @@ namespace LenSys.Models.AppAssetFinance
                     if (existingChild != null)
                     {
                         //Hint: Remove inner childs of Busniess
-                        Context.Entry(existingChild).CurrentValues.SetValues(ChildBusniess);
-                       
+                        Context.Entry(existingChild.busniessDetails).CurrentValues.SetValues(ChildBusniess.busniessDetails);
+                        //Context.Entry(existingChild.keyPrincipals).CurrentValues.SetValues(ChildBusniess.keyPrincipals);
+                        //Context.Entry(existingChild.busniessLiabilities).CurrentValues.SetValues(ChildBusniess.busniessLiabilities);
+                        //Context.Entry(existingChild.serviceability).CurrentValues.SetValues(ChildBusniess.serviceability);
+                        //Context.Entry(existingChild.busniessDocuments).CurrentValues.SetValues(ChildBusniess.busniessDocuments);
+
+
                     }
 
                     // Insert child
@@ -348,13 +362,6 @@ namespace LenSys.Models.AppAssetFinance
             //Context.SaveChanges();
             //
         }
-//public AppAssetFinance GetAppAssetFinance_appAssetFinance(int KeyPrincipalsId)
-//        {
-//            throw new NotImplementedException();
-//        }
-
-        
-        
 
         public AppAssetFinance GetAppAssetFinance_appAssetFinance(int id)
         {
