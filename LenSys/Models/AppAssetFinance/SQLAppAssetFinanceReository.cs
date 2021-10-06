@@ -25,7 +25,7 @@ namespace LenSys.Models.AppAssetFinance
             Context.SaveChanges();
             return appAssetFinance;
         }
-
+        //Not Used
         public AppAssetFinance AddIndividual(AppAssetFinanceIndividual.AppAssetFinanceIndividual individual)
         {
             int id = HomeController.EditAssetFinanceAppID;
@@ -36,6 +36,7 @@ namespace LenSys.Models.AppAssetFinance
             Context.SaveChanges();
             return appAssetFinance;
         }
+        //Not Used
         public AppAssetFinance AddBusniess(AppAssetFinanceBusniess.AppAssetFinanceBusniess busniess)
         {
             int id = HomeController.EditAssetFinanceAppID;
@@ -248,37 +249,7 @@ namespace LenSys.Models.AppAssetFinance
         public AppAssetFinance GetAppAssetFinance_appAssetFinance(int id)
         {
             AppAssetFinance appAssetFinance = Context.AppAssetFinance
-               .Include(x => x.Lead)
-               .Include(x => x.individuals)
-                   .ThenInclude(y => y.personalDetails)
-               .Include(a => a.individuals)
-                   .ThenInclude(b => b.addressDetails)
-               .Include(x => x.individuals)
-                   .ThenInclude(y => y.employmentDetails)
-               .Include(x => x.individuals)
-                   .ThenInclude(y => y.monthlyIncome)
-               .Include(x => x.individuals)
-                   .ThenInclude(y => y.monthlyExpenditure)
-               .Include(x => x.individuals)
-                   .ThenInclude(y => y.asset)
-               .Include(x => x.individuals)
-                   .ThenInclude(y => y.liabilities)
-               .Include(x => x.individuals)
-                   .ThenInclude(y => y.propertySchedule)
-               .Include(x => x.individuals)
-                   .ThenInclude(y => y.creditHistory)
-               .Include(x => x.individuals)
-                   .ThenInclude(y => y.individualDocuments)
-               .Include(x => x.busniesses)
-                   .ThenInclude(z => z.busniessDetails)
-               .Include(x => x.busniesses)
-                   .ThenInclude(z => z.keyPrincipals)
-               .Include(x => x.busniesses)
-                   .ThenInclude(z => z.busniessLiabilities)
-               .Include(x => x.busniesses)
-                   .ThenInclude(z => z.serviceability)
-               .Include(x => x.busniesses)
-                   .ThenInclude(z => z.busniessDocuments)
+               .Include(x => x.Lead)               
                .Where(h => h.AssetFinId == id)
                .FirstOrDefault();
 
