@@ -21,6 +21,8 @@ namespace LenSys.Models.AppAssetFinance
 
         public AppAssetFinance Add(AppAssetFinance appAssetFinance)
         {
+            //appAssetFinance.Lead.LeadId = 1;
+            //Context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.Lead ON");
             Context.AppAssetFinance.Add(appAssetFinance);
             Context.SaveChanges();
             return appAssetFinance;
@@ -31,8 +33,8 @@ namespace LenSys.Models.AppAssetFinance
             int id = HomeController.EditAssetFinanceAppID;
             //var appAssetFinance = Context.AppAssetFinance.Single(e => e.AssetFinId == id);
             //var appAssetFinance =Context.AppAssetFinance.Where(h => h.AssetFinId == id).Include("individuals").FirstOrDefault();
-            var appAssetFinance=GetAppAssetFinance(id);
-            appAssetFinance.individuals. Add(individual);
+            var appAssetFinance = GetAppAssetFinance(id);
+            appAssetFinance.individuals.Add(individual);
             Context.SaveChanges();
             return appAssetFinance;
         }
@@ -40,7 +42,7 @@ namespace LenSys.Models.AppAssetFinance
         public AppAssetFinance AddBusniess(AppAssetFinanceBusniess.AppAssetFinanceBusniess busniess)
         {
             int id = HomeController.EditAssetFinanceAppID;
-            var appAssetFinance = Context.AppAssetFinance.Where(h => h.AssetFinId == id).Include("busniesses").FirstOrDefault(); 
+            var appAssetFinance = Context.AppAssetFinance.Where(h => h.AssetFinId == id).Include("busniesses").FirstOrDefault();
             appAssetFinance.busniesses.Add(busniess);
             Context.SaveChanges();
             return appAssetFinance;
@@ -84,11 +86,11 @@ namespace LenSys.Models.AppAssetFinance
                .Where(h => h.AssetFinId == id)
                .FirstOrDefault();
 
-            if (appAssetFinance!=null)
-            {               
+            if (appAssetFinance != null)
+            {
                 Context.AppAssetFinance.Remove(appAssetFinance);
                 Context.Entry(appAssetFinance.Lead).State = EntityState.Deleted;
-                
+
                 if (appAssetFinance.individuals.Count > 0)
                 {
                     foreach (AppAssetFinanceIndividual.AppAssetFinanceIndividual individual in appAssetFinance.individuals)
@@ -136,7 +138,7 @@ namespace LenSys.Models.AppAssetFinance
 
                         Context.Entry(busniess.busniessDocuments).State = EntityState.Deleted;
                     }
-                }          
+                }
                 Context.SaveChanges();
             }
             return appAssetFinance;
@@ -145,7 +147,7 @@ namespace LenSys.Models.AppAssetFinance
         public IEnumerable<AppAssetFinance> GetAllAppAssetFinance()
         {
             IEnumerable<AppAssetFinance> appAssetFinancesList;
-            appAssetFinancesList= Context.AppAssetFinance.Include(x => x.Lead);
+            appAssetFinancesList = Context.AppAssetFinance.Include(x => x.Lead);
             return appAssetFinancesList;
         }
 
@@ -232,19 +234,136 @@ namespace LenSys.Models.AppAssetFinance
 
         public AppAssetFinance Update(AppAssetFinance AppAssetFinanceChanges)
         {
+            int id = HomeController.EditAssetFinanceAppID;
+            var ExistingappAssetFinance = GetAppAssetFinance(id);
+
+            if (ExistingappAssetFinance != null)
+            {
+                //Update Main application Part
+                Context.Entry(ExistingappAssetFinance).CurrentValues.SetValues(AppAssetFinanceChanges);
+
+                // Delete children Individual
+                foreach (var existingChild in ExistingappAssetFinance.individuals.ToList())
+                {
+                    if (!AppAssetFinanceChanges.individuals.Any(c => c.IndividualId == existingChild.IndividualId))
+                    {
+                        //Context.AppAssetFinance..Remove(existingChild);
+                        ExistingappAssetFinance.individuals.Remove(existingChild);
+                    }
+                }
+                // Delete children Busniess
+                foreach (var existingChildBusniess in ExistingappAssetFinance.busniesses.ToList())
+                {
+                    if (!AppAssetFinanceChanges.busniesses.Any(c => c.BusniessId == existingChildBusniess.BusniessId))
+                    {
+                        //Context.AppAssetFinance..Remove(existingChild);
+                        ExistingappAssetFinance.busniesses.Remove(existingChildBusniess);
+                    }
+                }
+
+
+                // Update and Insert children Individual
+                foreach (var Childindivdual in AppAssetFinanceChanges.individuals)
+                {
+                    //Hint: Remove inner childs of Individual and then insert
+                    var existingChild = ExistingappAssetFinance.individuals
+                .Where(c => c.IndividualId == Childindivdual.IndividualId && c.IndividualId != default(int))
+                .SingleOrDefault();
+
+                    // Update child
+                    if (existingChild != null)
+                    {
+                        Context.Entry(existingChild).CurrentValues.SetValues(Childindivdual);
+                    }
+
+                    // Insert child
+                    else
+                    {                       
+                        var newChildAppAssetFinanceIndividual = new AppAssetFinanceIndividual.AppAssetFinanceIndividual
+                        {
+                            //IndividualId = Childindivdual.IndividualId,
+                            personalDetails= Childindivdual.personalDetails,
+                            addressDetails = Childindivdual.addressDetails,
+                            employmentDetails = Childindivdual.employmentDetails,
+                            monthlyIncome = Childindivdual.monthlyIncome,
+                            monthlyExpenditure = Childindivdual.monthlyExpenditure,
+                            asset = Childindivdual.asset,
+                            liabilities = Childindivdual.liabilities,
+
+                            propertySchedule = Childindivdual.propertySchedule,
+                            creditHistory = Childindivdual.creditHistory,
+                            individualDocuments = Childindivdual.individualDocuments
+                        };
+                        ExistingappAssetFinance.individuals.Add(newChildAppAssetFinanceIndividual);
+                    }
+                }
+                // Update and Insert children Busniess
+                foreach (var ChildBusniess in AppAssetFinanceChanges.busniesses)
+                {
+                    var existingChild = ExistingappAssetFinance.busniesses
+                .Where(c => c.BusniessId == ChildBusniess.BusniessId && c.BusniessId != default(int))
+                .SingleOrDefault();
+
+                    // Update child
+                    if (existingChild != null)
+                    {
+                        //Hint: Remove inner childs of Busniess
+                        //Context.Entry(existingChild).CurrentValues.SetValues(ChildBusniess);()
+                        ExistingappAssetFinance.busniesses.Remove(ChildBusniess);
+                        var newChildAppAssetFinanceBusniess = new AppAssetFinanceBusniess.AppAssetFinanceBusniess
+                        {
+                            //BusniessId = ChildBusniess.BusniessId,
+                            busniessDetails = ChildBusniess.busniessDetails,
+                            keyPrincipals = ChildBusniess.keyPrincipals,
+                            busniessLiabilities = ChildBusniess.busniessLiabilities,
+                            serviceability = ChildBusniess.serviceability,
+                            busniessDocuments = ChildBusniess.busniessDocuments,
+
+                        };
+                        ExistingappAssetFinance.busniesses.Add(newChildAppAssetFinanceBusniess);
+                    }
+
+                    // Insert child
+                    else
+                    {
+                        var newChildAppAssetFinanceBusniess = new AppAssetFinanceBusniess.AppAssetFinanceBusniess
+                        {
+                            //BusniessId = ChildBusniess.BusniessId,
+                            busniessDetails = ChildBusniess.busniessDetails,
+                            keyPrincipals = ChildBusniess.keyPrincipals,
+                            busniessLiabilities = ChildBusniess.busniessLiabilities,
+                            serviceability = ChildBusniess.serviceability,
+                            busniessDocuments = ChildBusniess.busniessDocuments,
+                            
+                        };
+                        ExistingappAssetFinance.busniesses.Add(newChildAppAssetFinanceBusniess);
+                    }
+                }
+                Context.SaveChanges();
+                return AppAssetFinanceChanges;
+            }
+
+            return AppAssetFinanceChanges;
+
+
+            //appAssetFinance.individuals.Add(individual);
             //var appAssetFinance=new AppAssetFinance();
 
-            var appAssetFinance = Context.AppAssetFinance.Attach(AppAssetFinanceChanges);
-            appAssetFinance.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            //var appAssetFinance = Context.AppAssetFinance.Attach(AppAssetFinanceChanges);
+            //appAssetFinance.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
 
             //Context.AppAssetFinance.Update(AppAssetFinanceChanges);
 
-
-
-
-            Context.SaveChanges();
-            return AppAssetFinanceChanges;
+            //Context.SaveChanges();
+            //
         }
+//public AppAssetFinance GetAppAssetFinance_appAssetFinance(int KeyPrincipalsId)
+//        {
+//            throw new NotImplementedException();
+//        }
+
+        
+        
 
         public AppAssetFinance GetAppAssetFinance_appAssetFinance(int id)
         {

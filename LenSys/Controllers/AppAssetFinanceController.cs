@@ -193,46 +193,46 @@ namespace LenSys.Controllers
         [HttpPost]
         public IActionResult AppAssetFinance(AppAssetFinance appAssetFinance)
         {
-            foreach (AppAssetFinanceIndividual individual in _appAssetFinanceIndividualRepository.GetAllIndividual())
-            {
-                individual.IndividualId = 0;
-                individual.personalDetails.PersonalDetailsId = 0;
-                individual.addressDetails.AddressDetailsId = 0;
-                individual.employmentDetails.EmploymentDetailsId = 0;
-                individual.monthlyIncome.MonthlyIncomeId = 0;
-                individual.monthlyExpenditure.MonthlyExpenditureId = 0;
-                individual.asset.AssetId = 0;
-                individual.liabilities.LiabilitiesId = 0;
-                foreach (PropertySchedule property in individual.propertySchedule)
-                {
-                    property.PropertyId = 0;
-                }
-                individual.creditHistory.CreditHistoryId = 0;
-                individual.individualDocuments.DocumentId = 0;
-            }
+            //foreach (AppAssetFinanceIndividual individual in _appAssetFinanceIndividualRepository.GetAllIndividual())
+            //{
+            //    individual.IndividualId = 0;
+            //    individual.personalDetails.PersonalDetailsId = 0;
+            //    individual.addressDetails.AddressDetailsId = 0;
+            //    individual.employmentDetails.EmploymentDetailsId = 0;
+            //    individual.monthlyIncome.MonthlyIncomeId = 0;
+            //    individual.monthlyExpenditure.MonthlyExpenditureId = 0;
+            //    individual.asset.AssetId = 0;
+            //    individual.liabilities.LiabilitiesId = 0;
+            //    foreach (PropertySchedule property in individual.propertySchedule)
+            //    {
+            //        property.PropertyId = 0;
+            //    }
+            //    individual.creditHistory.CreditHistoryId = 0;
+            //    individual.individualDocuments.DocumentId = 0;
+            //}
 
-            foreach (AppAssetFinanceBusniess busniess in _appAssetFinanceBusniessRepository.GetAllBusniess())
-            {
-                busniess.BusniessId = 0;
-                busniess.busniessDetails.BusniessDetailsId = 0;
-                foreach (KeyPrincipals keyPrincipal in busniess.keyPrincipals)
-                {
-                    keyPrincipal.KeyPrincipalsId = 0;
-                }
-                foreach (BusniessLiabilities liabilities in busniess.busniessLiabilities)
-                {
-                    liabilities.BusniessLiabilityId = 0;
-                }
-                foreach (Serviceability serviceability in busniess.serviceability)
-                {
-                    serviceability.ServiceabilityId = 0;
-                }
+            //foreach (AppAssetFinanceBusniess busniess in _appAssetFinanceBusniessRepository.GetAllBusniess())
+            //{
+            //    busniess.BusniessId = 0;
+            //    busniess.busniessDetails.BusniessDetailsId = 0;
+            //    foreach (KeyPrincipals keyPrincipal in busniess.keyPrincipals)
+            //    {
+            //        keyPrincipal.KeyPrincipalsId = 0;
+            //    }
+            //    foreach (BusniessLiabilities liabilities in busniess.busniessLiabilities)
+            //    {
+            //        liabilities.BusniessLiabilityId = 0;
+            //    }
+            //    foreach (Serviceability serviceability in busniess.serviceability)
+            //    {
+            //        serviceability.ServiceabilityId = 0;
+            //    }
 
-                busniess.busniessDocuments.DocumentId = 0;
-            }
+            //    busniess.busniessDocuments.DocumentId = 0;
+            //}
 
-            lead.LeadId = 0;
-            appAssetFinance.AssetFinId = 0;
+            //lead.LeadId = 0;
+            //appAssetFinance.AssetFinId = 0;
 
             appAssetFinance.busniesses = (List<AppAssetFinanceBusniess>)_appAssetFinanceBusniessRepository.GetAllBusniess();
             appAssetFinance.individuals = (List<AppAssetFinanceIndividual>)_appAssetFinanceIndividualRepository.GetAllIndividual();
@@ -241,10 +241,10 @@ namespace LenSys.Controllers
 
 
             //Delete Old Record and add new one due to List multiple not updated
-            _appAssetFinanceRepository.Delete(appID);
-            AppAssetFinance appAssetFinance1 = _appAssetFinanceRepository.Add(appAssetFinance);
+            //_appAssetFinanceRepository.Delete(appID);
+            //AppAssetFinance appAssetFinance1 = _appAssetFinanceRepository.Add(appAssetFinance);
 
-            //AppAssetFinance appAssetFinance1 = _appAssetFinanceRepository.Update(appAssetFinance);
+            AppAssetFinance appAssetFinance1 = _appAssetFinanceRepository.Update(appAssetFinance);
 
             //lead = new Lead();
 

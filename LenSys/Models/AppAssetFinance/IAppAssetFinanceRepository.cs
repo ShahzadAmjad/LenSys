@@ -12,10 +12,11 @@ namespace LenSys.Models.AppAssetFinance
         AppAssetFinance GetAppAssetFinance_EditHome(int KeyPrincipalsId);
         AppAssetFinance GetAppAssetFinance_appAssetFinance(int KeyPrincipalsId);
         IEnumerable<AppAssetFinance> GetAllAppAssetFinance();
-        //IEnumerable<AppAssetFinance> GetAllAppAssetFinance_AllApplicationPage();
         AppAssetFinance Add(AppAssetFinance keyPrincipals);
+        //ForDirectly Insert to dB(Currently not in Use)
         AppAssetFinance AddIndividual(AppAssetFinanceIndividual.AppAssetFinanceIndividual individual);
         AppAssetFinance AddBusniess(AppAssetFinanceBusniess.AppAssetFinanceBusniess busniess);
+        //End
         AppAssetFinance Update(AppAssetFinance keyPrincipalsChanges);
         AppAssetFinance Delete(int KeyPrincipalsId);
     }
