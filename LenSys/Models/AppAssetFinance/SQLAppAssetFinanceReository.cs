@@ -233,7 +233,7 @@ namespace LenSys.Models.AppAssetFinance
 
             if (ExistingappAssetFinance != null)
             {
-                //Update Main application Part
+                //Update Main application Partent part
                 Context.Entry(ExistingappAssetFinance).CurrentValues.SetValues(AppAssetFinanceChanges);
                              
                 // Delete children Individual
@@ -252,8 +252,6 @@ namespace LenSys.Models.AppAssetFinance
                         ExistingappAssetFinance.busniesses.Remove(existingChildBusniess);
                     }
                 }
-
-
                 // Update and Insert children Individual
                 foreach (var Childindivdual in AppAssetFinanceChanges.individuals)
                 {
@@ -354,20 +352,100 @@ namespace LenSys.Models.AppAssetFinance
                         .Where(c => c.BusniessId == ChildBusniess.BusniessId && c.BusniessId != default(int))
                         .SingleOrDefault();
 
-                    // Update child
+                    // Update child Busniess
                     if (existingChild != null)
                     {
                        
                         Context.Entry(existingChild.busniessDetails).CurrentValues.SetValues(ChildBusniess.busniessDetails);
                         //Context.Entry(existingChild.keyPrincipals).CurrentValues.SetValues(ChildBusniess.keyPrincipals);
+                        
+                        //Delete Busniess KeyPrincipals
+                        foreach (var existingChildBusniessKeyPrincipal in existingChild.keyPrincipals.ToList())
+                        {
+                            if (!ChildBusniess.keyPrincipals.Any(c => c.KeyPrincipalsId == existingChildBusniessKeyPrincipal.KeyPrincipalsId))
+                            {
+                                existingChild.keyPrincipals.Remove(existingChildBusniessKeyPrincipal);
+                            }
+                        }
+                        // Update and Insert Busniess KeyPrincipals
+                        foreach (var childKeyPrincipal in ChildBusniess.keyPrincipals)
+                        {
+                            var existingChildKeyPrincipal = existingChild.keyPrincipals
+                                .Where(c => c.KeyPrincipalsId == childKeyPrincipal.KeyPrincipalsId && c.KeyPrincipalsId != default(int))
+                                .SingleOrDefault();
+
+                            // Update child Busniess KeyPrincipals
+                            if (existingChildKeyPrincipal != null)
+                            {
+                                Context.Entry(existingChildKeyPrincipal).CurrentValues.SetValues(childKeyPrincipal);
+                            }
+                            // Insert child Busniess KeyPrincipals
+                            else
+                            {
+                                var keyPrincipal = new KeyPrincipals
+                                {
+                                    //KeyPrincipalsId = childKeyPrincipal.KeyPrincipalsId,
+                                    Title = childKeyPrincipal.Title,
+                                    FirstName = childKeyPrincipal.FirstName,
+                                    MiddleName = childKeyPrincipal.MiddleName,
+                                    Surname = childKeyPrincipal.Surname,
+                                    Position = childKeyPrincipal.Position,
+                                    PercentageShareholding = childKeyPrincipal.PercentageShareholding                      
+                                };
+                                existingChild.keyPrincipals.Add(keyPrincipal);
+                            }
+                        }
+
                         //Context.Entry(existingChild.busniessLiabilities).CurrentValues.SetValues(ChildBusniess.busniessLiabilities);
+                        
+                        //Delete Busniess Liabilities
+                        foreach (var existingChildBusniessLiabilities in existingChild.busniessLiabilities.ToList())
+                        {
+                            if (!ChildBusniess.busniessLiabilities.Any(c => c.BusniessLiabilityId == existingChildBusniessLiabilities.BusniessLiabilityId))
+                            {
+                                existingChild.busniessLiabilities.Remove(existingChildBusniessLiabilities);
+                            }
+                        }
+                        // Update and Insert Busniess Liabilities
+                        foreach (var childLiability in ChildBusniess.busniessLiabilities)
+                        {
+                            var existingChildLiability = existingChild.busniessLiabilities
+                                .Where(c => c.BusniessLiabilityId == childLiability.BusniessLiabilityId && c.BusniessLiabilityId != default(int))
+                                .SingleOrDefault();
+
+                            // Update child Busniess Liabilities
+                            if (existingChildLiability != null)
+                            {
+                                Context.Entry(existingChildLiability).CurrentValues.SetValues(childLiability);
+                            }
+                            // Insert child Busniess Liabilities
+                            else
+                            {
+                                var Liability = new BusniessLiabilities.BusniessLiabilities
+                                {
+                                    //KeyPrincipalsId = childKeyPrincipal.KeyPrincipalsId,
+                                    Lender = childLiability.Lender,
+                                    OrigionalLoanAmount = childLiability.OrigionalLoanAmount,
+                                    OutstandingBalance = childLiability.OutstandingBalance,
+                                    MonthlyPayment = childLiability.MonthlyPayment,
+                                    InitialTerm = childLiability.InitialTerm,
+                                    RemainingTerm = childLiability.RemainingTerm,
+
+                                    Rate = childLiability.Rate,
+                                    FixedOrVariable = childLiability.FixedOrVariable,
+                                    FixedTerm = childLiability.FixedTerm,
+                                    CommitmentTerm = childLiability.CommitmentTerm,
+                                    EarlyRepaymentCharge = childLiability.EarlyRepaymentCharge
+                                };
+                                existingChild.busniessLiabilities.Add(Liability);
+                            }
+                        }
                         //Context.Entry(existingChild.serviceability).CurrentValues.SetValues(ChildBusniess.serviceability);
+
                         //Context.Entry(existingChild.busniessDocuments).CurrentValues.SetValues(ChildBusniess.busniessDocuments);
-
-
                     }
 
-                    // Insert child
+                    // Insert child Busniess(ParentChild)
                     else
                     {
                         var newChildAppAssetFinanceBusniess = new AppAssetFinanceBusniess.AppAssetFinanceBusniess
