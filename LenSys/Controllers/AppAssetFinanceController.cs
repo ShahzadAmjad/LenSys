@@ -163,9 +163,7 @@ namespace LenSys.Controllers
         public IActionResult EditIndividual(int id)
         {
             IndividualID = id;
-             
             return RedirectToAction("PersonalDetails", "IndividualPersonalDetails");
-            //, new { id = id }
         }
         [HttpGet]
         public ViewResult AppAssetFinance()

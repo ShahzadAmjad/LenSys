@@ -261,7 +261,7 @@ namespace LenSys.Models.AppAssetFinance
                         .Where(c => c.IndividualId == Childindivdual.IndividualId && c.IndividualId != default(int))
                         .SingleOrDefault();
 
-                    // Update child
+                    // Update child Individual (Inside There is PropertySchedule List)
                     if (existingChild != null)
                     {
                         Context.Entry(existingChild.personalDetails).CurrentValues.SetValues(Childindivdual.personalDetails);
@@ -272,11 +272,62 @@ namespace LenSys.Models.AppAssetFinance
                         Context.Entry(existingChild.asset).CurrentValues.SetValues(Childindivdual.asset);
                         Context.Entry(existingChild.liabilities).CurrentValues.SetValues(Childindivdual.liabilities);
                         //Context.Entry(existingChild.propertySchedule).CurrentValues.SetValues(Childindivdual.propertySchedule);
+
+                        //Delete Individual Property
+                        foreach (var existingChildIndividualProperty in existingChild.propertySchedule.ToList())
+                        {                           
+                            if (!Childindivdual.propertySchedule.Any(c => c.PropertyId == existingChildIndividualProperty.PropertyId))
+                            {
+                                existingChild.propertySchedule.Remove(existingChildIndividualProperty);
+                            }
+                        }
+                        // Update and Insert Individual PropertDetails
+                        foreach (var childProperty in Childindivdual.propertySchedule)
+                        {
+                            var existingChildProperty = existingChild.propertySchedule
+                                .Where(c => c.PropertyId == childProperty.PropertyId && c.PropertyId != default(int))
+                                .SingleOrDefault();
+                            
+                            // Update child Individual Property
+                            if (existingChildProperty != null)
+                            {
+                                Context.Entry(existingChildProperty).CurrentValues.SetValues(childProperty);
+                            }
+                            // Insert child Individual Property
+                            else
+                            {
+                                var Property = new PropertySchedule
+                                {
+                                    //PropertyId = childProperty.PropertyId,
+                                    Owner= childProperty.Owner,
+                                    PropertyAddress = childProperty.PropertyAddress,
+                                    Lender = childProperty.Lender,
+                                    PurchaseDate = childProperty.PurchaseDate,
+                                    PurchasePrice = childProperty.PurchasePrice,
+                                    OrigionalMortgageAmount = childProperty.OrigionalMortgageAmount,
+                                    CurrentMarketValue = childProperty.CurrentMarketValue,
+                                    OutstandingMortgage = childProperty.OutstandingMortgage,
+                                    RemainingTerm = childProperty.RemainingTerm,
+                                    TypeOfRate = childProperty.TypeOfRate,
+                                    InterestRate = childProperty.InterestRate,
+                                    RentPcm = childProperty.RentPcm,
+                                    MortgagePcm = childProperty.MortgagePcm,
+                                    LTV = childProperty.LTV,
+                                    PropertyType = childProperty.PropertyType,
+                                    PropertyDescription = childProperty.PropertyDescription,
+                                    TypeOfTenancyLeaseASTBoth = childProperty.TypeOfTenancyLeaseASTBoth,
+                                    RemainingTermOfLease = childProperty.RemainingTermOfLease,
+
+                                };
+                                existingChild.propertySchedule.Add(Property);
+                            }
+                        }
+
                         Context.Entry(existingChild.creditHistory).CurrentValues.SetValues(Childindivdual.creditHistory);
                         Context.Entry(existingChild.individualDocuments).CurrentValues.SetValues(Childindivdual.individualDocuments);
                     }
 
-                    // Insert child
+                    // Insert child Individual Property
                     else
                     {                       
                         var newChildAppAssetFinanceIndividual = new AppAssetFinanceIndividual.AppAssetFinanceIndividual
@@ -289,7 +340,6 @@ namespace LenSys.Models.AppAssetFinance
                             monthlyExpenditure = Childindivdual.monthlyExpenditure,
                             asset = Childindivdual.asset,
                             liabilities = Childindivdual.liabilities,
-
                             propertySchedule = Childindivdual.propertySchedule,
                             creditHistory = Childindivdual.creditHistory,
                             individualDocuments = Childindivdual.individualDocuments
