@@ -230,7 +230,7 @@ namespace LenSys.Models.AppAssetFinance
         {
             int id = HomeController.EditAssetFinanceAppID;
             var ExistingappAssetFinance = GetAppAssetFinance(id);
-
+            //Delete,Update,Insert Child & Sub child Entities
             if (ExistingappAssetFinance != null)
             {
                 //Update Main application Partent part
@@ -375,10 +375,45 @@ namespace LenSys.Models.AppAssetFinance
                             monthlyExpenditure = Childindivdual.monthlyExpenditure,
                             asset = Childindivdual.asset,
                             liabilities = Childindivdual.liabilities,
-                            propertySchedule = Childindivdual.propertySchedule,
+                            //propertySchedule = Childindivdual.propertySchedule,
                             creditHistory = Childindivdual.creditHistory,
                             individualDocuments = Childindivdual.individualDocuments
                         };
+
+                        List<PropertySchedule> _propertySchedule = new List<PropertySchedule>()
+                        {
+                            //new PropertySchedule{ Owner="", PropertyAddress=""}
+                        };
+                        newChildAppAssetFinanceIndividual.propertySchedule = _propertySchedule;
+
+                        //Add Properties in new Individual(ParentChild) objects
+                        foreach (var childProperty in Childindivdual.propertySchedule)
+                        {
+                            var Property = new PropertySchedule
+                            {
+                                //PropertyId = childProperty.PropertyId,
+                                Owner = childProperty.Owner,
+                                PropertyAddress = childProperty.PropertyAddress,
+                                Lender = childProperty.Lender,
+                                PurchaseDate = childProperty.PurchaseDate,
+                                PurchasePrice = childProperty.PurchasePrice,
+                                OrigionalMortgageAmount = childProperty.OrigionalMortgageAmount,
+                                CurrentMarketValue = childProperty.CurrentMarketValue,
+                                OutstandingMortgage = childProperty.OutstandingMortgage,
+                                RemainingTerm = childProperty.RemainingTerm,
+                                TypeOfRate = childProperty.TypeOfRate,
+                                InterestRate = childProperty.InterestRate,
+                                RentPcm = childProperty.RentPcm,
+                                MortgagePcm = childProperty.MortgagePcm,
+                                LTV = childProperty.LTV,
+                                PropertyType = childProperty.PropertyType,
+                                PropertyDescription = childProperty.PropertyDescription,
+                                TypeOfTenancyLeaseASTBoth = childProperty.TypeOfTenancyLeaseASTBoth,
+                                RemainingTermOfLease = childProperty.RemainingTermOfLease,
+
+                            };
+                            newChildAppAssetFinanceIndividual.propertySchedule.Add(Property);
+                        }
                         ExistingappAssetFinance.individuals.Add(newChildAppAssetFinanceIndividual);
                     }
                 }
