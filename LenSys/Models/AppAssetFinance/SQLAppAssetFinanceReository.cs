@@ -251,7 +251,7 @@ namespace LenSys.Models.AppAssetFinance
                         Context.Entry(existingChild.monthlyExpenditure).State = EntityState.Deleted;
                         Context.Entry(existingChild.asset).State = EntityState.Deleted;
                         Context.Entry(existingChild.liabilities).State = EntityState.Deleted;
-                        //Delete Individual Property
+                        //Delete Individual Properties
                         foreach (var existingChildIndividualProperty in existingChild.propertySchedule.ToList())
                         {
                             existingChild.propertySchedule.Remove(existingChildIndividualProperty);
@@ -314,6 +314,7 @@ namespace LenSys.Models.AppAssetFinance
                             if (!Childindivdual.propertySchedule.Any(c => c.PropertyId == existingChildIndividualProperty.PropertyId))
                             {
                                 existingChild.propertySchedule.Remove(existingChildIndividualProperty);
+                                Context.Entry(existingChildIndividualProperty).State = EntityState.Deleted;
                             }
                         }
                         // Update and Insert Individual PropertDetails
@@ -380,8 +381,8 @@ namespace LenSys.Models.AppAssetFinance
                             individualDocuments = Childindivdual.individualDocuments
                         };
                         //Inilizing List
-                        List<PropertySchedule> _propertySchedule = new List<PropertySchedule>(){};
-                        newChildAppAssetFinanceIndividual.propertySchedule = _propertySchedule;
+                       // List<PropertySchedule> _propertySchedule = new List<PropertySchedule>(){};
+                        newChildAppAssetFinanceIndividual.propertySchedule = new List<PropertySchedule>() { };
 
                         //Add Properties in new Individual(ParentChild) objects
                         foreach (var childProperty in Childindivdual.propertySchedule)
@@ -434,6 +435,7 @@ namespace LenSys.Models.AppAssetFinance
                             if (!ChildBusniess.keyPrincipals.Any(c => c.KeyPrincipalsId == existingChildBusniessKeyPrincipal.KeyPrincipalsId))
                             {
                                 existingChild.keyPrincipals.Remove(existingChildBusniessKeyPrincipal);
+                                Context.Entry(existingChildBusniessKeyPrincipal).State = EntityState.Deleted;
                             }
                         }
                         // Update and Insert Busniess KeyPrincipals
@@ -473,6 +475,7 @@ namespace LenSys.Models.AppAssetFinance
                             if (!ChildBusniess.busniessLiabilities.Any(c => c.BusniessLiabilityId == existingChildBusniessLiabilities.BusniessLiabilityId))
                             {
                                 existingChild.busniessLiabilities.Remove(existingChildBusniessLiabilities);
+                                Context.Entry(existingChildBusniessLiabilities).State = EntityState.Deleted;
                             }
                         }
                         // Update and Insert Busniess Liabilities
@@ -517,6 +520,7 @@ namespace LenSys.Models.AppAssetFinance
                             if (!ChildBusniess.serviceability.Any(c => c.ServiceabilityId == existingChildBusniessServiceability.ServiceabilityId))
                             {
                                 existingChild.serviceability.Remove(existingChildBusniessServiceability);
+                                Context.Entry(existingChildBusniessServiceability).State = EntityState.Deleted;
                             }
                         }
                         // Update and Insert Busniess Serviceability
