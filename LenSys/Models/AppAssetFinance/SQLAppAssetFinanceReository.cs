@@ -379,11 +379,8 @@ namespace LenSys.Models.AppAssetFinance
                             creditHistory = Childindivdual.creditHistory,
                             individualDocuments = Childindivdual.individualDocuments
                         };
-
-                        List<PropertySchedule> _propertySchedule = new List<PropertySchedule>()
-                        {
-                            //new PropertySchedule{ Owner="", PropertyAddress=""}
-                        };
+                        //Inilizing List
+                        List<PropertySchedule> _propertySchedule = new List<PropertySchedule>(){};
                         newChildAppAssetFinanceIndividual.propertySchedule = _propertySchedule;
 
                         //Add Properties in new Individual(ParentChild) objects
@@ -558,13 +555,61 @@ namespace LenSys.Models.AppAssetFinance
                         var newChildAppAssetFinanceBusniess = new AppAssetFinanceBusniess.AppAssetFinanceBusniess
                         {
                             //BusniessId = ChildBusniess.BusniessId,
-                            busniessDetails = ChildBusniess.busniessDetails,
-                            keyPrincipals = ChildBusniess.keyPrincipals,
-                            busniessLiabilities = ChildBusniess.busniessLiabilities,
-                            serviceability = ChildBusniess.serviceability,
-                            busniessDocuments = ChildBusniess.busniessDocuments,
-                            
+                            busniessDetails = ChildBusniess.busniessDetails
+                            //newChildAppAssetFinanceBusniess.busniessDocuments = ChildBusniess.busniessDocuments;
                         };
+                        newChildAppAssetFinanceBusniess.keyPrincipals = new List<KeyPrincipals>() { };                        
+                        newChildAppAssetFinanceBusniess.busniessLiabilities = new List<BusniessLiabilities.BusniessLiabilities>() { };                        
+                        newChildAppAssetFinanceBusniess.serviceability = new List<Serviceability>() { };
+                        //New add busniess Keyprincipal add
+                        foreach (var childKeyPrincipal in ChildBusniess.keyPrincipals)
+                        {
+                            var keyPrincipal = new KeyPrincipals
+                            {
+                                //KeyPrincipalsId = childKeyPrincipal.KeyPrincipalsId,
+                                Title = childKeyPrincipal.Title,
+                                FirstName = childKeyPrincipal.FirstName,
+                                MiddleName = childKeyPrincipal.MiddleName,
+                                Surname = childKeyPrincipal.Surname,
+                                Position = childKeyPrincipal.Position,
+                                PercentageShareholding = childKeyPrincipal.PercentageShareholding
+                            };
+                            newChildAppAssetFinanceBusniess.keyPrincipals.Add(keyPrincipal);
+                        }
+                        //New add busniess Liabilities add
+                        foreach (var childLiability in ChildBusniess.busniessLiabilities)
+                        {
+                            var Liability = new BusniessLiabilities.BusniessLiabilities
+                            {
+                                //KeyPrincipalsId = childKeyPrincipal.KeyPrincipalsId,
+                                Lender = childLiability.Lender,
+                                OrigionalLoanAmount = childLiability.OrigionalLoanAmount,
+                                OutstandingBalance = childLiability.OutstandingBalance,
+                                MonthlyPayment = childLiability.MonthlyPayment,
+                                InitialTerm = childLiability.InitialTerm,
+                                RemainingTerm = childLiability.RemainingTerm,
+                                Rate = childLiability.Rate,
+                                FixedOrVariable = childLiability.FixedOrVariable,
+                                FixedTerm = childLiability.FixedTerm,
+                                CommitmentTerm = childLiability.CommitmentTerm,
+                                EarlyRepaymentCharge = childLiability.EarlyRepaymentCharge
+                            };
+                            newChildAppAssetFinanceBusniess.busniessLiabilities.Add(Liability);
+                        }
+
+                        foreach (var childServiceability in ChildBusniess.serviceability)
+                        {
+                            var _serviceability = new Serviceability
+                            {
+                                //KeyPrincipalsId = childKeyPrincipal.KeyPrincipalsId,
+                                Year = childServiceability.Year,
+                                TurnOver = childServiceability.TurnOver,
+                                NetProfit = childServiceability.NetProfit,
+                                EBITDA = childServiceability.EBITDA
+
+                            };
+                            newChildAppAssetFinanceBusniess.serviceability.Add(_serviceability);
+                        }
                         ExistingappAssetFinance.busniesses.Add(newChildAppAssetFinanceBusniess);
                     }
                 }
