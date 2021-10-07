@@ -269,19 +269,20 @@ namespace LenSys.Models.AppAssetFinance
                         ExistingappAssetFinance.busniesses.Remove(existingChildBusniess);
 
                         Context.Entry(existingChildBusniess).State = EntityState.Deleted;
-                        foreach (KeyPrincipals keyPrincipals in existingChildBusniess.keyPrincipals)
+
+                        foreach (var keyPrincipals in existingChildBusniess.keyPrincipals.ToList())
                         {
                             existingChildBusniess.keyPrincipals.Remove(keyPrincipals);
                             Context.Entry(keyPrincipals).State = EntityState.Deleted;
                         }
 
-                        foreach (BusniessLiabilities.BusniessLiabilities busniessLiabilities in existingChildBusniess.busniessLiabilities)
+                        foreach (var busniessLiabilities in existingChildBusniess.busniessLiabilities.ToList())
                         {
                             existingChildBusniess.busniessLiabilities.Remove(busniessLiabilities);
                             Context.Entry(busniessLiabilities).State = EntityState.Deleted;
                         }
 
-                        foreach (Serviceability serviceability in existingChildBusniess.serviceability)
+                        foreach (var serviceability in existingChildBusniess.serviceability.ToList())
                         {
                             existingChildBusniess.serviceability.Remove(serviceability);
                             Context.Entry(serviceability).State = EntityState.Deleted;
