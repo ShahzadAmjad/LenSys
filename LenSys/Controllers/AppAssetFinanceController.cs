@@ -236,14 +236,13 @@ namespace LenSys.Controllers
 
             appAssetFinance.busniesses = (List<AppAssetFinanceBusniess>)_appAssetFinanceBusniessRepository.GetAllBusniess();
             appAssetFinance.individuals = (List<AppAssetFinanceIndividual>)_appAssetFinanceIndividualRepository.GetAllIndividual();
-
             appAssetFinance.Lead = lead;
-
 
             //Delete Old Record and add new one due to List multiple not updated
             //_appAssetFinanceRepository.Delete(appID);
             //AppAssetFinance appAssetFinance1 = _appAssetFinanceRepository.Add(appAssetFinance);
 
+            //Update AppAssetFinance Whole Application
             AppAssetFinance appAssetFinance1 = _appAssetFinanceRepository.Update(appAssetFinance);
 
             //lead = new Lead();
