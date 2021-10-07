@@ -235,24 +235,60 @@ namespace LenSys.Models.AppAssetFinance
             {
                 //Update Main application Partent part
                 Context.Entry(ExistingappAssetFinance).CurrentValues.SetValues(AppAssetFinanceChanges);
-                             
-                // Delete children Individual
+
+                // Delete children Individual(ParentChild)
                 foreach (var existingChild in ExistingappAssetFinance.individuals.ToList())
                 {
                     if (!AppAssetFinanceChanges.individuals.Any(c => c.IndividualId == existingChild.IndividualId))
                     {
                         ExistingappAssetFinance.individuals.Remove(existingChild);
+
+                        Context.Entry(existingChild).State = EntityState.Deleted;
+                        Context.Entry(existingChild.personalDetails).State = EntityState.Deleted;
+                        Context.Entry(existingChild.addressDetails).State = EntityState.Deleted;
+                        Context.Entry(existingChild.employmentDetails).State = EntityState.Deleted;
+                        Context.Entry(existingChild.monthlyIncome).State = EntityState.Deleted;
+                        Context.Entry(existingChild.monthlyExpenditure).State = EntityState.Deleted;
+                        Context.Entry(existingChild.asset).State = EntityState.Deleted;
+                        Context.Entry(existingChild.liabilities).State = EntityState.Deleted;
+                        //Delete Individual Property
+                        foreach (var existingChildIndividualProperty in existingChild.propertySchedule.ToList())
+                        {
+                            existingChild.propertySchedule.Remove(existingChildIndividualProperty);
+                            Context.Entry(existingChildIndividualProperty).State = EntityState.Deleted;
+                        }
+                        Context.Entry(existingChild.creditHistory).State = EntityState.Deleted;
+                        Context.Entry(existingChild.individualDocuments).State = EntityState.Deleted;
                     }
                 }
-                // Delete children Busniess
+                // Delete children Busniess(ParentChild)
                 foreach (var existingChildBusniess in ExistingappAssetFinance.busniesses.ToList())
                 {
                     if (!AppAssetFinanceChanges.busniesses.Any(c => c.BusniessId == existingChildBusniess.BusniessId))
                     {
                         ExistingappAssetFinance.busniesses.Remove(existingChildBusniess);
+
+                        Context.Entry(existingChildBusniess).State = EntityState.Deleted;
+                        foreach (KeyPrincipals keyPrincipals in existingChildBusniess.keyPrincipals)
+                        {
+                            existingChildBusniess.keyPrincipals.Remove(keyPrincipals);
+                            Context.Entry(keyPrincipals).State = EntityState.Deleted;
+                        }
+
+                        foreach (BusniessLiabilities.BusniessLiabilities busniessLiabilities in existingChildBusniess.busniessLiabilities)
+                        {
+                            existingChildBusniess.busniessLiabilities.Remove(busniessLiabilities);
+                            Context.Entry(busniessLiabilities).State = EntityState.Deleted;
+                        }
+
+                        foreach (Serviceability serviceability in existingChildBusniess.serviceability)
+                        {
+                            existingChildBusniess.serviceability.Remove(serviceability);
+                            Context.Entry(serviceability).State = EntityState.Deleted;
+                        }
                     }
                 }
-                // Update and Insert children Individual
+                // Update and Insert children Individual(ParentChild)
                 foreach (var Childindivdual in AppAssetFinanceChanges.individuals)
                 {
                     var existingChild = ExistingappAssetFinance.individuals
@@ -345,14 +381,14 @@ namespace LenSys.Models.AppAssetFinance
                         ExistingappAssetFinance.individuals.Add(newChildAppAssetFinanceIndividual);
                     }
                 }
-                // Update and Insert children Busniess
+                // Update and Insert children Busniess(ParentChild)
                 foreach (var ChildBusniess in AppAssetFinanceChanges.busniesses)
                 {
                     var existingChild = ExistingappAssetFinance.busniesses
                         .Where(c => c.BusniessId == ChildBusniess.BusniessId && c.BusniessId != default(int))
                         .SingleOrDefault();
 
-                    // Update child Busniess
+                    // Update child Busniess(ParentChild)
                     if (existingChild != null)
                     {
                        
@@ -430,7 +466,6 @@ namespace LenSys.Models.AppAssetFinance
                                     MonthlyPayment = childLiability.MonthlyPayment,
                                     InitialTerm = childLiability.InitialTerm,
                                     RemainingTerm = childLiability.RemainingTerm,
-
                                     Rate = childLiability.Rate,
                                     FixedOrVariable = childLiability.FixedOrVariable,
                                     FixedTerm = childLiability.FixedTerm,
@@ -440,8 +475,44 @@ namespace LenSys.Models.AppAssetFinance
                                 existingChild.busniessLiabilities.Add(Liability);
                             }
                         }
+
                         //Context.Entry(existingChild.serviceability).CurrentValues.SetValues(ChildBusniess.serviceability);
 
+                        //Delete Busniess Serviceability
+                        foreach (var existingChildBusniessServiceability in existingChild.serviceability.ToList())
+                        {
+                            if (!ChildBusniess.serviceability.Any(c => c.ServiceabilityId == existingChildBusniessServiceability.ServiceabilityId))
+                            {
+                                existingChild.serviceability.Remove(existingChildBusniessServiceability);
+                            }
+                        }
+                        // Update and Insert Busniess Serviceability
+                        foreach (var childServiceability in ChildBusniess.serviceability)
+                        {
+                            var existingChildServiceability = existingChild.serviceability
+                                .Where(c => c.ServiceabilityId == childServiceability.ServiceabilityId && c.ServiceabilityId != default(int))
+                                .SingleOrDefault();
+
+                            // Update child Busniess Serviceability
+                            if (existingChildServiceability != null)
+                            {
+                                Context.Entry(existingChildServiceability).CurrentValues.SetValues(childServiceability);
+                            }
+                            // Insert child Busniess Serviceability
+                            else
+                            {
+                                var _serviceability = new Serviceability
+                                {
+                                    //KeyPrincipalsId = childKeyPrincipal.KeyPrincipalsId,
+                                    Year = childServiceability.Year,
+                                    TurnOver = childServiceability.TurnOver,
+                                    NetProfit = childServiceability.NetProfit,
+                                    EBITDA = childServiceability.EBITDA
+                                    
+                                };
+                                existingChild.serviceability.Add(_serviceability);
+                            }
+                        }
                         //Context.Entry(existingChild.busniessDocuments).CurrentValues.SetValues(ChildBusniess.busniessDocuments);
                     }
 
