@@ -596,7 +596,7 @@ namespace LenSys.Models.AppAssetFinance
                             };
                             newChildAppAssetFinanceBusniess.busniessLiabilities.Add(Liability);
                         }
-
+                        //New add busniess Serviceability add
                         foreach (var childServiceability in ChildBusniess.serviceability)
                         {
                             var _serviceability = new Serviceability
@@ -610,6 +610,7 @@ namespace LenSys.Models.AppAssetFinance
                             };
                             newChildAppAssetFinanceBusniess.serviceability.Add(_serviceability);
                         }
+
                         ExistingappAssetFinance.busniesses.Add(newChildAppAssetFinanceBusniess);
                     }
                 }
