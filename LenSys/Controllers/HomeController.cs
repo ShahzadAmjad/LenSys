@@ -44,8 +44,14 @@ namespace LenSys.Controllers
         }
         public ViewResult Index()
         {
-            var appAssetFinanceApplication = _appAssetFinanceRepository.GetAllAppAssetFinance();
-            return View("AllApplications", appAssetFinanceApplication);
+            //var appAssetFinanceApplication = _appAssetFinanceRepository.GetAllAppAssetFinance();
+            var appAssetFinanceApplication_AllAppFormat = _appAssetFinanceRepository.GetAllAppAssetFinance_AllApplication();
+
+            //AllApplications app = appAssetFinanceApplication.FirstOrDefault();
+
+            return View("AllApplications",appAssetFinanceApplication_AllAppFormat);
+
+            //return View("AllApplications", appAssetFinanceApplication);
         }
         [HttpGet]
         public ViewResult Lead()
@@ -55,30 +61,26 @@ namespace LenSys.Controllers
         [HttpPost]
         public IActionResult Lead(Lead lead)
         {
-
             //if (ModelState.IsValid)
             {
                 if(lead.LoanPurpose=="Asset finance")
                 {
-                    AppAssetFinance appAssetFinance = new AppAssetFinance { CompanyName=lead.CompanyBusniessName };
-
+                    AppAssetFinance appAssetFinance = new AppAssetFinance { CompanyName=lead.CompanyBusniessName };                    
                     
                     appAssetFinance.Lead = lead;
                     _appAssetFinanceRepository.Add(appAssetFinance);
-
                 }
 
                 else if (lead.LoanPurpose == "Business finance")
                 {
-                    AppBusniessFinance appBusniessFinance = new AppBusniessFinance();
+                    AppBusniessFinance appBusniessFinance = new AppBusniessFinance{ AccountantCompany = lead.CompanyBusniessName };
 
                     appBusniessFinance.Lead = lead;
                     _appBusniessFinanceRepository.Add(appBusniessFinance);
-
                 }
                 else if (lead.LoanPurpose == "Development finance")
                 {
-                    AppDevelopmentFinance appDevelopmentFinance = new AppDevelopmentFinance();
+                    AppDevelopmentFinance appDevelopmentFinance = new AppDevelopmentFinance { DetailsOfBuildersContrators = lead.CompanyBusniessName };
 
                     appDevelopmentFinance.Lead = lead;
                     _appDevelopmentFinanceRepository.Add(appDevelopmentFinance);
@@ -86,11 +88,10 @@ namespace LenSys.Controllers
                 }
                 else if (lead.LoanPurpose == "Property finance")
                 {
-                    AppPropertyFinance appPropertyFinance = new AppPropertyFinance();
+                    AppPropertyFinance appPropertyFinance = new AppPropertyFinance() { AccountantCompany = lead.CompanyBusniessName };
 
                     appPropertyFinance.Lead = lead;
                     _appPropertyFinanceRepository.Add(appPropertyFinance);
-
                 }
 
                 var appAssetFinanceApplication = _appAssetFinanceRepository.GetAllAppAssetFinance();
@@ -109,8 +110,11 @@ namespace LenSys.Controllers
         }
         public ViewResult AllApplications()
         {
-            var appAssetFinanceApplication = _appAssetFinanceRepository.GetAllAppAssetFinance();
-            return View(appAssetFinanceApplication);
+            var appAssetFinanceApplication_AllAppFormat = _appAssetFinanceRepository.GetAllAppAssetFinance_AllApplication();
+
+            //AllApplications app = appAssetFinanceApplication.FirstOrDefault();
+
+            return View(appAssetFinanceApplication_AllAppFormat);
         }
         public ViewResult DeleteApplication(int id)
         {

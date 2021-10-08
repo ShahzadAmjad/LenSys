@@ -17,6 +17,7 @@ namespace LenSys.Models.AppPropertyFinance
         public List<AppPropertyFinanceIndividual.AppPropertyFinanceIndividual> individuals { get; set; }
         public List<AppPropertyFinanceBusniess.AppPropertyFinanceBusniess> busniesses { get; set; }
 
+        //public string ApplicationType { get; set; }
         public string LoanPurpose { get; set; }
         public int LoanAmount { get; set; }
         public string RateType { get; set; }

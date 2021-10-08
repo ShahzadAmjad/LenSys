@@ -13,9 +13,9 @@ namespace LenSys.Models.Home.AllApplications
         {
             _allApplications = new List<AllApplications>()
             {
-                                new AllApplications{AppID=1,Category="Individual", FinanceType="Busniess Finance" },
-                                new AllApplications{AppID=2,Category="Busniess", FinanceType="Property Finance" },
-                                new AllApplications{AppID=3,Category="Individual", FinanceType="Development Finance" }
+                                //new AllApplications{AppID=1,Type="Individual", CompanyBusinessName="Busniess Finance" },
+                                //new AllApplications{AppID=2,Type="Busniess", CompanyBusinessName="Property Finance" },
+                                //new AllApplications{AppID=3,Type="Individual", CompanyBusinessName="Development Finance" }
             };              
         }
         public AllApplications Add(AllApplications Applications)

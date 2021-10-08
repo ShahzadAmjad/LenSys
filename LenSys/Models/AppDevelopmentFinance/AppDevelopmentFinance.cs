@@ -18,7 +18,7 @@ namespace LenSys.Models.AppDevelopmentFinance
         public List<AppDevelopmentFinanceIndividual.AppDevelopmentFinanceIndividual> individuals { get; set; }
         public List<AppDevelopmentFinanceBusniess.AppDevelopmentFinanceBusniess> busniesses { get; set; }
 
-        public string ApplicationType { get; set; }
+        //public string ApplicationType { get; set; }
         public int PurchasePrice { get; set; }
         public int MarketValueOfLand { get; set; }
         public int ConstructionCost { get; set; }

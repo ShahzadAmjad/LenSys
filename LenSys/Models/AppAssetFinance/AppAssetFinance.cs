@@ -30,7 +30,6 @@ namespace LenSys.Models.AppAssetFinance
         public string BalloonPayment { get; set; }
 
         //Supplier Details
-
         public string CompanyName { get; set; }
         public string ContactName { get; set; }
         public string PhoneNumber { get; set; }

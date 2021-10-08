@@ -8,7 +8,7 @@ namespace LenSys.Models.Home.AllApplications
     public class AllApplications
     {
         public int AppID { get; set; }
-        public string Category { get; set; }
-        public string FinanceType { get; set; }
+        public string Type { get; set; }
+        public string CompanyBusinessName { get; set; }
     }
 }

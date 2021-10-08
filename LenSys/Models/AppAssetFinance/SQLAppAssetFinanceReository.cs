@@ -2,6 +2,7 @@
 using LenSys.Models.BusniessKeyPrincipals;
 using LenSys.Models.BusniessServiceability;
 using LenSys.Models.Home;
+using LenSys.Models.Home.AllApplications;
 using LenSys.Models.IndividualPropertySchedule;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -146,6 +147,12 @@ namespace LenSys.Models.AppAssetFinance
             IEnumerable<AppAssetFinance> appAssetFinancesList;
             appAssetFinancesList = Context.AppAssetFinance.Include(x => x.Lead);
             return appAssetFinancesList;
+        }
+        public IEnumerable<AllApplications> GetAllAppAssetFinance_AllApplication()
+        {
+            List< AllApplications> allApplicationsList = new List<AllApplications>();
+            allApplicationsList = Context.AppAssetFinance.Include(x => x.Lead).Select(p=> new AllApplications { AppID=p.AssetFinId, Type=p.Lead.LoanPurpose, CompanyBusinessName = p.Lead.CompanyBusniessName }).ToList();
+            return allApplicationsList;
         }
         public AppAssetFinance GetAppAssetFinance(int id)
         {
@@ -638,5 +645,7 @@ namespace LenSys.Models.AppAssetFinance
 
             return appAssetFinance;
         }
+
+        
     }
 }

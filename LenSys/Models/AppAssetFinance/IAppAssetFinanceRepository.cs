@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LenSys.Models.Home.AllApplications;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ namespace LenSys.Models.AppAssetFinance
         AppAssetFinance GetAppAssetFinance_EditHome(int KeyPrincipalsId);
         AppAssetFinance GetAppAssetFinance_appAssetFinance(int KeyPrincipalsId);
         IEnumerable<AppAssetFinance> GetAllAppAssetFinance();
+        IEnumerable<AllApplications> GetAllAppAssetFinance_AllApplication();
         AppAssetFinance Add(AppAssetFinance keyPrincipals);
         //ForDirectly Insert to dB(Currently not in Use)
         AppAssetFinance AddIndividual(AppAssetFinanceIndividual.AppAssetFinanceIndividual individual);
