@@ -1,4 +1,5 @@
-﻿using LenSys.Models.Home.AllApplications;
+﻿using LenSys.Controllers;
+using LenSys.Models.Home.AllApplications;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,12 +24,20 @@ namespace LenSys.Models.AppBusniessFinance
 
         public AppBusniessFinance AddBusniess(AppBusniessFinanceBusniess.AppBusniessFinanceBusniess busniess)
         {
-            throw new NotImplementedException();
+            int id = HomeController.EditBusinessFinanceAppID;
+            var appBusniessFinance = GetAppBusniessFinance(id);
+            appBusniessFinance.busniesses.Add(busniess);
+            Context.SaveChanges();
+            return appBusniessFinance;
         }
 
         public AppBusniessFinance AddIndividual(AppBusniessFinanceIndividual.AppBusniessFinanceIndividual individual)
         {
-            throw new NotImplementedException();
+            int id = HomeController.EditBusinessFinanceAppID;
+            var appBusniessFinance = GetAppBusniessFinance(id);
+            appBusniessFinance.individuals.Add(individual);
+            Context.SaveChanges();
+            return appBusniessFinance;
         }
 
         public AppBusniessFinance Delete(int id)

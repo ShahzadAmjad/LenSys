@@ -26,6 +26,9 @@ namespace LenSys.Controllers
         private IAppAssetFinanceBusniessRepository _appAssetFinanceBusniessRepository;
         private IAppAssetFinanceIndividualRepository _appAssetFinanceIndividualRepository;
         public static int EditAssetFinanceAppID;
+        public static int EditBusinessFinanceAppID;
+        public static int EditDevelopmentFinanceAppID;
+        public static int EditPropertyFinanceAppID;
         public HomeController(IAllApplicationsRepository allApplicationsRepository,
             IAppAssetFinanceRepository appAssetFinanceRepository,
             IAppBusniessFinanceRepository appBusniessFinanceRepository,
