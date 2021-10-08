@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LenSys.Models.Home.AllApplications;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -20,6 +21,16 @@ namespace LenSys.Models.AppBusniessFinance
             return appBusniessFinance;
         }
 
+        public AppBusniessFinance AddBusniess(AppBusniessFinanceBusniess.AppBusniessFinanceBusniess busniess)
+        {
+            throw new NotImplementedException();
+        }
+
+        public AppBusniessFinance AddIndividual(AppBusniessFinanceIndividual.AppBusniessFinanceIndividual individual)
+        {
+            throw new NotImplementedException();
+        }
+
         public AppBusniessFinance Delete(int id)
         {
             AppBusniessFinance appBusniessFinance = Context.AppBusniessFinance.Find(id);
@@ -36,9 +47,24 @@ namespace LenSys.Models.AppBusniessFinance
             return Context.AppBusniessFinance;
         }
 
+        public IEnumerable<AllApplications> GetAllAppBusniessFinance_AllApplication()
+        {
+            throw new NotImplementedException();
+        }
+
         public AppBusniessFinance GetAppBusniessFinance(int id)
         {
             return Context.AppBusniessFinance.Find(id);
+        }
+
+        public AppBusniessFinance GetAppBusniessFinance_appBusniessFinance(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public AppBusniessFinance GetAppBusniessFinance_EditHome(int id)
+        {
+            throw new NotImplementedException();
         }
 
         public AppBusniessFinance Update(AppBusniessFinance appBusniessFinanceChanges)
