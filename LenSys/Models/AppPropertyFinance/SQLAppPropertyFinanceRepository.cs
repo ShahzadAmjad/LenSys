@@ -1,5 +1,8 @@
 ﻿using LenSys.Controllers;
+using LenSys.Models.BusniessKeyPrincipals;
+using LenSys.Models.BusniessServiceability;
 using LenSys.Models.Home.AllApplications;
+using LenSys.Models.IndividualPropertySchedule;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -23,7 +26,7 @@ namespace LenSys.Models.AppPropertyFinance
             Context.SaveChanges();
             return appPropertyFinance;
         }
-
+        //Not used
         public AppPropertyFinance AddBusniess(AppPropertyFinanceBusniess.AppPropertyFinanceBusniess busniess)
         {
             int id = HomeController.EditPropertyFinanceAppID;
@@ -32,7 +35,7 @@ namespace LenSys.Models.AppPropertyFinance
             Context.SaveChanges();
             return appPropertyFinance;
         }
-
+        //not used
         public AppPropertyFinance AddIndividual(AppPropertyFinanceIndividual.AppPropertyFinanceIndividual individual)
         {
             int id = HomeController.EditPropertyFinanceAppID;
@@ -44,10 +47,61 @@ namespace LenSys.Models.AppPropertyFinance
 
         public AppPropertyFinance Delete(int id)
         {
-            AppPropertyFinance appPropertyFinance = Context.AppPropertyFinance.Find(id);
+            AppPropertyFinance appPropertyFinance = GetAppPropertyFinance(id);
             if (appPropertyFinance != null)
             {
                 Context.AppPropertyFinance.Remove(appPropertyFinance);
+                Context.Entry(appPropertyFinance.Lead).State = EntityState.Deleted;
+
+                if (appPropertyFinance.individuals.Count > 0)
+                {
+                    foreach (AppPropertyFinanceIndividual.AppPropertyFinanceIndividual individual in appPropertyFinance.individuals)
+                    {
+                        Context.Entry(individual).State = EntityState.Deleted;
+                        Context.Entry(individual.personalDetails).State = EntityState.Deleted;
+                        Context.Entry(individual.addressDetails).State = EntityState.Deleted;
+                        Context.Entry(individual.employmentDetails).State = EntityState.Deleted;
+                        Context.Entry(individual.monthlyIncome).State = EntityState.Deleted;
+                        Context.Entry(individual.monthlyExpenditure).State = EntityState.Deleted;
+                        Context.Entry(individual.asset).State = EntityState.Deleted;
+                        Context.Entry(individual.liabilities).State = EntityState.Deleted;
+
+                        foreach (PropertySchedule propertySchedule in individual.propertySchedule)
+                        {
+                            Context.Entry(propertySchedule).State = EntityState.Deleted;
+                        }
+
+                        Context.Entry(individual.creditHistory).State = EntityState.Deleted;
+                        Context.Entry(individual.individualDocuments).State = EntityState.Deleted;
+                    }
+                }
+
+                if (appPropertyFinance.busniesses.Count > 0)
+                {
+                    foreach (AppPropertyFinanceBusniess.AppPropertyFinanceBusniess busniess in appPropertyFinance.busniesses)
+                    {
+                        Context.Entry(busniess).State = EntityState.Deleted;
+                        Context.Entry(busniess.busniessDetails).State = EntityState.Deleted;
+
+                        foreach (KeyPrincipals keyPrincipals in busniess.keyPrincipals)
+                        {
+                            Context.Entry(keyPrincipals).State = EntityState.Deleted;
+                        }
+
+                        foreach (BusniessLiabilities.BusniessLiabilities busniessLiabilities in busniess.busniessLiabilities)
+                        {
+                            Context.Entry(busniessLiabilities).State = EntityState.Deleted;
+                        }
+
+                        foreach (Serviceability serviceability in busniess.serviceability)
+                        {
+                            Context.Entry(serviceability).State = EntityState.Deleted;
+                        }
+
+                        Context.Entry(busniess.busniessDocuments).State = EntityState.Deleted;
+                    }
+                }
+
                 Context.SaveChanges();
             }
             return appPropertyFinance;
@@ -55,12 +109,14 @@ namespace LenSys.Models.AppPropertyFinance
 
         public IEnumerable<AppPropertyFinance> GetAllAppPropertyFinance()
         {
-            return Context.AppPropertyFinance;
+            return Context.AppPropertyFinance.Include(x => x.Lead);
         }
 
         public IEnumerable<AllApplications> GetAllAppPropertyFinance_AllApplication()
         {
-            throw new NotImplementedException();
+            List<AllApplications> allApplicationsList = new List<AllApplications>();
+            allApplicationsList = Context.AppPropertyFinance.Include(x => x.Lead).Select(p => new AllApplications { AppID = p.LoanId, Type = p.Lead.LoanPurpose, CompanyBusinessName = p.Lead.CompanyBusniessName }).ToList();
+            return allApplicationsList;
         }
 
         public AppPropertyFinance GetAppPropertyFinance(int id)
