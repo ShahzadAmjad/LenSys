@@ -121,7 +121,43 @@ namespace LenSys.Models.AppPropertyFinance
 
         public AppPropertyFinance GetAppPropertyFinance(int id)
         {
-            return Context.AppPropertyFinance.Find(id);
+            AppPropertyFinance appPropertyFinance = Context.AppPropertyFinance
+              .Include(x => x.Lead)
+              .Include(x => x.individuals)
+                  .ThenInclude(y => y.personalDetails)
+              .Include(a => a.individuals)
+                  .ThenInclude(b => b.addressDetails)
+              .Include(x => x.individuals)
+                  .ThenInclude(y => y.employmentDetails)
+              .Include(x => x.individuals)
+                  .ThenInclude(y => y.monthlyIncome)
+              .Include(x => x.individuals)
+                  .ThenInclude(y => y.monthlyExpenditure)
+              .Include(x => x.individuals)
+                  .ThenInclude(y => y.asset)
+              .Include(x => x.individuals)
+                  .ThenInclude(y => y.liabilities)
+              .Include(x => x.individuals)
+                  .ThenInclude(y => y.propertySchedule)
+              .Include(x => x.individuals)
+                  .ThenInclude(y => y.creditHistory)
+              .Include(x => x.individuals)
+                  .ThenInclude(y => y.individualDocuments)
+              .Include(x => x.busniesses)
+                  .ThenInclude(z => z.busniessDetails)
+              .Include(x => x.busniesses)
+                  .ThenInclude(z => z.keyPrincipals)
+              .Include(x => x.busniesses)
+                  .ThenInclude(z => z.busniessLiabilities)
+              .Include(x => x.busniesses)
+                  .ThenInclude(z => z.serviceability)
+              .Include(x => x.busniesses)
+                  .ThenInclude(z => z.busniessDocuments)
+              .Where(h => h.LoanId == id)
+              .FirstOrDefault();
+
+            return appPropertyFinance;
+            //return Context.AppPropertyFinance.Find(id);
         }
 
         public AppPropertyFinance GetAppPropertyFinance_appPropertyFinance(int id)
@@ -131,7 +167,42 @@ namespace LenSys.Models.AppPropertyFinance
 
         public AppPropertyFinance GetAppPropertyFinance_EditHome(int id)
         {
-            throw new NotImplementedException();
+            //without Lead
+            AppPropertyFinance appPropertyFinance = Context.AppPropertyFinance
+              .Include(x => x.individuals)
+                  .ThenInclude(y => y.personalDetails)
+              .Include(a => a.individuals)
+                  .ThenInclude(b => b.addressDetails)
+              .Include(x => x.individuals)
+                  .ThenInclude(y => y.employmentDetails)
+              .Include(x => x.individuals)
+                  .ThenInclude(y => y.monthlyIncome)
+              .Include(x => x.individuals)
+                  .ThenInclude(y => y.monthlyExpenditure)
+              .Include(x => x.individuals)
+                  .ThenInclude(y => y.asset)
+              .Include(x => x.individuals)
+                  .ThenInclude(y => y.liabilities)
+              .Include(x => x.individuals)
+                  .ThenInclude(y => y.propertySchedule)
+              .Include(x => x.individuals)
+                  .ThenInclude(y => y.creditHistory)
+              .Include(x => x.individuals)
+                  .ThenInclude(y => y.individualDocuments)
+              .Include(x => x.busniesses)
+                  .ThenInclude(z => z.busniessDetails)
+              .Include(x => x.busniesses)
+                  .ThenInclude(z => z.keyPrincipals)
+              .Include(x => x.busniesses)
+                  .ThenInclude(z => z.busniessLiabilities)
+              .Include(x => x.busniesses)
+                  .ThenInclude(z => z.serviceability)
+              .Include(x => x.busniesses)
+                  .ThenInclude(z => z.busniessDocuments)
+              .Where(h => h.LoanId == id)
+              .FirstOrDefault();
+
+            return appPropertyFinance;
         }
 
         public AppPropertyFinance Update(AppPropertyFinance appPropertyFinanceChanges)
