@@ -163,24 +163,24 @@ namespace LenSys.Controllers
             else if (EditAppObj.Type == "Business finance")
             {
                 EditBusinessFinanceAppID = EditAppObj.AppID;
-                _appBusniessFinanceBusniessRepository.SetBusniessList(_appAssetFinanceRepository.GetAppAssetFinance_EditHome(id).busniesses);
-                _appBusniessFinanceBusniessRepository.SetIndividualList(_appAssetFinanceRepository.GetAppAssetFinance_EditHome(id).individuals);
+                _appBusniessFinanceBusniessRepository.SetBusniessList(_appBusniessFinanceRepository.GetAppBusniessFinance_EditHome(id).busniesses);
+                _appBusniessFinanceIndividualRepository.SetIndividualList(_appBusniessFinanceRepository.GetAppBusniessFinance_EditHome(id).individuals);
 
                 return RedirectToAction("AppBusinessFinance", "AppBusinessFinance");
             }
             else if (EditAppObj.Type == "Development finance")
             {
                 EditDevelopmentFinanceAppID = EditAppObj.AppID;
-                _appDevelopmentFinanceBusniessRepository.SetBusniessList(_appAssetFinanceRepository.GetAppAssetFinance_EditHome(id).busniesses);
-                _appDevelopmentFinanceIndividualRepository.SetIndividualList(_appAssetFinanceRepository.GetAppAssetFinance_EditHome(id).individuals);
+                _appDevelopmentFinanceBusniessRepository.SetBusniessList(_appDevelopmentFinanceRepository.GetAppDevelopmentFinance_EditHome(id).busniesses);
+                _appDevelopmentFinanceIndividualRepository.SetIndividualList(_appDevelopmentFinanceRepository.GetAppDevelopmentFinance_EditHome(id).individuals);
 
                 return RedirectToAction("AppDevelopmentFinance", "AppDevelopmentFinance");
             }
             else if (EditAppObj.Type == "Property finance")
             {
                 EditPropertyFinanceAppID = EditAppObj.AppID;
-                _appPropertyFinanceBusniessRepository.SetBusniessList(_appAssetFinanceRepository.GetAppAssetFinance_EditHome(id).busniesses);
-                _appPropertyFinanceIndividualRepository.SetIndividualList(_appAssetFinanceRepository.GetAppAssetFinance_EditHome(id).individuals);
+                _appPropertyFinanceBusniessRepository.SetBusniessList(_appPropertyFinanceRepository.GetAppPropertyFinance_EditHome(id).busniesses);
+                _appPropertyFinanceIndividualRepository.SetIndividualList(_appPropertyFinanceRepository.GetAppPropertyFinance_EditHome(id).individuals);
 
                 return RedirectToAction("AppPropertyFinance", "AppPropertyFinance");
             }

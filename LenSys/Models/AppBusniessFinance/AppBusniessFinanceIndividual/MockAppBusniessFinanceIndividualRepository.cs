@@ -48,6 +48,12 @@ namespace LenSys.Models.AppBusniessFinance.AppBusniessFinanceIndividual
             return individual;
         }
 
+        public IEnumerable<AppBusniessFinanceIndividual> ClearIndividualList()
+        {
+            _individual.Clear();
+            return _individual;
+        }
+
         public AppBusniessFinanceIndividual Delete(int IndividualId)
         {
             AppBusniessFinanceIndividual individual = _individual.FirstOrDefault(e => e.IndividualId == IndividualId);
@@ -66,6 +72,12 @@ namespace LenSys.Models.AppBusniessFinance.AppBusniessFinanceIndividual
         public AppBusniessFinanceIndividual GetIndividual(int IndividualId)
         {
             return _individual.FirstOrDefault(e => e.IndividualId == IndividualId);
+        }
+
+        public IEnumerable<AppBusniessFinanceIndividual> SetIndividualList(IEnumerable<AppBusniessFinanceIndividual> IndividualList)
+        {
+            _individual = (List<AppBusniessFinanceIndividual>)IndividualList;
+            return _individual;
         }
 
         public AppBusniessFinanceIndividual Update(AppBusniessFinanceIndividual model)
