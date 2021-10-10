@@ -48,11 +48,11 @@ namespace LenSys.Controllers
         public ViewResult Index()
         {
             //var appAssetFinanceApplication = _appAssetFinanceRepository.GetAllAppAssetFinance();
-            var appAssetFinanceApplication_AllAppFormat = _appAssetFinanceRepository.GetAllAppAssetFinance_AllApplication();
-
+            //var appAssetFinanceApplication_AllAppFormat = _appAssetFinanceRepository.GetAllAppAssetFinance_AllApplication();
+            var allApplicationsConcat = _allApplicationsRepository.GetAllApplications();
             //AllApplications app = appAssetFinanceApplication.FirstOrDefault();
 
-            return View("AllApplications",appAssetFinanceApplication_AllAppFormat);
+            return View("AllApplications", allApplicationsConcat);
 
             //return View("AllApplications", appAssetFinanceApplication);
         }
@@ -96,9 +96,9 @@ namespace LenSys.Controllers
                     appPropertyFinance.Lead = lead;
                     _appPropertyFinanceRepository.Add(appPropertyFinance);
                 }
-
-                var appAssetFinanceApplication = _appAssetFinanceRepository.GetAllAppAssetFinance();
-                return View("AllApplications", appAssetFinanceApplication);
+                var allApplicationsConcat = _allApplicationsRepository.GetAllApplications();
+                //var appAssetFinanceApplication = _appAssetFinanceRepository.GetAllAppAssetFinance();
+                return View("AllApplications", allApplicationsConcat);
             }
 
             //return View("Lead");
@@ -112,20 +112,15 @@ namespace LenSys.Controllers
             return View();
         }
         public ViewResult AllApplications()
-        {
-            var appAssetFinanceApplication_AllAppFormat = _appAssetFinanceRepository.GetAllAppAssetFinance_AllApplication();
-
-            //AllApplications app = appAssetFinanceApplication.FirstOrDefault();
-
-            return View(appAssetFinanceApplication_AllAppFormat);
+        {           
+            var allApplicationsConcat = _allApplicationsRepository.GetAllApplications();
+            return View(allApplicationsConcat);
         }
         public ViewResult DeleteApplication(int id)
         {
             _appAssetFinanceRepository.Delete(id);
-            //_allApplicationsRepository.DeleteAssetFinanceApplication(id);
-            var RemainingApplications = _appAssetFinanceRepository.GetAllAppAssetFinance();
-
-            return View("AllApplications", RemainingApplications);
+            var allApplicationsConcat = _allApplicationsRepository.GetAllApplications();
+            return View("AllApplications", allApplicationsConcat);
         }
         public IActionResult EditApplication(int id)
         {

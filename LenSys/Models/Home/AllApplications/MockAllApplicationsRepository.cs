@@ -1,4 +1,8 @@
-﻿using System;
+﻿using LenSys.Models.AppAssetFinance;
+using LenSys.Models.AppBusniessFinance;
+using LenSys.Models.AppDevelopmentFinance;
+using LenSys.Models.AppPropertyFinance;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,16 +11,25 @@ namespace LenSys.Models.Home.AllApplications
 {
     public class MockAllApplicationsRepository : IAllApplicationsRepository
     {
+        private IAppAssetFinanceRepository _appAssetFinanceRepository;
+        private IAppBusniessFinanceRepository _appBusniessFinanceRepository;
+        private IAppDevelopmentFinanceRepository _appDevelopmentFinanceRepository;
+        private IAppPropertyFinanceRepository _appPropertyFinanceRepository;
+        
         private List<AllApplications> _allApplications;
 
-        public MockAllApplicationsRepository()
+        public MockAllApplicationsRepository(IAppAssetFinanceRepository appAssetFinanceRepository, IAppBusniessFinanceRepository appBusniessFinanceRepository, IAppDevelopmentFinanceRepository appDevelopmentFinanceRepository, IAppPropertyFinanceRepository appPropertyFinanceRepository)
         {
             _allApplications = new List<AllApplications>()
             {
-                                //new AllApplications{AppID=1,Type="Individual", CompanyBusinessName="Busniess Finance" },
-                                //new AllApplications{AppID=2,Type="Busniess", CompanyBusinessName="Property Finance" },
-                                //new AllApplications{AppID=3,Type="Individual", CompanyBusinessName="Development Finance" }
-            };              
+                //new AllApplications{AppID=1,Type="Individual", CompanyBusinessName="Busniess Finance" },
+                //new AllApplications{AppID=2,Type="Busniess", CompanyBusinessName="Property Finance" },
+                //new AllApplications{AppID=3,Type="Individual", CompanyBusinessName="Development Finance" }
+            };
+            _appAssetFinanceRepository = appAssetFinanceRepository;
+            _appBusniessFinanceRepository = appBusniessFinanceRepository;
+            _appDevelopmentFinanceRepository = appDevelopmentFinanceRepository;
+            _appPropertyFinanceRepository = appPropertyFinanceRepository;
         }
         public AllApplications Add(AllApplications Applications)
         {
@@ -42,6 +55,14 @@ namespace LenSys.Models.Home.AllApplications
 
         public IEnumerable<AllApplications> GetAllApplications()
         {
+            var appAssetFinanceApplication_AllAppFormat = _appAssetFinanceRepository.GetAllAppAssetFinance_AllApplication();
+            var appBusinessFinanceApplication_AllAppFormat = _appBusniessFinanceRepository.GetAllAppBusniessFinance_AllApplication();
+            var appDevelopmentFinanceApplication_AllAppFormat = _appDevelopmentFinanceRepository.GetAllAppDevelopmentFinance_AllApplication();
+            var appPropertyFinanceApplication_AllAppFormat = _appPropertyFinanceRepository.GetAllAppPropertyFinance_AllApplication();
+
+            _allApplications = ((List<AllApplications>)(appAssetFinanceApplication_AllAppFormat.Concat(appBusinessFinanceApplication_AllAppFormat)
+                .Concat(appDevelopmentFinanceApplication_AllAppFormat)).Concat(appPropertyFinanceApplication_AllAppFormat));
+            //AllApplications app = appAssetFinanceApplication.FirstOrDefault();
             return _allApplications;
         }
 
