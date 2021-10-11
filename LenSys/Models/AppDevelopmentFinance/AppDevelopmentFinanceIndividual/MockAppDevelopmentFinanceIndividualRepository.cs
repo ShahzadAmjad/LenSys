@@ -10,27 +10,27 @@ namespace LenSys.Models.AppDevelopmentFinance.AppDevelopmentFinanceIndividual
         private List<AppDevelopmentFinanceIndividual> _individual;
         public MockAppDevelopmentFinanceIndividualRepository()
         {
-            //_individual = new List<Individual>()
-            //{
-            //                    new Individual{
+            _individual = new List<AppDevelopmentFinanceIndividual>()
+            {
+                                //new Individual{
 
-            //                        SecurityDetailsId=1,
-            //                        Notes="Security Property",
-            //                        LegalChargeOverProperty="YES",
-            //                        SecurityType= "Residential ",
-            //                        PropertyType="1 Bed Appartment",
-            //                        NameOfPropertyOwner = "John",
-            //                        Tenure= 2,
-            //                        YearsRemainingOnLeaseIfLeaseHold= 1,
-            //                        PropertyValue= 5454,
-            //                        OriginalPurchasePrice= 6000,
-            //                        AddressForPropertyOfSecurity="Russia",
-            //                        SecondLineAddress= "Cremlin",
-            //                        City= "Moscow",
-            //                        PostCode= 85000
+                                //    SecurityDetailsId=1,
+                                //    Notes="Security Property",
+                                //    LegalChargeOverProperty="YES",
+                                //    SecurityType= "Residential ",
+                                //    PropertyType="1 Bed Appartment",
+                                //    NameOfPropertyOwner = "John",
+                                //    Tenure= 2,
+                                //    YearsRemainingOnLeaseIfLeaseHold= 1,
+                                //    PropertyValue= 5454,
+                                //    OriginalPurchasePrice= 6000,
+                                //    AddressForPropertyOfSecurity="Russia",
+                                //    SecondLineAddress= "Cremlin",
+                                //    City= "Moscow",
+                                //    PostCode= 85000
 
-            //                    }
-            //};
+                                //}
+            };
         }
         public AppDevelopmentFinanceIndividual Add(AppDevelopmentFinanceIndividual individual)
         {

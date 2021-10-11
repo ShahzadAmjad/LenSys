@@ -10,27 +10,27 @@ namespace LenSys.Models.AppBusniessFinance.AppBusniessFinanceBusniess
         private List<AppBusniessFinanceBusniess> _busniess;
         public MockAppBusniessFinanceBusniessRepository()
         {
-            //_busniess = new List<Busniess>()
-            //{
-            //                    new Busniess{
+            _busniess = new List<AppBusniessFinanceBusniess>()
+            {
+                                //new Busniess{
 
-            //                        SecurityDetailsId=1,
-            //                        Notes="Security Property",
-            //                        LegalChargeOverProperty="YES",
-            //                        SecurityType= "Residential ",
-            //                        PropertyType="1 Bed Appartment",
-            //                        NameOfPropertyOwner = "John",
-            //                        Tenure= 2,
-            //                        YearsRemainingOnLeaseIfLeaseHold= 1,
-            //                        PropertyValue= 5454,
-            //                        OriginalPurchasePrice= 6000,
-            //                        AddressForPropertyOfSecurity="Russia",
-            //                        SecondLineAddress= "Cremlin",
-            //                        City= "Moscow",
-            //                        PostCode= 85000
+                                //    SecurityDetailsId=1,
+                                //    Notes="Security Property",
+                                //    LegalChargeOverProperty="YES",
+                                //    SecurityType= "Residential ",
+                                //    PropertyType="1 Bed Appartment",
+                                //    NameOfPropertyOwner = "John",
+                                //    Tenure= 2,
+                                //    YearsRemainingOnLeaseIfLeaseHold= 1,
+                                //    PropertyValue= 5454,
+                                //    OriginalPurchasePrice= 6000,
+                                //    AddressForPropertyOfSecurity="Russia",
+                                //    SecondLineAddress= "Cremlin",
+                                //    City= "Moscow",
+                                //    PostCode= 85000
 
-            //                    }
-            //};
+                                //}
+            };
         }
         public AppBusniessFinanceBusniess Add(AppBusniessFinanceBusniess busniess)
         {

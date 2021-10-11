@@ -3,8 +3,14 @@ using LenSys.Models.AppAssetFinance;
 using LenSys.Models.AppAssetFinance.AppAssetFinanceBusniess;
 using LenSys.Models.AppAssetFinance.AppAssetFinanceIndividual;
 using LenSys.Models.AppBusniessFinance;
+using LenSys.Models.AppBusniessFinance.AppBusniessFinanceBusniess;
+using LenSys.Models.AppBusniessFinance.AppBusniessFinanceIndividual;
 using LenSys.Models.AppDevelopmentFinance;
+using LenSys.Models.AppDevelopmentFinance.AppDevelopmentFinanceBusniess;
+using LenSys.Models.AppDevelopmentFinance.AppDevelopmentFinanceIndividual;
 using LenSys.Models.AppPropertyFinance;
+using LenSys.Models.AppPropertyFinance.AppPropertyFinanceBusniess;
+using LenSys.Models.AppPropertyFinance.AppPropertyFinanceIndividual;
 using LenSys.Models.BusniessKeyPrincipals;
 using LenSys.Models.BusniessLiabilities;
 using LenSys.Models.BusniessServiceability;
@@ -59,14 +65,23 @@ namespace LenSys
             services.AddScoped<IAppDevelopmentFinanceRepository, SQLAppDevelopmentFinanceRepository>();
             services.AddScoped<IAppPropertyFinanceRepository, SQLAppPropertyFinanceRepository>();
 
+            services.AddScoped<IAllApplicationsRepository, SQLAllApplicationsRepository>();
+
             services.AddSingleton<IAppBusniessFinanceSecurityDetailsRepository, MockAppBusniessFinanceSecurityDetailsRepository>();
             services.AddSingleton<IAppDevelopmentFinanceSecurityDetailsRepository, MockAppDevelopmentFinanceSecurityDetailsRepository>();
             services.AddSingleton<IAppPropertyFinanceSecurityDetailsRepository, MockAppPropertyFinanceSecurityDetailsRepository>();
-            
-            services.AddScoped<IAllApplicationsRepository, SQLAllApplicationsRepository>();
-
+                        
             services.AddSingleton<IAppAssetFinanceBusniessRepository, MockAppAssetFinanceBusniessRepository>();
             services.AddSingleton<IAppAssetFinanceIndividualRepository, MockAppAssetFinanceIndividualRepository>();
+
+            services.AddSingleton<IAppBusniessFinanceBusniessRepository, MockAppBusniessFinanceBusniessRepository>();
+            services.AddSingleton<IAppBusniessFinanceIndividualRepository, MockAppBusniessFinanceIndividualRepository>();
+
+            services.AddSingleton<IAppDevelopmentFinanceBusniessRepository, MockAppDevelopmentFinanceBusniessRepository>();
+            services.AddSingleton<IAppDevelopmentFinanceIndividualRepository, MockAppDevelopmentFinanceIndividualRepository>();
+
+            services.AddSingleton<IAppPropertyFinanceBusniessRepository, MockAppPropertyFinanceBusniessRepository>();
+            services.AddSingleton<IAppPropertyFinanceIndividualRepository, MockAppPropertyFinanceIndividualRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

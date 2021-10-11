@@ -122,7 +122,6 @@ namespace LenSys.Controllers
                     _appPropertyFinanceRepository.Add(appPropertyFinance);
                 }
                 var allApplicationsConcat = _allApplicationsRepository.GetAllApplications();
-                //var appAssetFinanceApplication = _appAssetFinanceRepository.GetAllAppAssetFinance();
                 return View("AllApplications", allApplicationsConcat);
             }
 
@@ -143,56 +142,78 @@ namespace LenSys.Controllers
         }
         public ViewResult DeleteApplication(int id)
         {
-            _appAssetFinanceRepository.Delete(id);
             var allApplicationsConcat = _allApplicationsRepository.GetAllApplications();
+            AllApplications EditAppObj = allApplicationsConcat.ToList()[id];
+            int deleteAppId = 0;
+
+            if (EditAppObj.Type == "Asset finance")
+            {
+                deleteAppId = EditAppObj.AppID;
+                _appAssetFinanceRepository.Delete(deleteAppId);
+            }
+            else if (EditAppObj.Type == "Business finance")
+            {
+                deleteAppId = EditAppObj.AppID;
+                _appBusniessFinanceRepository.Delete(deleteAppId);
+            }
+            else if (EditAppObj.Type == "Development finance")
+            {
+                deleteAppId = EditAppObj.AppID;
+                _appDevelopmentFinanceRepository.Delete(deleteAppId);
+            }
+            else if (EditAppObj.Type == "Property finance")
+            {
+                deleteAppId = EditAppObj.AppID;
+                _appPropertyFinanceRepository.Delete(deleteAppId);
+            }
+
+
+
+            allApplicationsConcat = _allApplicationsRepository.GetAllApplications();
             return View("AllApplications", allApplicationsConcat);
         }
         public IActionResult EditApplication(int id)
         {
             var allApplicationsConcat = _allApplicationsRepository.GetAllApplications();
             AllApplications EditAppObj = allApplicationsConcat.ToList()[id];
-            
+            int EditAppObjId = EditAppObj.AppID;
+
 
             if (EditAppObj.Type == "Asset finance")
             {
                 EditAssetFinanceAppID = EditAppObj.AppID;
-                _appAssetFinanceBusniessRepository.SetBusniessList(_appAssetFinanceRepository.GetAppAssetFinance_EditHome(id).busniesses);
-                _appAssetFinanceIndividualRepository.SetIndividualList(_appAssetFinanceRepository.GetAppAssetFinance_EditHome(id).individuals);
+                _appAssetFinanceBusniessRepository.SetBusniessList(_appAssetFinanceRepository.GetAppAssetFinance_EditHome(EditAppObjId).busniesses);
+                _appAssetFinanceIndividualRepository.SetIndividualList(_appAssetFinanceRepository.GetAppAssetFinance_EditHome(EditAppObjId).individuals);
                 return RedirectToAction("AppAssetFinance", "AppAssetFinance");
             }
             else if (EditAppObj.Type == "Business finance")
             {
                 EditBusinessFinanceAppID = EditAppObj.AppID;
-                _appBusniessFinanceBusniessRepository.SetBusniessList(_appBusniessFinanceRepository.GetAppBusniessFinance_EditHome(id).busniesses);
-                _appBusniessFinanceIndividualRepository.SetIndividualList(_appBusniessFinanceRepository.GetAppBusniessFinance_EditHome(id).individuals);
+                _appBusniessFinanceBusniessRepository.SetBusniessList(_appBusniessFinanceRepository.GetAppBusniessFinance_EditHome(EditAppObjId).busniesses);
+                _appBusniessFinanceIndividualRepository.SetIndividualList(_appBusniessFinanceRepository.GetAppBusniessFinance_EditHome(EditAppObjId).individuals);
 
-                return RedirectToAction("AppBusinessFinance", "AppBusinessFinance");
+                return RedirectToAction("AppBusniessFinance", "AppBusniessFinance");
             }
             else if (EditAppObj.Type == "Development finance")
             {
                 EditDevelopmentFinanceAppID = EditAppObj.AppID;
-                _appDevelopmentFinanceBusniessRepository.SetBusniessList(_appDevelopmentFinanceRepository.GetAppDevelopmentFinance_EditHome(id).busniesses);
-                _appDevelopmentFinanceIndividualRepository.SetIndividualList(_appDevelopmentFinanceRepository.GetAppDevelopmentFinance_EditHome(id).individuals);
+                _appDevelopmentFinanceBusniessRepository.SetBusniessList(_appDevelopmentFinanceRepository.GetAppDevelopmentFinance_EditHome(EditAppObjId).busniesses);
+                _appDevelopmentFinanceIndividualRepository.SetIndividualList(_appDevelopmentFinanceRepository.GetAppDevelopmentFinance_EditHome(EditAppObjId).individuals);
 
                 return RedirectToAction("AppDevelopmentFinance", "AppDevelopmentFinance");
             }
             else if (EditAppObj.Type == "Property finance")
             {
                 EditPropertyFinanceAppID = EditAppObj.AppID;
-                _appPropertyFinanceBusniessRepository.SetBusniessList(_appPropertyFinanceRepository.GetAppPropertyFinance_EditHome(id).busniesses);
-                _appPropertyFinanceIndividualRepository.SetIndividualList(_appPropertyFinanceRepository.GetAppPropertyFinance_EditHome(id).individuals);
+                _appPropertyFinanceBusniessRepository.SetBusniessList(_appPropertyFinanceRepository.GetAppPropertyFinance_EditHome(EditAppObjId).busniesses);
+                _appPropertyFinanceIndividualRepository.SetIndividualList(_appPropertyFinanceRepository.GetAppPropertyFinance_EditHome(EditAppObjId).individuals);
 
                 return RedirectToAction("AppPropertyFinance", "AppPropertyFinance");
             }
-
             else
             {               
                 return View("AllApplications", allApplicationsConcat);
-            }
-            //AppAssetFinance AppAssetFinanceApplication = _appAssetFinanceRepository.GetAppAssetFinance_EditHome(id); //_allApplicationsRepository.GetAssetFinanceApplication(id);
-
-            
+            }         
         }
-
     }
 }
