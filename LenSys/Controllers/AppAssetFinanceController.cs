@@ -37,7 +37,9 @@ namespace LenSys.Controllers
         public static int BusniessID;
 
         public static Lead lead;
-        public AppAssetFinanceController(IAppAssetFinanceRepository appAssetFinanceRepository, IAppAssetFinanceBusniessRepository appAssetFinanceBusniessRepository, IAppAssetFinanceIndividualRepository appAssetFinanceIndividualRepository)
+        public AppAssetFinanceController(IAppAssetFinanceRepository appAssetFinanceRepository,
+            IAppAssetFinanceBusniessRepository appAssetFinanceBusniessRepository,
+            IAppAssetFinanceIndividualRepository appAssetFinanceIndividualRepository)
         {
             _appAssetFinanceRepository = appAssetFinanceRepository;
             _appAssetFinanceBusniessRepository = appAssetFinanceBusniessRepository;
@@ -45,9 +47,23 @@ namespace LenSys.Controllers
         }
         public ViewResult Index()
         {
-            //String name = "Default Index Page";
-            //return name;
-            return View();
+            AppAssetFinance AppAssetFinanceApplication;
+            //Saving to global variables
+            appID = HomeController.EditAssetFinanceAppID;
+
+            if (appID == 0)
+            {
+                AppAssetFinanceApplication = new AppAssetFinance();
+            }
+            else
+            {
+                AppAssetFinanceApplication = _appAssetFinanceRepository.GetAppAssetFinance_appAssetFinance(appID);
+                AppAssetFinanceApplication.busniesses = (List<AppAssetFinanceBusniess>)_appAssetFinanceBusniessRepository.GetAllBusniess();
+                AppAssetFinanceApplication.individuals = (List<AppAssetFinanceIndividual>)_appAssetFinanceIndividualRepository.GetAllIndividual();
+                //Saving to global variables
+                lead = AppAssetFinanceApplication.Lead;
+            }
+            return View("AppAssetFinance", AppAssetFinanceApplication);
         }
         public IActionResult AddLead()
         {

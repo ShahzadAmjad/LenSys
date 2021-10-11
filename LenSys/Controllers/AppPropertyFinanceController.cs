@@ -1,4 +1,7 @@
 ﻿using LenSys.Models.AppPropertyFinance;
+using LenSys.Models.AppPropertyFinance.AppPropertyFinanceBusniess;
+using LenSys.Models.AppPropertyFinance.AppPropertyFinanceIndividual;
+using LenSys.Models.Home;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,17 +14,45 @@ namespace LenSys.Controllers
     {
         private IAppPropertyFinanceSecurityDetailsRepository _appPropertyFinanceSecurityDetails;
         private IAppPropertyFinanceRepository _appPropertyFinanceRepository;
-
-        public AppPropertyFinanceController(IAppPropertyFinanceSecurityDetailsRepository appPropertyFinanceSecurityDetailsRepository, IAppPropertyFinanceRepository appPropertyFinanceRepository)
+        private IAppPropertyFinanceBusniessRepository _appPropertyFinanceBusniessRepository;
+        private IAppPropertyFinanceIndividualRepository _appPropertyFinanceIndividualRepository;
+        //Shared Variables
+        public static int appID;
+        public static int IndividualID;
+        public static int BusniessID;
+        public static Lead lead;
+        public AppPropertyFinanceController(IAppPropertyFinanceSecurityDetailsRepository appPropertyFinanceSecurityDetailsRepository,
+            IAppPropertyFinanceRepository appPropertyFinanceRepository,
+            IAppPropertyFinanceBusniessRepository appPropertyFinanceBusniessRepository,
+            IAppPropertyFinanceIndividualRepository appPropertyFinanceIndividualRepository)
         {
             _appPropertyFinanceSecurityDetails = appPropertyFinanceSecurityDetailsRepository;
             _appPropertyFinanceRepository = appPropertyFinanceRepository;
+            _appPropertyFinanceBusniessRepository = appPropertyFinanceBusniessRepository;
+            _appPropertyFinanceIndividualRepository = appPropertyFinanceIndividualRepository;
         }
         public ViewResult Index()
         {
-            //String name = "Default Index Page";
-            //return name;
-            return View("AppPropertyFinance");
+            AppPropertyFinance AppPropertyFinanceApplication;
+            //Saving to global variables
+            appID = HomeController.EditBusinessFinanceAppID;
+
+            if (appID == 0)
+            {
+                AppPropertyFinanceApplication = new AppPropertyFinance();
+            }
+            else
+            {
+                AppPropertyFinanceApplication = _appPropertyFinanceRepository.GetAppPropertyFinance_appPropertyFinance(appID);
+                AppPropertyFinanceApplication.busniesses = (List<AppPropertyFinanceBusniess>)_appPropertyFinanceBusniessRepository.GetAllBusniess();
+                AppPropertyFinanceApplication.individuals = (List<AppPropertyFinanceIndividual>)_appPropertyFinanceIndividualRepository.GetAllIndividual();
+                AppPropertyFinanceApplication.securityDetails = (List<AppPropertyFinanceSecurityDetails>)_appPropertyFinanceSecurityDetails.GetAllAppPropertyFinanceSecurityDetails();
+                //Saving to global variables
+                lead = AppPropertyFinanceApplication.Lead;
+            }
+            return View("AppPropertyFinance", AppPropertyFinanceApplication);
+
+            //return View("AppPropertyFinance");
         }
 
         [HttpGet]

@@ -1,4 +1,7 @@
 ﻿using LenSys.Models.AppBusniessFinance;
+using LenSys.Models.AppBusniessFinance.AppBusniessFinanceBusniess;
+using LenSys.Models.AppBusniessFinance.AppBusniessFinanceIndividual;
+using LenSys.Models.Home;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,18 +12,47 @@ namespace LenSys.Controllers
 {
     public class AppBusniessFinanceController : Controller
     {
+        private IAppBusniessFinanceRepository _appBusniessFinanceRepository;              
+        private IAppBusniessFinanceBusniessRepository _appBusniessFinanceBusniessRepository;
+        private IAppBusniessFinanceIndividualRepository _appBusniessFinanceIndividualRepository;
         private IAppBusniessFinanceSecurityDetailsRepository _appBusniessFinanceSecurityDetails;
-        private IAppBusniessFinanceRepository _appBusniessFinanceRepository;
-        public AppBusniessFinanceController(IAppBusniessFinanceSecurityDetailsRepository appBusniessFinanceSecurityDetailsRepository, IAppBusniessFinanceRepository appBusniessFinanceRepository)
+        //Shared Variables
+        public static int appID;
+        public static int IndividualID;
+        public static int BusniessID;
+        public static Lead lead;
+        public AppBusniessFinanceController(IAppBusniessFinanceSecurityDetailsRepository appBusniessFinanceSecurityDetailsRepository,
+            IAppBusniessFinanceRepository appBusniessFinanceRepository,
+            IAppBusniessFinanceBusniessRepository appBusniessFinanceBusniessRepository,
+            IAppBusniessFinanceSecurityDetailsRepository appBusniessFinanceSecurityDetails)
         {
             _appBusniessFinanceSecurityDetails = appBusniessFinanceSecurityDetailsRepository;
             _appBusniessFinanceRepository = appBusniessFinanceRepository;
+            _appBusniessFinanceBusniessRepository = appBusniessFinanceBusniessRepository;
+            _appBusniessFinanceSecurityDetails = appBusniessFinanceSecurityDetails;
         }
         public ViewResult Index()
         {
-            //String name = "Default Index Page";
-            //return name;
-            return View("AppBusniessFinance");
+            AppBusniessFinance AppBusniessFinanceApplication;
+            //Saving to global variables
+            appID = HomeController.EditBusinessFinanceAppID;
+
+            if (appID == 0)
+            {
+                AppBusniessFinanceApplication = new AppBusniessFinance();
+            }
+            else
+            {
+                AppBusniessFinanceApplication = _appBusniessFinanceRepository.GetAppBusniessFinance_appBusniessFinance(appID);
+                AppBusniessFinanceApplication.busniesses = (List<AppBusniessFinanceBusniess>)_appBusniessFinanceBusniessRepository.GetAllBusniess();
+                AppBusniessFinanceApplication.individuals = (List<AppBusniessFinanceIndividual>)_appBusniessFinanceIndividualRepository.GetAllIndividual();
+                AppBusniessFinanceApplication.securityDetails = (List<AppBusniessFinanceSecurityDetails>)_appBusniessFinanceSecurityDetails.GetAllAppBusniessFinanceSecurityDetails();
+                //Saving to global variables
+                lead = AppBusniessFinanceApplication.Lead;
+            }
+            return View("AppBusniessFinance", AppBusniessFinanceApplication);
+
+            //return View("AppBusniessFinance");
         }
         [HttpGet]
         public IActionResult AddSecurityDetail()
@@ -66,11 +98,27 @@ namespace LenSys.Controllers
         [HttpGet]
         public ViewResult AppBusniessFinance()
         {
-            AppBusniessFinance appBusniessFinance = new AppBusniessFinance();
+            AppBusniessFinance AppBusniessFinanceApplication;
+            //Saving to global variables
+            appID = HomeController.EditBusinessFinanceAppID;
 
-            appBusniessFinance.securityDetails= (List<AppBusniessFinanceSecurityDetails>)_appBusniessFinanceSecurityDetails.GetAllAppBusniessFinanceSecurityDetails();
-            //ViewData["SecurityDetailsList"] = _appBusniessFinanceSecurityDetails.GetAllAppBusniessFinanceSecurityDetails();
-            return View("AppBusniessFinance", appBusniessFinance);
+            if (appID == 0)
+            {
+                AppBusniessFinanceApplication = new AppBusniessFinance();
+            }
+            else
+            {
+                AppBusniessFinanceApplication = _appBusniessFinanceRepository.GetAppBusniessFinance_appBusniessFinance(appID);
+                AppBusniessFinanceApplication.busniesses = (List<AppBusniessFinanceBusniess>)_appBusniessFinanceBusniessRepository.GetAllBusniess();
+                AppBusniessFinanceApplication.individuals = (List<AppBusniessFinanceIndividual>)_appBusniessFinanceIndividualRepository.GetAllIndividual();
+                AppBusniessFinanceApplication.securityDetails = (List<AppBusniessFinanceSecurityDetails>)_appBusniessFinanceSecurityDetails.GetAllAppBusniessFinanceSecurityDetails();
+                //Saving to global variables
+                lead = AppBusniessFinanceApplication.Lead;
+            }
+            return View("AppBusniessFinance", AppBusniessFinanceApplication);
+            //AppBusniessFinance appBusniessFinance = new AppBusniessFinance();
+            //appBusniessFinance.securityDetails= (List<AppBusniessFinanceSecurityDetails>)_appBusniessFinanceSecurityDetails.GetAllAppBusniessFinanceSecurityDetails();      
+            //return View("AppBusniessFinance", appBusniessFinance);
         }
         [HttpPost]
         public IActionResult AppBusniessFinance(AppBusniessFinance appBusniessFinance)

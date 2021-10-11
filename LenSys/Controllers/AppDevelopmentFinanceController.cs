@@ -1,4 +1,7 @@
 ﻿using LenSys.Models.AppDevelopmentFinance;
+using LenSys.Models.AppDevelopmentFinance.AppDevelopmentFinanceBusniess;
+using LenSys.Models.AppDevelopmentFinance.AppDevelopmentFinanceIndividual;
+using LenSys.Models.Home;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,18 +14,46 @@ namespace LenSys.Controllers
     {
         private IAppDevelopmentFinanceSecurityDetailsRepository _appDevelopmentFinanceSecurityDetails;
         private IAppDevelopmentFinanceRepository _appDevelopmentFinanceRepository;
-        public AppDevelopmentFinanceController(IAppDevelopmentFinanceSecurityDetailsRepository appDevelopmentFinanceSecurityDetailsRepository, IAppDevelopmentFinanceRepository appDevelopmentFinanceRepository)
+        private IAppDevelopmentFinanceBusniessRepository _appDevelopmentFinanceBusniessRepository;
+        private IAppDevelopmentFinanceIndividualRepository _appDevelopmentFinanceIndividualRepository;
+        //Shared Variables
+        public static int appID;
+        public static int IndividualID;
+        public static int BusniessID;
+        public static Lead lead;
+        public AppDevelopmentFinanceController(IAppDevelopmentFinanceSecurityDetailsRepository appDevelopmentFinanceSecurityDetailsRepository,
+            IAppDevelopmentFinanceRepository appDevelopmentFinanceRepository,
+            IAppDevelopmentFinanceBusniessRepository appDevelopmentFinanceBusniessRepository,
+            IAppDevelopmentFinanceIndividualRepository appDevelopmentFinanceIndividualRepository)
         {
             _appDevelopmentFinanceSecurityDetails = appDevelopmentFinanceSecurityDetailsRepository;
             _appDevelopmentFinanceRepository = appDevelopmentFinanceRepository;
+            _appDevelopmentFinanceBusniessRepository = appDevelopmentFinanceBusniessRepository;
+            _appDevelopmentFinanceIndividualRepository = appDevelopmentFinanceIndividualRepository;
         }
 
 
         public ViewResult Index()
         {
-            //String name = "Default Index Page";
-            //return name;
-            return View("AppDevelopmentFinance");
+            AppDevelopmentFinance AppDevelopmentFinanceApplication;
+            //Saving to global variables
+            appID = HomeController.EditBusinessFinanceAppID;
+
+            if (appID == 0)
+            {
+                AppDevelopmentFinanceApplication = new AppDevelopmentFinance();
+            }
+            else
+            {
+                AppDevelopmentFinanceApplication = _appDevelopmentFinanceRepository.GetAppDevelopmentFinance_appDevelopmentFinance(appID);
+                AppDevelopmentFinanceApplication.busniesses = (List<AppDevelopmentFinanceBusniess>)_appDevelopmentFinanceBusniessRepository.GetAllBusniess();
+                AppDevelopmentFinanceApplication.individuals = (List<AppDevelopmentFinanceIndividual>)_appDevelopmentFinanceIndividualRepository.GetAllIndividual();
+                AppDevelopmentFinanceApplication.securityDetails = (List<AppDevelopmentFinanceSecurityDetails>)_appDevelopmentFinanceSecurityDetails.GetAllAppDevelopmentFinanceSecurityDetails();
+                //Saving to global variables
+                lead = AppDevelopmentFinanceApplication.Lead;
+            }
+            return View("AppDevelopmentFinance", AppDevelopmentFinanceApplication);
+            //return View("AppDevelopmentFinance");
         }
 
         [HttpGet]
@@ -51,13 +82,7 @@ namespace LenSys.Controllers
         [HttpGet]
         public IActionResult EditSecurityDetail(int id)
         {
-
-
             AppDevelopmentFinanceSecurityDetails securityDetails = _appDevelopmentFinanceSecurityDetails.GetAppDevelopmentFinanceSecurityDetails(id);
-            //ViewBag.PageTitle = "Edit Key Principal";
-
-            //return View("EditSecurityDetail",model);
-
             return PartialView("_EditSecurityDetailDevelopmentPartialView", securityDetails);
         }
 
@@ -71,11 +96,27 @@ namespace LenSys.Controllers
         [HttpGet]
         public ViewResult AppDevelopmentFinance()
         {
+            AppDevelopmentFinance AppDevelopmentFinanceApplication;
+            //Saving to global variables
+            appID = HomeController.EditBusinessFinanceAppID;
 
-            //ViewData["SecurityDetailsList"] = _appDevelopmentFinanceSecurityDetails.GetAllAppDevelopmentFinanceSecurityDetails();
-            AppDevelopmentFinance appDevelopmentFinance = new AppDevelopmentFinance();
-            appDevelopmentFinance.securityDetails = (List<AppDevelopmentFinanceSecurityDetails>)_appDevelopmentFinanceSecurityDetails.GetAllAppDevelopmentFinanceSecurityDetails();
-            return View("AppDevelopmentFinance", appDevelopmentFinance);
+            if (appID == 0)
+            {
+                AppDevelopmentFinanceApplication = new AppDevelopmentFinance();
+            }
+            else
+            {
+                AppDevelopmentFinanceApplication = _appDevelopmentFinanceRepository.GetAppDevelopmentFinance_appDevelopmentFinance(appID);
+                AppDevelopmentFinanceApplication.busniesses = (List<AppDevelopmentFinanceBusniess>)_appDevelopmentFinanceBusniessRepository.GetAllBusniess();
+                AppDevelopmentFinanceApplication.individuals = (List<AppDevelopmentFinanceIndividual>)_appDevelopmentFinanceIndividualRepository.GetAllIndividual();
+                AppDevelopmentFinanceApplication.securityDetails = (List<AppDevelopmentFinanceSecurityDetails>)_appDevelopmentFinanceSecurityDetails.GetAllAppDevelopmentFinanceSecurityDetails();
+                //Saving to global variables
+                lead = AppDevelopmentFinanceApplication.Lead;
+            }
+            return View("AppDevelopmentFinance", AppDevelopmentFinanceApplication);
+            //AppDevelopmentFinance appDevelopmentFinance = new AppDevelopmentFinance();
+            //appDevelopmentFinance.securityDetails = (List<AppDevelopmentFinanceSecurityDetails>)_appDevelopmentFinanceSecurityDetails.GetAllAppDevelopmentFinanceSecurityDetails();
+            //return View("AppDevelopmentFinance", appDevelopmentFinance);
         }
         [HttpPost]
         public IActionResult AppDevelopmentFinance(AppDevelopmentFinance appDevelopmentFinance)
