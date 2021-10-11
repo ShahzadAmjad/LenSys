@@ -122,6 +122,7 @@ namespace LenSys.Models.AppBusniessFinance
         public AppBusniessFinance GetAppBusniessFinance(int id)
         {
             AppBusniessFinance appBusniessFinance = Context.AppBusniessFinance
+               .Include(x => x.securityDetails)
                .Include(x => x.Lead)
                .Include(x => x.individuals)
                    .ThenInclude(y => y.personalDetails)
@@ -174,6 +175,7 @@ namespace LenSys.Models.AppBusniessFinance
         {
             //Without Lead
             AppBusniessFinance appBusniessFinance = Context.AppBusniessFinance
+               .Include(x => x.securityDetails)
                .Include(x => x.individuals)
                    .ThenInclude(y => y.personalDetails)
                .Include(a => a.individuals)

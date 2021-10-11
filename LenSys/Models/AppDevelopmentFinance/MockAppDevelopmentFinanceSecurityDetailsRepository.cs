@@ -45,9 +45,10 @@ namespace LenSys.Models.AppDevelopmentFinance
             return appDevelopmentFinanceSecurityDetails;
         }
 
-        public IEnumerable<AppDevelopmentFinanceSecurityDetails> ClearIndividualList()
+        public IEnumerable<AppDevelopmentFinanceSecurityDetails> ClearSecurityDetailsList()
         {
-            throw new NotImplementedException();
+            _AppDevelopmentFinanceSecurityDetails.Clear();
+            return _AppDevelopmentFinanceSecurityDetails;
         }
 
         public AppDevelopmentFinanceSecurityDetails Delete(int AppDevelopmentFinanceSecurityDetailsId)
@@ -70,9 +71,10 @@ namespace LenSys.Models.AppDevelopmentFinance
             return _AppDevelopmentFinanceSecurityDetails.FirstOrDefault(e => e.SecurityDetailsId == AppDevelopmentFinanceSecurityDetailsId);
         }
 
-        public IEnumerable<AppDevelopmentFinanceSecurityDetails> SetIndividualList(IEnumerable<AppDevelopmentFinanceSecurityDetails> IndividualList)
+        public IEnumerable<AppDevelopmentFinanceSecurityDetails> SetSecurityDetailsList(IEnumerable<AppDevelopmentFinanceSecurityDetails> SecurityDetailsList)
         {
-            throw new NotImplementedException();
+            _AppDevelopmentFinanceSecurityDetails = (List<AppDevelopmentFinanceSecurityDetails>)SecurityDetailsList;
+            return _AppDevelopmentFinanceSecurityDetails;
         }
 
         public AppDevelopmentFinanceSecurityDetails Update(AppDevelopmentFinanceSecurityDetails model)

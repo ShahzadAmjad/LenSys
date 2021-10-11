@@ -123,6 +123,7 @@ namespace LenSys.Models.AppPropertyFinance
         {
             AppPropertyFinance appPropertyFinance = Context.AppPropertyFinance
               .Include(x => x.Lead)
+              .Include(x => x.securityDetails)
               .Include(x => x.individuals)
                   .ThenInclude(y => y.personalDetails)
               .Include(a => a.individuals)
@@ -174,6 +175,7 @@ namespace LenSys.Models.AppPropertyFinance
         {
             //without Lead
             AppPropertyFinance appPropertyFinance = Context.AppPropertyFinance
+              .Include(x => x.securityDetails)
               .Include(x => x.individuals)
                   .ThenInclude(y => y.personalDetails)
               .Include(a => a.individuals)

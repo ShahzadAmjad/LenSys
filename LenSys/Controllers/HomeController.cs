@@ -25,10 +25,12 @@ namespace LenSys.Controllers
     {
         
         private readonly IAllApplicationsRepository _allApplicationsRepository;
+        
         private IAppAssetFinanceRepository _appAssetFinanceRepository;
         private IAppBusniessFinanceRepository _appBusniessFinanceRepository;
         private IAppDevelopmentFinanceRepository _appDevelopmentFinanceRepository;
         private IAppPropertyFinanceRepository _appPropertyFinanceRepository;
+        
         private IAppAssetFinanceBusniessRepository _appAssetFinanceBusniessRepository;
         private IAppAssetFinanceIndividualRepository _appAssetFinanceIndividualRepository;
         private IAppDevelopmentFinanceBusniessRepository _appDevelopmentFinanceBusniessRepository;
@@ -37,6 +39,10 @@ namespace LenSys.Controllers
         private IAppBusniessFinanceIndividualRepository _appBusniessFinanceIndividualRepository;
         private IAppPropertyFinanceBusniessRepository _appPropertyFinanceBusniessRepository;
         private IAppPropertyFinanceIndividualRepository _appPropertyFinanceIndividualRepository;
+
+        private IAppBusniessFinanceSecurityDetailsRepository _appBusniessFinanceSecurityDetailsRepository;
+        private IAppDevelopmentFinanceSecurityDetailsRepository _appDevelopmentFinanceSecurityDetailsRepository;
+        private IAppPropertyFinanceSecurityDetailsRepository _appPropertyFinanceSecurityDetailsRepository;
 
         public static int EditAssetFinanceAppID;
         public static int EditBusinessFinanceAppID;
@@ -50,13 +56,16 @@ namespace LenSys.Controllers
             IAppDevelopmentFinanceRepository appDevelopmentFinanceRepository,
             IAppPropertyFinanceRepository appPropertyFinanceRepository,
             IAppAssetFinanceIndividualRepository appAssetFinanceIndividualRepository,
-            IAppAssetFinanceBusniessRepository appAssetFinanceBusniessRepository, 
-            IAppDevelopmentFinanceBusniessRepository appDevelopmentFinanceBusniessRepository, 
-            IAppDevelopmentFinanceIndividualRepository appDevelopmentFinanceIndividualRepository, 
+            IAppAssetFinanceBusniessRepository appAssetFinanceBusniessRepository,
+            IAppDevelopmentFinanceBusniessRepository appDevelopmentFinanceBusniessRepository,
+            IAppDevelopmentFinanceIndividualRepository appDevelopmentFinanceIndividualRepository,
             IAppBusniessFinanceBusniessRepository appBusniessFinanceBusniessRepository,
             IAppBusniessFinanceIndividualRepository appBusniessFinanceIndividualRepository,
-            IAppPropertyFinanceBusniessRepository appPropertyFinanceBusniessRepository, 
-            IAppPropertyFinanceIndividualRepository appPropertyFinanceIndividualRepository)
+            IAppPropertyFinanceBusniessRepository appPropertyFinanceBusniessRepository,
+            IAppPropertyFinanceIndividualRepository appPropertyFinanceIndividualRepository, 
+            IAppBusniessFinanceSecurityDetailsRepository appBusniessFinanceSecurityDetailsRepository,
+            IAppDevelopmentFinanceSecurityDetailsRepository appDevelopmentFinanceSecurityDetailsRepository,
+            IAppPropertyFinanceSecurityDetailsRepository appPropertyFinanceSecurityDetailsRepository)
         {
             this._allApplicationsRepository = allApplicationsRepository;
             _appAssetFinanceRepository = appAssetFinanceRepository;
@@ -71,6 +80,9 @@ namespace LenSys.Controllers
             _appBusniessFinanceIndividualRepository = appBusniessFinanceIndividualRepository;
             _appPropertyFinanceBusniessRepository = appPropertyFinanceBusniessRepository;
             _appPropertyFinanceIndividualRepository = appPropertyFinanceIndividualRepository;
+            _appBusniessFinanceSecurityDetailsRepository = appBusniessFinanceSecurityDetailsRepository;
+            _appDevelopmentFinanceSecurityDetailsRepository = appDevelopmentFinanceSecurityDetailsRepository;
+            _appPropertyFinanceSecurityDetailsRepository = appPropertyFinanceSecurityDetailsRepository;
         }
         public ViewResult Index()
         {
@@ -183,8 +195,7 @@ namespace LenSys.Controllers
             EditAppType = EditAppObj.Type;
 
             if (EditAppObj.Type == "Asset finance")
-            {
-                
+            {                
                 EditAssetFinanceAppID = EditAppObj.AppID;
                 _appAssetFinanceBusniessRepository.SetBusniessList(_appAssetFinanceRepository.GetAppAssetFinance_EditHome(EditAppObjId).busniesses);
                 _appAssetFinanceIndividualRepository.SetIndividualList(_appAssetFinanceRepository.GetAppAssetFinance_EditHome(EditAppObjId).individuals);
@@ -195,7 +206,7 @@ namespace LenSys.Controllers
                 EditBusinessFinanceAppID = EditAppObj.AppID;
                 _appBusniessFinanceBusniessRepository.SetBusniessList(_appBusniessFinanceRepository.GetAppBusniessFinance_EditHome(EditAppObjId).busniesses);
                 _appBusniessFinanceIndividualRepository.SetIndividualList(_appBusniessFinanceRepository.GetAppBusniessFinance_EditHome(EditAppObjId).individuals);
-
+                _appBusniessFinanceSecurityDetailsRepository.SetSecurityDetailsList(_appBusniessFinanceRepository.GetAppBusniessFinance_EditHome(EditAppObjId).securityDetails);
                 return RedirectToAction("AppBusniessFinance", "AppBusniessFinance");
             }
             else if (EditAppObj.Type == "Development finance")
@@ -203,7 +214,7 @@ namespace LenSys.Controllers
                 EditDevelopmentFinanceAppID = EditAppObj.AppID;
                 _appDevelopmentFinanceBusniessRepository.SetBusniessList(_appDevelopmentFinanceRepository.GetAppDevelopmentFinance_EditHome(EditAppObjId).busniesses);
                 _appDevelopmentFinanceIndividualRepository.SetIndividualList(_appDevelopmentFinanceRepository.GetAppDevelopmentFinance_EditHome(EditAppObjId).individuals);
-
+                _appDevelopmentFinanceSecurityDetailsRepository.SetSecurityDetailsList(_appDevelopmentFinanceRepository.GetAppDevelopmentFinance_EditHome(EditAppObjId).securityDetails);
                 return RedirectToAction("AppDevelopmentFinance", "AppDevelopmentFinance");
             }
             else if (EditAppObj.Type == "Property finance")
@@ -211,7 +222,7 @@ namespace LenSys.Controllers
                 EditPropertyFinanceAppID = EditAppObj.AppID;
                 _appPropertyFinanceBusniessRepository.SetBusniessList(_appPropertyFinanceRepository.GetAppPropertyFinance_EditHome(EditAppObjId).busniesses);
                 _appPropertyFinanceIndividualRepository.SetIndividualList(_appPropertyFinanceRepository.GetAppPropertyFinance_EditHome(EditAppObjId).individuals);
-
+                _appPropertyFinanceSecurityDetailsRepository.SetSecurityDetailsList(_appPropertyFinanceRepository.GetAppPropertyFinance_EditHome(EditAppObjId).securityDetails);
                 return RedirectToAction("AppPropertyFinance", "AppPropertyFinance");
             }
             else

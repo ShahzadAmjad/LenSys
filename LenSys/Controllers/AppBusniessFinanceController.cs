@@ -24,12 +24,13 @@ namespace LenSys.Controllers
         public AppBusniessFinanceController(IAppBusniessFinanceSecurityDetailsRepository appBusniessFinanceSecurityDetailsRepository,
             IAppBusniessFinanceRepository appBusniessFinanceRepository,
             IAppBusniessFinanceBusniessRepository appBusniessFinanceBusniessRepository,
-            IAppBusniessFinanceSecurityDetailsRepository appBusniessFinanceSecurityDetails)
+            IAppBusniessFinanceSecurityDetailsRepository appBusniessFinanceSecurityDetails, IAppBusniessFinanceIndividualRepository appBusniessFinanceIndividualRepository)
         {
             _appBusniessFinanceSecurityDetails = appBusniessFinanceSecurityDetailsRepository;
             _appBusniessFinanceRepository = appBusniessFinanceRepository;
             _appBusniessFinanceBusniessRepository = appBusniessFinanceBusniessRepository;
             _appBusniessFinanceSecurityDetails = appBusniessFinanceSecurityDetails;
+            _appBusniessFinanceIndividualRepository = appBusniessFinanceIndividualRepository;
         }
         public ViewResult Index()
         {
@@ -110,6 +111,9 @@ namespace LenSys.Controllers
             {
                 AppBusniessFinanceApplication = _appBusniessFinanceRepository.GetAppBusniessFinance_appBusniessFinance(appID);
                 AppBusniessFinanceApplication.busniesses = (List<AppBusniessFinanceBusniess>)_appBusniessFinanceBusniessRepository.GetAllBusniess();
+                //Exception over hereIEnumerable<AppBusniessFinanceIndividual> BusIndListGet= _appBusniessFinanceIndividualRepository.GetAllIndividual();
+                IEnumerable<AppBusniessFinanceIndividual> BusIndListGet = _appBusniessFinanceIndividualRepository.GetAllIndividual();
+
                 AppBusniessFinanceApplication.individuals = (List<AppBusniessFinanceIndividual>)_appBusniessFinanceIndividualRepository.GetAllIndividual();
                 AppBusniessFinanceApplication.securityDetails = (List<AppBusniessFinanceSecurityDetails>)_appBusniessFinanceSecurityDetails.GetAllAppBusniessFinanceSecurityDetails();
                 //Saving to global variables
