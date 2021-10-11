@@ -42,6 +42,8 @@ namespace LenSys.Controllers
         public static int EditBusinessFinanceAppID;
         public static int EditDevelopmentFinanceAppID;
         public static int EditPropertyFinanceAppID;
+        public static string EditAppType;
+
         public HomeController(IAllApplicationsRepository allApplicationsRepository,
             IAppAssetFinanceRepository appAssetFinanceRepository,
             IAppBusniessFinanceRepository appBusniessFinanceRepository,
@@ -177,10 +179,12 @@ namespace LenSys.Controllers
             var allApplicationsConcat = _allApplicationsRepository.GetAllApplications();
             AllApplications EditAppObj = allApplicationsConcat.ToList()[id];
             int EditAppObjId = EditAppObj.AppID;
-
+            //To be used in individual and busniess
+            EditAppType = EditAppObj.Type;
 
             if (EditAppObj.Type == "Asset finance")
             {
+                
                 EditAssetFinanceAppID = EditAppObj.AppID;
                 _appAssetFinanceBusniessRepository.SetBusniessList(_appAssetFinanceRepository.GetAppAssetFinance_EditHome(EditAppObjId).busniesses);
                 _appAssetFinanceIndividualRepository.SetIndividualList(_appAssetFinanceRepository.GetAppAssetFinance_EditHome(EditAppObjId).individuals);
