@@ -12,26 +12,26 @@ namespace LenSys.Models.AppPropertyFinance
         {
             _AppPropertyFinanceSecurityDetails = new List<AppPropertyFinanceSecurityDetails>()
             {
-                                new AppPropertyFinanceSecurityDetails{
-                                    SecurityDetailsId=1,
-                                    SecurityType= "Residential ",
-                                    PropertyType="1 Bed Appartment",
+                                //new AppPropertyFinanceSecurityDetails{
+                                //    SecurityDetailsId=1,
+                                //    SecurityType= "Residential ",
+                                //    PropertyType="1 Bed Appartment",
 
-                                    AlreadyOwned="YES",
-                                    NameOfPropertyOwner = "John",
-                                    Tenure= 2,
-                                    YearsRemainingOnLeaseIfLeaseHold= 1,
-                                    PropertyValue= 5454,
-                                    OriginalPurchasePrice= 6000,
-                                    UseOfFunds="Security Money",
-                                    Rent=50,
-                                    HMO_MUFB="abc",
-                                    AddressForPropertyOfSecurity="Russia",
-                                    SecondLineAddress= "Cremlin",
-                                    City= "Moscow",
-                                    PostCode= 85000
+                                //    AlreadyOwned="YES",
+                                //    NameOfPropertyOwner = "John",
+                                //    Tenure= 2,
+                                //    YearsRemainingOnLeaseIfLeaseHold= 1,
+                                //    PropertyValue= 5454,
+                                //    OriginalPurchasePrice= 6000,
+                                //    UseOfFunds="Security Money",
+                                //    Rent=50,
+                                //    HMO_MUFB="abc",
+                                //    AddressForPropertyOfSecurity="Russia",
+                                //    SecondLineAddress= "Cremlin",
+                                //    City= "Moscow",
+                                //    PostCode= 85000
 
-                                }
+                                //}
             };
         }
         public AppPropertyFinanceSecurityDetails Add(AppPropertyFinanceSecurityDetails appPropertyFinanceSecurityDetails)
@@ -48,6 +48,11 @@ namespace LenSys.Models.AppPropertyFinance
 
             _AppPropertyFinanceSecurityDetails.Add(appPropertyFinanceSecurityDetails);
             return appPropertyFinanceSecurityDetails;
+        }
+
+        public IEnumerable<AppPropertyFinanceSecurityDetails> ClearIndividualList()
+        {
+            throw new NotImplementedException();
         }
 
         public AppPropertyFinanceSecurityDetails Delete(int AppPropertyFinanceSecurityDetailsId)
@@ -68,6 +73,11 @@ namespace LenSys.Models.AppPropertyFinance
         public AppPropertyFinanceSecurityDetails GetAppPropertysFinanceSecurityDetails(int AppPropertyFinanceSecurityDetailsId)
         {
             return _AppPropertyFinanceSecurityDetails.FirstOrDefault(e => e.SecurityDetailsId == AppPropertyFinanceSecurityDetailsId);
+        }
+
+        public IEnumerable<AppPropertyFinanceSecurityDetails> SetIndividualList(IEnumerable<AppPropertyFinanceSecurityDetails> IndividualList)
+        {
+            throw new NotImplementedException();
         }
 
         public AppPropertyFinanceSecurityDetails Update(AppPropertyFinanceSecurityDetails model)

@@ -12,20 +12,20 @@ namespace LenSys.Models.AppDevelopmentFinance
         {
             _AppDevelopmentFinanceSecurityDetails = new List<AppDevelopmentFinanceSecurityDetails>()
             {
-                                new AppDevelopmentFinanceSecurityDetails{
-                                    SecurityDetailsId=1,
-                                    SecurityType= "Residential ",
-                                    DescriptionOfProperty= "Residential Plot",
-                                    PropertyCurrentUse="Abondon",
-                                    NameOfPropertyOwner = "John",
-                                    Tenure= 2,
-                                    YearsRemainingOnLeaseIfLeaseHold= 1,
-                                    AddressForPropertyOfSecurity="Russia",
-                                    SecondLineAddress= "Cremlin",
-                                    City= "Moscow",
-                                    PostCode= 85000
+                                //new AppDevelopmentFinanceSecurityDetails{
+                                //    SecurityDetailsId=1,
+                                //    SecurityType= "Residential ",
+                                //    DescriptionOfProperty= "Residential Plot",
+                                //    PropertyCurrentUse="Abondon",
+                                //    NameOfPropertyOwner = "John",
+                                //    Tenure= 2,
+                                //    YearsRemainingOnLeaseIfLeaseHold= 1,
+                                //    AddressForPropertyOfSecurity="Russia",
+                                //    SecondLineAddress= "Cremlin",
+                                //    City= "Moscow",
+                                //    PostCode= 85000
 
-                                }
+                                //}
             };
         }
         public AppDevelopmentFinanceSecurityDetails Add(AppDevelopmentFinanceSecurityDetails appDevelopmentFinanceSecurityDetails)
@@ -43,6 +43,11 @@ namespace LenSys.Models.AppDevelopmentFinance
             
             _AppDevelopmentFinanceSecurityDetails.Add(appDevelopmentFinanceSecurityDetails);
             return appDevelopmentFinanceSecurityDetails;
+        }
+
+        public IEnumerable<AppDevelopmentFinanceSecurityDetails> ClearIndividualList()
+        {
+            throw new NotImplementedException();
         }
 
         public AppDevelopmentFinanceSecurityDetails Delete(int AppDevelopmentFinanceSecurityDetailsId)
@@ -63,6 +68,11 @@ namespace LenSys.Models.AppDevelopmentFinance
         public AppDevelopmentFinanceSecurityDetails GetAppDevelopmentFinanceSecurityDetails(int AppDevelopmentFinanceSecurityDetailsId)
         {
             return _AppDevelopmentFinanceSecurityDetails.FirstOrDefault(e => e.SecurityDetailsId == AppDevelopmentFinanceSecurityDetailsId);
+        }
+
+        public IEnumerable<AppDevelopmentFinanceSecurityDetails> SetIndividualList(IEnumerable<AppDevelopmentFinanceSecurityDetails> IndividualList)
+        {
+            throw new NotImplementedException();
         }
 
         public AppDevelopmentFinanceSecurityDetails Update(AppDevelopmentFinanceSecurityDetails model)

@@ -13,23 +13,23 @@ namespace LenSys.Models.AppBusniessFinance
         {
             _AppBusniessFinanceSecurityDetails = new List<AppBusniessFinanceSecurityDetails>()
             {
-                                new AppBusniessFinanceSecurityDetails{
-                                    SecurityDetailsId=1,
-                                    Notes="Security Property",
-                                    LegalChargeOverProperty="YES",
-                                    SecurityType= "Residential ",
-                                    PropertyType="1 Bed Appartment",
-                                    NameOfPropertyOwner = "John",
-                                    Tenure= 2,
-                                    YearsRemainingOnLeaseIfLeaseHold= 1,
-                                    PropertyValue= 5454,
-                                    OriginalPurchasePrice= 6000,
-                                    AddressForPropertyOfSecurity="Russia",
-                                    SecondLineAddress= "Cremlin",
-                                    City= "Moscow",
-                                    PostCode= 85000
+                                //new AppBusniessFinanceSecurityDetails{
+                                //    SecurityDetailsId=1,
+                                //    Notes="Security Property",
+                                //    LegalChargeOverProperty="YES",
+                                //    SecurityType= "Residential ",
+                                //    PropertyType="1 Bed Appartment",
+                                //    NameOfPropertyOwner = "John",
+                                //    Tenure= 2,
+                                //    YearsRemainingOnLeaseIfLeaseHold= 1,
+                                //    PropertyValue= 5454,
+                                //    OriginalPurchasePrice= 6000,
+                                //    AddressForPropertyOfSecurity="Russia",
+                                //    SecondLineAddress= "Cremlin",
+                                //    City= "Moscow",
+                                //    PostCode= 85000
 
-                                }
+                                //}
             };
         }
         public AppBusniessFinanceSecurityDetails Add(AppBusniessFinanceSecurityDetails appBusniessFinanceSecurityDetails)
@@ -46,6 +46,11 @@ namespace LenSys.Models.AppBusniessFinance
             
             _AppBusniessFinanceSecurityDetails.Add(appBusniessFinanceSecurityDetails);
             return appBusniessFinanceSecurityDetails;
+        }
+
+        public IEnumerable<AppBusniessFinanceSecurityDetails> ClearIndividualList()
+        {
+            throw new NotImplementedException();
         }
 
         public AppBusniessFinanceSecurityDetails Delete(int AppBusniessFinanceSecurityDetailsId)
@@ -66,6 +71,11 @@ namespace LenSys.Models.AppBusniessFinance
         public AppBusniessFinanceSecurityDetails GetAppBusniessFinanceSecurityDetails(int AppBusniessFinanceSecurityDetailsId)
         {
             return _AppBusniessFinanceSecurityDetails.FirstOrDefault(e => e.SecurityDetailsId == AppBusniessFinanceSecurityDetailsId);
+        }
+
+        public IEnumerable<AppBusniessFinanceSecurityDetails> SetIndividualList(IEnumerable<AppBusniessFinanceSecurityDetails> IndividualList)
+        {
+            throw new NotImplementedException();
         }
 
         public AppBusniessFinanceSecurityDetails Update(AppBusniessFinanceSecurityDetails model)

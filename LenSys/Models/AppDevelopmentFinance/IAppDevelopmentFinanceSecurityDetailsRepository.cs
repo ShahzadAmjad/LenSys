@@ -7,6 +7,8 @@ namespace LenSys.Models.AppDevelopmentFinance
 {
     public interface IAppDevelopmentFinanceSecurityDetailsRepository
     {
+        IEnumerable<AppDevelopmentFinanceSecurityDetails> SetIndividualList(IEnumerable<AppDevelopmentFinanceSecurityDetails> IndividualList);
+        IEnumerable<AppDevelopmentFinanceSecurityDetails> ClearIndividualList();
         AppDevelopmentFinanceSecurityDetails GetAppDevelopmentFinanceSecurityDetails(int AppDevelopmentFinanceSecurityDetailsId);
         IEnumerable<AppDevelopmentFinanceSecurityDetails> GetAllAppDevelopmentFinanceSecurityDetails();
         AppDevelopmentFinanceSecurityDetails Add(AppDevelopmentFinanceSecurityDetails appDevelopmentFinanceSecurityDetails);
