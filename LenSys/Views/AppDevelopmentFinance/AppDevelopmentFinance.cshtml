@@ -215,56 +215,59 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @if (Model.securityDetails.Count != 0)
+                                        @if (Model.securityDetails != null)
                                         {
-                                            @foreach (var securityDetails in Model.securityDetails)
-
+                                            @if (Model.securityDetails.Count != 0)
                                             {
-                                                var tm = "#myModal" + securityDetails.SecurityDetailsId;
-                                                var mid = "myModal" + securityDetails.SecurityDetailsId;
-                                                <tr>
-                                                    <td>@securityDetails.SecurityDetailsId</td>
-                                                    <td>@securityDetails.DescriptionOfProperty</td>
-                                                    <td>@securityDetails.NameOfPropertyOwner</td>
-                                                    <td>@securityDetails.City</td>
+                                                @foreach (var securityDetails in Model.securityDetails)
 
-                                                    <td>
-                                                        <button type="button" style="width:80px;" class="btn btn-primary btn-sm" data-toggle="Edit-modal" id="EditSecuritybtn" name="EditSecuritybtn"
-                                                                data-target="#EditSecurityDetailModalDevelopment" onclick="EditSecurityOnclick(@securityDetails.SecurityDetailsId)" data-url="@Url.Action("EditSecurityDetail")">
-                                                            Edit
-                                                        </button>
-                                                    </td>
+                                                {
+                                                    var tm = "#myModal" + securityDetails.SecurityDetailsId;
+                                                    var mid = "myModal" + securityDetails.SecurityDetailsId;
+                                                    <tr>
+                                                        <td>@securityDetails.SecurityDetailsId</td>
+                                                        <td>@securityDetails.DescriptionOfProperty</td>
+                                                        <td>@securityDetails.NameOfPropertyOwner</td>
+                                                        <td>@securityDetails.City</td>
 
-                                                    <td>
+                                                        <td>
+                                                            <button type="button" style="width:80px;" class="btn btn-primary btn-sm" data-toggle="Edit-modal" id="EditSecuritybtn" name="EditSecuritybtn"
+                                                                    data-target="#EditSecurityDetailModalDevelopment" onclick="EditSecurityOnclick(@securityDetails.SecurityDetailsId)" data-url="@Url.Action("EditSecurityDetail")">
+                                                                Edit
+                                                            </button>
+                                                        </td>
 
-                                                        <button type="button" style="width:80px;" class="btn btn-danger btn-sm" data-toggle="modal" data-target="@tm">
-                                                            Delete
-                                                        </button>
+                                                        <td>
+
+                                                            <button type="button" style="width:80px;" class="btn btn-danger btn-sm" data-toggle="modal" data-target="@tm">
+                                                                Delete
+                                                            </button>
 
 
-                                                        <div class="modal fade" id="@mid" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                                            <div class="modal-dialog">
-                                                                <div class="modal-content">
-                                                                    <div class="modal-header">
-                                                                        <h4 class="modal-title text-center" id="myModalLabel">Delete Security Detail</h4>
-                                                                        <button type="button" class="close " data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                                    </div>
-                                                                    <div class="modal-body">
-                                                                        Are you sure want to delete this Security?
-                                                                    </div>
-                                                                    <div class="modal-footer">
+                                                            <div class="modal fade" id="@mid" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                                <div class="modal-dialog">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h4 class="modal-title text-center" id="myModalLabel">Delete Security Detail</h4>
+                                                                            <button type="button" class="close " data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            Are you sure want to delete this Security?
+                                                                        </div>
+                                                                        <div class="modal-footer">
 
-                                                                        <a asp-controller="AppDevelopmentFinance" asp-action="DeleteSecurityDetail" asp-route-Id="@securityDetails.SecurityDetailsId" id="deleteBtn" class="btn bg-danger mr-1">Delete</a>
-                                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                                            <a asp-controller="AppDevelopmentFinance" asp-action="DeleteSecurityDetail" asp-route-Id="@securityDetails.SecurityDetailsId" id="deleteBtn" class="btn bg-danger mr-1">Delete</a>
+                                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
+                                                        </td>
+                                                    </tr>
+                                                }
                                             }
                                         }
-                                    </tbody>
+                                        </tbody>
                                 </table>
                             </div>
 
@@ -785,7 +788,6 @@
         }
 
         //Save Modal Data Add Security
-        //Save Modal Data Add New Security detail
         PlaceHolderElement.on('click', '[data-save="modal"]', function (event) {
 
             var form = $('#AddSecurityDetailform');
@@ -798,7 +800,7 @@
                 $('#AddSecurityDetailModalDevelopment').modal('hide');
 
             })
-
+            window.location.reload();
 
 
         })

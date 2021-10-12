@@ -198,7 +198,7 @@
                             @*Add Security Button*@
                             <div class="mtop20">
                                 <button type="button" class="btn btn-success" data-toggle="ajax-modal" id="AddSecuritybtn" name="AddSecuritybtn"
-                                        data-target="#AddSecurityDetailModalBusniess" data-url="@Url.Action("AddSecurityDetail")">
+                                        data-target="#AddSecurityDetailModalBusniess"   data-url="@Url.Action("AddSecurityDetail")">
                                     Add New Security Details
                                 </button>
                             </div>
@@ -216,62 +216,64 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @*@if ((List<AppBusniessFinanceSecurityDetails>)ViewData["SecurityDetailsList"] != null)*@
-                                        @if (Model.securityDetails.Count != 0)
+                                        @if (Model.securityDetails != null)
                                         {
-                                            @foreach (var securityDetails in Model.securityDetails)
-
+                                            @if (Model.securityDetails.Count != 0)
                                             {
-                                                var tm = "#myModal" + securityDetails.SecurityDetailsId;
-                                                var mid = "myModal" + securityDetails.SecurityDetailsId;
-                                                <tr>
-                                                    <td>@securityDetails.SecurityDetailsId</td>
-                                                    <td>@securityDetails.PropertyType</td>
-                                                    <td>@securityDetails.NameOfPropertyOwner</td>
-                                                    <td>@securityDetails.PropertyValue</td>
+                                                @foreach (var securityDetails in Model.securityDetails)
 
-                                                    <td>
+                                                {
+                                                    var tm = "#myModal" + securityDetails.SecurityDetailsId;
+                                                    var mid = "myModal" + securityDetails.SecurityDetailsId;
+                                                    <tr>
+                                                        <td>@securityDetails.SecurityDetailsId</td>
+                                                        <td>@securityDetails.PropertyType</td>
+                                                        <td>@securityDetails.NameOfPropertyOwner</td>
+                                                        <td>@securityDetails.PropertyValue</td>
 
-                                                        @*<a asp-controller="AppBusniessFinance" asp-action="EditSecuritydetail"*@
-                                                        @*class="btn btn-primary " asp-route-id="@securityDetails.SecurityDetailsId">Edit</a>*@
-                                                        <button type="button" style="width:80px;" class="btn btn-primary btn-sm" data-toggle="Edit-modal" id="EditSecuritybtn" name="EditSecuritybtn"
-                                                                data-target="#EditSecurityDetailModalBusniess" onclick="EditSecurityBusniessOnclick(@securityDetails.SecurityDetailsId)" data-url="@Url.Action("EditSecurityDetail")">
-                                                            Edit
-                                                        </button>
+                                                        <td>
 
-                                                    </td>
+                                                            @*<a asp-controller="AppBusniessFinance" asp-action="EditSecuritydetail"*@
+                                                            @*class="btn btn-primary " asp-route-id="@securityDetails.SecurityDetailsId">Edit</a>*@
+                                                            <button type="button" style="width:80px;" class="btn btn-primary btn-sm" data-toggle="Edit-modal" id="EditSecuritybtn" name="EditSecuritybtn"
+                                                                    data-target="#EditSecurityDetailModalBusniess" onclick="EditSecurityBusniessOnclick(@securityDetails.SecurityDetailsId)" data-url="@Url.Action("EditSecurityDetail")">
+                                                                Edit
+                                                            </button>
 
-                                                    <td>
+                                                        </td>
 
-                                                        <button type="button" style="width:80px;" class="btn btn-danger btn-sm" data-toggle="modal" data-target="@tm">
-                                                            Delete
-                                                        </button>
+                                                        <td>
 
-                                                        @*Delete Model for security detail*@
-                                                        <div class="modal fade" id="@mid" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                                            <div class="modal-dialog">
-                                                                <div class="modal-content">
-                                                                    <div class="modal-header">
-                                                                        @*<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>*@
-                                                                        <h4 class="modal-title text-center" id="myModalLabel">Delete Security Detail</h4>
-                                                                        <button type="button" class="close " data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                                    </div>
-                                                                    <div class="modal-body">
-                                                                        Are you sure want to delete this Security?
-                                                                    </div>
-                                                                    <div class="modal-footer">
+                                                            <button type="button" style="width:80px;" class="btn btn-danger btn-sm" data-toggle="modal" data-target="@tm">
+                                                                Delete
+                                                            </button>
 
-                                                                        <a asp-controller="AppBusniessFinance" asp-action="DeleteSecurityDetail" asp-route-Id="@securityDetails.SecurityDetailsId" id="deleteBtn" class="btn bg-danger mr-1">Delete</a>
-                                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                            @*Delete Model for security detail*@
+                                                            <div class="modal fade" id="@mid" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                                <div class="modal-dialog">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            @*<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>*@
+                                                                            <h4 class="modal-title text-center" id="myModalLabel">Delete Security Detail</h4>
+                                                                            <button type="button" class="close " data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            Are you sure want to delete this Security?
+                                                                        </div>
+                                                                        <div class="modal-footer">
+
+                                                                            <a asp-controller="AppBusniessFinance" asp-action="DeleteSecurityDetail" asp-route-Id="@securityDetails.SecurityDetailsId" id="deleteBtn" class="btn bg-danger mr-1">Delete</a>
+                                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
+                                                        </td>
+                                                    </tr>
+                                                }
                                             }
                                         }
-                                    </tbody>
+                                        </tbody>
                                 </table>
                             </div>
 
@@ -501,12 +503,11 @@
             $.get(url).done(function (data) {
                 PlaceHolderElement.html(data);
                 $('#AddSecurityDetailModalBusniess').modal('show');
-                //PlaceHolderElement.find('.modal').modal('show');
+
             })
         })
-
         
-
+        //To make route Url on edit button
         function EditSecurityBusniessOnclick(routeId) {
             //alert(String(routeId));
 
@@ -518,7 +519,7 @@
 
             })
         }
-
+        
         //Save Modal Data Add New Security detail
         PlaceHolderElement.on('click', '[data-save="modal"]', function (event) {
 
@@ -529,10 +530,9 @@
             var sendData = form.serialize();
 
             $.post(actionurl, sendData).done(function (data) {
-                $('#AddSecurityDetailModalBusniess').modal('hide');
-                
+                $('#AddSecurityDetailModalBusniess').modal('hide');               
             })
-
+            window.location.reload();
         })
 
         //Save Edit Modal Data Add New Security detail
@@ -542,15 +542,12 @@
 
             var actionurl = form.attr('action');
 
-            alert(String(actionurl));
-
             var sendData = form.serialize();
 
             $.post(actionurl, sendData).done(function (data) {
-                $('#EditSecurityDetailModalBusniess').modal('hide');
-
+                $('#EditSecurityDetailModalBusniess').modal('hide');              
             })
-
+            window.location.reload();
         })
 
 

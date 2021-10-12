@@ -98,7 +98,7 @@ namespace LenSys.Controllers
         {
             AppDevelopmentFinance AppDevelopmentFinanceApplication;
             //Saving to global variables
-            appID = HomeController.EditBusinessFinanceAppID;
+            appID = HomeController.EditDevelopmentFinanceAppID;
 
             if (appID == 0)
             {
@@ -106,10 +106,12 @@ namespace LenSys.Controllers
             }
             else
             {
+
                 AppDevelopmentFinanceApplication = _appDevelopmentFinanceRepository.GetAppDevelopmentFinance_appDevelopmentFinance(appID);
                 AppDevelopmentFinanceApplication.busniesses = (List<AppDevelopmentFinanceBusniess>)_appDevelopmentFinanceBusniessRepository.GetAllBusniess();
                 AppDevelopmentFinanceApplication.individuals = (List<AppDevelopmentFinanceIndividual>)_appDevelopmentFinanceIndividualRepository.GetAllIndividual();
                 AppDevelopmentFinanceApplication.securityDetails = (List<AppDevelopmentFinanceSecurityDetails>)_appDevelopmentFinanceSecurityDetails.GetAllAppDevelopmentFinanceSecurityDetails();
+                
                 //Saving to global variables
                 lead = AppDevelopmentFinanceApplication.Lead;
             }
