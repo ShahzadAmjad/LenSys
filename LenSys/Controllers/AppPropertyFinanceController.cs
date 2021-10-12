@@ -1,7 +1,22 @@
 ﻿using LenSys.Models.AppPropertyFinance;
 using LenSys.Models.AppPropertyFinance.AppPropertyFinanceBusniess;
 using LenSys.Models.AppPropertyFinance.AppPropertyFinanceIndividual;
+using LenSys.Models.BusniessDetails;
+using LenSys.Models.BusniessKeyPrincipals;
+using LenSys.Models.BusniessLiabilities;
+using LenSys.Models.BusniessServiceability;
+using LenSys.Models.BusniessUploadDocument;
 using LenSys.Models.Home;
+using LenSys.Models.IndividualAddressDetails;
+using LenSys.Models.IndividualAsset;
+using LenSys.Models.IndividualCreditHistory;
+using LenSys.Models.IndividualEmploymentDetails;
+using LenSys.Models.IndividualIncomeExpenditure;
+using LenSys.Models.IndividualLiabilities;
+using LenSys.Models.IndividualMonthlyExpenditure;
+using LenSys.Models.IndividualPersonalDetails;
+using LenSys.Models.IndividualPropertySchedule;
+using LenSys.Models.IndividualUploadDocuments;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -54,11 +69,109 @@ namespace LenSys.Controllers
 
             //return View("AppPropertyFinance");
         }
+        public IActionResult AddBusniess()
+        {
+            AppPropertyFinanceBusniess appPropertyFinanceBusniess = new AppPropertyFinanceBusniess();
 
+            BusniessDetails busniessDetails = new BusniessDetails { CompanyBusniessName = "" };
+            List<KeyPrincipals> keyPrincipals = new List<KeyPrincipals>()
+            {
+                //new KeyPrincipals{Title = "",FirstName = ""}
+            };
+            List<BusniessLiabilities> busniessLiabilities = new List<BusniessLiabilities>()
+            {
+                //new BusniessLiabilities{Lender="", OrigionalLoanAmount=0} 
+            };
+            List<Serviceability> serviceability = new List<Serviceability>()
+            {
+                //new Serviceability{ Year=(DateTime.Now.Year).ToString(),TurnOver=0}
+            };
+            BusniessDocuments busniessDocuments = new BusniessDocuments { DocumentName = "" };
+
+            appPropertyFinanceBusniess.busniessDetails = busniessDetails;
+            appPropertyFinanceBusniess.keyPrincipals = keyPrincipals;
+            appPropertyFinanceBusniess.busniessLiabilities = busniessLiabilities;
+            appPropertyFinanceBusniess.serviceability = serviceability;
+            appPropertyFinanceBusniess.busniessDocuments = busniessDocuments;
+
+            _appPropertyFinanceBusniessRepository.Add(appPropertyFinanceBusniess);
+
+            AppPropertyFinance appPropertyFinance = _appPropertyFinanceRepository.GetAppPropertyFinance_appPropertyFinance(appID);           
+            appPropertyFinance.busniesses = (List<AppPropertyFinanceBusniess>)_appPropertyFinanceBusniessRepository.GetAllBusniess();
+            appPropertyFinance.individuals = (List<AppPropertyFinanceIndividual>)_appPropertyFinanceIndividualRepository.GetAllIndividual();
+            appPropertyFinance.securityDetails = (List<AppPropertyFinanceSecurityDetails>)_appPropertyFinanceSecurityDetails.GetAllAppPropertyFinanceSecurityDetails();
+            return View("AppPropertyFinance", appPropertyFinance);
+        }
+        public ViewResult DeleteBusniess(int id)
+        {
+            _appPropertyFinanceBusniessRepository.Delete(id);
+
+            AppPropertyFinance appPropertyFinance = _appPropertyFinanceRepository.GetAppPropertyFinance_appPropertyFinance(appID);
+            appPropertyFinance.busniesses = (List<AppPropertyFinanceBusniess>)_appPropertyFinanceBusniessRepository.GetAllBusniess();
+            appPropertyFinance.individuals = (List<AppPropertyFinanceIndividual>)_appPropertyFinanceIndividualRepository.GetAllIndividual();
+            appPropertyFinance.securityDetails = (List<AppPropertyFinanceSecurityDetails>)_appPropertyFinanceSecurityDetails.GetAllAppPropertyFinanceSecurityDetails();
+            return View("AppPropertyFinance", appPropertyFinance);
+        }
+        public IActionResult EditBusniess(int id)
+        {
+            BusniessID = id;
+            return RedirectToAction("BusniessDetails", "BusniessDetails");
+        }
+        public IActionResult AddIndividual()
+        {
+            AppPropertyFinanceIndividual appPropertyFinanceIndividual = new AppPropertyFinanceIndividual();
+
+            PersonalDetails individualPersonalDetails = new PersonalDetails { FirstName = "" };
+            AddressDetails IndividualAddressDetails = new AddressDetails { City = "" };
+            EmploymentDetails IndividualEmploymentDetails = new EmploymentDetails { EmployersName = "" };
+            MonthlyIncome monthlyIncome = new MonthlyIncome { DividendsAfterTax = 0 };
+            MonthlyExpenditure monthlyExpenditure = new MonthlyExpenditure { CarInsuranceRoadTax = 0 };
+            Asset asset = new Asset { Cash = 654 };
+            Liabilities liabilities = new Liabilities { NetAssets = 0 };
+            List<PropertySchedule> _propertySchedule = new List<PropertySchedule>()
+            {
+                //new PropertySchedule{ Owner="", PropertyAddress=""}
+            };
+            CreditHistory creditHistory = new CreditHistory { CriminalConvictions = "" };
+            IndividualDocuments individualDocuments = new IndividualDocuments { DocumentName = "" };
+
+            appPropertyFinanceIndividual.personalDetails = individualPersonalDetails;
+            appPropertyFinanceIndividual.addressDetails = IndividualAddressDetails;
+            appPropertyFinanceIndividual.employmentDetails = IndividualEmploymentDetails;
+            appPropertyFinanceIndividual.monthlyIncome = monthlyIncome;
+            appPropertyFinanceIndividual.monthlyExpenditure = monthlyExpenditure;
+            appPropertyFinanceIndividual.asset = asset;
+            appPropertyFinanceIndividual.liabilities = liabilities;
+            appPropertyFinanceIndividual.propertySchedule = _propertySchedule;
+            appPropertyFinanceIndividual.creditHistory = creditHistory;
+            appPropertyFinanceIndividual.individualDocuments = individualDocuments;
+
+            _appPropertyFinanceIndividualRepository.Add(appPropertyFinanceIndividual);
+
+            AppPropertyFinance appPropertyFinance = _appPropertyFinanceRepository.GetAppPropertyFinance_appPropertyFinance(appID);
+            appPropertyFinance.busniesses = (List<AppPropertyFinanceBusniess>)_appPropertyFinanceBusniessRepository.GetAllBusniess();
+            appPropertyFinance.individuals = (List<AppPropertyFinanceIndividual>)_appPropertyFinanceIndividualRepository.GetAllIndividual();
+            appPropertyFinance.securityDetails = (List<AppPropertyFinanceSecurityDetails>)_appPropertyFinanceSecurityDetails.GetAllAppPropertyFinanceSecurityDetails();
+            return View("AppPropertyFinance", appPropertyFinance);
+        }
+        public ViewResult DeleteIndividual(int id)
+        {
+            _appPropertyFinanceIndividualRepository.Delete(id);
+
+            AppPropertyFinance appPropertyFinance = _appPropertyFinanceRepository.GetAppPropertyFinance_appPropertyFinance(appID);
+            appPropertyFinance.busniesses = (List<AppPropertyFinanceBusniess>)_appPropertyFinanceBusniessRepository.GetAllBusniess();
+            appPropertyFinance.individuals = (List<AppPropertyFinanceIndividual>)_appPropertyFinanceIndividualRepository.GetAllIndividual();
+            appPropertyFinance.securityDetails = (List<AppPropertyFinanceSecurityDetails>)_appPropertyFinanceSecurityDetails.GetAllAppPropertyFinanceSecurityDetails();
+            return View("AppPropertyFinance", appPropertyFinance);
+        }
+        public IActionResult EditIndividual(int id)
+        {
+            IndividualID = id;
+            return RedirectToAction("PersonalDetails", "IndividualPersonalDetails");
+        }
         [HttpGet]
         public IActionResult AddSecurityDetail()
         {
-
             AppPropertyFinanceSecurityDetails securityDetails = new AppPropertyFinanceSecurityDetails();
             return PartialView("_AddSecutityDetailPropertyPartialView", securityDetails);
 
@@ -68,27 +181,17 @@ namespace LenSys.Controllers
         public IActionResult AddSecurityDetail(AppPropertyFinanceSecurityDetails securityDetails)
         {
             _appPropertyFinanceSecurityDetails.Add(securityDetails);
-            //AppBusniessFinanceSecurityDetails securityDetails = new AppBusniessFinanceSecurityDetails();
-            //return PartialView("_AddSecutityDetailBusniessPartialView", securityDetails);
-
-            //ViewData["SecurityDetailsList"] = _appPropertyFinanceSecurityDetails.GetAllAppPropertyFinanceSecurityDetails();
             AppPropertyFinance appPropertyFinance = new AppPropertyFinance();
             appPropertyFinance.securityDetails = (List<AppPropertyFinanceSecurityDetails>)_appPropertyFinanceSecurityDetails.GetAllAppPropertyFinanceSecurityDetails();
 
             return View("AppPropertyFinance", appPropertyFinance);
         }
-
-
         [HttpGet]
         public IActionResult EditSecurityDetail(int id)
         {
-
-
-            AppPropertyFinanceSecurityDetails securityDetails = _appPropertyFinanceSecurityDetails.GetAppPropertysFinanceSecurityDetails(id);
-            //return View("EditSecurityDetail",model);
-
+            AppPropertyFinanceSecurityDetails securityDetails = _appPropertyFinanceSecurityDetails.GetAppPropertysFinanceSecurityDetails(id);          
             return PartialView("_EditSecurityDetailPropertyPartialView", securityDetails);
-
+            //return View("EditSecurityDetail",model);
         }
         public ViewResult DeleteSecurityDetail(int id)
         {
@@ -100,8 +203,6 @@ namespace LenSys.Controllers
         [HttpGet]
         public ViewResult AppPropertyFinance()
         {
-
-            //ViewData["SecurityDetailsList"] = _appPropertyFinanceSecurityDetails.GetAllAppPropertyFinanceSecurityDetails();
             AppPropertyFinance appPropertyFinance = new AppPropertyFinance();
             appPropertyFinance.securityDetails = (List<AppPropertyFinanceSecurityDetails>)_appPropertyFinanceSecurityDetails.GetAllAppPropertyFinanceSecurityDetails();
 

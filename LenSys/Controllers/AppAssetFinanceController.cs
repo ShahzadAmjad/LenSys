@@ -65,10 +65,10 @@ namespace LenSys.Controllers
             }
             return View("AppAssetFinance", AppAssetFinanceApplication);
         }
-        public IActionResult AddLead()
-        {
-            return RedirectToAction("Lead","Home");
-        }
+        //public IActionResult AddLead()
+        //{
+        //    return RedirectToAction("Lead","Home");
+        //}
         public IActionResult AddBusniess()
         {
             AppAssetFinanceBusniess appAssetFinanceBusniess = new AppAssetFinanceBusniess();
@@ -97,19 +97,17 @@ namespace LenSys.Controllers
             _appAssetFinanceBusniessRepository.Add(appAssetFinanceBusniess);
             //_appAssetFinanceRepository.AddBusniess(appAssetFinanceBusniess);
 
-            AppAssetFinance appAssetFinance = _appAssetFinanceRepository.GetAppAssetFinance(appID); //new AppAssetFinance();
+            AppAssetFinance appAssetFinance = _appAssetFinanceRepository.GetAppAssetFinance_appAssetFinance(appID); 
             appAssetFinance.busniesses = (List<AppAssetFinanceBusniess>)_appAssetFinanceBusniessRepository.GetAllBusniess();
             appAssetFinance.individuals = (List<AppAssetFinanceIndividual>)_appAssetFinanceIndividualRepository.GetAllIndividual();
 
             return View("AppAssetFinance", appAssetFinance);
-            //return RedirectToAction("BusniessDetails", "BusniessDetails");
-            //return View("AppAssetFinance");
         }
         public ViewResult DeleteBusniess(int id)
         {
             _appAssetFinanceBusniessRepository.Delete(id);
 
-            AppAssetFinance appAssetFinance = _appAssetFinanceRepository.GetAppAssetFinance(appID); //new AppAssetFinance();
+            AppAssetFinance appAssetFinance = _appAssetFinanceRepository.GetAppAssetFinance_appAssetFinance(appID); 
             appAssetFinance.busniesses = (List<AppAssetFinanceBusniess>)_appAssetFinanceBusniessRepository.GetAllBusniess();
             appAssetFinance.individuals = (List<AppAssetFinanceIndividual>)_appAssetFinanceIndividualRepository.GetAllIndividual();
 
@@ -119,14 +117,11 @@ namespace LenSys.Controllers
         public IActionResult EditBusniess(int id)
         {
             BusniessID = id;
-
             return RedirectToAction("BusniessDetails", "BusniessDetails");
-            //, new { id = id }
         }
         public IActionResult AddIndividual()
         {     
             AppAssetFinanceIndividual appAssetFinanceIndividual = new AppAssetFinanceIndividual();
-
 
             PersonalDetails individualPersonalDetails = new PersonalDetails {  FirstName = "" };
             AddressDetails IndividualAddressDetails = new AddressDetails {  City = "" };
@@ -158,7 +153,7 @@ namespace LenSys.Controllers
 
             //_appAssetFinanceRepository.AddIndividual(appAssetFinanceIndividual);
 
-            AppAssetFinance appAssetFinance = _appAssetFinanceRepository.GetAppAssetFinance(appID); //new AppAssetFinance();
+            AppAssetFinance appAssetFinance = _appAssetFinanceRepository.GetAppAssetFinance_appAssetFinance(appID); //new AppAssetFinance();
             appAssetFinance.busniesses = (List<AppAssetFinanceBusniess>)_appAssetFinanceBusniessRepository.GetAllBusniess();
             appAssetFinance.individuals = (List<AppAssetFinanceIndividual>)_appAssetFinanceIndividualRepository.GetAllIndividual();
            
@@ -170,7 +165,7 @@ namespace LenSys.Controllers
         {
             _appAssetFinanceIndividualRepository.Delete(id);
 
-            AppAssetFinance appAssetFinance = _appAssetFinanceRepository.GetAppAssetFinance(appID); //new AppAssetFinance();
+            AppAssetFinance appAssetFinance = _appAssetFinanceRepository.GetAppAssetFinance_appAssetFinance(appID); //new AppAssetFinance();
             appAssetFinance.busniesses = (List<AppAssetFinanceBusniess>)_appAssetFinanceBusniessRepository.GetAllBusniess();
             appAssetFinance.individuals = (List<AppAssetFinanceIndividual>)_appAssetFinanceIndividualRepository.GetAllIndividual();
 

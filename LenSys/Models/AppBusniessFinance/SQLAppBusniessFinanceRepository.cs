@@ -163,6 +163,18 @@ namespace LenSys.Models.AppBusniessFinance
 
         public AppBusniessFinance GetAppBusniessFinance_appBusniessFinance(int id)
         {
+            //Only Parent App Part with Lead
+            AppBusniessFinance appBusniessFinance = Context.AppBusniessFinance
+               .Include(x => x.Lead)
+               .Where(h => h.BusniessFinId == id)
+               .FirstOrDefault();
+
+            return appBusniessFinance;
+        }
+
+        public AppBusniessFinance GetAppBusniessFinance_CURDBusIndSec(int id)
+        {
+            //Only Parent App Part
             AppBusniessFinance appBusniessFinance = Context.AppBusniessFinance
                .Include(x => x.Lead)
                .Where(h => h.BusniessFinId == id)
