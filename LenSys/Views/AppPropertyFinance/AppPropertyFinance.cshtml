@@ -270,121 +270,129 @@
 
 
                             @*Loan Details*@
-                            <div>
-                                <div class="x_title">
-                                    <h2>Loan Details</h2>
-                                    <div class="clearfix"></div>
-                                </div>
-                                <div class="item form-group">
-                                    <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="LoanPurpose">
-                                        Loan Purpose
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 ">
-                                        <select asp-for="LoanPurpose" id="loanPurpose" name="loanPurpose" class="form-control">
-                                            <option>
-                                                Commercial mortgage
-                                            </option>
-                                            <option>
-                                                Buy to let (residential/commercial)
-                                            </option>
-                                            <option>
-                                                Property development
-                                            </option>
-                                            <option>
-                                                Bridging loan
-                                            </option>
-                                            <option>
-                                                Unsecured finance
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="item form-group">
-                                    <label asp-for="LoanAmount" class="col-form-label col-md-3 col-sm-3 label-align">
-                                        Loan Amount <span class="required">*</span>
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 ">
-                                        <input type="text" asp-for="LoanAmount" id="loanAmount" name="loanAmount" required="required" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="item form-group">
-                                    <label asp-for="RateType" class="col-form-label col-md-3 col-sm-3 label-align">
-                                        Rate Type
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 ">
-                                        <select asp-for="RateType" id="RateType" name="RateType" class="form-control">
-                                            <option>
-                                                Fixed rate
-                                            </option>
-                                            <option>
-                                                Variable rate
-                                            </option>
-                                            <option>
-                                                Any
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="item form-group">
-                                    <label asp-for="RepaymentType" class="col-form-label col-md-3 col-sm-3 label-align">
-                                        Repayment Type
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 ">
-                                        <select asp-for="RepaymentType" id="repaymentType" name="repaymentType" class="form-control">
-                                            <option>
-                                                Capital & interest
-                                            </option>
-                                            <option>
-                                                Interest only
-                                            </option>
-                                            <option>
-                                                Part & part
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="item form-group">
-                                    <label asp-for="RepaymentTermMonths" class="col-form-label col-md-3 col-sm-3 label-align">
-                                        Repayment Term(Months)
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 ">
-                                        <input asp-for="RepaymentTermMonths" id="repaymentTermMonths" name="repaymentTermMonths" class="form-control" type="text">
-                                    </div>
-                                </div>
-
-
-                                <div class="item form-group">
-                                    <label asp-for="TargetCompletionDate" class="col-form-label col-md-3 col-sm-3 label-align">
-                                        Target Completion Date
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 ">
-                                        <input asp-for="TargetCompletionDate" id="targetCompletionDate" name="targetCompletionDate" class="date-picker form-control" placeholder="dd-mm-yyyy" type="text" required="required" onfocus="this.type='date'" onmouseover="this.type='date'" onclick="this.type='date'" onblur="this.type='text'" onmouseout="timeFunctionLong(this)">
-                                        <script>
-                                            function timeFunctionLong(input) {
-                                                setTimeout(function () {
-                                                    input.type = 'text';
-                                                }, 60000);
-                                            }</script>
-                                    </div>
-                                </div>
-                                <div class="item form-group">
-                                    <label asp-for="BrokerFee" class="col-form-label col-md-3 col-sm-3 label-align">
-                                        Broker Fee
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 ">
-                                        <input asp-for="BrokerFee" id="brokerFee" name="brokerFee" class="form-control" type="text">
-                                    </div>
-                                </div>
-                                <div class="item form-group">
-                                    <label asp-for="SourceOfDeposit" class="col-form-label col-md-3 col-sm-3 label-align">
-                                        Source Of Deposit
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 ">
-                                        <input asp-for="SourceOfDeposit" id="sourceOfDeposit" name="sourceOfDeposit" class="form-control" type="text">
-                                    </div>
+                        <div>
+                            <div class="x_title">
+                                <h2>Loan Details</h2>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="item form-group" hidden>
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="LoanId">
+                                    Id
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input type="text" asp-for="LoanId" id="busniessFinId" name="busniessFinId" readonly class="form-control">
                                 </div>
                             </div>
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="LoanPurpose">
+                                    Loan Purpose
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <select asp-for="LoanPurpose" id="loanPurpose" name="loanPurpose" class="form-control">
+                                        <option>
+                                            Commercial mortgage
+                                        </option>
+                                        <option>
+                                            Buy to let (residential/commercial)
+                                        </option>
+                                        <option>
+                                            Property development
+                                        </option>
+                                        <option>
+                                            Bridging loan
+                                        </option>
+                                        <option>
+                                            Unsecured finance
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label asp-for="LoanAmount" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Loan Amount <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input type="text" asp-for="LoanAmount" id="loanAmount" name="loanAmount" required="required" class="form-control">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="RateType" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Rate Type
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <select asp-for="RateType" id="RateType" name="RateType" class="form-control">
+                                        <option>
+                                            Fixed rate
+                                        </option>
+                                        <option>
+                                            Variable rate
+                                        </option>
+                                        <option>
+                                            Any
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="RepaymentType" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Repayment Type
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <select asp-for="RepaymentType" id="repaymentType" name="repaymentType" class="form-control">
+                                        <option>
+                                            Capital & interest
+                                        </option>
+                                        <option>
+                                            Interest only
+                                        </option>
+                                        <option>
+                                            Part & part
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="RepaymentTermMonths" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Repayment Term(Months)
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="RepaymentTermMonths" id="repaymentTermMonths" name="repaymentTermMonths" class="form-control" type="text">
+                                </div>
+                            </div>
+
+
+                            <div class="item form-group">
+                                <label asp-for="TargetCompletionDate" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Target Completion Date
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="TargetCompletionDate" id="targetCompletionDate" name="targetCompletionDate" class="date-picker form-control" placeholder="dd-mm-yyyy" type="text" required="required" onfocus="this.type='date'" onmouseover="this.type='date'" onclick="this.type='date'" onblur="this.type='text'" onmouseout="timeFunctionLong(this)">
+                                    <script>
+                                        function timeFunctionLong(input) {
+                                            setTimeout(function () {
+                                                input.type = 'text';
+                                            }, 60000);
+                                        }</script>
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="BrokerFee" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Broker Fee
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="BrokerFee" id="brokerFee" name="brokerFee" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="SourceOfDeposit" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Source Of Deposit
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="SourceOfDeposit" id="sourceOfDeposit" name="sourceOfDeposit" class="form-control" type="text">
+                                </div>
+                            </div>
+                        </div>
 
                             @*FCA Regulation*@
                             <div>
