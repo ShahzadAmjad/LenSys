@@ -245,17 +245,18 @@ namespace LenSys.Controllers
             appAssetFinance.busniesses = (List<AppAssetFinanceBusniess>)_appAssetFinanceBusniessRepository.GetAllBusniess();
             appAssetFinance.individuals = (List<AppAssetFinanceIndividual>)_appAssetFinanceIndividualRepository.GetAllIndividual();
             appAssetFinance.Lead = lead;
-
+            //Update AppAssetFinance Whole Application
+            AppAssetFinance appAssetFinance1 = _appAssetFinanceRepository.Update(appAssetFinance);
+            return RedirectToAction("AllApplications", "Home");
             //Delete Old Record and add new one due to List multiple not updated
             //_appAssetFinanceRepository.Delete(appID);
             //AppAssetFinance appAssetFinance1 = _appAssetFinanceRepository.Add(appAssetFinance);
 
-            //Update AppAssetFinance Whole Application
-            AppAssetFinance appAssetFinance1 = _appAssetFinanceRepository.Update(appAssetFinance);
+
 
             //lead = new Lead();
 
-            return RedirectToAction("AllApplications", "Home");
+
             //return JavaScript(alert(""));
         }
     }

@@ -248,26 +248,28 @@ namespace LenSys.Controllers
         [HttpPost]
         public IActionResult AppBusniessFinance(AppBusniessFinance appBusniessFinance)
         {
-            foreach(AppBusniessFinanceSecurityDetails SecurityDetails in _appBusniessFinanceSecurityDetails.GetAllAppBusniessFinanceSecurityDetails())
-            {
-                SecurityDetails.SecurityDetailsId = 0;
-            }
-
-            appBusniessFinance.securityDetails = (List<AppBusniessFinanceSecurityDetails>)_appBusniessFinanceSecurityDetails.GetAllAppBusniessFinanceSecurityDetails();
-
-            //if (ModelState.IsValid)
+            //foreach(AppBusniessFinanceSecurityDetails SecurityDetails in _appBusniessFinanceSecurityDetails.GetAllAppBusniessFinanceSecurityDetails())
             //{
+            //    SecurityDetails.SecurityDetailsId = 0;
+            //}
+            //appBusniessFinance.securityDetails = (List<AppBusniessFinanceSecurityDetails>)_appBusniessFinanceSecurityDetails.GetAllAppBusniessFinanceSecurityDetails();
 
-                AppBusniessFinance appBusniessFinance1 = _appBusniessFinanceRepository.Add(appBusniessFinance);
-           // }
+            //AppBusniessFinance appBusniessFinance1 = _appBusniessFinanceRepository.Add(appBusniessFinance);                           
+            
+            //AppBusniessFinance appBusniessFinance2 = new AppBusniessFinance();
+            //var List= (List<AppBusniessFinanceSecurityDetails>)_appBusniessFinanceSecurityDetails.GetAllAppBusniessFinanceSecurityDetails();
+            //List.Clear();
+            //appBusniessFinance2.securityDetails = List;
+            //return View("AppBusniessFinance", appBusniessFinance2);
 
-            
-            
-            AppBusniessFinance appBusniessFinance2 = new AppBusniessFinance();
-            var List= (List<AppBusniessFinanceSecurityDetails>)_appBusniessFinanceSecurityDetails.GetAllAppBusniessFinanceSecurityDetails();
-            List.Clear();
-            appBusniessFinance2.securityDetails = List;
-            return View("AppBusniessFinance", appBusniessFinance2);
+            appBusniessFinance.busniesses = (List<AppBusniessFinanceBusniess>)_appBusniessFinanceBusniessRepository.GetAllBusniess();
+            appBusniessFinance.individuals = (List<AppBusniessFinanceIndividual>)_appBusniessFinanceIndividualRepository.GetAllIndividual();
+            appBusniessFinance.securityDetails = (List<AppBusniessFinanceSecurityDetails>)_appBusniessFinanceSecurityDetails.GetAllAppBusniessFinanceSecurityDetails();
+            appBusniessFinance.Lead = lead;
+            //Update App As a Whole Application            
+            AppBusniessFinance appBusniessFinance1 = _appBusniessFinanceRepository.Update(appBusniessFinance);
+            return RedirectToAction("AllApplications", "Home");
+
         }
     }
 }

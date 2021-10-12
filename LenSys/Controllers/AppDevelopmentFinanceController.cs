@@ -251,27 +251,35 @@ namespace LenSys.Controllers
         [HttpPost]
         public IActionResult AppDevelopmentFinance(AppDevelopmentFinance appDevelopmentFinance)
         {
-            var securitydetailList = (List<AppDevelopmentFinanceSecurityDetails>)_appDevelopmentFinanceSecurityDetails.GetAllAppDevelopmentFinanceSecurityDetails();
+            //var securitydetailList = (List<AppDevelopmentFinanceSecurityDetails>)_appDevelopmentFinanceSecurityDetails.GetAllAppDevelopmentFinanceSecurityDetails();
 
-            //Primary key cannot be given so making it zeo for all
-            foreach (var securitydetail in securitydetailList)
-            {
-                securitydetail.SecurityDetailsId = 0;
-            }
+            ////Primary key cannot be given so making it zeo for all
+            //foreach (var securitydetail in securitydetailList)
+            //{
+            //    securitydetail.SecurityDetailsId = 0;
+            //}
 
-            appDevelopmentFinance.securityDetails = securitydetailList;
+            //appDevelopmentFinance.securityDetails = securitydetailList;
 
-            if (ModelState.IsValid)
-            {
-                AppDevelopmentFinance appDevelopmentFinance1 = _appDevelopmentFinanceRepository.Add(appDevelopmentFinance);
+            //if (ModelState.IsValid)
+            //{
+            //    AppDevelopmentFinance appDevelopmentFinance1 = _appDevelopmentFinanceRepository.Add(appDevelopmentFinance);
 
-            }
-            
-            appDevelopmentFinance = new AppDevelopmentFinance();          
-            securitydetailList.Clear();
-            appDevelopmentFinance.securityDetails = securitydetailList;
-            return View("AppDevelopmentFinance", appDevelopmentFinance);
-            //return View("AllApplications", "Home");
+            //}
+
+            //appDevelopmentFinance = new AppDevelopmentFinance();          
+            //securitydetailList.Clear();
+            //appDevelopmentFinance.securityDetails = securitydetailList;
+            //return View("AppDevelopmentFinance", appDevelopmentFinance);
+            ////return View("AllApplications", "Home");
+            ///
+            appDevelopmentFinance.busniesses = (List<AppDevelopmentFinanceBusniess>)_appDevelopmentFinanceBusniessRepository.GetAllBusniess();
+            appDevelopmentFinance.individuals = (List<AppDevelopmentFinanceIndividual>)_appDevelopmentFinanceIndividualRepository.GetAllIndividual();
+            appDevelopmentFinance.securityDetails = (List<AppDevelopmentFinanceSecurityDetails>)_appDevelopmentFinanceSecurityDetails.GetAllAppDevelopmentFinanceSecurityDetails();
+            appDevelopmentFinance.Lead = lead;
+            //Update App As a Whole Application            
+            AppDevelopmentFinance appDevelopmentFinance1 = _appDevelopmentFinanceRepository.Update(appDevelopmentFinance);
+            return RedirectToAction("AllApplications", "Home");
         }
     }
 }
