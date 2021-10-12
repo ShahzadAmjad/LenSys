@@ -195,7 +195,6 @@ namespace LenSys.Controllers
                 //Saving to global variables
                 lead = AppAssetFinanceApplication.Lead;
             }
-
             return View("AppAssetFinance", AppAssetFinanceApplication);
         }
         //Update AppAssetFinance

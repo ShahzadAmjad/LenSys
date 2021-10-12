@@ -184,14 +184,15 @@ namespace LenSys.Controllers
         public IActionResult AddSecurityDetail(AppDevelopmentFinanceSecurityDetails securityDetails)
         {
             _appDevelopmentFinanceSecurityDetails.Add(securityDetails);
-            //AppBusniessFinanceSecurityDetails securityDetails = new AppBusniessFinanceSecurityDetails();
-            //return PartialView("_AddSecutityDetailBusniessPartialView", securityDetails);
-
-            //ViewData["SecurityDetailsList"] = _appDevelopmentFinanceSecurityDetails.GetAllAppDevelopmentFinanceSecurityDetails();
-            AppDevelopmentFinance appDevelopmentFinance = new AppDevelopmentFinance();
+            AppDevelopmentFinance appDevelopmentFinance = _appDevelopmentFinanceRepository.GetAppDevelopmentFinance_appDevelopmentFinance(appID);
+            appDevelopmentFinance.busniesses = (List<AppDevelopmentFinanceBusniess>)_appDevelopmentFinanceBusniessRepository.GetAllBusniess();
+            appDevelopmentFinance.individuals = (List<AppDevelopmentFinanceIndividual>)_appDevelopmentFinanceIndividualRepository.GetAllIndividual();
             appDevelopmentFinance.securityDetails = (List<AppDevelopmentFinanceSecurityDetails>)_appDevelopmentFinanceSecurityDetails.GetAllAppDevelopmentFinanceSecurityDetails();
-
             return View("AppDevelopmentFinance", appDevelopmentFinance);
+
+            //AppDevelopmentFinance appDevelopmentFinance = new AppDevelopmentFinance();
+            //appDevelopmentFinance.securityDetails = (List<AppDevelopmentFinanceSecurityDetails>)_appDevelopmentFinanceSecurityDetails.GetAllAppDevelopmentFinanceSecurityDetails();
+            //return View("AppDevelopmentFinance", appDevelopmentFinance);
         }
 
         [HttpGet]
@@ -201,12 +202,29 @@ namespace LenSys.Controllers
             return PartialView("_EditSecurityDetailDevelopmentPartialView", securityDetails);
         }
 
+        [HttpPost]
+        public IActionResult EditSecurityDetail(AppDevelopmentFinanceSecurityDetails appDevelopmentFinanceSecurityDetailsChanges)
+        {
+            _appDevelopmentFinanceSecurityDetails.Update(appDevelopmentFinanceSecurityDetailsChanges);
+
+            AppDevelopmentFinance appDevelopmentFinance = _appDevelopmentFinanceRepository.GetAppDevelopmentFinance_appDevelopmentFinance(appID);
+            appDevelopmentFinance.busniesses = (List<AppDevelopmentFinanceBusniess>)_appDevelopmentFinanceBusniessRepository.GetAllBusniess();
+            appDevelopmentFinance.individuals = (List<AppDevelopmentFinanceIndividual>)_appDevelopmentFinanceIndividualRepository.GetAllIndividual();
+            appDevelopmentFinance.securityDetails = (List<AppDevelopmentFinanceSecurityDetails>)_appDevelopmentFinanceSecurityDetails.GetAllAppDevelopmentFinanceSecurityDetails();
+            return View("AppDevelopmentFinance", appDevelopmentFinance);
+        }
+
         public ViewResult DeleteSecurityDetail(int id)
         {
             _appDevelopmentFinanceSecurityDetails.Delete(id);
-            AppDevelopmentFinance appDevelopmentFinance = new AppDevelopmentFinance();
+            AppDevelopmentFinance appDevelopmentFinance = _appDevelopmentFinanceRepository.GetAppDevelopmentFinance_appDevelopmentFinance(appID);
+            appDevelopmentFinance.busniesses = (List<AppDevelopmentFinanceBusniess>)_appDevelopmentFinanceBusniessRepository.GetAllBusniess();
+            appDevelopmentFinance.individuals = (List<AppDevelopmentFinanceIndividual>)_appDevelopmentFinanceIndividualRepository.GetAllIndividual();
             appDevelopmentFinance.securityDetails = (List<AppDevelopmentFinanceSecurityDetails>)_appDevelopmentFinanceSecurityDetails.GetAllAppDevelopmentFinanceSecurityDetails();
             return View("AppDevelopmentFinance", appDevelopmentFinance);
+            //AppDevelopmentFinance appDevelopmentFinance = new AppDevelopmentFinance();
+            //appDevelopmentFinance.securityDetails = (List<AppDevelopmentFinanceSecurityDetails>)_appDevelopmentFinanceSecurityDetails.GetAllAppDevelopmentFinanceSecurityDetails();
+            //return View("AppDevelopmentFinance", appDevelopmentFinance);
         }
         [HttpGet]
         public ViewResult AppDevelopmentFinance()
@@ -221,19 +239,14 @@ namespace LenSys.Controllers
             }
             else
             {
-
                 AppDevelopmentFinanceApplication = _appDevelopmentFinanceRepository.GetAppDevelopmentFinance_appDevelopmentFinance(appID);
                 AppDevelopmentFinanceApplication.busniesses = (List<AppDevelopmentFinanceBusniess>)_appDevelopmentFinanceBusniessRepository.GetAllBusniess();
                 AppDevelopmentFinanceApplication.individuals = (List<AppDevelopmentFinanceIndividual>)_appDevelopmentFinanceIndividualRepository.GetAllIndividual();
-                AppDevelopmentFinanceApplication.securityDetails = (List<AppDevelopmentFinanceSecurityDetails>)_appDevelopmentFinanceSecurityDetails.GetAllAppDevelopmentFinanceSecurityDetails();
-                
+                AppDevelopmentFinanceApplication.securityDetails = (List<AppDevelopmentFinanceSecurityDetails>)_appDevelopmentFinanceSecurityDetails.GetAllAppDevelopmentFinanceSecurityDetails();               
                 //Saving to global variables
                 lead = AppDevelopmentFinanceApplication.Lead;
             }
             return View("AppDevelopmentFinance", AppDevelopmentFinanceApplication);
-            //AppDevelopmentFinance appDevelopmentFinance = new AppDevelopmentFinance();
-            //appDevelopmentFinance.securityDetails = (List<AppDevelopmentFinanceSecurityDetails>)_appDevelopmentFinanceSecurityDetails.GetAllAppDevelopmentFinanceSecurityDetails();
-            //return View("AppDevelopmentFinance", appDevelopmentFinance);
         }
         [HttpPost]
         public IActionResult AppDevelopmentFinance(AppDevelopmentFinance appDevelopmentFinance)
