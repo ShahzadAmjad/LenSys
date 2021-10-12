@@ -13,7 +13,7 @@
 
                 <form action="EditSecurityDetail" id="EditSecurityDetailform" name="EditSecurityDetailform">
 
-                    <div class="item form-group">
+                    <div class="item form-group" hidden>
                         <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="@Model.SecurityDetailsId">
                             Security Details Id <span class="required">*</span>
                         </label>
@@ -176,7 +176,7 @@
 
             <div class="modal-footer">
                 @*<a asp-controller="AppBusniessFinance" asp-action="AddSecurity" id="AddPropertyBtn" class="btn btn-primary mr-1">Save</a>*@
-                <button type="button" class="btn btn-primary" data-save="modal">Update</button>
+                <button type="button" class="btn btn-primary" data-save="Editmodal">Update</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
         </div>

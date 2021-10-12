@@ -632,7 +632,20 @@
             window.location.reload();
         })
 
+        //Save Edit Modal Data Security detail
+        PlaceHolderElement.on('click', '[data-save="Editmodal"]', function (event) {
+            
+            var form = $('#EditSecurityDetailform');
 
+            var actionurl = form.attr('action');
+
+            var sendData = form.serialize();
+
+            $.post(actionurl, sendData).done(function (data) {
+                $('#AddSecurityDetailModalProperty').modal('hide');
+            })
+            window.location.reload();
+        })
 
     </script>
 </div>

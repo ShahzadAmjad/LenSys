@@ -813,10 +813,20 @@
 
         })
 
+        //Save Edit Modal Data Add New Security detail
+        PlaceHolderElement.on('click', '[data-save="Editmodal"]', function (event) {
+            
+            var form = $('#EditSecurityDetailform');
 
+            var actionurl = form.attr('action');
 
-      
+            var sendData = form.serialize();
 
+            $.post(actionurl, sendData).done(function (data) {
+                $('#EditSecurityDetailModalDevelopment').modal('hide');
+            })
+            window.location.reload();
+        })
 
 
     </script>
