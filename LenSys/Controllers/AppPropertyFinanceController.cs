@@ -241,31 +241,10 @@ namespace LenSys.Controllers
         }
         [HttpPost]
         public IActionResult AppPropertyFinance(AppPropertyFinance appPropertyFinance)
-        {
-            //var securitydetailList = (List<AppPropertyFinanceSecurityDetails>)_appPropertyFinanceSecurityDetails.GetAllAppPropertyFinanceSecurityDetails();
-
-            ////Primary key cannot be given so making it zeo for all
-            //foreach(var securitydetail in securitydetailList)
-            //{
-            //    securitydetail.SecurityDetailsId = 0;
-            //}
-
-
-            //appPropertyFinance.securityDetails = securitydetailList;
-
-            ////if (ModelState.IsValid)
-            //{
-            //    AppPropertyFinance appPropertyFinance1 = _appPropertyFinanceRepository.Add(appPropertyFinance);
-
-            //}
-
-            //appPropertyFinance = new AppPropertyFinance();
-            //securitydetailList.Clear();
-            //appPropertyFinance.securityDetails = securitydetailList;
-            //return View("AppPropertyFinance", appPropertyFinance);
-            appPropertyFinance = _appPropertyFinanceRepository.GetAppPropertyFinance_appPropertyFinance(appID);
+        {           
             appPropertyFinance.busniesses = (List<AppPropertyFinanceBusniess>)_appPropertyFinanceBusniessRepository.GetAllBusniess();
             appPropertyFinance.individuals = (List<AppPropertyFinanceIndividual>)_appPropertyFinanceIndividualRepository.GetAllIndividual();
+            appPropertyFinance.securityDetails = (List<AppPropertyFinanceSecurityDetails>)_appPropertyFinanceSecurityDetails.GetAllAppPropertyFinanceSecurityDetails();
             appPropertyFinance.Lead = lead;
             //Update App As a Whole Application            
             AppPropertyFinance appPropertyFinance1 = _appPropertyFinanceRepository.Update(appPropertyFinance);
