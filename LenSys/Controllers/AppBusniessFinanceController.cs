@@ -39,7 +39,8 @@ namespace LenSys.Controllers
         public AppBusniessFinanceController(IAppBusniessFinanceSecurityDetailsRepository appBusniessFinanceSecurityDetailsRepository,
             IAppBusniessFinanceRepository appBusniessFinanceRepository,
             IAppBusniessFinanceBusniessRepository appBusniessFinanceBusniessRepository,
-            IAppBusniessFinanceSecurityDetailsRepository appBusniessFinanceSecurityDetails, IAppBusniessFinanceIndividualRepository appBusniessFinanceIndividualRepository)
+            IAppBusniessFinanceSecurityDetailsRepository appBusniessFinanceSecurityDetails,
+            IAppBusniessFinanceIndividualRepository appBusniessFinanceIndividualRepository)
         {
             _appBusniessFinanceSecurityDetails = appBusniessFinanceSecurityDetailsRepository;
             _appBusniessFinanceRepository = appBusniessFinanceRepository;
@@ -248,20 +249,6 @@ namespace LenSys.Controllers
         [HttpPost]
         public IActionResult AppBusniessFinance(AppBusniessFinance appBusniessFinance)
         {
-            //foreach(AppBusniessFinanceSecurityDetails SecurityDetails in _appBusniessFinanceSecurityDetails.GetAllAppBusniessFinanceSecurityDetails())
-            //{
-            //    SecurityDetails.SecurityDetailsId = 0;
-            //}
-            //appBusniessFinance.securityDetails = (List<AppBusniessFinanceSecurityDetails>)_appBusniessFinanceSecurityDetails.GetAllAppBusniessFinanceSecurityDetails();
-
-            //AppBusniessFinance appBusniessFinance1 = _appBusniessFinanceRepository.Add(appBusniessFinance);                           
-            
-            //AppBusniessFinance appBusniessFinance2 = new AppBusniessFinance();
-            //var List= (List<AppBusniessFinanceSecurityDetails>)_appBusniessFinanceSecurityDetails.GetAllAppBusniessFinanceSecurityDetails();
-            //List.Clear();
-            //appBusniessFinance2.securityDetails = List;
-            //return View("AppBusniessFinance", appBusniessFinance2);
-
             appBusniessFinance.busniesses = (List<AppBusniessFinanceBusniess>)_appBusniessFinanceBusniessRepository.GetAllBusniess();
             appBusniessFinance.individuals = (List<AppBusniessFinanceIndividual>)_appBusniessFinanceIndividualRepository.GetAllIndividual();
             appBusniessFinance.securityDetails = (List<AppBusniessFinanceSecurityDetails>)_appBusniessFinanceSecurityDetails.GetAllAppBusniessFinanceSecurityDetails();

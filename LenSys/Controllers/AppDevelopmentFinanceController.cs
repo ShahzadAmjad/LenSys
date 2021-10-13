@@ -46,8 +46,6 @@ namespace LenSys.Controllers
             _appDevelopmentFinanceBusniessRepository = appDevelopmentFinanceBusniessRepository;
             _appDevelopmentFinanceIndividualRepository = appDevelopmentFinanceIndividualRepository;
         }
-
-
         public ViewResult Index()
         {
             AppDevelopmentFinance AppDevelopmentFinanceApplication;

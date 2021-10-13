@@ -44,7 +44,6 @@ namespace LenSys.Models.AppPropertyFinance
             Context.SaveChanges();
             return appPropertyFinance;
         }
-
         public AppPropertyFinance Delete(int id)
         {
             AppPropertyFinance appPropertyFinance = GetAppPropertyFinance(id);
@@ -106,19 +105,16 @@ namespace LenSys.Models.AppPropertyFinance
             }
             return appPropertyFinance;
         }
-
         public IEnumerable<AppPropertyFinance> GetAllAppPropertyFinance()
         {
             return Context.AppPropertyFinance.Include(x => x.Lead);
         }
-
         public IEnumerable<AllApplications> GetAllAppPropertyFinance_AllApplication()
         {
             List<AllApplications> allApplicationsList = new List<AllApplications>();
             allApplicationsList = Context.AppPropertyFinance.Include(x => x.Lead).Select(p => new AllApplications { AppID = p.LoanId, Type = p.Lead.LoanPurpose, CompanyBusinessName = p.Lead.CompanyBusniessName }).ToList();
             return allApplicationsList;
         }
-
         public AppPropertyFinance GetAppPropertyFinance(int id)
         {
             AppPropertyFinance appPropertyFinance = Context.AppPropertyFinance
@@ -160,7 +156,6 @@ namespace LenSys.Models.AppPropertyFinance
             return appPropertyFinance;
             //return Context.AppPropertyFinance.Find(id);
         }
-
         public AppPropertyFinance GetAppPropertyFinance_appPropertyFinance(int id)
         {
             AppPropertyFinance appPropertyFinance = Context.AppPropertyFinance
@@ -170,7 +165,6 @@ namespace LenSys.Models.AppPropertyFinance
 
             return appPropertyFinance;
         }
-
         public AppPropertyFinance GetAppPropertyFinance_EditHome(int id)
         {
             //without Lead
@@ -211,7 +205,6 @@ namespace LenSys.Models.AppPropertyFinance
 
             return appPropertyFinance;
         }
-
         public AppPropertyFinance Update(AppPropertyFinance appPropertyFinanceChanges)
         {
             int id = HomeController.EditPropertyFinanceAppID;
@@ -221,7 +214,6 @@ namespace LenSys.Models.AppPropertyFinance
             {
                 //Update Main application Partent part
                 Context.Entry(ExistingappPropertyFinance).CurrentValues.SetValues(appPropertyFinanceChanges);
-
                 // Delete children Individual(ParentChild)
                 foreach (var existingChild in ExistingappPropertyFinance.individuals.ToList())
                 {
@@ -273,6 +265,15 @@ namespace LenSys.Models.AppPropertyFinance
                             existingChildBusniess.serviceability.Remove(serviceability);
                             Context.Entry(serviceability).State = EntityState.Deleted;
                         }
+                    }
+                }
+                // Delete children SecurityDetail(ParentChild)
+                foreach (var existingChild in ExistingappPropertyFinance.securityDetails.ToList())
+                {
+                    if (!appPropertyFinanceChanges.securityDetails.Any(c => c.SecurityDetailsId == existingChild.SecurityDetailsId))
+                    {
+                        ExistingappPropertyFinance.securityDetails.Remove(existingChild);
+                        Context.Entry(existingChild).State = EntityState.Deleted;
                     }
                 }
                 // Update and Insert children Individual(ParentChild)
@@ -602,6 +603,45 @@ namespace LenSys.Models.AppPropertyFinance
                         }
 
                         ExistingappPropertyFinance.busniesses.Add(newChildAppPropertyFinanceBusniess);
+                    }
+                }
+                // Update and Insert children SecurityDetail(ParentChild)
+                foreach (var ChildSecurityDetail in appPropertyFinanceChanges.securityDetails)
+                {
+                    var existingChild = ExistingappPropertyFinance.securityDetails
+                        .Where(c => c.SecurityDetailsId == ChildSecurityDetail.SecurityDetailsId && c.SecurityDetailsId != default(int))
+                        .SingleOrDefault();
+
+                    // Update child SecurityDetail
+                    if (existingChild != null)
+                    {
+                        Context.Entry(existingChild).CurrentValues.SetValues(ChildSecurityDetail);
+                    }
+
+                    // Insert child SecurityDetail
+                    else
+                    {
+                        var newChildAppPropertyFinanceSecurityDetail = new AppPropertyFinanceSecurityDetails
+                        {
+                            //SecurityDetailsId = ChildSecurityDetail.SecurityDetailsId,
+                            
+                            SecurityType = ChildSecurityDetail.SecurityType,
+                            PropertyType = ChildSecurityDetail.PropertyType,
+                            AlreadyOwned = ChildSecurityDetail.AlreadyOwned,                         
+                            NameOfPropertyOwner = ChildSecurityDetail.NameOfPropertyOwner,
+                            Tenure = ChildSecurityDetail.Tenure,
+                            YearsRemainingOnLeaseIfLeaseHold = ChildSecurityDetail.YearsRemainingOnLeaseIfLeaseHold,
+                            PropertyValue = ChildSecurityDetail.PropertyValue,
+                            OriginalPurchasePrice = ChildSecurityDetail.OriginalPurchasePrice,
+                            UseOfFunds = ChildSecurityDetail.UseOfFunds,
+                            Rent = ChildSecurityDetail.Rent,
+                            HMO_MUFB = ChildSecurityDetail.HMO_MUFB,
+                            AddressForPropertyOfSecurity = ChildSecurityDetail.AddressForPropertyOfSecurity,
+                            SecondLineAddress = ChildSecurityDetail.SecondLineAddress,
+                            City = ChildSecurityDetail.City,
+                            PostCode = ChildSecurityDetail.PostCode
+                        };
+                        ExistingappPropertyFinance.securityDetails.Add(newChildAppPropertyFinanceSecurityDetail);
                     }
                 }
                 Context.SaveChanges();

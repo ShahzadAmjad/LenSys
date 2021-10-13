@@ -172,16 +172,16 @@ namespace LenSys.Models.AppBusniessFinance
             return appBusniessFinance;
         }
 
-        public AppBusniessFinance GetAppBusniessFinance_CURDBusIndSec(int id)
-        {
-            //Only Parent App Part
-            AppBusniessFinance appBusniessFinance = Context.AppBusniessFinance
-               .Include(x => x.Lead)
-               .Where(h => h.BusniessFinId == id)
-               .FirstOrDefault();
+        //public AppBusniessFinance GetAppBusniessFinance_CURDBusIndSec(int id)
+        //{
+        //    //Only Parent App Part
+        //    AppBusniessFinance appBusniessFinance = Context.AppBusniessFinance
+        //       .Include(x => x.Lead)
+        //       .Where(h => h.BusniessFinId == id)
+        //       .FirstOrDefault();
 
-            return appBusniessFinance;
-        }
+        //    return appBusniessFinance;
+        //}
 
         public AppBusniessFinance GetAppBusniessFinance_EditHome(int id)
         {
@@ -233,7 +233,6 @@ namespace LenSys.Models.AppBusniessFinance
             {
                 //Update Main application Partent part
                 Context.Entry(ExistingappBusniessFinance).CurrentValues.SetValues(appBusniessFinanceChanges);
-
                 // Delete children Individual(ParentChild)
                 foreach (var existingChild in ExistingappBusniessFinance.individuals.ToList())
                 {
@@ -285,6 +284,15 @@ namespace LenSys.Models.AppBusniessFinance
                             existingChildBusniess.serviceability.Remove(serviceability);
                             Context.Entry(serviceability).State = EntityState.Deleted;
                         }
+                    }
+                }
+                // Delete children SecurityDetail(ParentChild)
+                foreach (var existingChild in ExistingappBusniessFinance.securityDetails.ToList())
+                {
+                    if (!appBusniessFinanceChanges.securityDetails.Any(c => c.SecurityDetailsId == existingChild.SecurityDetailsId))
+                    {
+                        ExistingappBusniessFinance.securityDetails.Remove(existingChild);
+                        Context.Entry(existingChild).State = EntityState.Deleted;                       
                     }
                 }
                 // Update and Insert children Individual(ParentChild)
@@ -614,6 +622,43 @@ namespace LenSys.Models.AppBusniessFinance
                         ExistingappBusniessFinance.busniesses.Add(newChildAppBusinessFinanceBusniess);
                     }
                 }
+                // Update and Insert children SecurityDetail(ParentChild)
+                foreach (var ChildSecurityDetail in appBusniessFinanceChanges.securityDetails)
+                {
+                    var existingChild = ExistingappBusniessFinance.securityDetails
+                        .Where(c => c.SecurityDetailsId == ChildSecurityDetail.SecurityDetailsId && c.SecurityDetailsId != default(int))
+                        .SingleOrDefault();
+
+                    // Update child SecurityDetail
+                    if (existingChild != null)
+                    {
+                        Context.Entry(existingChild).CurrentValues.SetValues(ChildSecurityDetail); 
+                    }
+
+                    // Insert child SecurityDetail
+                    else
+                    {
+                        var newChildAppBusinessFinanceSecurityDetail = new AppBusniessFinanceSecurityDetails
+                        {
+                            //SecurityDetailsId = ChildSecurityDetail.SecurityDetailsId,
+                            Notes = ChildSecurityDetail.Notes,
+                            LegalChargeOverProperty = ChildSecurityDetail.LegalChargeOverProperty,
+                            SecurityType = ChildSecurityDetail.SecurityType,
+                            PropertyType = ChildSecurityDetail.PropertyType,
+                            NameOfPropertyOwner = ChildSecurityDetail.NameOfPropertyOwner,
+                            Tenure = ChildSecurityDetail.Tenure,
+                            YearsRemainingOnLeaseIfLeaseHold = ChildSecurityDetail.YearsRemainingOnLeaseIfLeaseHold,
+                            PropertyValue = ChildSecurityDetail.PropertyValue,
+                            OriginalPurchasePrice = ChildSecurityDetail.OriginalPurchasePrice,                           
+                            AddressForPropertyOfSecurity = ChildSecurityDetail.AddressForPropertyOfSecurity,
+                            SecondLineAddress = ChildSecurityDetail.SecondLineAddress,
+                            City = ChildSecurityDetail.City,
+                            PostCode = ChildSecurityDetail.PostCode
+                        };                                           
+                        ExistingappBusniessFinance.securityDetails.Add(newChildAppBusinessFinanceSecurityDetail);
+                    }
+                }
+
                 Context.SaveChanges();
                 return appBusniessFinanceChanges;
             }

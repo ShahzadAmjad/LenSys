@@ -222,7 +222,6 @@ namespace LenSys.Models.AppDevelopmentFinance
             {
                 //Update Main application Partent part
                 Context.Entry(ExistingappDevelopmentFinance).CurrentValues.SetValues(appDevelopmentFinanceChanges);
-
                 // Delete children Individual(ParentChild)
                 foreach (var existingChild in ExistingappDevelopmentFinance.individuals.ToList())
                 {
@@ -274,6 +273,15 @@ namespace LenSys.Models.AppDevelopmentFinance
                             existingChildBusniess.serviceability.Remove(serviceability);
                             Context.Entry(serviceability).State = EntityState.Deleted;
                         }
+                    }
+                }
+                // Delete children SecurityDetail(ParentChild)
+                foreach (var existingChild in ExistingappDevelopmentFinance.securityDetails.ToList())
+                {
+                    if (!appDevelopmentFinanceChanges.securityDetails.Any(c => c.SecurityDetailsId == existingChild.SecurityDetailsId))
+                    {
+                        ExistingappDevelopmentFinance.securityDetails.Remove(existingChild);
+                        Context.Entry(existingChild).State = EntityState.Deleted;
                     }
                 }
                 // Update and Insert children Individual(ParentChild)
@@ -603,6 +611,39 @@ namespace LenSys.Models.AppDevelopmentFinance
                         }
 
                         ExistingappDevelopmentFinance.busniesses.Add(newChildAppDevelopmentFinanceBusniess);
+                    }
+                }
+                // Update and Insert children SecurityDetail(ParentChild)
+                foreach (var ChildSecurityDetail in appDevelopmentFinanceChanges.securityDetails)
+                {
+                    var existingChild = ExistingappDevelopmentFinance.securityDetails
+                        .Where(c => c.SecurityDetailsId == ChildSecurityDetail.SecurityDetailsId && c.SecurityDetailsId != default(int))
+                        .SingleOrDefault();
+
+                    // Update child SecurityDetail
+                    if (existingChild != null)
+                    {
+                        Context.Entry(existingChild).CurrentValues.SetValues(ChildSecurityDetail);
+                    }
+
+                    // Insert child SecurityDetail
+                    else
+                    {
+                        var newChildAppDevelopmentFinanceSecurityDetail = new AppDevelopmentFinanceSecurityDetails
+                        {
+                            //SecurityDetailsId = ChildSecurityDetail.SecurityDetailsId,                            
+                            SecurityType = ChildSecurityDetail.SecurityType,
+                            DescriptionOfProperty = ChildSecurityDetail.DescriptionOfProperty,
+                            PropertyCurrentUse = ChildSecurityDetail.PropertyCurrentUse,           
+                            NameOfPropertyOwner = ChildSecurityDetail.NameOfPropertyOwner,
+                            Tenure = ChildSecurityDetail.Tenure,
+                            YearsRemainingOnLeaseIfLeaseHold = ChildSecurityDetail.YearsRemainingOnLeaseIfLeaseHold,                           
+                            AddressForPropertyOfSecurity = ChildSecurityDetail.AddressForPropertyOfSecurity,
+                            SecondLineAddress = ChildSecurityDetail.SecondLineAddress,
+                            City = ChildSecurityDetail.City,
+                            PostCode = ChildSecurityDetail.PostCode
+                        };
+                        ExistingappDevelopmentFinance.securityDetails.Add(newChildAppDevelopmentFinanceSecurityDetail);
                     }
                 }
                 Context.SaveChanges();

@@ -10,7 +10,7 @@ namespace LenSys.Models.AppBusniessFinance
     {
         AppBusniessFinance GetAppBusniessFinance(int id);
         AppBusniessFinance GetAppBusniessFinance_EditHome(int id);
-        AppBusniessFinance GetAppBusniessFinance_CURDBusIndSec(int id);
+        //AppBusniessFinance GetAppBusniessFinance_CURDBusIndSec(int id);
         AppBusniessFinance GetAppBusniessFinance_appBusniessFinance(int id);
         IEnumerable<AppBusniessFinance> GetAllAppBusniessFinance();
         IEnumerable<AllApplications> GetAllAppBusniessFinance_AllApplication();

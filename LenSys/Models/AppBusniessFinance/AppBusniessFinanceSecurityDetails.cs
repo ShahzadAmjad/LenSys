@@ -12,7 +12,6 @@ namespace LenSys.Models.AppBusniessFinance
         public int SecurityDetailsId { get; set; }
         public string Notes { get; set; }
         public string LegalChargeOverProperty { get; set; }
-
         public string SecurityType { get; set; }
         public string PropertyType { get; set; }
         public string NameOfPropertyOwner { get; set; }
@@ -20,7 +19,6 @@ namespace LenSys.Models.AppBusniessFinance
         public int YearsRemainingOnLeaseIfLeaseHold { get; set; }
         public int PropertyValue { get; set; }
         public int OriginalPurchasePrice { get; set; }
-
         public string AddressForPropertyOfSecurity { get; set; }
         public string SecondLineAddress { get; set; }
         public string City { get; set; }
