@@ -1,4 +1,7 @@
 ﻿using LenSys.Models.AppAssetFinance.AppAssetFinanceIndividual;
+using LenSys.Models.AppBusniessFinance.AppBusniessFinanceIndividual;
+using LenSys.Models.AppDevelopmentFinance.AppDevelopmentFinanceIndividual;
+using LenSys.Models.AppPropertyFinance.AppPropertyFinanceIndividual;
 using LenSys.Models.IndividualIncomeExpenditure;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -11,62 +14,123 @@ namespace LenSys.Controllers
     public class IndividualMonthlyIncomeController : Controller
     {
         private IAppAssetFinanceIndividualRepository _appAssetFinanceIndividualRepository;
-        public IndividualMonthlyIncomeController(IAppAssetFinanceIndividualRepository appAssetFinanceIndividualRepository)
+        private IAppBusniessFinanceIndividualRepository _appBusniessFinanceIndividualRepository;
+        private IAppDevelopmentFinanceIndividualRepository _appDevelopmentFinanceIndividualRepository;
+        private IAppPropertyFinanceIndividualRepository _appPropertyFinanceIndividualRepository;
+        public IndividualMonthlyIncomeController(IAppAssetFinanceIndividualRepository appAssetFinanceIndividualRepository,
+            IAppBusniessFinanceIndividualRepository appBusniessFinanceIndividualRepository,
+            IAppDevelopmentFinanceIndividualRepository appDevelopmentFinanceIndividualRepository,
+            IAppPropertyFinanceIndividualRepository appPropertyFinanceIndividualRepository)
         {
             _appAssetFinanceIndividualRepository = appAssetFinanceIndividualRepository;
+            _appBusniessFinanceIndividualRepository = appBusniessFinanceIndividualRepository;
+            _appDevelopmentFinanceIndividualRepository = appDevelopmentFinanceIndividualRepository;
+            _appPropertyFinanceIndividualRepository = appPropertyFinanceIndividualRepository;
         }
         public ViewResult Index()
         {
             MonthlyIncome monthlyIncome;
-            int IndividualId = AppAssetFinanceController.IndividualID;
-            if (IndividualId == 0)
+            int IndividualId;
+
+            String editAppType = HomeController.EditAppType;
+
+            if (editAppType == "Asset finance")
             {
-                monthlyIncome = new MonthlyIncome();
+                IndividualId = AppAssetFinanceController.IndividualID;
+                monthlyIncome = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId).monthlyIncome;
+            }
+
+            else if (editAppType == "Business finance")
+            {
+                IndividualId = AppBusniessFinanceController.IndividualID;
+                monthlyIncome = _appBusniessFinanceIndividualRepository.GetIndividual(IndividualId).monthlyIncome;
+            }
+            else if (editAppType == "Development finance")
+            {
+                IndividualId = AppDevelopmentFinanceController.IndividualID;
+                monthlyIncome = _appDevelopmentFinanceIndividualRepository.GetIndividual(IndividualId).monthlyIncome;
+            }
+            else if (editAppType == "Property finance")
+            {
+                IndividualId = AppPropertyFinanceController.IndividualID;
+                monthlyIncome = _appPropertyFinanceIndividualRepository.GetIndividual(IndividualId).monthlyIncome;
             }
             else
             {
-                 monthlyIncome = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId).monthlyIncome;
+                monthlyIncome = new MonthlyIncome();
             }
-            
-
-            return View(monthlyIncome);
-            //return View("MonthlyIncome", monthlyIncome);
+            return View("MonthlyIncome", monthlyIncome);
         }
         [HttpGet]
         public ViewResult MonthlyIncome()
         {
             MonthlyIncome monthlyIncome;
-            int IndividualId = AppAssetFinanceController.IndividualID;
-            if (IndividualId == 0)
+            int IndividualId;
+
+            String editAppType = HomeController.EditAppType;
+
+            if (editAppType == "Asset finance")
             {
-                monthlyIncome = new MonthlyIncome();
+                IndividualId = AppAssetFinanceController.IndividualID;
+                monthlyIncome = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId).monthlyIncome;
+            }
+
+            else if (editAppType == "Business finance")
+            {
+                IndividualId = AppBusniessFinanceController.IndividualID;
+                monthlyIncome = _appBusniessFinanceIndividualRepository.GetIndividual(IndividualId).monthlyIncome;
+            }
+            else if (editAppType == "Development finance")
+            {
+                IndividualId = AppDevelopmentFinanceController.IndividualID;
+                monthlyIncome = _appDevelopmentFinanceIndividualRepository.GetIndividual(IndividualId).monthlyIncome;
+            }
+            else if (editAppType == "Property finance")
+            {
+                IndividualId = AppPropertyFinanceController.IndividualID;
+                monthlyIncome = _appPropertyFinanceIndividualRepository.GetIndividual(IndividualId).monthlyIncome;
             }
             else
             {
-                monthlyIncome = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId).monthlyIncome;
+                monthlyIncome = new MonthlyIncome();
             }
             return View(monthlyIncome);
-            //return View();
         }
         [HttpPost]
-        public IActionResult MonthlyIncome(MonthlyIncome income)
+        public IActionResult MonthlyIncome(MonthlyIncome monthlyIncome)
         {
-            int id = AppAssetFinanceController.appID;
-            int IndividualId = AppAssetFinanceController.IndividualID;
+            //int IndividualId = AppAssetFinanceController.IndividualID;
+            //AppAssetFinanceIndividual appAssetFinanceIndividual = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId);
+            //appAssetFinanceIndividual.monthlyIncome = monthlyIncome;
+            int IndividualId;
+            String editAppType = HomeController.EditAppType;
 
-            AppAssetFinanceIndividual appAssetFinanceIndividual = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId);
+            if (editAppType == "Asset finance")
+            {
+                IndividualId = AppAssetFinanceController.IndividualID;
+                AppAssetFinanceIndividual appAssetFinanceIndividual = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId);
+                appAssetFinanceIndividual.monthlyIncome = monthlyIncome;
+            }
+            else if (editAppType == "Business finance")
+            {
+                IndividualId = AppBusniessFinanceController.IndividualID;
+                AppBusniessFinanceIndividual appBusniessFinanceIndividual = _appBusniessFinanceIndividualRepository.GetIndividual(IndividualId);
+                appBusniessFinanceIndividual.monthlyIncome = monthlyIncome;
+            }
+            else if (editAppType == "Development finance")
+            {
+                IndividualId = AppDevelopmentFinanceController.IndividualID;
+                AppDevelopmentFinanceIndividual appDevelopmentFinanceIndividual = _appDevelopmentFinanceIndividualRepository.GetIndividual(IndividualId);
+                appDevelopmentFinanceIndividual.monthlyIncome = monthlyIncome;
 
-            appAssetFinanceIndividual.monthlyIncome = income;
-            //return RedirectToAction("AppAssetFinance", "AppAssetFinance", new { id = id });
-            //if (ModelState.IsValid)
-            //{
-            //    //Employee newEmployee = _emplyeeRepositry.Add(employee);
-            //    ////return View();
-            //    //return RedirectToAction("details", new { id = newEmployee.Id });
-            //    return View("MonthlyIncome");
-            //}
-
-            return View();
+            }
+            else if (editAppType == "Property finance")
+            {
+                IndividualId = AppPropertyFinanceController.IndividualID;
+                AppPropertyFinanceIndividual appPropertyFinanceIndividual = _appPropertyFinanceIndividualRepository.GetIndividual(IndividualId);
+                appPropertyFinanceIndividual.monthlyIncome = monthlyIncome;
+            }
+            return View(monthlyIncome);
         }
         public IActionResult ReturnToParentApp()
         {
