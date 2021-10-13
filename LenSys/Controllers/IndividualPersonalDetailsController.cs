@@ -123,10 +123,7 @@ namespace LenSys.Controllers
             //int id;
             int IndividualId;
             String editAppType = HomeController.EditAppType;
-
             
-
-
             if (editAppType == "Asset finance")
             {
                 //id = AppAssetFinanceController.appID;
@@ -156,6 +153,32 @@ namespace LenSys.Controllers
 
             //return RedirectToAction("AppAssetFinance", "AppAssetFinance", new { id = id });
             return View();
+        }
+        public IActionResult ReturnToParentApp()
+        {            
+            String editAppType = HomeController.EditAppType;
+
+            if (editAppType == "Asset finance")
+            {
+                return RedirectToAction("AppAssetFinance", "AppAssetFinance");
+            }
+
+            else if (editAppType == "Business finance")
+            {
+                return RedirectToAction("AppBusniessFinance", "AppBusniessFinance");
+            }
+            else if (editAppType == "Development finance")
+            {
+                return RedirectToAction("AppDevelopmentFinance", "AppDevelopmentFinance");
+            }
+            else if (editAppType == "Property finance")
+            {
+                return RedirectToAction("AppPropertyFinance", "AppPropertyFinance");
+            }
+            else
+            {
+                return View("PersonalDetails");
+            }            
         }
     }
 }
