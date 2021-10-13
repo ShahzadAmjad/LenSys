@@ -1,5 +1,8 @@
 ﻿using LenSys.Models;
 using LenSys.Models.AppAssetFinance.AppAssetFinanceIndividual;
+using LenSys.Models.AppBusniessFinance.AppBusniessFinanceIndividual;
+using LenSys.Models.AppDevelopmentFinance.AppDevelopmentFinanceIndividual;
+using LenSys.Models.AppPropertyFinance.AppPropertyFinanceIndividual;
 using LenSys.Models.IndividualPersonalDetails;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -12,22 +15,59 @@ namespace LenSys.Controllers
     public class IndividualPersonalDetailsController: Controller
     {
         private IAppAssetFinanceIndividualRepository _appAssetFinanceIndividualRepository;
-        public IndividualPersonalDetailsController(IAppAssetFinanceIndividualRepository appAssetFinanceIndividualRepository)
+        private IAppBusniessFinanceIndividualRepository _appBusniessFinanceIndividualRepository;
+        private IAppDevelopmentFinanceIndividualRepository _appDevelopmentFinanceIndividualRepository;
+        private IAppPropertyFinanceIndividualRepository _appPropertyFinanceIndividualRepository;
+        public IndividualPersonalDetailsController(IAppAssetFinanceIndividualRepository appAssetFinanceIndividualRepository, IAppBusniessFinanceIndividualRepository appBusniessFinanceIndividualRepository, IAppDevelopmentFinanceIndividualRepository appDevelopmentFinanceIndividualRepository, IAppPropertyFinanceIndividualRepository appPropertyFinanceIndividualRepository)
         {
             _appAssetFinanceIndividualRepository = appAssetFinanceIndividualRepository;
+            _appBusniessFinanceIndividualRepository = appBusniessFinanceIndividualRepository;
+            _appDevelopmentFinanceIndividualRepository = appDevelopmentFinanceIndividualRepository;
+            _appPropertyFinanceIndividualRepository = appPropertyFinanceIndividualRepository;
         }
         public ViewResult Index()
         {
             PersonalDetails individualPersonalDetails;
-            int IndividualId = AppAssetFinanceController.IndividualID;
-            if (IndividualId == 0)
+            int IndividualId;
+            
+            String editAppType = HomeController.EditAppType;
+
+            if (editAppType == "Asset finance")
             {
-                individualPersonalDetails = new PersonalDetails();
+                IndividualId = AppAssetFinanceController.IndividualID;
+                individualPersonalDetails = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId).personalDetails;
+            }
+
+            else if (editAppType == "Business finance")
+            {
+                IndividualId = AppBusniessFinanceController.IndividualID;
+                individualPersonalDetails = _appBusniessFinanceIndividualRepository.GetIndividual(IndividualId).personalDetails;
+            }
+            else if (editAppType == "Development finance")
+            {
+                IndividualId = AppDevelopmentFinanceController.IndividualID;
+                individualPersonalDetails = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId).personalDetails;
+            }
+            else if (editAppType == "Property finance")
+            {
+                IndividualId = AppPropertyFinanceController.IndividualID;
+                individualPersonalDetails = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId).personalDetails;
             }
             else
             {
-                individualPersonalDetails = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId).personalDetails;
+                individualPersonalDetails = new PersonalDetails();
             }
+
+
+
+            //if (IndividualId == 0)
+            //{
+            //    individualPersonalDetails = new PersonalDetails();
+            //}
+            //else
+            //{
+            //    individualPersonalDetails = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId).personalDetails;
+            //}
 
 
             //return View(individualPersonalDetails);
@@ -37,31 +77,85 @@ namespace LenSys.Controllers
         public ViewResult PersonalDetails()
         {
             PersonalDetails individualPersonalDetails;
-            int IndividualId = AppAssetFinanceController.IndividualID;
-            if(IndividualId==0)
+            int IndividualId;
+            String editAppType = HomeController.EditAppType;
+
+            if (editAppType == "Asset finance")
             {
-                individualPersonalDetails = new PersonalDetails();
+                IndividualId = AppAssetFinanceController.IndividualID;
+                individualPersonalDetails = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId).personalDetails;
+            }
+
+            else if (editAppType == "Business finance")
+            {
+                IndividualId = AppBusniessFinanceController.IndividualID;
+                individualPersonalDetails = _appBusniessFinanceIndividualRepository.GetIndividual(IndividualId).personalDetails;
+            }
+            else if (editAppType == "Development finance")
+            {
+                IndividualId = AppDevelopmentFinanceController.IndividualID;
+                individualPersonalDetails = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId).personalDetails;
+            }
+            else if (editAppType == "Property finance")
+            {
+                IndividualId = AppPropertyFinanceController.IndividualID;
+                individualPersonalDetails = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId).personalDetails;
             }
             else
             {
-                individualPersonalDetails = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId).personalDetails;
+                individualPersonalDetails = new PersonalDetails();
             }
+            //IndividualId = AppAssetFinanceController.IndividualID;
+            //if(IndividualId==0)
+            //{
+            //    individualPersonalDetails = new PersonalDetails();
+            //}
+            //else
+            //{
+            //    individualPersonalDetails = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId).personalDetails;
+            //}
 
             return View(individualPersonalDetails);
         }
         [HttpPost]
         public IActionResult PersonalDetails(PersonalDetails personalDetails)
         {
-            int id = AppAssetFinanceController.appID;
-            int IndividualId = AppAssetFinanceController.IndividualID;
+            //int id;
+            int IndividualId;
+            String editAppType = HomeController.EditAppType;
 
-            AppAssetFinanceIndividual appAssetFinanceIndividual = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId);
+            
 
-            appAssetFinanceIndividual.personalDetails = personalDetails;
+
+            if (editAppType == "Asset finance")
+            {
+                //id = AppAssetFinanceController.appID;
+                IndividualId = AppAssetFinanceController.IndividualID;
+                AppAssetFinanceIndividual appAssetFinanceIndividual = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId);
+                appAssetFinanceIndividual.personalDetails = personalDetails;
+            }
+            else if (editAppType == "Business finance")
+            {
+                IndividualId = AppBusniessFinanceController.IndividualID;
+                AppBusniessFinanceIndividual appBusniessFinanceIndividual = _appBusniessFinanceIndividualRepository.GetIndividual(IndividualId);
+                appBusniessFinanceIndividual.personalDetails = personalDetails;
+            }
+            else if (editAppType == "Development finance")
+            {
+                IndividualId = AppDevelopmentFinanceController.IndividualID;
+                AppDevelopmentFinanceIndividual appDevelopmentFinanceIndividual = _appDevelopmentFinanceIndividualRepository.GetIndividual(IndividualId);
+                appDevelopmentFinanceIndividual.personalDetails = personalDetails;
+
+            }
+            else if (editAppType == "Property finance")
+            {
+                IndividualId = AppPropertyFinanceController.IndividualID;
+                AppPropertyFinanceIndividual appPropertyFinanceIndividual = _appPropertyFinanceIndividualRepository.GetIndividual(IndividualId);
+                appPropertyFinanceIndividual.personalDetails = personalDetails;
+            }
+
             //return RedirectToAction("AppAssetFinance", "AppAssetFinance", new { id = id });
             return View();
         }
-        
-
     }
 }
