@@ -1,4 +1,7 @@
 ﻿using LenSys.Models.AppAssetFinance.AppAssetFinanceBusniess;
+using LenSys.Models.AppBusniessFinance.AppBusniessFinanceBusniess;
+using LenSys.Models.AppDevelopmentFinance.AppDevelopmentFinanceBusniess;
+using LenSys.Models.AppPropertyFinance.AppPropertyFinanceBusniess;
 using LenSys.Models.BusniessServiceability;
 using LenSys.ViewModels.BusniessServiceability;
 using Microsoft.AspNetCore.Mvc;
@@ -13,43 +16,115 @@ namespace LenSys.Controllers
     {
         private IServiceabilityRepository _serviceabilityRepository;
         private IAppAssetFinanceBusniessRepository _appAssetFinanceBusniessRepository;
-
-        public BusniessServiceabilityController(IServiceabilityRepository serviceabilityRepository, IAppAssetFinanceBusniessRepository appAssetFinanceBusniessRepository)
+        private IAppBusniessFinanceBusniessRepository _appBusniessFinanceBusniessRepository;
+        private IAppDevelopmentFinanceBusniessRepository _appDevelopmentFinanceBusniessRepository;
+        private IAppPropertyFinanceBusniessRepository _appPropertyFinanceBusniessRepository;
+        public BusniessServiceabilityController(IServiceabilityRepository serviceabilityRepository,
+            IAppAssetFinanceBusniessRepository appAssetFinanceBusniessRepository,
+            IAppBusniessFinanceBusniessRepository appBusniessFinanceBusniessRepository,
+            IAppDevelopmentFinanceBusniessRepository appDevelopmentFinanceBusniessRepository,
+            IAppPropertyFinanceBusniessRepository appPropertyFinanceBusniessRepository)
         {
             _serviceabilityRepository = serviceabilityRepository;
             _appAssetFinanceBusniessRepository = appAssetFinanceBusniessRepository;
+            _appBusniessFinanceBusniessRepository = appBusniessFinanceBusniessRepository;
+            _appDevelopmentFinanceBusniessRepository = appDevelopmentFinanceBusniessRepository;
+            _appPropertyFinanceBusniessRepository = appPropertyFinanceBusniessRepository;
         }
         public ViewResult Index()
         {
-            int BusniessId = AppAssetFinanceController.BusniessID;
-            if (BusniessId != 0)
-            {
-                IEnumerable<Serviceability> serviceabilities = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId).serviceability;
-                _serviceabilityRepository.SetServiceabilityList(serviceabilities);
+            //int BusniessId = AppAssetFinanceController.BusniessID;
+            //if (BusniessId != 0)
+            //{
+            //    IEnumerable<Serviceability> serviceabilities = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId).serviceability;
+            //    _serviceabilityRepository.SetServiceabilityList(serviceabilities);
 
+            //}
+            //var model = _serviceabilityRepository.GetAllServiceability();
+            int BusniessId;
+            var model = new List<Serviceability>();
+
+            String editAppType = HomeController.EditAppType;
+
+            if (editAppType == "Asset finance")
+            {
+                BusniessId = AppAssetFinanceController.BusniessID;
+                IEnumerable<Serviceability> serviceabilities = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId).serviceability;
+                model= (List<Serviceability>)_serviceabilityRepository.SetServiceabilityList(serviceabilities);
             }
 
-            var model = _serviceabilityRepository.GetAllServiceability();
-            //return View("AllServiceability", model);
+            else if (editAppType == "Business finance")
+            {
+                BusniessId = AppBusniessFinanceController.BusniessID;
+                IEnumerable<Serviceability> serviceabilities = _appBusniessFinanceBusniessRepository.GetBusniess(BusniessId).serviceability;
+                model = (List<Serviceability>)_serviceabilityRepository.SetServiceabilityList(serviceabilities);
+            }
+            else if (editAppType == "Development finance")
+            {
+                BusniessId = AppDevelopmentFinanceController.BusniessID;
+                IEnumerable<Serviceability> serviceabilities = _appDevelopmentFinanceBusniessRepository.GetBusniess(BusniessId).serviceability;
+                model = (List<Serviceability>)_serviceabilityRepository.SetServiceabilityList(serviceabilities);
+            }
+            else if (editAppType == "Property finance")
+            {
+                BusniessId = AppPropertyFinanceController.BusniessID;
+                IEnumerable<Serviceability> serviceabilities = _appPropertyFinanceBusniessRepository.GetBusniess(BusniessId).serviceability;
+                model = (List<Serviceability>)_serviceabilityRepository.SetServiceabilityList(serviceabilities);
+            }
+            else
+            {
+                model = new List<Serviceability>();
+            }
+
             ServiceabilityCreateViewModel viewmodel = new ServiceabilityCreateViewModel();
             viewmodel._serviceability = model;
             viewmodel.serviceability = new Serviceability();
-
-
             return View("AllServiceability", viewmodel);
         }
         public ViewResult AllServiceability()
         {
+            //int BusniessId = AppAssetFinanceController.BusniessID;
+            //if (BusniessId != 0)
+            //{
+            //    IEnumerable<Serviceability> serviceabilities = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId).serviceability;
+            //    _serviceabilityRepository.SetServiceabilityList(serviceabilities);
 
-            int BusniessId = AppAssetFinanceController.BusniessID;
-            if (BusniessId != 0)
+            //}
+            //var model = _serviceabilityRepository.GetAllServiceability();
+            int BusniessId;
+            var model = new List<Serviceability>();
+
+            String editAppType = HomeController.EditAppType;
+
+            if (editAppType == "Asset finance")
             {
+                BusniessId = AppAssetFinanceController.BusniessID;
                 IEnumerable<Serviceability> serviceabilities = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId).serviceability;
-                _serviceabilityRepository.SetServiceabilityList(serviceabilities);
-
+                model = (List<Serviceability>)_serviceabilityRepository.SetServiceabilityList(serviceabilities);
             }
-            var model = _serviceabilityRepository.GetAllServiceability();
 
+            else if (editAppType == "Business finance")
+            {
+                BusniessId = AppBusniessFinanceController.BusniessID;
+                IEnumerable<Serviceability> serviceabilities = _appBusniessFinanceBusniessRepository.GetBusniess(BusniessId).serviceability;
+                model = (List<Serviceability>)_serviceabilityRepository.SetServiceabilityList(serviceabilities);
+            }
+            else if (editAppType == "Development finance")
+            {
+                BusniessId = AppDevelopmentFinanceController.BusniessID;
+                IEnumerable<Serviceability> serviceabilities = _appDevelopmentFinanceBusniessRepository.GetBusniess(BusniessId).serviceability;
+                model = (List<Serviceability>)_serviceabilityRepository.SetServiceabilityList(serviceabilities);
+            }
+            else if (editAppType == "Property finance")
+            {
+                BusniessId = AppPropertyFinanceController.BusniessID;
+                IEnumerable<Serviceability> serviceabilities = _appPropertyFinanceBusniessRepository.GetBusniess(BusniessId).serviceability;
+                model = (List<Serviceability>)_serviceabilityRepository.SetServiceabilityList(serviceabilities);
+            }
+            else
+            {
+                model = new List<Serviceability>();
+            }
             ServiceabilityCreateViewModel viewmodel = new ServiceabilityCreateViewModel();
             viewmodel._serviceability = model;
             viewmodel.serviceability = new Serviceability();
@@ -66,66 +141,137 @@ namespace LenSys.Controllers
         [HttpPost]
         public IActionResult AddServiceability(Serviceability serviceability)
         {
-            //if (ModelState.IsValid)
+            Serviceability serviceability1 = _serviceabilityRepository.Add(serviceability);
+            var updatedServiceability = _serviceabilityRepository.GetAllServiceability();
+
+            //int BusniessId = AppAssetFinanceController.BusniessID;
+            //AppAssetFinanceBusniess appAssetFinanceBusniess = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId);
+            //appAssetFinanceBusniess.serviceability = (List<Serviceability>)updatedServiceability;
+            int BusniessId;
+            String editAppType = HomeController.EditAppType;
+
+            if (editAppType == "Asset finance")
             {
-                Serviceability serviceability1 = _serviceabilityRepository.Add(serviceability);
-
-                var updatedServiceability = _serviceabilityRepository.GetAllServiceability();
-
-                int BusniessId = AppAssetFinanceController.BusniessID;
+                BusniessId = AppAssetFinanceController.BusniessID;
                 AppAssetFinanceBusniess appAssetFinanceBusniess = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId);
                 appAssetFinanceBusniess.serviceability = (List<Serviceability>)updatedServiceability;
-
-                ServiceabilityCreateViewModel viewmodel = new ServiceabilityCreateViewModel();
-                viewmodel._serviceability = updatedServiceability;
-                viewmodel.serviceability = new Serviceability();
-
-                return RedirectToAction("AllServiceability", viewmodel);
             }
 
-            //return View();
-        }
+            else if (editAppType == "Business finance")
+            {
+                BusniessId = AppBusniessFinanceController.BusniessID;
+                AppBusniessFinanceBusniess appBusniessFinanceBusniess = _appBusniessFinanceBusniessRepository.GetBusniess(BusniessId);
+                appBusniessFinanceBusniess.serviceability = (List<Serviceability>)updatedServiceability;
+            }
+            else if (editAppType == "Development finance")
+            {
+                BusniessId = AppDevelopmentFinanceController.BusniessID;
+                AppDevelopmentFinanceBusniess appDevelopmentFinanceBusniess = _appDevelopmentFinanceBusniessRepository.GetBusniess(BusniessId);
+                appDevelopmentFinanceBusniess.serviceability = (List<Serviceability>)updatedServiceability;
+            }
+            else if (editAppType == "Property finance")
+            {
+                BusniessId = AppPropertyFinanceController.BusniessID;
+                AppPropertyFinanceBusniess appPropertyFinanceBusniess = _appPropertyFinanceBusniessRepository.GetBusniess(BusniessId);
+                appPropertyFinanceBusniess.serviceability = (List<Serviceability>)updatedServiceability;
+            }
 
+            ServiceabilityCreateViewModel viewmodel = new ServiceabilityCreateViewModel();
+            viewmodel._serviceability = updatedServiceability;
+            viewmodel.serviceability = new Serviceability();
+            return RedirectToAction("AllServiceability", viewmodel);
+        }
         [HttpGet]
         public ViewResult EditServiceability(int id)
         {
             Serviceability model = _serviceabilityRepository.GetServiceability(id);
-            ViewBag.PageTitle = "Edit Serviceability";
-
             return View("EditServiceability", model);
         }
         [HttpPost]
         public IActionResult EditServiceability(Serviceability serviceability)
         {
-            if (ModelState.IsValid)
+            _serviceabilityRepository.Update(serviceability);
+            var updatedServiceability = _serviceabilityRepository.GetAllServiceability();
+
+            //int BusniessId = AppAssetFinanceController.BusniessID;
+            //AppAssetFinanceBusniess appAssetFinanceBusniess = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId);
+            //appAssetFinanceBusniess.serviceability = (List<Serviceability>)updatedServiceability;
+
+            int BusniessId;
+            String editAppType = HomeController.EditAppType;
+
+            if (editAppType == "Asset finance")
             {
-                _serviceabilityRepository.Update(serviceability);
-
-                var updatedServiceability = _serviceabilityRepository.GetAllServiceability();
-
-                int BusniessId = AppAssetFinanceController.BusniessID;
+                BusniessId = AppAssetFinanceController.BusniessID;
                 AppAssetFinanceBusniess appAssetFinanceBusniess = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId);
                 appAssetFinanceBusniess.serviceability = (List<Serviceability>)updatedServiceability;
-
-
-                return RedirectToAction("AllServiceability", updatedServiceability);
             }
 
-            return View("AllServiceability");
+            else if (editAppType == "Business finance")
+            {
+                BusniessId = AppBusniessFinanceController.BusniessID;
+                AppBusniessFinanceBusniess appBusniessFinanceBusniess = _appBusniessFinanceBusniessRepository.GetBusniess(BusniessId);
+                appBusniessFinanceBusniess.serviceability = (List<Serviceability>)updatedServiceability;
+            }
+            else if (editAppType == "Development finance")
+            {
+                BusniessId = AppDevelopmentFinanceController.BusniessID;
+                AppDevelopmentFinanceBusniess appDevelopmentFinanceBusniess = _appDevelopmentFinanceBusniessRepository.GetBusniess(BusniessId);
+                appDevelopmentFinanceBusniess.serviceability = (List<Serviceability>)updatedServiceability;
+            }
+            else if (editAppType == "Property finance")
+            {
+                BusniessId = AppPropertyFinanceController.BusniessID;
+                AppPropertyFinanceBusniess appPropertyFinanceBusniess = _appPropertyFinanceBusniessRepository.GetBusniess(BusniessId);
+                appPropertyFinanceBusniess.serviceability = (List<Serviceability>)updatedServiceability;
+            }
+            ServiceabilityCreateViewModel viewmodel = new ServiceabilityCreateViewModel();
+            viewmodel._serviceability = updatedServiceability;
+            viewmodel.serviceability = new Serviceability();
+
+            return RedirectToAction("AllServiceability", viewmodel);
+
         }
         public ViewResult DeleteServiceability(int id)
         {
             _serviceabilityRepository.Delete(id);
-            var RemainingServiceability = _serviceabilityRepository.GetAllServiceability();
+            var updatedServiceability = _serviceabilityRepository.GetAllServiceability();
 
-            int BusniessId = AppAssetFinanceController.BusniessID;
-            AppAssetFinanceBusniess appAssetFinanceBusniess = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId);
-            appAssetFinanceBusniess.serviceability = (List<Serviceability>)RemainingServiceability;
+            //int BusniessId = AppAssetFinanceController.BusniessID;
+            //AppAssetFinanceBusniess appAssetFinanceBusniess = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId);
+            //appAssetFinanceBusniess.serviceability = (List<Serviceability>)RemainingServiceability;
+            int BusniessId;
+            String editAppType = HomeController.EditAppType;
+
+            if (editAppType == "Asset finance")
+            {
+                BusniessId = AppAssetFinanceController.BusniessID;
+                AppAssetFinanceBusniess appAssetFinanceBusniess = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId);
+                appAssetFinanceBusniess.serviceability = (List<Serviceability>)updatedServiceability;
+            }
+
+            else if (editAppType == "Business finance")
+            {
+                BusniessId = AppBusniessFinanceController.BusniessID;
+                AppBusniessFinanceBusniess appBusniessFinanceBusniess = _appBusniessFinanceBusniessRepository.GetBusniess(BusniessId);
+                appBusniessFinanceBusniess.serviceability = (List<Serviceability>)updatedServiceability;
+            }
+            else if (editAppType == "Development finance")
+            {
+                BusniessId = AppDevelopmentFinanceController.BusniessID;
+                AppDevelopmentFinanceBusniess appDevelopmentFinanceBusniess = _appDevelopmentFinanceBusniessRepository.GetBusniess(BusniessId);
+                appDevelopmentFinanceBusniess.serviceability = (List<Serviceability>)updatedServiceability;
+            }
+            else if (editAppType == "Property finance")
+            {
+                BusniessId = AppPropertyFinanceController.BusniessID;
+                AppPropertyFinanceBusniess appPropertyFinanceBusniess = _appPropertyFinanceBusniessRepository.GetBusniess(BusniessId);
+                appPropertyFinanceBusniess.serviceability = (List<Serviceability>)updatedServiceability;
+            }
 
             ServiceabilityCreateViewModel viewmodel = new ServiceabilityCreateViewModel();
-            viewmodel._serviceability = RemainingServiceability;
+            viewmodel._serviceability = updatedServiceability;
             viewmodel.serviceability = new Serviceability();
-
             return View("AllServiceability", viewmodel);
         }
         [HttpGet]
@@ -137,20 +283,45 @@ namespace LenSys.Controllers
         [HttpPost]
         public IActionResult Serviceability(Serviceability serviceability)
         {
-            if (ModelState.IsValid)
+            Serviceability serviceability1 = _serviceabilityRepository.Add(serviceability);
+            var updatedServiceability = _serviceabilityRepository.GetAllServiceability();
+
+            //int BusniessId = AppAssetFinanceController.BusniessID;
+            //AppAssetFinanceBusniess appAssetFinanceBusniess = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId);
+            //appAssetFinanceBusniess.serviceability = (List<Serviceability>)updatedServiceability;
+            int BusniessId;
+            String editAppType = HomeController.EditAppType;
+
+            if (editAppType == "Asset finance")
             {
-                Serviceability serviceability1 = _serviceabilityRepository.Add(serviceability);
-
-                var updatedServiceability = _serviceabilityRepository.GetAllServiceability();
-
-                int BusniessId = AppAssetFinanceController.BusniessID;
+                BusniessId = AppAssetFinanceController.BusniessID;
                 AppAssetFinanceBusniess appAssetFinanceBusniess = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId);
                 appAssetFinanceBusniess.serviceability = (List<Serviceability>)updatedServiceability;
-
-                return RedirectToAction("AllServiceability", updatedServiceability);
             }
 
-            return View();
+            else if (editAppType == "Business finance")
+            {
+                BusniessId = AppBusniessFinanceController.BusniessID;
+                AppBusniessFinanceBusniess appBusniessFinanceBusniess = _appBusniessFinanceBusniessRepository.GetBusniess(BusniessId);
+                appBusniessFinanceBusniess.serviceability = (List<Serviceability>)updatedServiceability;
+            }
+            else if (editAppType == "Development finance")
+            {
+                BusniessId = AppDevelopmentFinanceController.BusniessID;
+                AppDevelopmentFinanceBusniess appDevelopmentFinanceBusniess = _appDevelopmentFinanceBusniessRepository.GetBusniess(BusniessId);
+                appDevelopmentFinanceBusniess.serviceability = (List<Serviceability>)updatedServiceability;
+            }
+            else if (editAppType == "Property finance")
+            {
+                BusniessId = AppPropertyFinanceController.BusniessID;
+                AppPropertyFinanceBusniess appPropertyFinanceBusniess = _appPropertyFinanceBusniessRepository.GetBusniess(BusniessId);
+                appPropertyFinanceBusniess.serviceability = (List<Serviceability>)updatedServiceability;
+            }
+
+            ServiceabilityCreateViewModel viewmodel = new ServiceabilityCreateViewModel();
+            viewmodel._serviceability = updatedServiceability;
+            viewmodel.serviceability = new Serviceability();
+            return View("AllServiceability", viewmodel);
         }
         public IActionResult ReturnToParentApp()
         {

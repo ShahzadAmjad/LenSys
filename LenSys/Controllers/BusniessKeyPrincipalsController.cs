@@ -1,4 +1,7 @@
 ﻿using LenSys.Models.AppAssetFinance.AppAssetFinanceBusniess;
+using LenSys.Models.AppBusniessFinance.AppBusniessFinanceBusniess;
+using LenSys.Models.AppDevelopmentFinance.AppDevelopmentFinanceBusniess;
+using LenSys.Models.AppPropertyFinance.AppPropertyFinanceBusniess;
 using LenSys.Models.BusniessKeyPrincipals;
 using LenSys.ViewModels.BusniessKeyPrincipals;
 using Microsoft.AspNetCore.Mvc;
@@ -13,22 +16,67 @@ namespace LenSys.Controllers
     {
         private IKeyPrincipalsRepository _keyPrincipalsRepository;
         private IAppAssetFinanceBusniessRepository _appAssetFinanceBusniessRepository;
-        public BusniessKeyPrincipalsController(IKeyPrincipalsRepository keyPrincipalsRepository, IAppAssetFinanceBusniessRepository appAssetFinanceBusniessRepository)
+        private IAppBusniessFinanceBusniessRepository _appBusniessFinanceBusniessRepository;
+        private IAppDevelopmentFinanceBusniessRepository _appDevelopmentFinanceBusniessRepository;
+        private IAppPropertyFinanceBusniessRepository _appPropertyFinanceBusniessRepository;
+        public BusniessKeyPrincipalsController(IKeyPrincipalsRepository keyPrincipalsRepository,
+            IAppAssetFinanceBusniessRepository appAssetFinanceBusniessRepository,
+            IAppBusniessFinanceBusniessRepository appBusniessFinanceBusniessRepository,
+            IAppDevelopmentFinanceBusniessRepository appDevelopmentFinanceBusniessRepository,
+            IAppPropertyFinanceBusniessRepository appPropertyFinanceBusniessRepository)
         {
             _keyPrincipalsRepository = keyPrincipalsRepository;
             _appAssetFinanceBusniessRepository = appAssetFinanceBusniessRepository;
+            _appBusniessFinanceBusniessRepository = appBusniessFinanceBusniessRepository;
+            _appDevelopmentFinanceBusniessRepository = appDevelopmentFinanceBusniessRepository;
+            _appPropertyFinanceBusniessRepository = appPropertyFinanceBusniessRepository;
         }
         public ViewResult Index()
         {
-            int BusniessId = AppAssetFinanceController.BusniessID;
-            if (BusniessId != 0)
+            //int BusniessId = AppAssetFinanceController.BusniessID;
+            //if (BusniessId != 0)
+            //{
+            //    IEnumerable<KeyPrincipals> keyPrincipals = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId).keyPrincipals;
+            //    _keyPrincipalsRepository.SetKeyPrincipalsList(keyPrincipals);
+            //}
+
+            //var model = _keyPrincipalsRepository.GetAllKeyPrincipals();
+            int BusniessId;
+            var model = new List<KeyPrincipals>();
+
+            String editAppType = HomeController.EditAppType;
+
+            if (editAppType == "Asset finance")
             {
+                BusniessId = AppAssetFinanceController.BusniessID;
                 IEnumerable<KeyPrincipals> keyPrincipals = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId).keyPrincipals;
-                _keyPrincipalsRepository.SetKeyPrincipalsList(keyPrincipals);
+                model = (List<KeyPrincipals>)_keyPrincipalsRepository.SetKeyPrincipalsList(keyPrincipals);
             }
 
-            var model = _keyPrincipalsRepository.GetAllKeyPrincipals();
-            //return View("AllKeyPrincipals", model);    
+            else if (editAppType == "Business finance")
+            {
+                BusniessId = AppBusniessFinanceController.BusniessID;
+                IEnumerable<KeyPrincipals> keyPrincipals = _appBusniessFinanceBusniessRepository.GetBusniess(BusniessId).keyPrincipals;
+                model = (List<KeyPrincipals>)_keyPrincipalsRepository.SetKeyPrincipalsList(keyPrincipals);
+            }
+            else if (editAppType == "Development finance")
+            {
+                BusniessId = AppDevelopmentFinanceController.BusniessID;
+                IEnumerable<KeyPrincipals> keyPrincipals = _appDevelopmentFinanceBusniessRepository.GetBusniess(BusniessId).keyPrincipals;
+                model = (List<KeyPrincipals>)_keyPrincipalsRepository.SetKeyPrincipalsList(keyPrincipals);
+            }
+            else if (editAppType == "Property finance")
+            {
+                BusniessId = AppPropertyFinanceController.BusniessID;
+                IEnumerable<KeyPrincipals> keyPrincipals = _appPropertyFinanceBusniessRepository.GetBusniess(BusniessId).keyPrincipals;
+                model = (List<KeyPrincipals>)_keyPrincipalsRepository.SetKeyPrincipalsList(keyPrincipals);
+            }
+            else
+            {
+                model = new List<KeyPrincipals>();
+            }
+
+
             KeyPrincipalsCreateViewModel viewmodel = new KeyPrincipalsCreateViewModel();
             viewmodel._keyPrincipals = model;
             viewmodel.keyPrincipals = new KeyPrincipals();
@@ -37,21 +85,51 @@ namespace LenSys.Controllers
         }
         public ViewResult AllKeyPrincipals()
         {
-            int BusniessId = AppAssetFinanceController.BusniessID;
+            //int BusniessId = AppAssetFinanceController.BusniessID;
+            //if(BusniessId!=0)
+            //{
+            //    IEnumerable<KeyPrincipals> keyPrincipals = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId).keyPrincipals;
+            //    _keyPrincipalsRepository.SetKeyPrincipalsList(keyPrincipals);
+            //}           
+            //var model = _keyPrincipalsRepository.GetAllKeyPrincipals();
+            int BusniessId;
+            var model = new List<KeyPrincipals>();
 
-            if(BusniessId!=0)
+            String editAppType = HomeController.EditAppType;
+
+            if (editAppType == "Asset finance")
             {
+                BusniessId = AppAssetFinanceController.BusniessID;
                 IEnumerable<KeyPrincipals> keyPrincipals = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId).keyPrincipals;
-                _keyPrincipalsRepository.SetKeyPrincipalsList(keyPrincipals);
+                model = (List<KeyPrincipals>)_keyPrincipalsRepository.SetKeyPrincipalsList(keyPrincipals);
             }
-            
 
-            var model = _keyPrincipalsRepository.GetAllKeyPrincipals();
+            else if (editAppType == "Business finance")
+            {
+                BusniessId = AppBusniessFinanceController.BusniessID;
+                IEnumerable<KeyPrincipals> keyPrincipals = _appBusniessFinanceBusniessRepository.GetBusniess(BusniessId).keyPrincipals;
+                model = (List<KeyPrincipals>)_keyPrincipalsRepository.SetKeyPrincipalsList(keyPrincipals);
+            }
+            else if (editAppType == "Development finance")
+            {
+                BusniessId = AppDevelopmentFinanceController.BusniessID;
+                IEnumerable<KeyPrincipals> keyPrincipals = _appDevelopmentFinanceBusniessRepository.GetBusniess(BusniessId).keyPrincipals;
+                model = (List<KeyPrincipals>)_keyPrincipalsRepository.SetKeyPrincipalsList(keyPrincipals);
+            }
+            else if (editAppType == "Property finance")
+            {
+                BusniessId = AppPropertyFinanceController.BusniessID;
+                IEnumerable<KeyPrincipals> keyPrincipals = _appPropertyFinanceBusniessRepository.GetBusniess(BusniessId).keyPrincipals;
+                model = (List<KeyPrincipals>)_keyPrincipalsRepository.SetKeyPrincipalsList(keyPrincipals);
+            }
+            else
+            {
+                model = new List<KeyPrincipals>();
+            }
 
             KeyPrincipalsCreateViewModel viewmodel = new KeyPrincipalsCreateViewModel();
             viewmodel._keyPrincipals = model;
             viewmodel.keyPrincipals = new KeyPrincipals();
-
             return View("AllKeyPrincipals", viewmodel);
         }
         [HttpGet]
@@ -63,25 +141,48 @@ namespace LenSys.Controllers
         [HttpPost]
         public IActionResult AddKeyPrincipals(KeyPrincipals keyPrincipals1)
         {
-            //if (ModelState.IsValid)
+            KeyPrincipals keyPrincipals = _keyPrincipalsRepository.Add(keyPrincipals1);
+            var updatedKeyPrincipals = _keyPrincipalsRepository.GetAllKeyPrincipals();
+
+            //int BusniessId = AppAssetFinanceController.BusniessID;
+            //AppAssetFinanceBusniess appAssetFinanceBusniess = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId);
+            //appAssetFinanceBusniess.keyPrincipals = (List<KeyPrincipals>)updatedKeyPrincipals;
+            int BusniessId;
+            String editAppType = HomeController.EditAppType;
+
+            if (editAppType == "Asset finance")
             {
-                KeyPrincipals keyPrincipals = _keyPrincipalsRepository.Add(keyPrincipals1);
-
-                var updatedKeyPrincipals = _keyPrincipalsRepository.GetAllKeyPrincipals();
-
-
-                int BusniessId = AppAssetFinanceController.BusniessID;
+                BusniessId = AppAssetFinanceController.BusniessID;
                 AppAssetFinanceBusniess appAssetFinanceBusniess = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId);
                 appAssetFinanceBusniess.keyPrincipals = (List<KeyPrincipals>)updatedKeyPrincipals;
-
-                KeyPrincipalsCreateViewModel viewmodel = new KeyPrincipalsCreateViewModel();
-                viewmodel._keyPrincipals = updatedKeyPrincipals;
-                viewmodel.keyPrincipals = new KeyPrincipals();
-
-                return RedirectToAction("AllKeyPrincipals", viewmodel);
+                //AppAssetFinanceIndividual appAssetFinanceIndividual = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId);
+                //appAssetFinanceIndividual.propertySchedule = (List<PropertySchedule>)updatedProperties;
             }
 
-            //return View();
+            else if (editAppType == "Business finance")
+            {
+                BusniessId = AppBusniessFinanceController.BusniessID;
+                AppBusniessFinanceBusniess appBusinessFinanceBusniess = _appBusniessFinanceBusniessRepository.GetBusniess(BusniessId);
+                appBusinessFinanceBusniess.keyPrincipals = (List<KeyPrincipals>)updatedKeyPrincipals;
+            }
+            else if (editAppType == "Development finance")
+            {
+                BusniessId = AppDevelopmentFinanceController.BusniessID;
+                AppDevelopmentFinanceBusniess appDevelopmentFinanceBusniess = _appDevelopmentFinanceBusniessRepository.GetBusniess(BusniessId);
+                appDevelopmentFinanceBusniess.keyPrincipals = (List<KeyPrincipals>)updatedKeyPrincipals;
+            }
+            else if (editAppType == "Property finance")
+            {
+                BusniessId = AppPropertyFinanceController.BusniessID;
+                AppPropertyFinanceBusniess appPropertyFinanceBusniess = _appPropertyFinanceBusniessRepository.GetBusniess(BusniessId);
+                appPropertyFinanceBusniess.keyPrincipals = (List<KeyPrincipals>)updatedKeyPrincipals;
+            }
+
+            KeyPrincipalsCreateViewModel viewmodel = new KeyPrincipalsCreateViewModel();
+            viewmodel._keyPrincipals = updatedKeyPrincipals;
+            viewmodel.keyPrincipals = new KeyPrincipals();
+            return RedirectToAction("AllKeyPrincipals", viewmodel);
+
         }
         [HttpGet]
         public ViewResult EditKeyPrincipals(int id)
@@ -89,43 +190,92 @@ namespace LenSys.Controllers
             //var model = _keyPrincipalsRepository.GetAllKeyPrincipals();
             //return View("AllKeyPrincipals", model);
 
-            KeyPrincipals model = _keyPrincipalsRepository.GetKeyPrincipals(id);
-            ViewBag.PageTitle = "Edit Key Principal";
-
+            KeyPrincipals model = _keyPrincipalsRepository.GetKeyPrincipals(id);          
             return View("EditKeyPrincipals", model);
         }
         [HttpPost]
         public IActionResult EditKeyPrincipals(KeyPrincipals keyPrincipalsChange)
         {
-            if (ModelState.IsValid)
+            _keyPrincipalsRepository.Update(keyPrincipalsChange);
+            var updatedKeyPrincipals = _keyPrincipalsRepository.GetAllKeyPrincipals();
+
+            //int BusniessId = AppAssetFinanceController.BusniessID;
+            //AppAssetFinanceBusniess appAssetFinanceBusniess = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId);
+            //appAssetFinanceBusniess.keyPrincipals = (List<KeyPrincipals>)updatedKeyPrincipalsLst;
+            int BusniessId;
+            String editAppType = HomeController.EditAppType;
+
+            if (editAppType == "Asset finance")
             {
-                _keyPrincipalsRepository.Update(keyPrincipalsChange);
-
-                var updatedKeyPrincipalsLst = _keyPrincipalsRepository.GetAllKeyPrincipals();
-                
-                int BusniessId = AppAssetFinanceController.BusniessID;
+                BusniessId = AppAssetFinanceController.BusniessID;
                 AppAssetFinanceBusniess appAssetFinanceBusniess = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId);
-                appAssetFinanceBusniess.keyPrincipals = (List<KeyPrincipals>)updatedKeyPrincipalsLst;
-
-                
-
-                return RedirectToAction("AllKeyPrincipals", updatedKeyPrincipalsLst);
-                //return View("AllKeyPrincipals");
+                appAssetFinanceBusniess.keyPrincipals = (List<KeyPrincipals>)updatedKeyPrincipals;
             }
 
-            return View();
+            else if (editAppType == "Business finance")
+            {
+                BusniessId = AppBusniessFinanceController.BusniessID;
+                AppBusniessFinanceBusniess appBusinessFinanceBusniess = _appBusniessFinanceBusniessRepository.GetBusniess(BusniessId);
+                appBusinessFinanceBusniess.keyPrincipals = (List<KeyPrincipals>)updatedKeyPrincipals;
+            }
+            else if (editAppType == "Development finance")
+            {
+                BusniessId = AppDevelopmentFinanceController.BusniessID;
+                AppDevelopmentFinanceBusniess appDevelopmentFinanceBusniess = _appDevelopmentFinanceBusniessRepository.GetBusniess(BusniessId);
+                appDevelopmentFinanceBusniess.keyPrincipals = (List<KeyPrincipals>)updatedKeyPrincipals;
+            }
+            else if (editAppType == "Property finance")
+            {
+                BusniessId = AppPropertyFinanceController.BusniessID;
+                AppPropertyFinanceBusniess appPropertyFinanceBusniess = _appPropertyFinanceBusniessRepository.GetBusniess(BusniessId);
+                appPropertyFinanceBusniess.keyPrincipals = (List<KeyPrincipals>)updatedKeyPrincipals;
+            }
+
+            KeyPrincipalsCreateViewModel viewmodel = new KeyPrincipalsCreateViewModel();
+            viewmodel._keyPrincipals = updatedKeyPrincipals;
+            viewmodel.keyPrincipals = new KeyPrincipals();
+            return RedirectToAction("AllKeyPrincipals", viewmodel);
+
         }
         public ViewResult DeleteKeyPrincipal(int id)
         {
             _keyPrincipalsRepository.Delete(id);
-            var RemainingProperties = _keyPrincipalsRepository.GetAllKeyPrincipals();
-            
-            int BusniessId = AppAssetFinanceController.BusniessID;
-            AppAssetFinanceBusniess appAssetFinanceBusniess = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId);
-            appAssetFinanceBusniess.keyPrincipals = (List<KeyPrincipals>)RemainingProperties;
+            var updatedKeyPrincipals = _keyPrincipalsRepository.GetAllKeyPrincipals();
+
+            //int BusniessId = AppAssetFinanceController.BusniessID;
+            //AppAssetFinanceBusniess appAssetFinanceBusniess = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId);
+            //appAssetFinanceBusniess.keyPrincipals = (List<KeyPrincipals>)RemainingProperties;
+            int BusniessId;
+            String editAppType = HomeController.EditAppType;
+
+            if (editAppType == "Asset finance")
+            {
+                BusniessId = AppAssetFinanceController.BusniessID;
+                AppAssetFinanceBusniess appAssetFinanceBusniess = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId);
+                appAssetFinanceBusniess.keyPrincipals = (List<KeyPrincipals>)updatedKeyPrincipals;
+            }
+
+            else if (editAppType == "Business finance")
+            {
+                BusniessId = AppBusniessFinanceController.BusniessID;
+                AppBusniessFinanceBusniess appBusinessFinanceBusniess = _appBusniessFinanceBusniessRepository.GetBusniess(BusniessId);
+                appBusinessFinanceBusniess.keyPrincipals = (List<KeyPrincipals>)updatedKeyPrincipals;
+            }
+            else if (editAppType == "Development finance")
+            {
+                BusniessId = AppDevelopmentFinanceController.BusniessID;
+                AppDevelopmentFinanceBusniess appDevelopmentFinanceBusniess = _appDevelopmentFinanceBusniessRepository.GetBusniess(BusniessId);
+                appDevelopmentFinanceBusniess.keyPrincipals = (List<KeyPrincipals>)updatedKeyPrincipals;
+            }
+            else if (editAppType == "Property finance")
+            {
+                BusniessId = AppPropertyFinanceController.BusniessID;
+                AppPropertyFinanceBusniess appPropertyFinanceBusniess = _appPropertyFinanceBusniessRepository.GetBusniess(BusniessId);
+                appPropertyFinanceBusniess.keyPrincipals = (List<KeyPrincipals>)updatedKeyPrincipals;
+            }
 
             KeyPrincipalsCreateViewModel viewmodel = new KeyPrincipalsCreateViewModel();
-            viewmodel._keyPrincipals = RemainingProperties;
+            viewmodel._keyPrincipals = updatedKeyPrincipals;
             viewmodel.keyPrincipals = new KeyPrincipals();
 
             return View("AllKeyPrincipals", viewmodel);
@@ -138,25 +288,50 @@ namespace LenSys.Controllers
         [HttpPost]
         public IActionResult KeyPrincipals(KeyPrincipals keyPrincipals1)
         {
-            if (ModelState.IsValid)
-            {
+           
                 KeyPrincipals keyPrincipals = _keyPrincipalsRepository.Add(keyPrincipals1);
 
                 var updatedKeyPrincipals = _keyPrincipalsRepository.GetAllKeyPrincipals();
 
 
-                int BusniessId = AppAssetFinanceController.BusniessID;
+            //int BusniessId = AppAssetFinanceController.BusniessID;
+            //AppAssetFinanceBusniess appAssetFinanceBusniess = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId);
+            //appAssetFinanceBusniess.keyPrincipals = (List<KeyPrincipals>)updatedKeyPrincipals;
+            int BusniessId;
+            String editAppType = HomeController.EditAppType;
+
+            if (editAppType == "Asset finance")
+            {
+                BusniessId = AppAssetFinanceController.BusniessID;
                 AppAssetFinanceBusniess appAssetFinanceBusniess = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId);
                 appAssetFinanceBusniess.keyPrincipals = (List<KeyPrincipals>)updatedKeyPrincipals;
+            }
 
-                KeyPrincipalsCreateViewModel viewmodel = new KeyPrincipalsCreateViewModel();
-                viewmodel._keyPrincipals = updatedKeyPrincipals;
+            else if (editAppType == "Business finance")
+            {
+                BusniessId = AppBusniessFinanceController.BusniessID;
+                AppBusniessFinanceBusniess appBusinessFinanceBusniess = _appBusniessFinanceBusniessRepository.GetBusniess(BusniessId);
+                appBusinessFinanceBusniess.keyPrincipals = (List<KeyPrincipals>)updatedKeyPrincipals;
+            }
+            else if (editAppType == "Development finance")
+            {
+                BusniessId = AppDevelopmentFinanceController.BusniessID;
+                AppDevelopmentFinanceBusniess appDevelopmentFinanceBusniess = _appDevelopmentFinanceBusniessRepository.GetBusniess(BusniessId);
+                appDevelopmentFinanceBusniess.keyPrincipals = (List<KeyPrincipals>)updatedKeyPrincipals;
+            }
+            else if (editAppType == "Property finance")
+            {
+                BusniessId = AppPropertyFinanceController.BusniessID;
+                AppPropertyFinanceBusniess appPropertyFinanceBusniess = _appPropertyFinanceBusniessRepository.GetBusniess(BusniessId);
+                appPropertyFinanceBusniess.keyPrincipals = (List<KeyPrincipals>)updatedKeyPrincipals;
+            }
+
+            KeyPrincipalsCreateViewModel viewmodel = new KeyPrincipalsCreateViewModel();
+            viewmodel._keyPrincipals = updatedKeyPrincipals;
                 viewmodel.keyPrincipals = new KeyPrincipals();
 
                 return RedirectToAction("AllKeyPrincipals", viewmodel);
-            }
 
-            return View();
         }
         public IActionResult ReturnToParentApp()
         {
