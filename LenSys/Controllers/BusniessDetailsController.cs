@@ -108,12 +108,12 @@ namespace LenSys.Controllers
 
             if (editAppType == "Asset finance")
             {
-                BusniessId = AppDevelopmentFinanceController.BusniessID;
+                BusniessId = AppAssetFinanceController.BusniessID;
                 _appAssetFinanceBusniessRepository.GetBusniess(BusniessId).busniessDetails= busniessDetails;
             }
             else if (editAppType == "Business finance")
             {
-                BusniessId = AppDevelopmentFinanceController.BusniessID;
+                BusniessId = AppBusniessFinanceController.BusniessID;
                 _appBusniessFinanceBusniessRepository.GetBusniess(BusniessId).busniessDetails = busniessDetails;
             }
             else if (editAppType == "Development finance")
@@ -124,7 +124,7 @@ namespace LenSys.Controllers
             }
             else if (editAppType == "Property finance")
             {
-                BusniessId = AppDevelopmentFinanceController.BusniessID;
+                BusniessId = AppPropertyFinanceController.BusniessID;
                 _appPropertyFinanceBusniessRepository.GetBusniess(BusniessId).busniessDetails = busniessDetails;
             }
             return View(busniessDetails);

@@ -36,7 +36,7 @@ namespace LenSys.Models.AppBusniessFinance
         {
             if(_AppBusniessFinanceSecurityDetails.Count==0)
             {
-                appBusniessFinanceSecurityDetails.SecurityDetailsId = 0;
+                appBusniessFinanceSecurityDetails.SecurityDetailsId = 1;
                 
             }
             else
