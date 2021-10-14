@@ -84,12 +84,12 @@ namespace LenSys.Controllers
             else if (editAppType == "Development finance")
             {
                 IndividualId = AppDevelopmentFinanceController.IndividualID;
-                individualPersonalDetails = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId).personalDetails;
+                individualPersonalDetails = _appDevelopmentFinanceIndividualRepository.GetIndividual(IndividualId).personalDetails;
             }
             else if (editAppType == "Property finance")
             {
                 IndividualId = AppPropertyFinanceController.IndividualID;
-                individualPersonalDetails = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId).personalDetails;
+                individualPersonalDetails = _appPropertyFinanceIndividualRepository.GetIndividual(IndividualId).personalDetails;
             }
             else
             {
