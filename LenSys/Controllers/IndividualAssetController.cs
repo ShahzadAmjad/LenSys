@@ -61,8 +61,6 @@ namespace LenSys.Controllers
         [HttpGet]
         public ViewResult Asset()
         {
-            //int IndividualId = AppAssetFinanceController.IndividualID;
-            //Asset asset = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId).asset;
             Asset asset;
             int IndividualId;
 
@@ -129,15 +127,7 @@ namespace LenSys.Controllers
                 AppPropertyFinanceIndividual appPropertyFinanceIndividual = _appPropertyFinanceIndividualRepository.GetIndividual(IndividualId);
                 appPropertyFinanceIndividual.asset = asset;
             }
-
-
-
-
-            //return RedirectToAction("AppAssetFinance", "AppAssetFinance", new { id = id });
             return View(asset);
-
-
-
         }
         public IActionResult ReturnToParentApp()
         {
