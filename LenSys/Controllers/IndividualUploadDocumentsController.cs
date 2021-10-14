@@ -26,16 +26,12 @@ namespace LenSys.Controllers
         }
         public ViewResult Index()
         {
-           
-            return View("IndividualUploadDocuments");
-            
+            return View("IndividualUploadDocuments");            
         }
         [HttpGet]
         public ViewResult IndividualUploadDocuments()
         {
-
             return View();
-
         }
 
         [HttpPost]
@@ -44,27 +40,28 @@ namespace LenSys.Controllers
             if (ModelState.IsValid)
             {
                 string uniqueFileName = null;
+                string filePath = null;
                 if (model.Document != null)
                 {
                     string UploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "IndividualDocuments");                    
                     uniqueFileName = Guid.NewGuid().ToString() + "_" + model.Document.FileName;
-                    string filePath = Path.Combine(UploadsFolder, uniqueFileName);
-                    model.Document.CopyTo(new FileStream(filePath, FileMode.Create));
-
-                    
+                    filePath = Path.Combine(UploadsFolder, uniqueFileName);
+                    model.Document.CopyTo(new FileStream(filePath, FileMode.Create));               
                 }
 
                 //To save data to database
                 IndividualDocuments individualDocuments = new IndividualDocuments
                 {
                     DocumentName = model.DocumentName,
-                    DocumentPath = uniqueFileName
+                    DocumentPath = filePath
                 };
                 IndividualDocuments individualDocuments1 = _iindividualDocumentsRepository.UploadDocument(individualDocuments);
+               
 
-                //var updatedServiceability = _iindividualDocumentsRepository.GetAllServiceability();
-                //return RedirectToAction("AllServiceability", updatedServiceability);
-                //return RedirectToAction("Index", "Home");
+
+
+
+
                 return View();
             }
 

@@ -96,9 +96,6 @@ namespace LenSys.Controllers
         [HttpPost]
         public IActionResult Asset(Asset asset)
         {
-            //int IndividualId = AppAssetFinanceController.IndividualID;
-            //AppAssetFinanceIndividual appAssetFinanceIndividual = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId);
-            //appAssetFinanceIndividual.asset = asset;
             int IndividualId;
             String editAppType = HomeController.EditAppType;
 
