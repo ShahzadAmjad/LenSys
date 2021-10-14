@@ -137,15 +137,7 @@ namespace LenSys.Controllers
             return View(asset);
 
 
-            //if (ModelState.IsValid)
-            //{
-            //    //Employee newEmployee = _emplyeeRepositry.Add(employee);
-            //    ////return View();
-            //    //return RedirectToAction("details", new { id = newEmployee.Id });
-            //    return View("Asset");
-            //}
 
-            //return View();
         }
         public IActionResult ReturnToParentApp()
         {
