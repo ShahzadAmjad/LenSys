@@ -18,10 +18,13 @@ using LenSys.Models.IndividualPersonalDetails;
 using LenSys.Models.IndividualPropertySchedule;
 using LenSys.Models.IndividualUploadDocuments;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Web;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace LenSys.Controllers
 {
@@ -188,7 +191,19 @@ namespace LenSys.Controllers
             appBusniessFinance.busniesses = (List<AppBusniessFinanceBusniess>)_appBusniessFinanceBusniessRepository.GetAllBusniess();
             appBusniessFinance.individuals = (List<AppBusniessFinanceIndividual>)_appBusniessFinanceIndividualRepository.GetAllIndividual();
             appBusniessFinance.securityDetails = (List<AppBusniessFinanceSecurityDetails>)_appBusniessFinanceSecurityDetails.GetAllAppBusniessFinanceSecurityDetails();
-            return View("AppBusniessFinance", appBusniessFinance);
+
+            return Json(new { url = Url.Action("AppBusniessFinance", "AppBusniessFinance") });
+            //return View("AppBusniessFinance", appBusniessFinance);
+            //ViewBag.DynamicScripts = "Pagerefresh()";
+
+            //return View("AppBusniessFinance", appBusniessFinance);
+
+            //return RedirectToAction( "AppBusniessFinance", appBusniessFinance);
+            //scr ClientScript.RegisterStartupScript(GetType(), "hwa", "alert('Hello World');", true);
+            //ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "Func()", true);
+
+            
+            
             //AppBusniessFinance appBusniessFinance = new AppBusniessFinance();
             //appBusniessFinance.securityDetails = (List<AppBusniessFinanceSecurityDetails>)_appBusniessFinanceSecurityDetails.GetAllAppBusniessFinanceSecurityDetails();
             //return View("AppBusniessFinance", appBusniessFinance);
