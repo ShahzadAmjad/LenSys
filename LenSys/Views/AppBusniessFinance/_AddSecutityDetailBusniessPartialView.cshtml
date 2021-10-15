@@ -1,6 +1,14 @@
 ﻿@model AppBusniessFinanceSecurityDetails
 
 @*Add New Security Detail Modal*@
+<script>
+    function Pagerefresh() {
+        //alert("Refresh");
+        window.location.href = '../AppBusniessFinance/AppBusniessFinance';
+        window.location.reload();
+        //alert("Hello");
+    }
+</script>
 
 <div class="modal fade bd-example-modal-lg" id="AddSecurityDetailModalBusniess" tabindex="-1"  aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog  modal-lg" >
@@ -13,7 +21,7 @@
             <div class="modal-body" id="ModalBody">
                 
                 
-                    <form action="AddSecurityDetail" id="AddSecurityDetailform" name="AddSecurityDetailform">
+                    <form action="AddSecurityDetail" id="AddSecurityDetailform" onsubmit="Pagerefresh()" name="AddSecurityDetailform">
 
                         <div class="item form-group">
                             <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="@Model.Notes">
@@ -156,7 +164,7 @@
             <div class="modal-footer">
                 @*data-save="modal"*@
                 @*<a asp-controller="AppBusniessFinance" action="post" asp-action="AddSecurityDetail" id="AddPropertyBtn" class="btn btn-primary mr-1">Save ASP</a>*@
-                <button type="button" class="btn btn-primary" data-save="modal" onclick="location.reload();"   >Save</button>
+                <button type="button" class="btn btn-primary" data-save="modal"    >Save</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 
             </div>

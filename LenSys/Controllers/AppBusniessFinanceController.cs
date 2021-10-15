@@ -192,8 +192,8 @@ namespace LenSys.Controllers
             appBusniessFinance.individuals = (List<AppBusniessFinanceIndividual>)_appBusniessFinanceIndividualRepository.GetAllIndividual();
             appBusniessFinance.securityDetails = (List<AppBusniessFinanceSecurityDetails>)_appBusniessFinanceSecurityDetails.GetAllAppBusniessFinanceSecurityDetails();
 
-            return Json(new { url = Url.Action("AppBusniessFinance", "AppBusniessFinance") });
-            //return View("AppBusniessFinance", appBusniessFinance);
+
+            return View("AppBusniessFinance", appBusniessFinance);
             //ViewBag.DynamicScripts = "Pagerefresh()";
 
             //return View("AppBusniessFinance", appBusniessFinance);
@@ -202,8 +202,8 @@ namespace LenSys.Controllers
             //scr ClientScript.RegisterStartupScript(GetType(), "hwa", "alert('Hello World');", true);
             //ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "Func()", true);
 
-            
-            
+
+
             //AppBusniessFinance appBusniessFinance = new AppBusniessFinance();
             //appBusniessFinance.securityDetails = (List<AppBusniessFinanceSecurityDetails>)_appBusniessFinanceSecurityDetails.GetAllAppBusniessFinanceSecurityDetails();
             //return View("AppBusniessFinance", appBusniessFinance);

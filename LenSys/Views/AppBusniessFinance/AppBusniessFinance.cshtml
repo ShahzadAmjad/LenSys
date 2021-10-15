@@ -553,8 +553,13 @@
             var sendData = form.serialize();
 
             $.post(actionurl, sendData).done(function (data) {
-                $('#AddSecurityDetailModalBusniess').modal('hide');               
+                $('#AddSecurityDetailModalBusniess').modal('hide');
+                //window.location.reload();
+                window.location.href = '../AppBusniessFinance/AppBusniessFinance';
+                window.location.reload();
             })
+            //window.location.reload();
+            window.location.href = '../AppBusniessFinance/AppBusniessFinance';
             window.location.reload();
         })
 
@@ -568,8 +573,13 @@
             var sendData = form.serialize();
 
             $.post(actionurl, sendData).done(function (data) {
-                $('#EditSecurityDetailModalBusniess').modal('hide');              
+                $('#EditSecurityDetailModalBusniess').modal('hide');
+                
+                window.location.href = '../AppBusniessFinance/AppBusniessFinance';
+                window.location.reload();
             })
+            
+            window.location.href = '../AppBusniessFinance/AppBusniessFinance';
             window.location.reload();
         })
 
