@@ -814,8 +814,10 @@
 
             $.post(actionurl, sendData).done(function (data) {
                 $('#AddSecurityDetailModalDevelopment').modal('hide');
-
+                window.location.href = '../AppDevelopmentFinance/AppDevelopmentFinance';
+                window.location.reload();
             })
+            window.location.href = '../AppDevelopmentFinance/AppDevelopmentFinance';
             window.location.reload();
 
 
@@ -832,7 +834,11 @@
 
             $.post(actionurl, sendData).done(function (data) {
                 $('#EditSecurityDetailModalDevelopment').modal('hide');
+                window.location.href = '../AppDevelopmentFinance/AppDevelopmentFinance';
+                window.location.reload();
             })
+
+            window.location.href = '../AppDevelopmentFinance/AppDevelopmentFinance';
             window.location.reload();
         })
 
