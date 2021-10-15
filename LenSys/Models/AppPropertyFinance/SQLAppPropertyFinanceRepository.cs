@@ -100,7 +100,13 @@ namespace LenSys.Models.AppPropertyFinance
                         Context.Entry(busniess.busniessDocuments).State = EntityState.Deleted;
                     }
                 }
-
+                if (appPropertyFinance.securityDetails.Count > 0)
+                {
+                    foreach (AppPropertyFinanceSecurityDetails security in appPropertyFinance.securityDetails)
+                    {
+                        Context.Entry(security).State = EntityState.Deleted;
+                    }
+                }
                 Context.SaveChanges();
             }
             return appPropertyFinance;
@@ -242,7 +248,7 @@ namespace LenSys.Models.AppPropertyFinance
                 // Delete children Busniess(ParentChild)
                 foreach (var existingChildBusniess in ExistingappPropertyFinance.busniesses.ToList())
                 {
-                    if (!ExistingappPropertyFinance.busniesses.Any(c => c.BusniessId == existingChildBusniess.BusniessId))
+                    if (!appPropertyFinanceChanges.busniesses.Any(c => c.BusniessId == existingChildBusniess.BusniessId))
                     {
                         ExistingappPropertyFinance.busniesses.Remove(existingChildBusniess);
 

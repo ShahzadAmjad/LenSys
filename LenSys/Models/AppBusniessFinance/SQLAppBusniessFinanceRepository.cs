@@ -101,8 +101,15 @@ namespace LenSys.Models.AppBusniessFinance
                         Context.Entry(busniess.busniessDocuments).State = EntityState.Deleted;
                     }
                 }
-
-                Context.SaveChanges();
+                if (appBusniessFinance.securityDetails.Count > 0)
+                {
+                    foreach(AppBusniessFinanceSecurityDetails security in appBusniessFinance.securityDetails)
+                    {
+                        Context.Entry(security).State = EntityState.Deleted;
+                    }
+                   
+                }
+                    Context.SaveChanges();
             }
             return appBusniessFinance;
         }

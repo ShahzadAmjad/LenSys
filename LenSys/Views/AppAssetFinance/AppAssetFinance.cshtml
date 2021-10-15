@@ -4,6 +4,15 @@
     ViewBag.Title = "App Asset Finance";
 }
 
+<script>
+    document.getElementById('AppTypeListItemLayout').style.display = "block";
+
+    document.getElementById('AppAssetListItemLayout').style.display = "none";
+    document.getElementById('AppBusniessListItemLayout').style.display = "block";
+    document.getElementById('AppDevelopmentListItemLayout').style.display = "block";
+    document.getElementById('AppPropertyListItemLayout').style.display = "block";
+</script>
+
 <div class="" role="main">
     <div class="">
         <div class="page-title">
@@ -23,7 +32,7 @@
 
                     @*Add Indvidual/Busniess/Lead Button*@
                     <div>
-                        <a asp-controller="AppAssetFinance" asp-action="AddIndividual"  id="AddBusniessBtn" class="btn btn-primary mr-1">Add Individual</a>
+                        <a asp-controller="AppAssetFinance" asp-action="AddIndividual" id="AddBusniessBtn" class="btn btn-primary mr-1">Add Individual</a>
                         <a asp-controller="AppAssetFinance" asp-action="AddBusniess" id="AddBusniessBtn" class="btn btn-success mr-1">Add Business </a>
                         @*<a asp-controller="AppAssetFinance" asp-action="AddLead"  id="leadBtn" class="btn bg-danger mr-1">Add Lead</a>*@
                     </div>
@@ -50,7 +59,7 @@
                             </thead>
                             <tbody>
                                 @*@if ((List<AppBusniessFinanceSecurityDetails>)ViewData["SecurityDetailsList"] != null)*@
-                                @if (Model.individuals!=null)
+                                @if (Model.individuals != null)
                                 {
                                     @if (Model.individuals.Count != 0)
                                     {
@@ -66,9 +75,8 @@
 
                                                 <td>
                                                     <a asp-controller="AppAssetFinance" asp-action="EditIndividual" asp-route-Id="@individual.IndividualId" id="AddIndividualPersonalDetails" class="btn btn-primary btn-sm">
-                                                        Default
+                                                        Default                                                
                                                     </a>
-
                                                 </td>
 
                                                 <td>
@@ -101,7 +109,7 @@
                                         }
                                     }
                                 }
-                                </tbody>
+                            </tbody>
                         </table>
                     </div>
                     <br />
@@ -177,7 +185,7 @@
                                         }
                                     }
                                 }
-                                </tbody>
+                            </tbody>
                         </table>
                     </div>
 
@@ -194,7 +202,7 @@
 
 
                             <div class="item form-group" hidden>
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="AssetFinId" >
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="AssetFinId">
                                     Id
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
@@ -203,7 +211,7 @@
                                 </div>
                             </div>
 
-                            
+
 
                             <div class="item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="AssetType">
@@ -351,7 +359,7 @@
                             <div class="ln_solid"></div>
                             <div class="item form-group">
                                 <div class="col-md-6 col-sm-6 offset-md-3">
-                                    <a asp-controller="Home" asp-action="AllApplications"  id="CancelBtn" class="btn btn-primary ">Cancel</a>
+                                    <a asp-controller="Home" asp-action="AllApplications" id="CancelBtn" class="btn btn-primary ">Cancel</a>
                                     @*<button class="btn btn-primary" type="button">Cancel</button>*@
                                     @*<button class="btn btn-primary" type="reset">Reset</button>*@
                                     <button type="submit" class="btn btn-success">Submit Application</button>
@@ -364,6 +372,46 @@
             </div>
         </div>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script>
+
+        //var IndListItem = $('#IndividualListItemLayout');
+        //var BusniessListItem = $('#BusinessListItemLayout');
+        //var AllAppListItem = $('#AppTypeListItemLayout');
+
+        //function ShowIndividualTab() {
+        //    alert("Hello");
+        //    alert("ShowIndividualTab");
+        //    //alert(String(routeId)); 
+        //    document.getElementById("IndividualListItemLayout").style.visibility = 'visible';
+        //    //IndListItem.style.display = 'block';
+        //    //IndListItem.style.visibility = 'visible';            
+        //}
+        //function ShowBusniessTab() {
+        //    //alert(String(routeId));
+        //    //BusniessListItem.style.display = 'block';
+        //    BusniessListItem.style.visibility = 'visible';
+        //}
+        //function ShowAllAppTab() {
+        //    //alert(String(routeId)); 
+        //    //AllAppListItem.style.display = 'block';
+        //    AllAppListItem.style.visibility = 'visible';
+        //}
+        //function ShowIndividualTab() {
+        //    IndListItem.style.visibility = "hidden";
+        //    //alert(String(routeId)); 
+        //}
+        //function ShowBusniessTab() {
+        //    BusniessListItem.style.visibility = "hidden";
+        //    //alert(String(routeId)); 
+        //}
+        //function ShowAllAppTab() {
+        //    AllAppListItem.style.visibility = "hidden";
+        //    //alert(String(routeId)); 
+        //}
+
+
+    </script>
 </div>
 
 

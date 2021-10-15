@@ -220,6 +220,7 @@ namespace LenSys.Controllers
             else if (EditAppObj.Type == "Property finance")
             {
                 EditPropertyFinanceAppID = EditAppObj.AppID;
+                AppPropertyFinance appPropertyFinance = _appPropertyFinanceRepository.GetAppPropertyFinance_EditHome(EditAppObjId);
                 _appPropertyFinanceBusniessRepository.SetBusniessList(_appPropertyFinanceRepository.GetAppPropertyFinance_EditHome(EditAppObjId).busniesses);
                 _appPropertyFinanceIndividualRepository.SetIndividualList(_appPropertyFinanceRepository.GetAppPropertyFinance_EditHome(EditAppObjId).individuals);
                 _appPropertyFinanceSecurityDetailsRepository.SetSecurityDetailsList(_appPropertyFinanceRepository.GetAppPropertyFinance_EditHome(EditAppObjId).securityDetails);

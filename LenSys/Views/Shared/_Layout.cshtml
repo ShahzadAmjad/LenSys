@@ -47,7 +47,7 @@
                         <div class="menu_section">
                             <h3>Loan Applications</h3>
                             <ul class="nav side-menu">
-                                <li>
+                                <li id="HomeListItemLayout">
                                     <a><i class="fa fa-search"></i> Home <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                         <li><a asp-controller="Home" asp-action="Lead">Lead</a></li>
@@ -56,7 +56,7 @@
                                         <li><a asp-controller="Home" asp-action="AllApplications">All Applications</a></li>
                                     </ul>
                                 </li>
-                                <li>
+                                <li id="IndividualListItemLayout" style="display:none" >
                                     <a><i class="fa fa-home"></i> Individual <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                         <li><a asp-controller="IndividualPersonalDetails" asp-action="PersonalDetails">Personal Details</a></li>
@@ -71,23 +71,23 @@
                                         <li><a asp-controller="IndividualUploadDocuments" asp-action="IndividualUploadDocuments">Upload Document</a></li>
                                     </ul>
                                 </li>
-                                <li>
+                                <li id="BusinessListItemLayout" style="display:none">
                                     <a><i class="fa fa-home"></i> Busniess <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
-                                        <li><a asp-controller="BusniessDetails" asp-action="BusniessDetails">Busniess Details</a></li>
+                                        <li><a asp-controller="BusniessDetails" asp-action="BusniessDetails">Business Details</a></li>
                                         <li><a asp-controller="BusniessKeyPrincipals" asp-action="AllKeyPrincipals">Key Principals</a></li>
-                                        <li><a asp-controller="BusniessLiabilities" asp-action="AllBusniessLiabilities">Busniess Liability</a></li>
+                                        <li><a asp-controller="BusniessLiabilities" asp-action="AllBusniessLiabilities">Business Liability</a></li>
                                         <li><a asp-controller="BusniessServiceability" asp-action="AllServiceability">Serviceability</a></li>
                                         <li><a asp-controller="BusniessUploadDocuments" asp-action="BusniessUploadDocuments">Upload Document</a></li>
                                     </ul>
                                 </li>
-                                <li>
+                                <li id="AppTypeListItemLayout" style="display:none">
                                     <a><i class="fa fa-search"></i> Application Type <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
-                                        <li><a asp-controller="AppAssetFinance" asp-action="AppAssetFinance">Asset Finance</a></li>
-                                        <li><a asp-controller="AppBusniessFinance" asp-action="AppBusniessFinance">Busniess Finance</a></li>
-                                        <li><a asp-controller="AppDevelopmentFinance" asp-action="AppDevelopmentFinance">Development Finance</a></li>
-                                        <li><a asp-controller="AppPropertyFinance" asp-action="AppPropertyFinance">Property Finance</a></li>
+                                        <li id="AppAssetListItemLayout" style="display:none"><a asp-controller="AppAssetFinance" asp-action="AppAssetFinance">Asset Finance</a></li>
+                                        <li id="AppBusniessListItemLayout" style="display:none"><a asp-controller="AppBusniessFinance" asp-action="AppBusniessFinance">Business Finance</a></li>
+                                        <li id="AppDevelopmentListItemLayout" style="display:none"><a asp-controller="AppDevelopmentFinance" asp-action="AppDevelopmentFinance">Development Finance</a></li>
+                                        <li id="AppPropertyListItemLayout" style="display:none"><a asp-controller="AppPropertyFinance" asp-action="AppPropertyFinance">Property Finance</a></li>
                                     </ul>
                                 </li>
 
@@ -246,6 +246,48 @@
 
     @*Custom javascript for theme*@
     <script src="~/js/custom-js/custom.js"></script>
-    
+    <script>
+
+        //var IndListItem = $('#IndividualListItemLayout');
+        //var BusniessListItem = $('#BusinessListItemLayout');
+        //var AllAppListItem = $('#AppTypeListItemLayout');
+
+        function ShowIndividualTab() {
+            //alert("Hello");
+            //alert("ShowIndividualTab");
+            document.getElementById('IndividualListItemLayout').style.display = "block";
+            //var IndListItem = document.getElementById('IndividualListItemLayout');
+            //alert(String(IndListItem));
+            //IndListItem.style.visibility = 'visible';            
+        }
+
+
+
+        
+        //function ShowBusniessTab() {
+        //    //alert(String(routeId));
+        //    //BusniessListItem.style.display = 'block';
+        //    BusniessListItem.style.visibility = 'visible';
+        //}
+        //function ShowAllAppTab() {
+        //    //alert(String(routeId)); 
+        //    //AllAppListItem.style.display = 'block';
+        //    AllAppListItem.style.visibility = 'visible';
+        //}
+        //function ShowIndividualTab() {
+        //    IndListItem.style.visibility = "hidden";
+        //    //alert(String(routeId)); 
+        //}
+        //function ShowBusniessTab() {
+        //    BusniessListItem.style.visibility = "hidden";
+        //    //alert(String(routeId)); 
+        //}
+        //function ShowAllAppTab() {
+        //    AllAppListItem.style.visibility = "hidden";
+        //    //alert(String(routeId)); 
+        //}
+
+
+    </script>
 </body>
 </html>

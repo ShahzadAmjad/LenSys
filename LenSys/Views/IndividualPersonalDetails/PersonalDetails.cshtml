@@ -5,187 +5,190 @@
 }
 
 @*<form asp-controller="IndividualPersonalDetails" asp-action="PersonalDetails" method="post">*@
+<script>
+    document.getElementById('IndividualListItemLayout').style.display = "block";
+</script>
 
+<div class="" role="main">
 
-    <div class="" role="main">
-        <div class="">
-            <div class="page-title">
-                <div class="title_left">
-                    <h3>Individual Loan Application</h3>
-                </div>
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Individual Loan Application</h3>
             </div>
-            <div class="clearfix"></div>
-            <div class="row">
-                <div class="col-md-12 col-sm-12 ">
-                    <div class="x_panel">
-                        <div class="x_title">
-                            <h2>Personal Details</h2>
+        </div>
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 ">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Personal Details</h2>
 
-                            <div class="clearfix"></div>
-                        </div>
-                        <div class="x_content">
-                            <br />
-                            <form id="IndividualPersonalDetailsForm" data-parsley-validate class="form-horizontal form-label-left" asp-controller="IndividualPersonalDetails" asp-action="PersonalDetails" method="post">
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br />
+                        <form id="IndividualPersonalDetailsForm" data-parsley-validate class="form-horizontal form-label-left" asp-controller="IndividualPersonalDetails" asp-action="PersonalDetails" method="post">
 
-                                <div class="item form-group" hidden>
-                                    <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="PersonalDetailsId">
-                                        Id<span class="required">*</span>
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 ">
-                                        <input type="text" asp-for="PersonalDetailsId" id="personalDetailsId" name="personalDetailsId" readonly class="form-control ">
-                                    </div>
+                            <div class="item form-group" hidden>
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="PersonalDetailsId">
+                                    Id
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input type="text" asp-for="PersonalDetailsId" id="personalDetailsId" name="personalDetailsId" readonly class="form-control ">
                                 </div>
+                            </div>
 
-                                <div class="item form-group">
-                                    <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="Title">
-                                        Title<span class="required">*</span>
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 ">
-                                        <input type="text" asp-for="Title" id="title" name="title" required="required" class="form-control ">
-                                    </div>
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="Title">
+                                    Title
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input type="text" asp-for="Title" id="title" name="title" required="required" class="form-control ">
                                 </div>
-                                <div class="item form-group">
-                                    <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="FirstName">
-                                        First Name<span class="required">*</span>
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 ">
-                                        <input type="text" asp-for="FirstName" id="FirstName" name="FirstName" required="required" class="form-control ">
-                                    </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="FirstName">
+                                    First Name<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input type="text" asp-for="FirstName" id="FirstName" name="FirstName" required="required" class="form-control ">
                                 </div>
-                                <div class="item form-group">
-                                    <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="MiddleName">
-                                        Middle Name
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 ">
-                                        <input type="text" asp-for="MiddleName" id="MiddleName" name="MiddleName" required="required" class="form-control ">
-                                    </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="MiddleName">
+                                    Middle Name
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input type="text" asp-for="MiddleName" id="MiddleName" name="MiddleName" required="required" class="form-control ">
                                 </div>
-                                <div class="item form-group">
-                                    <label asp-for="Surname" class="col-form-label col-md-3 col-sm-3 label-align"> Surname</label>
-                                    <div class="col-md-6 col-sm-6 ">
-                                        <input asp-for="Surname" id="surname" name="surname" class="form-control" type="text">
-                                    </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="Surname" class="col-form-label col-md-3 col-sm-3 label-align"> Surname</label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="Surname" id="surname" name="surname" class="form-control" type="text">
                                 </div>
-                                <div class="item form-group">
-                                    <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="PhoneNo">
-                                        Phone No
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 ">
-                                        <input type="text" asp-for="PhoneNo" id="PhoneNo" name="PhoneNo" required="required" class="form-control ">
-                                    </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="PhoneNo">
+                                    Phone No
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input type="text" asp-for="PhoneNo" id="PhoneNo" name="PhoneNo" required="required" class="form-control ">
                                 </div>
-                                <div class="item form-group">
-                                    <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="Email">
-                                        Email
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 ">
-                                        <input type="text" asp-for="Email" id="Email" name="Email" required="required" class="form-control ">
-                                    </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="Email">
+                                    Email
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input type="text" asp-for="Email" id="Email" name="Email" required="required" class="form-control ">
                                 </div>
-                                <div class="item form-group">
-                                    <label asp-for="DateOfBirth" class="col-form-label col-md-3 col-sm-3 label-align">
-                                        Date Of Birth<span class="required">*</span>
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 ">
-                                        <input asp-for="DateOfBirth" id="dateOfBirth" name="dateOfBirth" class="date-picker form-control" placeholder="dd-mm-yyyy" type="text" required="required" onfocus="this.type='date'" onmouseover="this.type='date'" onclick="this.type='date'" onblur="this.type='text'" onmouseout="timeFunctionLong(this)">
-                                        <script>
-                                            function timeFunctionLong(input) {
-                                                setTimeout(function () {
-                                                    input.type = 'text';
-                                                }, 60000);
-                                            }</script>
-                                    </div>
+                            </div>
+                            <div class="item form-group">
+                                <label asp-for="DateOfBirth" class="col-form-label col-md-3 col-sm-3 label-align">
+                                    Date Of Birth<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input asp-for="DateOfBirth" id="dateOfBirth" name="dateOfBirth" class="date-picker form-control" placeholder="dd-mm-yyyy" type="text" required="required" onfocus="this.type='date'" onmouseover="this.type='date'" onclick="this.type='date'" onblur="this.type='text'" onmouseout="timeFunctionLong(this)">
+                                    <script>
+                                        function timeFunctionLong(input) {
+                                            setTimeout(function () {
+                                                input.type = 'text';
+                                            }, 60000);
+                                        }</script>
                                 </div>
-
-
-                                <div class="item form-group">
-                                    <label asp-for="Gender" class="col-form-label col-md-3 col-sm-3 label-align">Gender</label>
-                                    <div class="col-md-6 col-sm-6 ">
-                                        <select asp-for="Gender" id="gender" name="gender" class="form-control">
-                                            <option>Male</option>
-                                            <option>Female</option>
-                                            <option>Others</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="item form-group">
-                                    <label asp-for="Nationality" class="col-form-label col-md-3 col-sm-3 label-align">Nationality</label>
-                                    <div class="col-md-6 col-sm-6 ">
-                                        <select asp-for="Nationality" asp-items="Html.GetEnumSelectList<CountryEnum>()" id="nationality" name="nationality" class="form-control">
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="item form-group">
-                                    <label asp-for="PermanentRightForUkResident" class="col-form-label col-md-3 col-sm-3 label-align">Permanent Rights to Reside in UK</label>
-                                    <div class="col-md-6 col-sm-6 ">
-                                        <select asp-for="PermanentRightForUkResident" id="permanentRightForUkResident" name="permanentRightForUkResident" class="form-control">
-                                            <option>Yes</option>
-                                            <option>No</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="item form-group">
-                                    <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="LengthOfResidencyYears">
-                                        Length Of Residency Years
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 ">
-                                        <input type="text" asp-for="LengthOfResidencyYears" id="LengthOfResidencyYears" name="LengthOfResidencyYears" required="required" class="form-control ">
-                                    </div>
-                                </div>
-
-                                <div class="item form-group">
-                                    <label asp-for="MaritalStatus" class="col-form-label col-md-3 col-sm-3 label-align">Marital Status</label>
-                                    <div class="col-md-6 col-sm-6 ">
-                                        <select asp-for="MaritalStatus" id="maritalStatus" name="maritalStatus" class="form-control">
-                                            <option>
-                                                Single
-                                            </option>
-                                            <option>
-                                                Married
-                                            </option>
-                                            <option>
-                                                Divorced
-                                            </option>
-                                            <option>
-                                                Dissolved
-                                            </option>
-                                            <option>
-                                                Living with partner
-                                            </option>
-                                            <option>
-                                                Separated
-                                            </option>
-                                            <option>
-                                                Civil Partnership
-                                            </option>
-                                            <option>
-                                                Widowed
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
+                            </div>
 
 
-                                <div class="ln_solid"></div>
-                                <div class="item form-group">
-                                    <div class="col-md-6 col-sm-6 offset-md-3">
-                                        @*<button class="btn btn-primary" type="button">Cancel</button>*@
-                                        <a asp-controller="IndividualPersonalDetails" asp-action="ReturnToParentApp" class="btn btn-primary">Go to Main Application</a>
-                                        @*<button class="btn btn-primary" type="button">Go to Main Application</button>*@
-                                        <button type="submit" class="btn btn-success">Save</button>
-                                    </div>
+                            <div class="item form-group">
+                                <label asp-for="Gender" class="col-form-label col-md-3 col-sm-3 label-align">Gender</label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <select asp-for="Gender" id="gender" name="gender" class="form-control">
+                                        <option>Male</option>
+                                        <option>Female</option>
+                                        <option>Others</option>
+                                    </select>
                                 </div>
+                            </div>
 
-                            </form>
-                        </div>
+                            <div class="item form-group">
+                                <label asp-for="Nationality" class="col-form-label col-md-3 col-sm-3 label-align">Nationality</label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <select asp-for="Nationality" asp-items="Html.GetEnumSelectList<CountryEnum>()" id="nationality" name="nationality" class="form-control">
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label asp-for="PermanentRightForUkResident" class="col-form-label col-md-3 col-sm-3 label-align">Permanent Rights to Reside in UK</label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <select asp-for="PermanentRightForUkResident" id="permanentRightForUkResident" name="permanentRightForUkResident" class="form-control">
+                                        <option>Yes</option>
+                                        <option>No</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" asp-for="LengthOfResidencyYears">
+                                    Length Of Residency Years
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input type="text" asp-for="LengthOfResidencyYears" id="LengthOfResidencyYears" name="LengthOfResidencyYears" required="required" class="form-control ">
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label asp-for="MaritalStatus" class="col-form-label col-md-3 col-sm-3 label-align">Marital Status</label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <select asp-for="MaritalStatus" id="maritalStatus" name="maritalStatus" class="form-control">
+                                        <option>
+                                            Single
+                                        </option>
+                                        <option>
+                                            Married
+                                        </option>
+                                        <option>
+                                            Divorced
+                                        </option>
+                                        <option>
+                                            Dissolved
+                                        </option>
+                                        <option>
+                                            Living with partner
+                                        </option>
+                                        <option>
+                                            Separated
+                                        </option>
+                                        <option>
+                                            Civil Partnership
+                                        </option>
+                                        <option>
+                                            Widowed
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+
+
+                            <div class="ln_solid"></div>
+                            <div class="item form-group">
+                                <div class="col-md-6 col-sm-6 offset-md-3">
+                                    @*<button class="btn btn-primary" type="button">Cancel</button>*@
+                                    <a asp-controller="IndividualPersonalDetails" asp-action="ReturnToParentApp" class="btn btn-primary">Go to Main Application</a>
+                                    @*<button class="btn btn-primary" type="button">Go to Main Application</button>*@
+                                    <button type="submit" class="btn btn-success">Save</button>
+                                </div>
+                            </div>
+
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    @*<div asp-validation-summary="All" class="text-danger"></div>*@
+@*<div asp-validation-summary="All" class="text-danger"></div>*@
 @*</form>*@
