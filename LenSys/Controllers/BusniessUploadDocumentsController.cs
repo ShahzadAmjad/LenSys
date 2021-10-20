@@ -78,6 +78,82 @@ namespace LenSys.Controllers
             //return View("BusniessUploadDocuments");
         }
         [HttpGet]
+        public ViewResult AllBusniessDocuments()
+        {
+            int BusniessId;
+            var model = new List<BusniessDocuments>();
+
+            String editAppType = HomeController.EditAppType;
+
+            if (editAppType == "Asset finance")
+            {
+                BusniessId = AppAssetFinanceController.BusniessID;
+                IEnumerable<BusniessDocuments> busniessDocuments = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId).busniessDocuments;
+                model = (List<BusniessDocuments>)_busniessDocumentsRepository.SetBusniessDocumentsList(busniessDocuments);
+            }
+
+            else if (editAppType == "Business finance")
+            {
+                BusniessId = AppBusniessFinanceController.BusniessID;
+                IEnumerable<BusniessDocuments> busniessDocuments = _appBusniessFinanceBusniessRepository.GetBusniess(BusniessId).busniessDocuments;
+                model = (List<BusniessDocuments>)_busniessDocumentsRepository.SetBusniessDocumentsList(busniessDocuments);
+            }
+            else if (editAppType == "Development finance")
+            {
+                BusniessId = AppDevelopmentFinanceController.BusniessID;
+                IEnumerable<BusniessDocuments> busniessDocuments = _appDevelopmentFinanceBusniessRepository.GetBusniess(BusniessId).busniessDocuments;
+                model = (List<BusniessDocuments>)_busniessDocumentsRepository.SetBusniessDocumentsList(busniessDocuments);
+            }
+            else if (editAppType == "Property finance")
+            {
+                BusniessId = AppPropertyFinanceController.BusniessID;
+                IEnumerable<BusniessDocuments> busniessDocuments = _appPropertyFinanceBusniessRepository.GetBusniess(BusniessId).busniessDocuments;
+                model = (List<BusniessDocuments>)_busniessDocumentsRepository.SetBusniessDocumentsList(busniessDocuments);
+            }
+            else
+            {
+                model = new List<BusniessDocuments>();
+            }
+
+            return View("AllBusniessDocuments", model);
+        }
+        public ViewResult DeleteBusniessDocuments(int id)
+        {
+            _busniessDocumentsRepository.Delete(id);
+            var updatedBusniessDocuments = _busniessDocumentsRepository.GetAllBusniessDocuments();
+
+            int BusniessId;
+            String editAppType = HomeController.EditAppType;
+
+            if (editAppType == "Asset finance")
+            {
+                BusniessId = AppAssetFinanceController.BusniessID;
+                AppAssetFinanceBusniess appAssetFinanceBusniess = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId);
+                appAssetFinanceBusniess.busniessDocuments = (List<BusniessDocuments>)updatedBusniessDocuments;
+            }
+
+            else if (editAppType == "Business finance")
+            {
+                BusniessId = AppBusniessFinanceController.BusniessID;
+                AppBusniessFinanceBusniess appBusinessFinanceBusniess = _appBusniessFinanceBusniessRepository.GetBusniess(BusniessId);
+                appBusinessFinanceBusniess.busniessDocuments = (List<BusniessDocuments>)updatedBusniessDocuments;
+            }
+            else if (editAppType == "Development finance")
+            {
+                BusniessId = AppDevelopmentFinanceController.BusniessID;
+                AppDevelopmentFinanceBusniess appDevelopmentFinanceBusniess = _appDevelopmentFinanceBusniessRepository.GetBusniess(BusniessId);
+                appDevelopmentFinanceBusniess.busniessDocuments = (List<BusniessDocuments>)updatedBusniessDocuments;
+            }
+            else if (editAppType == "Property finance")
+            {
+                BusniessId = AppPropertyFinanceController.BusniessID;
+                AppPropertyFinanceBusniess appPropertyFinanceBusniess = _appPropertyFinanceBusniessRepository.GetBusniess(BusniessId);
+                appPropertyFinanceBusniess.busniessDocuments = (List<BusniessDocuments>)updatedBusniessDocuments;
+            }
+
+            return View("AllKeyPrincipals", updatedBusniessDocuments);
+        }
+        [HttpGet]
         public ViewResult BusniessUploadDocuments()
         {
 

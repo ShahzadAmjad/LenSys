@@ -9,11 +9,11 @@
 </script>
 
 <div class="mtop20">
-    @*<a asp-controller="IndividualPropertySchedule" asp-action="PropertySchedule" class="btn btn-success">Add New Property Schedule</a>*@
-    <button type="button" class="btn btn-success" data-toggle="ajax-modal" id="AddDocumentbtn" name="AddDocumentbtn"
+    <a asp-controller="IndividualUploadDocuments" asp-action="IndividualUploadDocuments" class="btn btn-success">Upload New Document</a>
+    @*<button type="button" class="btn btn-success" data-toggle="ajax-modal" id="AddDocumentbtn" name="AddDocumentbtn"
             data-target="#AddDocumentIndividual" data-url="@Url.Action("AddIndividualDocument")">
         Upload New Document
-    </button>
+    </button>*@
 </div>
 
 <div class="mtop20">
@@ -23,7 +23,7 @@
                 <th id="propertyID">ID</th>
                 <th id="owner" class="hideCol hideHideCol_2">Name</th>
                 
-                <th>Edit</th>
+                
                 <th>Delete</th>
             </tr>
         </thead>
@@ -38,9 +38,6 @@
                     <tr>
                         <td>@individualDocument.DocumentId</td>
                         <td>@individualDocument.DocumentName</td>
-
-                        <td><a asp-controller="IndividualUploadDocuments" asp-action="EditProperty" style="width:80px;" class="btn btn-primary btn-sm" asp-route-id="@individualDocument.DocumentId">Edit</a></td>
-
                         <td>
                             <button type="button" style="width:80px;" class="btn btn-danger btn-sm" data-toggle="modal" data-target="@tm">
                                 Delete

@@ -85,11 +85,87 @@ namespace LenSys.Controllers
             //return View("IndividualUploadDocuments");            
         }
         [HttpGet]
+        public ViewResult AllIndividualDocuments()
+        {
+            int IndividualId;
+            var model = new List<IndividualDocuments>();
+
+            String editAppType = HomeController.EditAppType;
+
+            if (editAppType == "Asset finance")
+            {
+                IndividualId = AppAssetFinanceController.IndividualID;
+                IEnumerable<IndividualDocuments> individualDocumentsList = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId).individualDocuments;
+                model = (List<IndividualDocuments>)_iindividualDocumentsRepository.SetIndividualDocumentsList(individualDocumentsList);
+            }
+
+            else if (editAppType == "Business finance")
+            {
+                IndividualId = AppBusniessFinanceController.IndividualID;
+                IEnumerable<IndividualDocuments> individualDocumentsList = _appBusniessFinanceIndividualRepository.GetIndividual(IndividualId).individualDocuments;
+                model = (List<IndividualDocuments>)_iindividualDocumentsRepository.SetIndividualDocumentsList(individualDocumentsList);
+            }
+            else if (editAppType == "Development finance")
+            {
+                IndividualId = AppDevelopmentFinanceController.IndividualID;
+                IEnumerable<IndividualDocuments> individualDocumentsList = _appDevelopmentFinanceIndividualRepository.GetIndividual(IndividualId).individualDocuments;
+                model = (List<IndividualDocuments>)_iindividualDocumentsRepository.SetIndividualDocumentsList(individualDocumentsList);
+            }
+            else if (editAppType == "Property finance")
+            {
+                IndividualId = AppPropertyFinanceController.IndividualID;
+                IEnumerable<IndividualDocuments> individualDocumentsList = _appPropertyFinanceIndividualRepository.GetIndividual(IndividualId).individualDocuments;
+                model = (List<IndividualDocuments>)_iindividualDocumentsRepository.SetIndividualDocumentsList(individualDocumentsList);
+            }
+            else
+            {
+                model = new List<IndividualDocuments>();
+            }
+
+
+            return View("AllIndividualDocuments", model);
+        }
+        public ViewResult DeleteIndividualDocuments(int id)
+        {
+            _iindividualDocumentsRepository.Delete(id);
+            var updatedIndividualDocuments = _iindividualDocumentsRepository.GetAllIndividualDocuments();
+            
+            int IndividualId;
+            String editAppType = HomeController.EditAppType;
+
+            if (editAppType == "Asset finance")
+            {
+                IndividualId = AppAssetFinanceController.IndividualID;
+                AppAssetFinanceIndividual appAssetFinanceIndividual = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId);
+                appAssetFinanceIndividual.individualDocuments = (List<IndividualDocuments>)updatedIndividualDocuments;
+            }
+
+            else if (editAppType == "Business finance")
+            {
+                IndividualId = AppBusniessFinanceController.IndividualID;
+                AppBusniessFinanceIndividual appBusniessFinanceIndividual = _appBusniessFinanceIndividualRepository.GetIndividual(IndividualId);
+                appBusniessFinanceIndividual.individualDocuments = (List<IndividualDocuments>)updatedIndividualDocuments;
+            }
+            else if (editAppType == "Development finance")
+            {
+                IndividualId = AppDevelopmentFinanceController.IndividualID;
+                AppDevelopmentFinanceIndividual appDevelopmentFinanceIndividual = _appDevelopmentFinanceIndividualRepository.GetIndividual(IndividualId);
+                appDevelopmentFinanceIndividual.individualDocuments = (List<IndividualDocuments>)updatedIndividualDocuments;
+            }
+            else if (editAppType == "Property finance")
+            {
+                IndividualId = AppPropertyFinanceController.IndividualID;
+                AppPropertyFinanceIndividual appPropertyFinanceIndividual = _appPropertyFinanceIndividualRepository.GetIndividual(IndividualId);
+                appPropertyFinanceIndividual.individualDocuments = (List<IndividualDocuments>)updatedIndividualDocuments;
+            }
+
+            return View("AllIndividualDocuments", updatedIndividualDocuments);
+        }
+        [HttpGet]
         public ViewResult IndividualUploadDocuments()
         {
             return View();
         }
-
         [HttpPost]
         public IActionResult IndividualUploadDocuments(IndividualDocumentsViewModel model)
         {
@@ -118,7 +194,6 @@ namespace LenSys.Controllers
 
             return View();
         }
-
         public IActionResult ReturnToParentApp()
         {
             String editAppType = HomeController.EditAppType;
