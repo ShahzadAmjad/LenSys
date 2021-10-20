@@ -22,21 +22,43 @@ namespace LenSys.Models.BusniessUploadDocument
             return _busniessDocuments;
         }
 
-        public BusniessDocuments GetBusniessDocument(int serviceabilityId)
+        public BusniessDocuments GetBusniessDocument(int id)
         {
-            throw new NotImplementedException();
+            return _busniessDocuments.FirstOrDefault(e => e.DocumentId == id);
+        }
+        public BusniessDocuments Delete(int id)
+        {
+            BusniessDocuments busniessDocuments = _busniessDocuments.FirstOrDefault(e => e.DocumentId == id);
+            if (_busniessDocuments != null)
+            {
+                _busniessDocuments.Remove(busniessDocuments);
+            }
+            return busniessDocuments;
         }
 
-        public BusniessDocuments RemoveDocument(BusniessDocuments document)
+        public BusniessDocuments Add(BusniessDocuments document)
         {
-            throw new NotImplementedException();
-        }
-
-        public BusniessDocuments UploadDocument(BusniessDocuments document)
-        {
-            document.DocumentId = _busniessDocuments.Max(e => e.DocumentId) + 1;
+            if (_busniessDocuments.Count == 0)
+            {
+                document.DocumentId = 1;
+            }
+            else
+            {
+                document.DocumentId = _busniessDocuments.Max(e => e.DocumentId) + 1;
+            }
             _busniessDocuments.Add(document);
             return document;
+        }
+        public IEnumerable<BusniessDocuments> ClearBusniessDocumentsList()
+        {
+            _busniessDocuments.Clear();
+            return _busniessDocuments;
+        }
+
+        public IEnumerable<BusniessDocuments> SetBusniessDocumentsList(IEnumerable<BusniessDocuments> busniessDocumentsList)
+        {
+            _busniessDocuments = (List<BusniessDocuments>)busniessDocumentsList;
+            return _busniessDocuments;
         }
     }
 }

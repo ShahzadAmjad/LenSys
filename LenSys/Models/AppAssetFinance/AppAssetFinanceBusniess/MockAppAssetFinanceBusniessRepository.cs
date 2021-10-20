@@ -14,9 +14,7 @@ namespace LenSys.Models.AppAssetFinance.AppAssetFinanceBusniess
             _busniess = new List<AppAssetFinanceBusniess>()
             {
                                 //new AppAssetFinanceBusniess{
-
                                 //    busniessDetails=busniessDetails
-
                                 //}
             };
         }
@@ -25,7 +23,6 @@ namespace LenSys.Models.AppAssetFinance.AppAssetFinanceBusniess
             if (_busniess.Count == 0)
             {
                 busniess.BusniessId = 1;
-
             }
             else
             {

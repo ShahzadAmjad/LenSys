@@ -12,30 +12,49 @@ namespace LenSys.Models.IndividualUploadDocuments
         {
             _individualDocuments = new List<IndividualDocuments>()
             {
-                new IndividualDocuments{DocumentId=1, DocumentPath="path", DocumentName="SampleDoc"}
-                
+                //new IndividualDocuments{DocumentId=1, DocumentPath="path", DocumentName="SampleDoc"}             
             };
         }
         public IEnumerable<IndividualDocuments> GetAllIndividualDocuments()
         {
-            throw new NotImplementedException();
+            return _individualDocuments;
         }
-
-        public IndividualDocuments GetIndividulDocument(int serviceabilityId)
+        public IndividualDocuments GetIndividulDocument(int id)
         {
-            throw new NotImplementedException();
+            return _individualDocuments.FirstOrDefault(e => e.DocumentId == id);
         }
-
-        public IndividualDocuments RemoveDocument(IndividualDocuments document)
+        public IndividualDocuments Delete(int id)
         {
-            throw new NotImplementedException();
+            IndividualDocuments individualDocuments = _individualDocuments.FirstOrDefault(e => e.DocumentId == id);
+            if (individualDocuments != null)
+            {
+                _individualDocuments.Remove(individualDocuments);
+            }
+            return individualDocuments;
         }
-
-        public IndividualDocuments UploadDocument(IndividualDocuments document)
+        public IndividualDocuments Add(IndividualDocuments document)
         {
-            document.DocumentId = _individualDocuments.Max(e => e.DocumentId) + 1;
+            if (_individualDocuments.Count == 0)
+            {
+                document.DocumentId = 1;
+            }
+            else
+            {
+                document.DocumentId = _individualDocuments.Max(e => e.DocumentId) + 1;
+            }
             _individualDocuments.Add(document);
             return document;
+        }
+        public IEnumerable<IndividualDocuments> ClearIndividualDocumentsList()
+        {
+            _individualDocuments.Clear();
+            return _individualDocuments;
+        }
+
+        public IEnumerable<IndividualDocuments> SetIndividualDocumentsList(IEnumerable<IndividualDocuments> IndividualDocumentsList)
+        {
+            _individualDocuments = (List<IndividualDocuments>)IndividualDocumentsList;
+            return _individualDocuments;
         }
     }
 }

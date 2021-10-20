@@ -55,7 +55,7 @@ namespace LenSys.Controllers
                     DocumentName = model.DocumentName,
                     DocumentPath = filePath
                 };
-                IndividualDocuments individualDocuments1 = _iindividualDocumentsRepository.UploadDocument(individualDocuments);
+                IndividualDocuments individualDocuments1 = _iindividualDocumentsRepository.Add(individualDocuments);
                
 
 

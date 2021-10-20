@@ -7,10 +7,12 @@ namespace LenSys.Models.BusniessUploadDocument
 {
     public interface IBusniessDocumentsRepository
     {
-        BusniessDocuments UploadDocument(BusniessDocuments document);
-        BusniessDocuments RemoveDocument(BusniessDocuments document);
-
-        BusniessDocuments GetBusniessDocument(int serviceabilityId);
+        BusniessDocuments Add(BusniessDocuments document);
+        BusniessDocuments Delete(int id);
+        BusniessDocuments GetBusniessDocument(int id);
         IEnumerable<BusniessDocuments> GetAllBusniessDocuments();
+        IEnumerable<BusniessDocuments> ClearBusniessDocumentsList();
+        IEnumerable<BusniessDocuments> SetBusniessDocumentsList(IEnumerable<BusniessDocuments> BusniessDocumentsList);
+
     }
 }

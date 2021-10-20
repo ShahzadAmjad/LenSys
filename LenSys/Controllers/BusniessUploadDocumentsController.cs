@@ -53,7 +53,7 @@ namespace LenSys.Controllers
                     DocumentPath = uniqueFileName
                 };
 
-                BusniessDocuments busniessDocuments1 = _busniessDocumentsRepository.UploadDocument(busniessDocuments);
+                BusniessDocuments busniessDocuments1 = _busniessDocumentsRepository.Add(busniessDocuments);
 
                 return View();
             }
