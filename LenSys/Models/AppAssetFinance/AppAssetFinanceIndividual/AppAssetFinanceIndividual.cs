@@ -31,7 +31,7 @@ namespace LenSys.Models.AppAssetFinance.AppAssetFinanceIndividual
         //Multiple Properties
         public List<PropertySchedule> propertySchedule { get; set; }
         public CreditHistory creditHistory { get; set; }
-        public IndividualDocuments individualDocuments { get; set; }
+        public List<IndividualDocuments> individualDocuments { get; set; }
 
     }
 }

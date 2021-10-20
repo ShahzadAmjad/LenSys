@@ -13,7 +13,6 @@ namespace LenSys.Models.BusniessUploadDocument
         public int DocumentId { get; set; }
         public int AppId { get; set; }
         public int BusniessId { get; set; }
-
         public string DocumentName { get; set; }
         public string DocumentPath { get; set; }
         public int DocumentGuid { get; set; }

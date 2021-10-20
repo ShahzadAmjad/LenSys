@@ -12,7 +12,7 @@ namespace LenSys.Models.IndividualUploadDocuments
         [Key]
         public int DocumentId { get; set; }
         public int AppId { get; set; }
-        public int IndividualIdId { get; set; }
+        public int IndividualId { get; set; }
         public string DocumentType { get; set; }
         public string DocumentName { get; set; }
         public string DocumentPath { get; set; }

@@ -18,6 +18,6 @@ namespace LenSys.Models.AppDevelopmentFinance.AppDevelopmentFinanceBusniess
         public List<KeyPrincipals> keyPrincipals { get; set; }
         public List<BusniessLiabilities.BusniessLiabilities> busniessLiabilities { get; set; }
         public List<Serviceability> serviceability { get; set; }
-        public BusniessDocuments busniessDocuments { get; set; }
+        public List<BusniessDocuments> busniessDocuments { get; set; }
     }
 }

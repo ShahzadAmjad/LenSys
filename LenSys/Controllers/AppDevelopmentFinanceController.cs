@@ -85,7 +85,7 @@ namespace LenSys.Controllers
             {
                 //new Serviceability{ Year=(DateTime.Now.Year).ToString(),TurnOver=0}
             };
-            BusniessDocuments busniessDocuments = new BusniessDocuments { DocumentName = "" };
+            List<BusniessDocuments> busniessDocuments = new List<BusniessDocuments> { };
 
             appDevelopmentFinanceBusniess.busniessDetails = busniessDetails;
             appDevelopmentFinanceBusniess.keyPrincipals = keyPrincipals;
@@ -132,7 +132,7 @@ namespace LenSys.Controllers
                 //new PropertySchedule{ Owner="", PropertyAddress=""}
             };
             CreditHistory creditHistory = new CreditHistory { CriminalConvictions = "" };
-            IndividualDocuments individualDocuments = new IndividualDocuments { DocumentName = "" };
+            List<IndividualDocuments> individualDocuments = new List<IndividualDocuments> { };
 
 
             appDevelopmentFinanceIndividual.personalDetails = individualPersonalDetails;
