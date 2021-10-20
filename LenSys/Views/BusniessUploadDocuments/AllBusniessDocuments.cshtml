@@ -1,0 +1,76 @@
+﻿@model IEnumerable<BusniessDocuments>
+
+
+@{
+    ViewBag.Title = "Busniess All Documents";
+}
+<script>
+    document.getElementById('BusinessListItemLayout').style.display = "block";
+</script>
+
+<div class="mtop20">
+    @*<a asp-controller="IndividualPropertySchedule" asp-action="PropertySchedule" class="btn btn-success">Add New Property Schedule</a>*@
+    <button type="button" class="btn btn-success" data-toggle="ajax-modal" id="AddDocumentbtn" name="AddDocumentbtn"
+            data-target="#AddDocumentBusniess" data-url="@Url.Action("AddBusniessDocument")">
+        Upload New Document
+    </button>
+</div>
+
+<div class="mtop20">
+    <table id="tblBusniessKeyPrincipals" class="table table-bordered table-hover table-striped">
+        <thead class="thead-light">
+            <tr>
+                <th id="keyPrincipalId">Id</th>
+                <th id="firstName" class="hideCol hideHideCol_2">Name</th>                
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Count() > 0)
+            {
+                @foreach (var busniessDocuments in Model)
+
+                {
+                    var tm = "#myModal" + busniessDocuments.DocumentId;
+                    var mid = "myModal" + busniessDocuments.DocumentId;
+                    <tr>
+                        <td>@busniessDocuments.DocumentId</td>
+                        <td>@busniessDocuments.DocumentName</td>
+                        
+
+                        <td><a asp-controller="BusniessUploadDocuments" asp-action="EditDocument" style="width:80px;" class="btn btn-primary btn-sm" asp-route-id="@busniessDocuments.DocumentId">Edit</a></td>
+
+                        <td>
+
+                            <button type="button" style="width:80px;" class="btn btn-danger btn-sm" data-toggle="modal" data-target="@tm">
+                                Delete
+                            </button>
+
+
+                            <div class="modal fade" id="@mid" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title text-center" id="myModalLabel">Delete Document</h4>
+                                            <button type="button" class="close " data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Are you sure want to delete this Document?
+                                        </div>
+                                        <div class="modal-footer">
+
+                                            <a asp-controller="BusniessUploadDocuments" asp-action="DeleteDocument" asp-route-Id="@busniessDocuments.DocumentId" id="deleteBtn" class="btn bg-danger mr-1">Delete</a>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    <a asp-controller="BusniessUploadDocuments" asp-action="ReturnToParentApp" class="btn btn-primary">Go to Main Application</a>
+</div>

@@ -32,13 +32,11 @@ namespace LenSys.Models.AppAssetFinance.AppAssetFinanceBusniess
             _busniess.Add(busniess);
             return busniess;
         }
-
         public IEnumerable<AppAssetFinanceBusniess> ClearBusniessList()
         {
             _busniess.Clear();
             return _busniess;
         }
-
         public AppAssetFinanceBusniess Delete(int BusniessId)
         {
             AppAssetFinanceBusniess busniess = _busniess.FirstOrDefault(e => e.BusniessId == BusniessId);
@@ -48,23 +46,19 @@ namespace LenSys.Models.AppAssetFinance.AppAssetFinanceBusniess
             }
             return busniess;
         }
-
         public IEnumerable<AppAssetFinanceBusniess> GetAllBusniess()
         {
             return _busniess;
         }
-
         public AppAssetFinanceBusniess GetBusniess(int BusniessId)
         {
             return _busniess.FirstOrDefault(e => e.BusniessId == BusniessId);
         }
-
         public IEnumerable<AppAssetFinanceBusniess> SetBusniessList(IEnumerable<AppAssetFinanceBusniess> BusniessList)
         {
             _busniess = (List<AppAssetFinanceBusniess>)BusniessList;
             return _busniess;
         }
-
         public AppAssetFinanceBusniess Update(AppAssetFinanceBusniess model)
         {
             AppAssetFinanceBusniess busniess = _busniess.FirstOrDefault(e => e.BusniessId == model.BusniessId);

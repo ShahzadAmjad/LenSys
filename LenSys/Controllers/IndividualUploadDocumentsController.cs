@@ -57,11 +57,6 @@ namespace LenSys.Controllers
                 };
                 IndividualDocuments individualDocuments1 = _iindividualDocumentsRepository.Add(individualDocuments);
                
-
-
-
-
-
                 return View();
             }
 
