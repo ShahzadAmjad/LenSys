@@ -1,4 +1,8 @@
-﻿using LenSys.Models.BusniessUploadDocument;
+﻿using LenSys.Models.AppAssetFinance.AppAssetFinanceBusniess;
+using LenSys.Models.AppBusniessFinance.AppBusniessFinanceBusniess;
+using LenSys.Models.AppDevelopmentFinance.AppDevelopmentFinanceBusniess;
+using LenSys.Models.AppPropertyFinance.AppPropertyFinanceBusniess;
+using LenSys.Models.BusniessUploadDocument;
 using LenSys.ViewModels.BusniessUploadDocuments;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -13,18 +17,65 @@ namespace LenSys.Controllers
     public class BusniessUploadDocumentsController:Controller
     {
         private IBusniessDocumentsRepository _busniessDocumentsRepository;
+        private IAppAssetFinanceBusniessRepository _appAssetFinanceBusniessRepository;
+        private IAppBusniessFinanceBusniessRepository _appBusniessFinanceBusniessRepository;
+        private IAppDevelopmentFinanceBusniessRepository _appDevelopmentFinanceBusniessRepository;
+        private IAppPropertyFinanceBusniessRepository _appPropertyFinanceBusniessRepository;
 
         private IHostingEnvironment hostingEnvironment;
-        public BusniessUploadDocumentsController(IBusniessDocumentsRepository busniessDocumentsRepository, IHostingEnvironment hostingEnvironment)
+        public BusniessUploadDocumentsController(IBusniessDocumentsRepository busniessDocumentsRepository,
+            IHostingEnvironment hostingEnvironment,
+            IAppAssetFinanceBusniessRepository appAssetFinanceBusniessRepository,
+            IAppBusniessFinanceBusniessRepository appBusniessFinanceBusniessRepository,
+            IAppDevelopmentFinanceBusniessRepository appDevelopmentFinanceBusniessRepository,
+            IAppPropertyFinanceBusniessRepository appPropertyFinanceBusniessRepository)
         {
             _busniessDocumentsRepository = busniessDocumentsRepository;
             this.hostingEnvironment = hostingEnvironment;
+            _appAssetFinanceBusniessRepository = appAssetFinanceBusniessRepository;
+            _appBusniessFinanceBusniessRepository = appBusniessFinanceBusniessRepository;
+            _appDevelopmentFinanceBusniessRepository = appDevelopmentFinanceBusniessRepository;
+            _appPropertyFinanceBusniessRepository = appPropertyFinanceBusniessRepository;
         }
         public ViewResult Index()
         {
+            int BusniessId;
+            var model = new List<BusniessDocuments>();
 
-            return View("BusniessUploadDocuments");
+            String editAppType = HomeController.EditAppType;
 
+            if (editAppType == "Asset finance")
+            {
+                BusniessId = AppAssetFinanceController.BusniessID;
+                IEnumerable<BusniessDocuments> busniessDocuments = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId).busniessDocuments;
+                model = (List<BusniessDocuments>)_busniessDocumentsRepository.SetBusniessDocumentsList(busniessDocuments);
+            }
+
+            else if (editAppType == "Business finance")
+            {
+                BusniessId = AppBusniessFinanceController.BusniessID;
+                IEnumerable<BusniessDocuments> busniessDocuments = _appBusniessFinanceBusniessRepository.GetBusniess(BusniessId).busniessDocuments;
+                model = (List<BusniessDocuments>)_busniessDocumentsRepository.SetBusniessDocumentsList(busniessDocuments);
+            }
+            else if (editAppType == "Development finance")
+            {
+                BusniessId = AppDevelopmentFinanceController.BusniessID;
+                IEnumerable<BusniessDocuments> busniessDocuments = _appDevelopmentFinanceBusniessRepository.GetBusniess(BusniessId).busniessDocuments;
+                model = (List<BusniessDocuments>)_busniessDocumentsRepository.SetBusniessDocumentsList(busniessDocuments);
+            }
+            else if (editAppType == "Property finance")
+            {
+                BusniessId = AppPropertyFinanceController.BusniessID;
+                IEnumerable<BusniessDocuments> busniessDocuments = _appPropertyFinanceBusniessRepository.GetBusniess(BusniessId).busniessDocuments;
+                model = (List<BusniessDocuments>)_busniessDocumentsRepository.SetBusniessDocumentsList(busniessDocuments);
+            }
+            else
+            {
+                model = new List<BusniessDocuments>();
+            }
+
+            return View("AllBusniessDocuments", model);
+            //return View("BusniessUploadDocuments");
         }
         [HttpGet]
         public ViewResult BusniessUploadDocuments()

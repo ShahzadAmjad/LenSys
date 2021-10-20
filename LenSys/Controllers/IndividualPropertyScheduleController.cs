@@ -33,17 +33,6 @@ namespace LenSys.Controllers
         }
         public ViewResult Index()
         {
-
-            //int IndividualId = AppAssetFinanceController.IndividualID;         
-            //if (IndividualId != 0)
-            //{
-            //    IEnumerable<PropertySchedule> propertySchedulesList = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId).propertySchedule;
-            //    _propertyScheduleRepositry.SetPropertyScheduleList(propertySchedulesList);
-            //}
-            //var model = _propertyScheduleRepositry.GetAllPropertySchedule();
-            //PropertyScheduleCreateViewModel viewmodel = new PropertyScheduleCreateViewModel();
-            //viewmodel._propertySchedule = model;
-            //viewmodel.propertySchedule = new PropertySchedule();
             int IndividualId;
             var model= new List<PropertySchedule>();
 

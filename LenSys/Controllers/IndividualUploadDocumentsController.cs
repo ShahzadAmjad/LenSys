@@ -1,4 +1,8 @@
-﻿using LenSys.Models.IndividualUploadDocuments;
+﻿using LenSys.Models.AppAssetFinance.AppAssetFinanceIndividual;
+using LenSys.Models.AppBusniessFinance.AppBusniessFinanceIndividual;
+using LenSys.Models.AppDevelopmentFinance.AppDevelopmentFinanceIndividual;
+using LenSys.Models.AppPropertyFinance.AppPropertyFinanceIndividual;
+using LenSys.Models.IndividualUploadDocuments;
 using LenSys.ViewModels.IndividualUploadDocuments;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Hosting.Server;
@@ -15,18 +19,70 @@ namespace LenSys.Controllers
     public class IndividualUploadDocumentsController:Controller
     {
         private IindividualDocumentsRepository _iindividualDocumentsRepository;
+        private IAppAssetFinanceIndividualRepository _appAssetFinanceIndividualRepository;
+        private IAppBusniessFinanceIndividualRepository _appBusniessFinanceIndividualRepository;
+        private IAppDevelopmentFinanceIndividualRepository _appDevelopmentFinanceIndividualRepository;
+        private IAppPropertyFinanceIndividualRepository _appPropertyFinanceIndividualRepository;
+
         private readonly IHostingEnvironment hostingEnvironment;
         //private readonly IWebHost webHosting;
 
-        public IndividualUploadDocumentsController(IindividualDocumentsRepository iindividualDocumentsRepository, IHostingEnvironment hostingEnvironment)
+        public IndividualUploadDocumentsController(IindividualDocumentsRepository iindividualDocumentsRepository,
+            IHostingEnvironment hostingEnvironment,
+            IAppAssetFinanceIndividualRepository appAssetFinanceIndividualRepository,
+            IAppBusniessFinanceIndividualRepository appBusniessFinanceIndividualRepository,
+            IAppDevelopmentFinanceIndividualRepository appDevelopmentFinanceIndividualRepository,
+            IAppPropertyFinanceIndividualRepository appPropertyFinanceIndividualRepository)
         {
             _iindividualDocumentsRepository = iindividualDocumentsRepository;
             this.hostingEnvironment = hostingEnvironment;
+            _appAssetFinanceIndividualRepository = appAssetFinanceIndividualRepository;
+            _appBusniessFinanceIndividualRepository = appBusniessFinanceIndividualRepository;
+            _appDevelopmentFinanceIndividualRepository = appDevelopmentFinanceIndividualRepository;
+            _appPropertyFinanceIndividualRepository = appPropertyFinanceIndividualRepository;
+
             //this.webHosting = webHosting; 
         }
         public ViewResult Index()
         {
-            return View("IndividualUploadDocuments");            
+            int IndividualId;
+            var model = new List<IndividualDocuments>();
+
+            String editAppType = HomeController.EditAppType;
+
+            if (editAppType == "Asset finance")
+            {
+                IndividualId = AppAssetFinanceController.IndividualID;
+                IEnumerable<IndividualDocuments> individualDocumentsList = _appAssetFinanceIndividualRepository.GetIndividual(IndividualId).individualDocuments;
+                model = (List<IndividualDocuments>)_iindividualDocumentsRepository.SetIndividualDocumentsList(individualDocumentsList);
+            }
+
+            else if (editAppType == "Business finance")
+            {
+                IndividualId = AppBusniessFinanceController.IndividualID;
+                IEnumerable<IndividualDocuments> individualDocumentsList = _appBusniessFinanceIndividualRepository.GetIndividual(IndividualId).individualDocuments;
+                model = (List<IndividualDocuments>)_iindividualDocumentsRepository.SetIndividualDocumentsList(individualDocumentsList);
+            }
+            else if (editAppType == "Development finance")
+            {
+                IndividualId = AppDevelopmentFinanceController.IndividualID;
+                IEnumerable<IndividualDocuments> individualDocumentsList = _appDevelopmentFinanceIndividualRepository.GetIndividual(IndividualId).individualDocuments;
+                model = (List<IndividualDocuments>)_iindividualDocumentsRepository.SetIndividualDocumentsList(individualDocumentsList);
+            }
+            else if (editAppType == "Property finance")
+            {
+                IndividualId = AppPropertyFinanceController.IndividualID;
+                IEnumerable<IndividualDocuments> individualDocumentsList = _appPropertyFinanceIndividualRepository.GetIndividual(IndividualId).individualDocuments;
+                model = (List<IndividualDocuments>)_iindividualDocumentsRepository.SetIndividualDocumentsList(individualDocumentsList);
+            }
+            else
+            {
+                model = new List<IndividualDocuments>();
+            }
+
+            
+            return View("AllIndividualDocuments", model);
+            //return View("IndividualUploadDocuments");            
         }
         [HttpGet]
         public ViewResult IndividualUploadDocuments()

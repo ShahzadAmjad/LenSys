@@ -33,14 +33,6 @@ namespace LenSys.Controllers
         }
         public ViewResult Index()
         {
-            //int BusniessId = AppAssetFinanceController.BusniessID;
-            //if (BusniessId != 0)
-            //{
-            //    IEnumerable<KeyPrincipals> keyPrincipals = _appAssetFinanceBusniessRepository.GetBusniess(BusniessId).keyPrincipals;
-            //    _keyPrincipalsRepository.SetKeyPrincipalsList(keyPrincipals);
-            //}
-
-            //var model = _keyPrincipalsRepository.GetAllKeyPrincipals();
             int BusniessId;
             var model = new List<KeyPrincipals>();
 
