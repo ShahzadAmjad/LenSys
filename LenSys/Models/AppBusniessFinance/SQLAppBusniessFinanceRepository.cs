@@ -72,7 +72,12 @@ namespace LenSys.Models.AppBusniessFinance
                         }
 
                         Context.Entry(individual.creditHistory).State = EntityState.Deleted;
-                        Context.Entry(individual.individualDocuments).State = EntityState.Deleted;
+                        //Context.Entry(individual.individualDocuments).State = EntityState.Deleted;
+                        //Delete Individual document List
+                        foreach (IndividualUploadDocuments.IndividualDocuments Individualdocument in individual.individualDocuments)
+                        {
+                            Context.Entry(Individualdocument).State = EntityState.Deleted;
+                        }
                     }
                 }
 
@@ -98,7 +103,12 @@ namespace LenSys.Models.AppBusniessFinance
                             Context.Entry(serviceability).State = EntityState.Deleted;
                         }
 
-                        Context.Entry(busniess.busniessDocuments).State = EntityState.Deleted;
+                        //Context.Entry(busniess.busniessDocuments).State = EntityState.Deleted;
+                        //Delete Busniess Document List
+                        foreach (BusniessUploadDocument.BusniessDocuments busniessDocument in busniess.busniessDocuments)
+                        {
+                            Context.Entry(busniessDocument).State = EntityState.Deleted;
+                        }
                     }
                 }
                 if (appBusniessFinance.securityDetails.Count > 0)
@@ -179,17 +189,6 @@ namespace LenSys.Models.AppBusniessFinance
             return appBusniessFinance;
         }
 
-        //public AppBusniessFinance GetAppBusniessFinance_CURDBusIndSec(int id)
-        //{
-        //    //Only Parent App Part
-        //    AppBusniessFinance appBusniessFinance = Context.AppBusniessFinance
-        //       .Include(x => x.Lead)
-        //       .Where(h => h.BusniessFinId == id)
-        //       .FirstOrDefault();
-
-        //    return appBusniessFinance;
-        //}
-
         public AppBusniessFinance GetAppBusniessFinance_EditHome(int id)
         {
             //Without Lead
@@ -261,8 +260,15 @@ namespace LenSys.Models.AppBusniessFinance
                             existingChild.propertySchedule.Remove(existingChildIndividualProperty);
                             Context.Entry(existingChildIndividualProperty).State = EntityState.Deleted;
                         }
+
                         Context.Entry(existingChild.creditHistory).State = EntityState.Deleted;
-                        Context.Entry(existingChild.individualDocuments).State = EntityState.Deleted;
+                        
+                        //Delete Individual Documents
+                        foreach (var existingChildIndividualDocument in existingChild.individualDocuments.ToList())
+                        {
+                            existingChild.individualDocuments.Remove(existingChildIndividualDocument);
+                            Context.Entry(existingChildIndividualDocument).State = EntityState.Deleted;
+                        }
                     }
                 }
                 // Delete children Busniess(ParentChild)
@@ -290,6 +296,12 @@ namespace LenSys.Models.AppBusniessFinance
                         {
                             existingChildBusniess.serviceability.Remove(serviceability);
                             Context.Entry(serviceability).State = EntityState.Deleted;
+                        }
+                        //Remove Busniess Documents
+                        foreach (var BusniesssDocument in existingChildBusniess.busniessDocuments.ToList())
+                        {
+                            existingChildBusniess.busniessDocuments.Remove(BusniesssDocument);
+                            Context.Entry(BusniesssDocument).State = EntityState.Deleted;
                         }
                     }
                 }

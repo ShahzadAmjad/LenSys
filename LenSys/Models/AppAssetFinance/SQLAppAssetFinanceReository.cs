@@ -75,7 +75,12 @@ namespace LenSys.Models.AppAssetFinance
                         }
 
                         Context.Entry(individual.creditHistory).State = EntityState.Deleted;
-                        Context.Entry(individual.individualDocuments).State = EntityState.Deleted;
+                        //Delete Individual document List
+                        foreach (IndividualUploadDocuments.IndividualDocuments Individualdocument in individual.individualDocuments)
+                        {
+                            Context.Entry(Individualdocument).State = EntityState.Deleted;
+                        }
+
                     }
                 }
 
@@ -101,7 +106,12 @@ namespace LenSys.Models.AppAssetFinance
                             Context.Entry(serviceability).State = EntityState.Deleted;
                         }
 
-                        Context.Entry(busniess.busniessDocuments).State = EntityState.Deleted;
+                        //Context.Entry(busniess.busniessDocuments).State = EntityState.Deleted;
+                        //Delete Busniess Document List
+                        foreach (BusniessUploadDocument.BusniessDocuments busniessDocument in busniess.busniessDocuments)
+                        {
+                            Context.Entry(busniessDocument).State = EntityState.Deleted;
+                        }
                     }
                 }
                 Context.SaveChanges();
@@ -196,7 +206,6 @@ namespace LenSys.Models.AppAssetFinance
                .Where(h => h.AssetFinId == id)
                .FirstOrDefault();
 
-
             return appAssetFinance;
         }
         public AppAssetFinance Update(AppAssetFinance AppAssetFinanceChanges)
@@ -231,7 +240,12 @@ namespace LenSys.Models.AppAssetFinance
                             Context.Entry(existingChildIndividualProperty).State = EntityState.Deleted;
                         }
                         Context.Entry(existingChild.creditHistory).State = EntityState.Deleted;
-                        Context.Entry(existingChild.individualDocuments).State = EntityState.Deleted;
+                        
+                        foreach (var existingChildIndividualDocument in existingChild.individualDocuments.ToList())
+                        {
+                            existingChild.individualDocuments.Remove(existingChildIndividualDocument);
+                            Context.Entry(existingChildIndividualDocument).State = EntityState.Deleted;
+                        }
                     }
                 }
                 // Delete children Busniess(ParentChild)
@@ -240,7 +254,6 @@ namespace LenSys.Models.AppAssetFinance
                     if (!AppAssetFinanceChanges.busniesses.Any(c => c.BusniessId == existingChildBusniess.BusniessId))
                     {
                         ExistingappAssetFinance.busniesses.Remove(existingChildBusniess);
-
                         Context.Entry(existingChildBusniess).State = EntityState.Deleted;
 
                         foreach (var keyPrincipals in existingChildBusniess.keyPrincipals.ToList())
@@ -259,6 +272,12 @@ namespace LenSys.Models.AppAssetFinance
                         {
                             existingChildBusniess.serviceability.Remove(serviceability);
                             Context.Entry(serviceability).State = EntityState.Deleted;
+                        }
+                        //Remove Busniess Documents
+                        foreach (var BusniesssDocument in existingChildBusniess.busniessDocuments.ToList())
+                        {
+                            existingChildBusniess.busniessDocuments.Remove(BusniesssDocument);
+                            Context.Entry(BusniesssDocument).State = EntityState.Deleted;
                         }
                     }
                 }
