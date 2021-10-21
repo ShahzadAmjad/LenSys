@@ -1,6 +1,7 @@
 ﻿using LenSys.Controllers;
 using LenSys.Models.BusniessKeyPrincipals;
 using LenSys.Models.BusniessServiceability;
+using LenSys.Models.BusniessUploadDocument;
 using LenSys.Models.Home.AllApplications;
 using LenSys.Models.IndividualPropertySchedule;
 using LenSys.Models.IndividualUploadDocuments;
@@ -629,7 +630,45 @@ namespace LenSys.Models.AppDevelopmentFinance
                                 existingChild.serviceability.Add(_serviceability);
                             }
                         }
+
                         //Context.Entry(existingChild.busniessDocuments).CurrentValues.SetValues(ChildBusniess.busniessDocuments);
+
+                        //Delete Busniess Documents
+                        foreach (var existingChildBusniessDocument in existingChild.busniessDocuments.ToList())
+                        {
+                            if (!ChildBusniess.busniessDocuments.Any(c => c.DocumentId == existingChildBusniessDocument.DocumentId))
+                            {
+                                existingChild.busniessDocuments.Remove(existingChildBusniessDocument);
+                                Context.Entry(existingChildBusniessDocument).State = EntityState.Deleted;
+                            }
+                        }
+                        // Update and Insert Busniess Document
+                        foreach (var childDocument in ChildBusniess.busniessDocuments)
+                        {
+                            var existingChildDocument = existingChild.busniessDocuments
+                                .Where(c => c.DocumentId == childDocument.DocumentId && c.DocumentId != default(int))
+                                .SingleOrDefault();
+
+                            // Update child Busniess Serviceability
+                            if (existingChildDocument != null)
+                            {
+                                Context.Entry(existingChildDocument).CurrentValues.SetValues(childDocument);
+                            }
+                            // Insert child Busniess Serviceability
+                            else
+                            {
+                                var Document = new BusniessDocuments
+                                {
+                                    //DocumentId = childDocument.DocumentId,
+                                    AppId = childDocument.AppId,
+                                    BusniessId = childDocument.BusniessId,
+                                    DocumentName = childDocument.DocumentName,
+                                    DocumentGuid = childDocument.DocumentGuid,
+                                    DocumentPath = childDocument.DocumentPath
+                                };
+                                existingChild.busniessDocuments.Add(Document);
+                            }
+                        }
                     }
 
                     // Insert child Busniess(ParentChild)
@@ -644,6 +683,8 @@ namespace LenSys.Models.AppDevelopmentFinance
                         newChildAppDevelopmentFinanceBusniess.keyPrincipals = new List<KeyPrincipals>() { };
                         newChildAppDevelopmentFinanceBusniess.busniessLiabilities = new List<BusniessLiabilities.BusniessLiabilities>() { };
                         newChildAppDevelopmentFinanceBusniess.serviceability = new List<Serviceability>() { };
+                        //Inilize document List
+                        newChildAppDevelopmentFinanceBusniess.busniessDocuments = new List<BusniessDocuments>() { };
                         //New add busniess Keyprincipal add
                         foreach (var childKeyPrincipal in ChildBusniess.keyPrincipals)
                         {
@@ -693,7 +734,20 @@ namespace LenSys.Models.AppDevelopmentFinance
                             };
                             newChildAppDevelopmentFinanceBusniess.serviceability.Add(_serviceability);
                         }
-
+                        //New add busniess Document add
+                        foreach (var childDocument in ChildBusniess.busniessDocuments)
+                        {
+                            var Document = new BusniessDocuments
+                            {
+                                //DocumentId = childDocument.DocumentId,
+                                AppId = childDocument.AppId,
+                                BusniessId = childDocument.BusniessId,
+                                DocumentName = childDocument.DocumentName,
+                                DocumentGuid = childDocument.DocumentGuid,
+                                DocumentPath = childDocument.DocumentPath
+                            };
+                            newChildAppDevelopmentFinanceBusniess.busniessDocuments.Add(Document);
+                        }
                         ExistingappDevelopmentFinance.busniesses.Add(newChildAppDevelopmentFinanceBusniess);
                     }
                 }
