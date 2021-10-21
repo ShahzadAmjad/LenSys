@@ -3,6 +3,7 @@ using LenSys.Models.BusniessKeyPrincipals;
 using LenSys.Models.BusniessServiceability;
 using LenSys.Models.Home.AllApplications;
 using LenSys.Models.IndividualPropertySchedule;
+using LenSys.Models.IndividualUploadDocuments;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -376,7 +377,46 @@ namespace LenSys.Models.AppPropertyFinance
                         }
 
                         Context.Entry(existingChild.creditHistory).CurrentValues.SetValues(Childindivdual.creditHistory);
-                        Context.Entry(existingChild.individualDocuments).CurrentValues.SetValues(Childindivdual.individualDocuments);
+
+                        //Context.Entry(existingChild.individualDocuments).CurrentValues.SetValues(Childindivdual.individualDocuments);
+                        //Delete Individual Document on update of parent child
+                        foreach (var existingChildIndividualDocument in existingChild.individualDocuments.ToList())
+                        {
+                            if (!Childindivdual.individualDocuments.Any(c => c.DocumentId == existingChildIndividualDocument.DocumentId))
+                            {
+                                existingChild.individualDocuments.Remove(existingChildIndividualDocument);
+                                Context.Entry(existingChildIndividualDocument).State = EntityState.Deleted;
+                            }
+                        }
+                        // Update and Insert Individual Document on update of parent child
+                        foreach (var childDocument in Childindivdual.individualDocuments)
+                        {
+                            var existingChildDocument = existingChild.individualDocuments
+                                .Where(c => c.DocumentId == childDocument.DocumentId && c.DocumentId != default(int))
+                                .SingleOrDefault();
+
+                            // Update child Individual document
+                            if (existingChildDocument != null)
+                            {
+                                Context.Entry(existingChildDocument).CurrentValues.SetValues(childDocument);
+                            }
+                            // Insert child Individual document
+                            else
+                            {
+                                var document = new IndividualDocuments
+                                {
+                                    //DocumentId = childDocument.DocumentId,
+                                    AppId = childDocument.AppId,
+                                    IndividualId = childDocument.IndividualId,
+                                    DocumentName = childDocument.DocumentName,
+                                    DocumentType = childDocument.DocumentType,
+                                    DocumentGuid = childDocument.DocumentGuid,
+                                    DocumentPath = childDocument.DocumentPath
+                                };
+                                existingChild.individualDocuments.Add(document);
+                            }
+                        }
+
                     }
 
                     // Insert child Individual Property
@@ -394,12 +434,12 @@ namespace LenSys.Models.AppPropertyFinance
                             liabilities = Childindivdual.liabilities,
                             //propertySchedule = Childindivdual.propertySchedule,
                             creditHistory = Childindivdual.creditHistory,
-                            individualDocuments = Childindivdual.individualDocuments
+                            //individualDocuments = Childindivdual.individualDocuments
                         };
                         //Inilizing List
                         // List<PropertySchedule> _propertySchedule = new List<PropertySchedule>(){};
                         newChildAppPropertFinanceIndividual.propertySchedule = new List<PropertySchedule>() { };
-
+                        newChildAppPropertFinanceIndividual.individualDocuments = new List<IndividualDocuments>() { };
                         //Add Properties in new Individual(ParentChild) objects
                         foreach (var childProperty in Childindivdual.propertySchedule)
                         {
@@ -427,6 +467,21 @@ namespace LenSys.Models.AppPropertyFinance
 
                             };
                             newChildAppPropertFinanceIndividual.propertySchedule.Add(Property);
+                        }
+                        //Add Properties in new Individual(ParentChild) objects
+                        foreach (var childDocument in Childindivdual.individualDocuments)
+                        {
+                            var document = new IndividualDocuments
+                            {
+                                //DocumentId = childDocument.DocumentId,
+                                AppId = childDocument.AppId,
+                                IndividualId = childDocument.IndividualId,
+                                DocumentName = childDocument.DocumentName,
+                                DocumentType = childDocument.DocumentType,
+                                DocumentGuid = childDocument.DocumentGuid,
+                                DocumentPath = childDocument.DocumentPath
+                            };
+                            newChildAppPropertFinanceIndividual.individualDocuments.Add(document);
                         }
                         ExistingappPropertyFinance.individuals.Add(newChildAppPropertFinanceIndividual);
                     }
