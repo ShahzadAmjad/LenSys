@@ -166,18 +166,49 @@ namespace LenSys.Controllers
             if (ModelState.IsValid)
             {
                 string uniqueFileName = null;
+                string filePath = null;
+                String DocGuid=null;
                 if(model.Document!=null)
                 {
                     string UploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "BusniessDocument");
-                    uniqueFileName = Guid.NewGuid().ToString() + "_" + model.Document.FileName;
-                    string filePath = Path.Combine(UploadsFolder, uniqueFileName);
+                    DocGuid = Guid.NewGuid().ToString();
+                    uniqueFileName = DocGuid + "_" + model.Document.FileName;
+                    filePath = Path.Combine(UploadsFolder, uniqueFileName);
                     model.Document.CopyTo(new FileStream(filePath,FileMode.Create));
                 }
 
+                int busniessId=0;
+                int ApplicationId=0;
+                String editAppType = HomeController.EditAppType;
+                if (editAppType == "Asset finance")
+                {
+                    ApplicationId = AppAssetFinanceController.appID;
+                    busniessId = AppAssetFinanceController.BusniessID;                   
+                }
+                else if (editAppType == "Business finance")
+                {
+                    ApplicationId = AppBusniessFinanceController.appID;
+                    busniessId = AppBusniessFinanceController.BusniessID;
+                }
+                else if (editAppType == "Development finance")
+                {
+                    ApplicationId = AppDevelopmentFinanceController.appID;
+                    busniessId = AppDevelopmentFinanceController.BusniessID;
+                }
+                else if (editAppType == "Property finance")
+                {
+                    ApplicationId = AppPropertyFinanceController.appID;
+                    busniessId = AppPropertyFinanceController.BusniessID;
+                }
+
+
                 BusniessDocuments busniessDocuments = new BusniessDocuments
                 {
+                    AppId = ApplicationId,
+                    BusniessId= busniessId,
                     DocumentName = model.DocumentName,
-                    DocumentPath = uniqueFileName
+                    DocumentPath = filePath,
+                    DocumentGuid= uniqueFileName
                 };
 
                 BusniessDocuments busniessDocuments1 = _busniessDocumentsRepository.Add(busniessDocuments);

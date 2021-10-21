@@ -16,7 +16,7 @@ namespace LenSys.Models.IndividualUploadDocuments
         public string DocumentType { get; set; }
         public string DocumentName { get; set; }
         public string DocumentPath { get; set; }
-        public int DocumentGuid { get; set; }
+        public string DocumentGuid { get; set; }
         //public IFormFile Document { set; get; }
     }
 }

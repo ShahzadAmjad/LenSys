@@ -333,6 +333,7 @@ namespace LenSys.Models.AppAssetFinance
                         }
 
                         Context.Entry(existingChild.creditHistory).CurrentValues.SetValues(Childindivdual.creditHistory);
+                        //Handle the Document List here
                         Context.Entry(existingChild.individualDocuments).CurrentValues.SetValues(Childindivdual.individualDocuments);
                     }
 

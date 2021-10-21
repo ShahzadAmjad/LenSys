@@ -173,25 +173,52 @@ namespace LenSys.Controllers
             {
                 string uniqueFileName = null;
                 string filePath = null;
+                String DocGuid = null;
                 if (model.Document != null)
                 {
-                    string UploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "IndividualDocuments");                    
+                    string UploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "IndividualDocuments");
+                    DocGuid = Guid.NewGuid().ToString();
                     uniqueFileName = Guid.NewGuid().ToString() + "_" + model.Document.FileName;
                     filePath = Path.Combine(UploadsFolder, uniqueFileName);
                     model.Document.CopyTo(new FileStream(filePath, FileMode.Create));               
                 }
 
+                int IndividualId=0;
+                int ApplicationId = 0;
+                String editAppType = HomeController.EditAppType;
+                if (editAppType == "Asset finance")
+                {
+                    ApplicationId = AppAssetFinanceController.appID;
+                    IndividualId = AppAssetFinanceController.IndividualID;                 
+                }
+                else if (editAppType == "Business finance")
+                {
+                    IndividualId = AppBusniessFinanceController.IndividualID;
+                    ApplicationId = AppBusniessFinanceController.appID;
+                }
+                else if (editAppType == "Development finance")
+                {
+                    IndividualId = AppDevelopmentFinanceController.IndividualID;
+                    ApplicationId = AppDevelopmentFinanceController.appID;
+                }
+                else if (editAppType == "Property finance")
+                {
+                    IndividualId = AppPropertyFinanceController.IndividualID;
+                    ApplicationId = AppPropertyFinanceController.appID;
+                }
+
                 //To save data to database
                 IndividualDocuments individualDocuments = new IndividualDocuments
                 {
+                    AppId = ApplicationId,
+                    IndividualId = IndividualId,
                     DocumentName = model.DocumentName,
-                    DocumentPath = filePath
+                    DocumentPath = filePath,
+                    DocumentGuid = DocGuid
                 };
                 IndividualDocuments individualDocuments1 = _iindividualDocumentsRepository.Add(individualDocuments);
-               
                 return View();
             }
-
             return View();
         }
         public IActionResult ReturnToParentApp()
