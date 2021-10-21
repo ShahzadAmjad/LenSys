@@ -151,7 +151,7 @@ namespace LenSys.Controllers
                 appPropertyFinanceBusniess.busniessDocuments = (List<BusniessDocuments>)updatedBusniessDocuments;
             }
 
-            return View("AllKeyPrincipals", updatedBusniessDocuments);
+            return View("AllBusniessDocuments", updatedBusniessDocuments);
         }
         [HttpGet]
         public ViewResult BusniessUploadDocuments()
@@ -212,8 +212,12 @@ namespace LenSys.Controllers
                 };
 
                 BusniessDocuments busniessDocuments1 = _busniessDocumentsRepository.Add(busniessDocuments);
+                var updatedDocuments = _busniessDocumentsRepository.GetAllBusniessDocuments();
 
-                return View();
+
+                return View("AllBusniessDocuments", updatedDocuments);
+                //return View();
+                //return View("AllBusniessDocuments");
             }
 
             return View();

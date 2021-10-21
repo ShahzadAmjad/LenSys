@@ -217,7 +217,11 @@ namespace LenSys.Controllers
                     DocumentGuid = DocGuid
                 };
                 IndividualDocuments individualDocuments1 = _iindividualDocumentsRepository.Add(individualDocuments);
-                return View();
+
+                var updatedDocuments = _iindividualDocumentsRepository.GetAllIndividualDocuments();
+
+
+                return View("AllIndividualDocuments",updatedDocuments);
             }
             return View();
         }
