@@ -127,7 +127,20 @@ namespace LenSys.Controllers
         }
         public ViewResult DeleteIndividualDocuments(int id)
         {
-            _iindividualDocumentsRepository.Delete(id);
+            //Delete file from DB 
+           IndividualDocuments individualDocuments= _iindividualDocumentsRepository.Delete(id);
+            //Delete file from File system
+            if (individualDocuments.DocumentPath != null)
+            {
+                FileInfo file = new FileInfo(individualDocuments.DocumentPath);
+                //check file exsit or not 
+                if (file.Exists)
+                {
+                    file.Delete();
+                }
+            }
+
+
             var updatedIndividualDocuments = _iindividualDocumentsRepository.GetAllIndividualDocuments();
             
             int IndividualId;
@@ -176,52 +189,50 @@ namespace LenSys.Controllers
                 String DocGuid = null;
                 if (model.Document != null)
                 {
+                    //Upload File Code Individual documents
                     string UploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "IndividualDocuments");
                     DocGuid = Guid.NewGuid().ToString();
                     uniqueFileName = Guid.NewGuid().ToString() + "_" + model.Document.FileName;
                     filePath = Path.Combine(UploadsFolder, uniqueFileName);
-                    model.Document.CopyTo(new FileStream(filePath, FileMode.Create));               
-                }
+                    model.Document.CopyTo(new FileStream(filePath, FileMode.Create));
 
-                int IndividualId=0;
-                int ApplicationId = 0;
-                String editAppType = HomeController.EditAppType;
-                if (editAppType == "Asset finance")
-                {
-                    ApplicationId = AppAssetFinanceController.appID;
-                    IndividualId = AppAssetFinanceController.IndividualID;                 
+                    //To save Document data to database
+                    int IndividualId = 0;
+                    int ApplicationId = 0;
+                    String editAppType = HomeController.EditAppType;
+                    if (editAppType == "Asset finance")
+                    {
+                        ApplicationId = AppAssetFinanceController.appID;
+                        IndividualId = AppAssetFinanceController.IndividualID;
+                    }
+                    else if (editAppType == "Business finance")
+                    {
+                        IndividualId = AppBusniessFinanceController.IndividualID;
+                        ApplicationId = AppBusniessFinanceController.appID;
+                    }
+                    else if (editAppType == "Development finance")
+                    {
+                        IndividualId = AppDevelopmentFinanceController.IndividualID;
+                        ApplicationId = AppDevelopmentFinanceController.appID;
+                    }
+                    else if (editAppType == "Property finance")
+                    {
+                        IndividualId = AppPropertyFinanceController.IndividualID;
+                        ApplicationId = AppPropertyFinanceController.appID;
+                    }
+       
+                    IndividualDocuments individualDocuments = new IndividualDocuments
+                    {
+                        AppId = ApplicationId,
+                        IndividualId = IndividualId,
+                        DocumentName = model.DocumentName,
+                        DocumentPath = filePath,
+                        DocumentGuid = DocGuid
+                    };
+                    IndividualDocuments individualDocuments1 = _iindividualDocumentsRepository.Add(individualDocuments);
+                    var updatedDocuments = _iindividualDocumentsRepository.GetAllIndividualDocuments();
+                    return View("AllIndividualDocuments", updatedDocuments);
                 }
-                else if (editAppType == "Business finance")
-                {
-                    IndividualId = AppBusniessFinanceController.IndividualID;
-                    ApplicationId = AppBusniessFinanceController.appID;
-                }
-                else if (editAppType == "Development finance")
-                {
-                    IndividualId = AppDevelopmentFinanceController.IndividualID;
-                    ApplicationId = AppDevelopmentFinanceController.appID;
-                }
-                else if (editAppType == "Property finance")
-                {
-                    IndividualId = AppPropertyFinanceController.IndividualID;
-                    ApplicationId = AppPropertyFinanceController.appID;
-                }
-
-                //To save data to database
-                IndividualDocuments individualDocuments = new IndividualDocuments
-                {
-                    AppId = ApplicationId,
-                    IndividualId = IndividualId,
-                    DocumentName = model.DocumentName,
-                    DocumentPath = filePath,
-                    DocumentGuid = DocGuid
-                };
-                IndividualDocuments individualDocuments1 = _iindividualDocumentsRepository.Add(individualDocuments);
-
-                var updatedDocuments = _iindividualDocumentsRepository.GetAllIndividualDocuments();
-
-
-                return View("AllIndividualDocuments",updatedDocuments);
             }
             return View();
         }

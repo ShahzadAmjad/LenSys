@@ -119,7 +119,19 @@ namespace LenSys.Controllers
         }
         public ViewResult DeleteBusniessDocuments(int id)
         {
-            _busniessDocumentsRepository.Delete(id);
+            BusniessDocuments busniessDocuments= _busniessDocumentsRepository.Delete(id);
+            if(busniessDocuments.DocumentPath!=null)
+            {
+                FileInfo file = new FileInfo(busniessDocuments.DocumentPath);
+                //check file exsit or not 
+                if (file.Exists) 
+                {
+                    file.Delete();
+                }
+            }
+            
+
+
             var updatedBusniessDocuments = _busniessDocumentsRepository.GetAllBusniessDocuments();
 
             int BusniessId;
@@ -170,54 +182,51 @@ namespace LenSys.Controllers
                 String DocGuid=null;
                 if(model.Document!=null)
                 {
+                    //Upload File Code
                     string UploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "BusniessDocuments");
                     DocGuid = Guid.NewGuid().ToString();
                     uniqueFileName = DocGuid + "_" + model.Document.FileName;
                     filePath = Path.Combine(UploadsFolder, uniqueFileName);
                     model.Document.CopyTo(new FileStream(filePath,FileMode.Create));
+
+                    //Db insertion of uploaded document
+                    int busniessId = 0;
+                    int ApplicationId = 0;
+                    String editAppType = HomeController.EditAppType;
+                    if (editAppType == "Asset finance")
+                    {
+                        ApplicationId = AppAssetFinanceController.appID;
+                        busniessId = AppAssetFinanceController.BusniessID;
+                    }
+                    else if (editAppType == "Business finance")
+                    {
+                        ApplicationId = AppBusniessFinanceController.appID;
+                        busniessId = AppBusniessFinanceController.BusniessID;
+                    }
+                    else if (editAppType == "Development finance")
+                    {
+                        ApplicationId = AppDevelopmentFinanceController.appID;
+                        busniessId = AppDevelopmentFinanceController.BusniessID;
+                    }
+                    else if (editAppType == "Property finance")
+                    {
+                        ApplicationId = AppPropertyFinanceController.appID;
+                        busniessId = AppPropertyFinanceController.BusniessID;
+                    }
+
+                    BusniessDocuments busniessDocuments = new BusniessDocuments
+                    {
+                        AppId = ApplicationId,
+                        BusniessId = busniessId,
+                        DocumentName = model.DocumentName,
+                        DocumentPath = filePath,
+                        DocumentGuid = uniqueFileName
+                    };
+
+                    BusniessDocuments busniessDocuments1 = _busniessDocumentsRepository.Add(busniessDocuments);
+                    var updatedDocuments = _busniessDocumentsRepository.GetAllBusniessDocuments();
+                    return View("AllBusniessDocuments", updatedDocuments);
                 }
-
-                int busniessId=0;
-                int ApplicationId=0;
-                String editAppType = HomeController.EditAppType;
-                if (editAppType == "Asset finance")
-                {
-                    ApplicationId = AppAssetFinanceController.appID;
-                    busniessId = AppAssetFinanceController.BusniessID;                   
-                }
-                else if (editAppType == "Business finance")
-                {
-                    ApplicationId = AppBusniessFinanceController.appID;
-                    busniessId = AppBusniessFinanceController.BusniessID;
-                }
-                else if (editAppType == "Development finance")
-                {
-                    ApplicationId = AppDevelopmentFinanceController.appID;
-                    busniessId = AppDevelopmentFinanceController.BusniessID;
-                }
-                else if (editAppType == "Property finance")
-                {
-                    ApplicationId = AppPropertyFinanceController.appID;
-                    busniessId = AppPropertyFinanceController.BusniessID;
-                }
-
-
-                BusniessDocuments busniessDocuments = new BusniessDocuments
-                {
-                    AppId = ApplicationId,
-                    BusniessId= busniessId,
-                    DocumentName = model.DocumentName,
-                    DocumentPath = filePath,
-                    DocumentGuid= uniqueFileName
-                };
-
-                BusniessDocuments busniessDocuments1 = _busniessDocumentsRepository.Add(busniessDocuments);
-                var updatedDocuments = _busniessDocumentsRepository.GetAllBusniessDocuments();
-
-
-                return View("AllBusniessDocuments", updatedDocuments);
-                //return View();
-                //return View("AllBusniessDocuments");
             }
 
             return View();
