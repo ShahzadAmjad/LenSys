@@ -170,7 +170,7 @@ namespace LenSys.Controllers
                 String DocGuid=null;
                 if(model.Document!=null)
                 {
-                    string UploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "BusniessDocument");
+                    string UploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "BusniessDocuments");
                     DocGuid = Guid.NewGuid().ToString();
                     uniqueFileName = DocGuid + "_" + model.Document.FileName;
                     filePath = Path.Combine(UploadsFolder, uniqueFileName);
