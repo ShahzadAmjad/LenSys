@@ -9,6 +9,7 @@ namespace LenSys.Models.Home.Search
     {
         public int SearchId { get; set; }
         public string SearchAttribute { get; set; }
+        public string AppType { get; set; }
         public string SearchParam { get; set; }
     }
 }

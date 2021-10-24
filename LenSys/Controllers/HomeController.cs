@@ -13,6 +13,7 @@ using LenSys.Models.AppPropertyFinance.AppPropertyFinanceBusniess;
 using LenSys.Models.AppPropertyFinance.AppPropertyFinanceIndividual;
 using LenSys.Models.Home;
 using LenSys.Models.Home.AllApplications;
+using LenSys.Models.Home.Search;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -141,9 +142,35 @@ namespace LenSys.Controllers
 
             //return View("Lead");
         }
+        [HttpGet]
         public ViewResult Search()
         {
-            return View();
+
+            return View("Search");
+        }
+        [HttpPost]
+        public IActionResult Search(Search search)
+        {
+            string SearchAppType = search.AppType;
+            int deleteAppId = search.SearchId;
+
+            if (SearchAppType == "Asset finance")
+            {           
+                _appAssetFinanceRepository.GetAppAssetFinance(deleteAppId);
+            }
+            else if (SearchAppType == "Business finance")
+            {            
+                //_appBusniessFinanceRepository.Delete(deleteAppId);
+            }
+            else if (SearchAppType == "Development finance")
+            {   
+                //_appDevelopmentFinanceRepository.Delete(deleteAppId);
+            }
+            else if (SearchAppType == "Property finance")
+            {             
+                //_appPropertyFinanceRepository.Delete(deleteAppId);
+            }
+            return View("Search");
         }
         public ViewResult DocumentList()
         {
