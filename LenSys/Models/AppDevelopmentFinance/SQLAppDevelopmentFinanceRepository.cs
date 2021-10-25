@@ -231,6 +231,70 @@ namespace LenSys.Models.AppDevelopmentFinance
             return appDevelopmentFinance;
         }
 
+        public IEnumerable<AllApplications> SearchAppDevelopmentFinance(string SearchAttribute, string SearchParam)
+        {
+
+            List<AllApplications> allApplicationsList = new List<AllApplications>();
+            allApplicationsList = Context.AppDevelopmentFinance.Include(x => x.Lead).Select(p => new AllApplications { AppID = p.LoanId, Type = p.Lead.LoanPurpose, CompanyBusinessName = p.Lead.CompanyBusniessName }).ToList();
+
+            if (SearchAttribute == "Application Id")
+            {
+                int id = Int32.Parse(SearchParam);
+                allApplicationsList = Context.AppDevelopmentFinance
+                    .Include(x => x.Lead)
+                    .Where(h => h.LoanId == id)
+                    .Select(p => new AllApplications { AppID = p.LoanId, Type = p.Lead.LoanPurpose, CompanyBusinessName = p.Lead.CompanyBusniessName })
+                    .ToList();
+            }
+            else if (SearchAttribute == "Busniess Id")
+            {
+                int id = Int32.Parse(SearchParam);
+                allApplicationsList = Context.AppDevelopmentFinance
+                    .Include(x => x.Lead)
+                    .Where(h => h.busniesses.Any(c => c.BusniessId == id))
+                    .Select(p => new AllApplications { AppID = p.LoanId, Type = p.Lead.LoanPurpose, CompanyBusinessName = p.Lead.CompanyBusniessName })
+                    .ToList();
+            }
+            else if (SearchAttribute == "Individual Id")
+            {
+                int id = Int32.Parse(SearchParam);
+                allApplicationsList = Context.AppDevelopmentFinance
+                    .Include(x => x.Lead)
+                    .Where(h => h.individuals.Any(c => c.IndividualId == id))
+                    .Select(p => new AllApplications { AppID = p.LoanId, Type = p.Lead.LoanPurpose, CompanyBusinessName = p.Lead.CompanyBusniessName })
+                    .ToList();
+            }
+            else if (SearchAttribute == "First Name")
+            {
+                string id = SearchParam;
+                allApplicationsList = Context.AppDevelopmentFinance
+                    .Include(x => x.Lead)
+                    .Where(h => h.individuals.Any(c => c.personalDetails.FirstName == id))
+                    .Select(p => new AllApplications { AppID = p.LoanId, Type = p.Lead.LoanPurpose, CompanyBusinessName = p.Lead.CompanyBusniessName })
+                    .ToList();
+            }
+            else if (SearchAttribute == "Phone No")
+            {
+                int id = Int32.Parse(SearchParam);
+                allApplicationsList = Context.AppDevelopmentFinance
+                    .Include(x => x.Lead)
+                    .Where(h => h.individuals.Any(c => c.personalDetails.PhoneNo == id))
+                    .Select(p => new AllApplications { AppID = p.LoanId, Type = p.Lead.LoanPurpose, CompanyBusinessName = p.Lead.CompanyBusniessName })
+                    .ToList();
+            }
+            else if (SearchAttribute == "Company Name")
+            {
+                string id = SearchParam;
+                allApplicationsList = Context.AppDevelopmentFinance
+                    .Include(x => x.Lead)
+                    .Where(h => h.busniesses.Any(c => c.busniessDetails.CompanyBusniessName == id))
+                    .Select(p => new AllApplications { AppID = p.LoanId, Type = p.Lead.LoanPurpose, CompanyBusinessName = p.Lead.CompanyBusniessName })
+                    .ToList();
+            }
+
+            return allApplicationsList;
+        }
+
         public AppDevelopmentFinance Update(AppDevelopmentFinance appDevelopmentFinanceChanges)
         {
             int id = HomeController.EditDevelopmentFinanceAppID;

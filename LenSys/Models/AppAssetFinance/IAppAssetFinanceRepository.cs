@@ -13,6 +13,7 @@ namespace LenSys.Models.AppAssetFinance
         AppAssetFinance GetAppAssetFinance_EditHome(int id);
         AppAssetFinance GetAppAssetFinance_appAssetFinance(int id);
         IEnumerable<AllApplications> GetAllAppAssetFinance_AllApplication();
+        IEnumerable<AllApplications> SearchAppAssetFinance(string SearchAttribute, string SearchParam);
         IEnumerable<AppAssetFinance> GetAllAppAssetFinance();
         
         AppAssetFinance Add(AppAssetFinance appAssetFinance);

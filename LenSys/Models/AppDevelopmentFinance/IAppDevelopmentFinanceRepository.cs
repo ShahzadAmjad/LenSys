@@ -12,6 +12,7 @@ namespace LenSys.Models.AppDevelopmentFinance
         AppDevelopmentFinance GetAppDevelopmentFinance_EditHome(int id);
         AppDevelopmentFinance GetAppDevelopmentFinance_appDevelopmentFinance(int id);
         IEnumerable<AllApplications> GetAllAppDevelopmentFinance_AllApplication();
+        IEnumerable<AllApplications> SearchAppDevelopmentFinance(string SearchAttribute, string SearchParam);
         IEnumerable<AppDevelopmentFinance> GetAllAppDevelopmentFinance();
         AppDevelopmentFinance Add(AppDevelopmentFinance appDevelopmentFinance);
         //ForDirectly Insert to dB(Currently not in Use)
