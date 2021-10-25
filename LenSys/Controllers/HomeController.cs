@@ -50,6 +50,7 @@ namespace LenSys.Controllers
         public static int EditDevelopmentFinanceAppID;
         public static int EditPropertyFinanceAppID;
         public static string EditAppType;
+        public static Search GloabalSearch;
 
         public HomeController(IAllApplicationsRepository allApplicationsRepository,
             IAppAssetFinanceRepository appAssetFinanceRepository,
@@ -151,6 +152,8 @@ namespace LenSys.Controllers
         [HttpPost]
         public IActionResult Search(Search search)
         {
+            //setting the global variable for delte and edit return
+            GloabalSearch = search;
             string SearchAppType = search.AppType;
             //int deleteAppId = search.SearchId;
             List<AllApplications> SearchallApplications = new List<AllApplications>();
@@ -209,6 +212,36 @@ namespace LenSys.Controllers
                 deleteAppId = EditAppObj.AppID;
                 _appPropertyFinanceRepository.Delete(deleteAppId);
             }
+            allApplicationsConcat = _allApplicationsRepository.GetAllApplications();
+            return View("AllApplications", allApplicationsConcat);
+        }
+        public ViewResult DeleteApplication_Search(int id)
+        {
+            var allApplicationsConcat = _allApplicationsRepository.GetAllApplications();
+            AllApplications EditAppObj = allApplicationsConcat.ToList()[id];
+            int deleteAppId = 0;
+
+            if (EditAppObj.Type == "Asset finance")
+            {
+                deleteAppId = EditAppObj.AppID;
+                _appAssetFinanceRepository.Delete(deleteAppId);
+            }
+            else if (EditAppObj.Type == "Business finance")
+            {
+                deleteAppId = EditAppObj.AppID;
+                _appBusniessFinanceRepository.Delete(deleteAppId);
+            }
+            else if (EditAppObj.Type == "Development finance")
+            {
+                deleteAppId = EditAppObj.AppID;
+                _appDevelopmentFinanceRepository.Delete(deleteAppId);
+            }
+            else if (EditAppObj.Type == "Property finance")
+            {
+                deleteAppId = EditAppObj.AppID;
+                _appPropertyFinanceRepository.Delete(deleteAppId);
+            }
+
 
 
 
