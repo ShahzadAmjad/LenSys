@@ -160,16 +160,16 @@ namespace LenSys.Controllers
                 SearchallApplications = (List<AllApplications>)_appAssetFinanceRepository.SearchAppAssetFinance( search.SearchAttribute,search.SearchParam);
             }
             else if (SearchAppType == "Business finance")
-            {            
-                //_appBusniessFinanceRepository.Delete(deleteAppId);
+            {
+                SearchallApplications = (List<AllApplications>)_appBusniessFinanceRepository.SearchAppBusniessFinance(search.SearchAttribute, search.SearchParam);
             }
             else if (SearchAppType == "Development finance")
-            {   
-                //_appDevelopmentFinanceRepository.Delete(deleteAppId);
+            {
+                SearchallApplications = (List<AllApplications>)_appDevelopmentFinanceRepository.SearchAppDevelopmentFinance(search.SearchAttribute, search.SearchParam);
             }
             else if (SearchAppType == "Property finance")
-            {             
-                //_appPropertyFinanceRepository.Delete(deleteAppId);
+            {
+                SearchallApplications = (List<AllApplications>)_appPropertyFinanceRepository.SearchAppPropertyFinance(search.SearchAttribute, search.SearchParam);
             }
             //return View("Search");
             return View("SearchResults", SearchallApplications);

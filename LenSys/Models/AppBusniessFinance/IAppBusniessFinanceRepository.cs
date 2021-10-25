@@ -14,6 +14,7 @@ namespace LenSys.Models.AppBusniessFinance
         AppBusniessFinance GetAppBusniessFinance_appBusniessFinance(int id);
         IEnumerable<AppBusniessFinance> GetAllAppBusniessFinance();
         IEnumerable<AllApplications> GetAllAppBusniessFinance_AllApplication();
+        IEnumerable<AllApplications> SearchAppBusniessFinance(string SearchAttribute, string SearchParam);
         AppBusniessFinance Add(AppBusniessFinance appBusniessFinance);
         //ForDirectly Insert to dB(Currently not in Use)
         AppBusniessFinance AddIndividual(AppBusniessFinanceIndividual.AppBusniessFinanceIndividual individual);

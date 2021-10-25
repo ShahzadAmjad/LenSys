@@ -12,6 +12,7 @@ namespace LenSys.Models.AppPropertyFinance
         AppPropertyFinance GetAppPropertyFinance_EditHome(int id);
         AppPropertyFinance GetAppPropertyFinance_appPropertyFinance(int id);
         IEnumerable<AllApplications> GetAllAppPropertyFinance_AllApplication();
+        IEnumerable<AllApplications> SearchAppPropertyFinance(string SearchAttribute, string SearchParam);
         IEnumerable<AppPropertyFinance> GetAllAppPropertyFinance();
         AppPropertyFinance Add(AppPropertyFinance appPropertyFinance);
         //ForDirectly Insert to dB(Currently not in Use)
