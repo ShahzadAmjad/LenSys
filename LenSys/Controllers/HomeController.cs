@@ -152,11 +152,11 @@ namespace LenSys.Controllers
         public IActionResult Search(Search search)
         {
             string SearchAppType = search.AppType;
-            int deleteAppId = search.SearchId;
+            //int deleteAppId = search.SearchId;
 
             if (SearchAppType == "Asset finance")
             {           
-                _appAssetFinanceRepository.GetAppAssetFinance(deleteAppId);
+                //_appAssetFinanceRepository.GetAppAssetFinance(deleteAppId);
             }
             else if (SearchAppType == "Business finance")
             {            
