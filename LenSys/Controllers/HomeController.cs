@@ -174,7 +174,7 @@ namespace LenSys.Controllers
             {
                 SearchallApplications = (List<AllApplications>)_appPropertyFinanceRepository.SearchAppPropertyFinance(search.SearchAttribute, search.SearchParam);
             }
-            //return View("Search");
+
             return View("SearchResults", SearchallApplications);
         }
         public ViewResult DocumentList()
