@@ -740,6 +740,69 @@ namespace LenSys.Models.AppAssetFinance
                .FirstOrDefault();
 
             return appAssetFinance;
-        }        
+        }
+
+        public IEnumerable<AllApplications> SearchAppAssetFinance(string SearchAttribute, string SearchParam)
+        {
+            List<AllApplications> allApplicationsList = new List<AllApplications>();
+            allApplicationsList = Context.AppAssetFinance.Include(x => x.Lead).Select(p => new AllApplications { AppID = p.AssetFinId, Type = p.Lead.LoanPurpose, CompanyBusinessName = p.Lead.CompanyBusniessName }).ToList();
+            
+            if (SearchAttribute == "Application Id")
+            {
+                int id = Int32.Parse(SearchParam);
+                allApplicationsList = Context.AppAssetFinance
+                    .Include(x => x.Lead)
+                    .Where(h => h.AssetFinId == id)
+                    .Select(p => new AllApplications { AppID = p.AssetFinId, Type = p.Lead.LoanPurpose, CompanyBusinessName = p.Lead.CompanyBusniessName })                   
+                    .ToList();
+            }
+            else if (SearchAttribute == "Busniess Id")
+            {
+                int id = Int32.Parse(SearchParam);
+                allApplicationsList = Context.AppAssetFinance
+                    .Include(x => x.Lead)
+                    .Where(h => h.busniesses.Any(c=>c.BusniessId == id))
+                    .Select(p => new AllApplications { AppID = p.AssetFinId, Type = p.Lead.LoanPurpose, CompanyBusinessName = p.Lead.CompanyBusniessName })
+                    .ToList();
+            }
+            else if (SearchAttribute == "Individual Id")
+            {
+                int id = Int32.Parse(SearchParam);
+                allApplicationsList = Context.AppAssetFinance
+                    .Include(x => x.Lead)
+                    .Where(h => h.individuals.Any(c => c.IndividualId == id))
+                    .Select(p => new AllApplications { AppID = p.AssetFinId, Type = p.Lead.LoanPurpose, CompanyBusinessName = p.Lead.CompanyBusniessName })
+                    .ToList();
+            }
+            else if (SearchAttribute == "First Name")
+            {
+                string id = SearchParam;
+                allApplicationsList = Context.AppAssetFinance
+                    .Include(x => x.Lead)
+                    .Where(h => h.individuals.Any(c => c.personalDetails.FirstName == id))
+                    .Select(p => new AllApplications { AppID = p.AssetFinId, Type = p.Lead.LoanPurpose, CompanyBusinessName = p.Lead.CompanyBusniessName })
+                    .ToList();
+            }
+            else if (SearchAttribute == "Phone No")
+            {
+                int id = Int32.Parse(SearchParam);
+                allApplicationsList = Context.AppAssetFinance
+                    .Include(x => x.Lead)
+                    .Where(h => h.individuals.Any(c => c.personalDetails.PhoneNo == id))
+                    .Select(p => new AllApplications { AppID = p.AssetFinId, Type = p.Lead.LoanPurpose, CompanyBusinessName = p.Lead.CompanyBusniessName })
+                    .ToList();
+            }
+            else if (SearchAttribute == "Company Name")
+            {
+                string id = SearchParam;
+                allApplicationsList = Context.AppAssetFinance
+                    .Include(x => x.Lead)
+                    .Where(h => h.busniesses.Any(c => c.busniessDetails.CompanyBusniessName == id))
+                    .Select(p => new AllApplications { AppID = p.AssetFinId, Type = p.Lead.LoanPurpose, CompanyBusinessName = p.Lead.CompanyBusniessName })
+                    .ToList();
+            }
+
+            return allApplicationsList;
+        }
     }
 }

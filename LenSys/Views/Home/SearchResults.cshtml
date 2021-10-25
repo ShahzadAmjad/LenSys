@@ -1,1 +1,84 @@
-﻿<h1>Search Results</h1>
+﻿@model IEnumerable<AllApplications>
+
+@{
+    ViewBag.Title = "Searched Results";
+}
+
+<div class="x_title">
+    <h2>Search Results</h2>
+    <div class="clearfix"></div>
+</div>
+
+<div class="mtop20">
+    <table id="tblBusniessKeyPrincipals" class="table table-bordered table-hover table-striped">
+        <thead class="thead-light">
+            <tr>
+                <th id="Id">Id</th>
+                <th id="AppId">Application Id</th>
+                <th id="firstName" class="hideCol hideHideCol_2">Type</th>
+                <th id="position" class="hideCol hideHideCol_3">Company Busniess Name</th>
+                @*<th>Default</th>*@
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Count() > 0)
+            {
+                var index = 0;
+                @foreach (var application in Model)
+                {
+                    var tm = "#myModal" + application.AppID;
+                    var mid = "myModal" + application.AppID;
+                    <tr>
+
+                        <td>
+                            @index
+                        </td>
+
+                        <td>
+                            APP0000 @application.AppID
+                        </td>
+
+                        <td>@application.Type</td>
+
+                        <td>@application.CompanyBusinessName</td>
+
+                        <td>
+                            <a asp-controller="Home" asp-action="EditApplication" asp-route-Id="@index" id="EditBtn" style="width:80px;" class="btn btn-primary btn-sm">Edit</a>
+                        </td>
+
+                        <td>
+                            <button type="button" style="width:80px;" class="btn btn-danger btn-sm" data-toggle="modal" data-target="@tm">
+                                Delete
+                            </button>
+
+
+                            <div class="modal fade" id="@mid" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            @*<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>*@
+                                            <h4 class="modal-title text-center" id="myModalLabel">Delete Application</h4>
+                                            <button type="button" class="close " data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Are you sure want to delete this Application?
+                                        </div>
+                                        <div class="modal-footer">
+
+                                            <a asp-controller="Home" asp-action="DeleteApplication" asp-route-Id="@index" id="deleteBtn" class="btn bg-danger mr-1">Delete</a>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    index = index + 1;
+                }
+            }
+        </tbody>
+    </table>
+
+</div>

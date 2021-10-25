@@ -152,11 +152,12 @@ namespace LenSys.Controllers
         public IActionResult Search(Search search)
         {
             string SearchAppType = search.AppType;
-            int deleteAppId = search.SearchId;
+            //int deleteAppId = search.SearchId;
+            List<AllApplications> SearchallApplications = new List<AllApplications>();
 
             if (SearchAppType == "Asset finance")
-            {           
-                _appAssetFinanceRepository.GetAppAssetFinance(deleteAppId);
+            {
+                SearchallApplications = (List<AllApplications>)_appAssetFinanceRepository.SearchAppAssetFinance( search.SearchAttribute,search.SearchParam);
             }
             else if (SearchAppType == "Business finance")
             {            
@@ -170,7 +171,8 @@ namespace LenSys.Controllers
             {             
                 //_appPropertyFinanceRepository.Delete(deleteAppId);
             }
-            return View("Search");
+            //return View("Search");
+            return View("SearchResults", SearchallApplications);
         }
         public ViewResult DocumentList()
         {
