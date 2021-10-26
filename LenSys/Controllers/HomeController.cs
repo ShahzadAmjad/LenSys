@@ -22,16 +22,16 @@ using System.Threading.Tasks;
 
 namespace LenSys.Controllers
 {
-    public class HomeController: Controller
+    public class HomeController : Controller
     {
-        
+
         private readonly IAllApplicationsRepository _allApplicationsRepository;
-        
+
         private IAppAssetFinanceRepository _appAssetFinanceRepository;
         private IAppBusniessFinanceRepository _appBusniessFinanceRepository;
         private IAppDevelopmentFinanceRepository _appDevelopmentFinanceRepository;
         private IAppPropertyFinanceRepository _appPropertyFinanceRepository;
-        
+
         private IAppAssetFinanceBusniessRepository _appAssetFinanceBusniessRepository;
         private IAppAssetFinanceIndividualRepository _appAssetFinanceIndividualRepository;
         private IAppDevelopmentFinanceBusniessRepository _appDevelopmentFinanceBusniessRepository;
@@ -64,7 +64,7 @@ namespace LenSys.Controllers
             IAppBusniessFinanceBusniessRepository appBusniessFinanceBusniessRepository,
             IAppBusniessFinanceIndividualRepository appBusniessFinanceIndividualRepository,
             IAppPropertyFinanceBusniessRepository appPropertyFinanceBusniessRepository,
-            IAppPropertyFinanceIndividualRepository appPropertyFinanceIndividualRepository, 
+            IAppPropertyFinanceIndividualRepository appPropertyFinanceIndividualRepository,
             IAppBusniessFinanceSecurityDetailsRepository appBusniessFinanceSecurityDetailsRepository,
             IAppDevelopmentFinanceSecurityDetailsRepository appDevelopmentFinanceSecurityDetailsRepository,
             IAppPropertyFinanceSecurityDetailsRepository appPropertyFinanceSecurityDetailsRepository)
@@ -107,17 +107,17 @@ namespace LenSys.Controllers
         {
             //if (ModelState.IsValid)
             {
-                if(lead.LoanPurpose=="Asset finance")
+                if (lead.LoanPurpose == "Asset finance")
                 {
-                    AppAssetFinance appAssetFinance = new AppAssetFinance { CompanyName=lead.CompanyBusniessName };                    
-                    
+                    AppAssetFinance appAssetFinance = new AppAssetFinance { CompanyName = lead.CompanyBusniessName };
+
                     appAssetFinance.Lead = lead;
                     _appAssetFinanceRepository.Add(appAssetFinance);
                 }
 
                 else if (lead.LoanPurpose == "Business finance")
                 {
-                    AppBusniessFinance appBusniessFinance = new AppBusniessFinance{ AccountantCompany = lead.CompanyBusniessName };
+                    AppBusniessFinance appBusniessFinance = new AppBusniessFinance { AccountantCompany = lead.CompanyBusniessName };
 
                     appBusniessFinance.Lead = lead;
                     _appBusniessFinanceRepository.Add(appBusniessFinance);
@@ -149,34 +149,22 @@ namespace LenSys.Controllers
             Search search = new Search();
             search.SearchAttribute = "Application Id";
             search.SearchParam = "0";
-            return View("Search",search);
+            return View("Search", search);
         }
         [HttpPost]
         public IActionResult Search(Search search)
         {
-            //setting the global variable for delte and edit return
+            //setting the global variable for delete and edit return functions
             GloabalSearch = search;
-            //string SearchAppType = search.AppType;
-            ////int deleteAppId = search.SearchId;
-            //List<AllApplications> SearchallApplications = new List<AllApplications>();
 
-            //if (SearchAppType == "Asset finance")
-            //{
-            //    SearchallApplications = (List<AllApplications>)_appAssetFinanceRepository.SearchAppAssetFinance( search.SearchAttribute,search.SearchParam);
-            //}
-            //else if (SearchAppType == "Business finance")
-            //{
-            //    SearchallApplications = (List<AllApplications>)_appBusniessFinanceRepository.SearchAppBusniessFinance(search.SearchAttribute, search.SearchParam);
-            //}
-            //else if (SearchAppType == "Development finance")
-            //{
-            //    SearchallApplications = (List<AllApplications>)_appDevelopmentFinanceRepository.SearchAppDevelopmentFinance(search.SearchAttribute, search.SearchParam);
-            //}
-            //else if (SearchAppType == "Property finance")
-            //{
-            //    SearchallApplications = (List<AllApplications>)_appPropertyFinanceRepository.SearchAppPropertyFinance(search.SearchAttribute, search.SearchParam);
-            //}
-
+            if (search.SearchAttribute == null || search.SearchAttribute == "")
+            {
+                search.SearchAttribute = "Application Id";
+            }
+            if (search.SearchParam == null || search.SearchParam == "")
+            {
+                search.SearchParam = "0";
+            }
             var SearchallApplications = _allApplicationsRepository.SearchAllApplications(search.SearchAttribute, search.SearchParam);
 
             return View("SearchResults", SearchallApplications);
@@ -186,7 +174,7 @@ namespace LenSys.Controllers
             return View();
         }
         public ViewResult AllApplications()
-        {           
+        {
             var allApplicationsConcat = _allApplicationsRepository.GetAllApplications();
             return View(allApplicationsConcat);
         }
@@ -219,11 +207,10 @@ namespace LenSys.Controllers
             allApplicationsConcat = _allApplicationsRepository.GetAllApplications();
             return View("AllApplications", allApplicationsConcat);
         }
-        //To be worked
         public ViewResult DeleteApplication_Search(int id)
         {
-            var allApplicationsConcat = _allApplicationsRepository.GetAllApplications();
-            AllApplications EditAppObj = allApplicationsConcat.ToList()[id];
+            var SearchallApplications = _allApplicationsRepository.SearchAllApplications(GloabalSearch.SearchAttribute, GloabalSearch.SearchParam);
+            AllApplications EditAppObj = SearchallApplications.ToList()[id];
             int deleteAppId = 0;
 
             if (EditAppObj.Type == "Asset finance")
@@ -247,10 +234,18 @@ namespace LenSys.Controllers
                 _appPropertyFinanceRepository.Delete(deleteAppId);
             }
 
-            allApplicationsConcat = _allApplicationsRepository.GetAllApplications();
-            return View("AllApplications", allApplicationsConcat);
-
-
+            //allApplicationsConcat = _allApplicationsRepository.GetAllApplications();
+            //return View("AllApplications", allApplicationsConcat);
+            if (GloabalSearch.SearchAttribute == null || GloabalSearch.SearchAttribute == "")
+            {
+                GloabalSearch.SearchAttribute = "Application Id";
+            }
+            if (GloabalSearch.SearchParam == null || GloabalSearch.SearchParam == "")
+            {
+                GloabalSearch.SearchParam = "0";
+            }
+            var UpdatedSearchallApplications = _allApplicationsRepository.SearchAllApplications(GloabalSearch.SearchAttribute, GloabalSearch.SearchParam);
+            return View("SearchResults", UpdatedSearchallApplications);
         }
         public IActionResult EditApplication(int id)
         {
@@ -261,7 +256,7 @@ namespace LenSys.Controllers
             EditAppType = EditAppObj.Type;
 
             if (EditAppObj.Type == "Asset finance")
-            {                
+            {
                 EditAssetFinanceAppID = EditAppObj.AppID;
                 _appAssetFinanceBusniessRepository.SetBusniessList(_appAssetFinanceRepository.GetAppAssetFinance_EditHome(EditAppObjId).busniesses);
                 _appAssetFinanceIndividualRepository.SetIndividualList(_appAssetFinanceRepository.GetAppAssetFinance_EditHome(EditAppObjId).individuals);
@@ -293,9 +288,74 @@ namespace LenSys.Controllers
                 return RedirectToAction("AppPropertyFinance", "AppPropertyFinance");
             }
             else
-            {               
+            {
                 return View("AllApplications", allApplicationsConcat);
-            }         
+            }
+        }
+        public IActionResult EditApplication_Search(int id)
+        {
+            var SearchallApplications = _allApplicationsRepository.SearchAllApplications(GloabalSearch.SearchAttribute, GloabalSearch.SearchParam);
+            AllApplications EditAppObj = SearchallApplications.ToList()[id];
+            int EditAppObjId = EditAppObj.AppID;
+            //To be used in individual and busniess
+            EditAppType = EditAppObj.Type;
+
+            if (EditAppType == "Asset finance")
+            {
+                EditAssetFinanceAppID = EditAppObj.AppID;
+                _appAssetFinanceBusniessRepository.SetBusniessList(_appAssetFinanceRepository.GetAppAssetFinance_EditHome(EditAppObjId).busniesses);
+                _appAssetFinanceIndividualRepository.SetIndividualList(_appAssetFinanceRepository.GetAppAssetFinance_EditHome(EditAppObjId).individuals);
+                return RedirectToAction("AppAssetFinance", "AppAssetFinance");
+            }
+            else if (EditAppType == "Business finance")
+            {
+                EditBusinessFinanceAppID = EditAppObj.AppID;
+                _appBusniessFinanceBusniessRepository.SetBusniessList(_appBusniessFinanceRepository.GetAppBusniessFinance_EditHome(EditAppObjId).busniesses);
+                _appBusniessFinanceIndividualRepository.SetIndividualList(_appBusniessFinanceRepository.GetAppBusniessFinance_EditHome(EditAppObjId).individuals);
+                _appBusniessFinanceSecurityDetailsRepository.SetSecurityDetailsList(_appBusniessFinanceRepository.GetAppBusniessFinance_EditHome(EditAppObjId).securityDetails);
+                return RedirectToAction("AppBusniessFinance", "AppBusniessFinance");
+            }
+            else if (EditAppType == "Development finance")
+            {
+                EditDevelopmentFinanceAppID = EditAppObj.AppID;
+                _appDevelopmentFinanceBusniessRepository.SetBusniessList(_appDevelopmentFinanceRepository.GetAppDevelopmentFinance_EditHome(EditAppObjId).busniesses);
+                _appDevelopmentFinanceIndividualRepository.SetIndividualList(_appDevelopmentFinanceRepository.GetAppDevelopmentFinance_EditHome(EditAppObjId).individuals);
+                _appDevelopmentFinanceSecurityDetailsRepository.SetSecurityDetailsList(_appDevelopmentFinanceRepository.GetAppDevelopmentFinance_EditHome(EditAppObjId).securityDetails);
+                return RedirectToAction("AppDevelopmentFinance", "AppDevelopmentFinance");
+            }
+            else if (EditAppType == "Property finance")
+            {
+                EditPropertyFinanceAppID = EditAppObj.AppID;
+                AppPropertyFinance appPropertyFinance = _appPropertyFinanceRepository.GetAppPropertyFinance_EditHome(EditAppObjId);
+                _appPropertyFinanceBusniessRepository.SetBusniessList(_appPropertyFinanceRepository.GetAppPropertyFinance_EditHome(EditAppObjId).busniesses);
+                _appPropertyFinanceIndividualRepository.SetIndividualList(_appPropertyFinanceRepository.GetAppPropertyFinance_EditHome(EditAppObjId).individuals);
+                _appPropertyFinanceSecurityDetailsRepository.SetSecurityDetailsList(_appPropertyFinanceRepository.GetAppPropertyFinance_EditHome(EditAppObjId).securityDetails);
+                return RedirectToAction("AppPropertyFinance", "AppPropertyFinance");
+            }
+            else
+            {
+                return View("SearchResults", SearchallApplications);
+            }
+        }
+        public IActionResult ViewApplication(int id)
+        {
+            var SearchallApplications = _allApplicationsRepository.SearchAllApplications(GloabalSearch.SearchAttribute, GloabalSearch.SearchParam);
+            AllApplications EditAppObj = SearchallApplications.ToList()[id];
+            int EditAppObjId = EditAppObj.AppID;
+            //To be used in individual and busniess
+            EditAppType = EditAppObj.Type;
+
+            return View();
+        }
+        public IActionResult ViewApplication_Search(int id)
+        {
+            var SearchallApplications = _allApplicationsRepository.SearchAllApplications(GloabalSearch.SearchAttribute, GloabalSearch.SearchParam);
+            AllApplications EditAppObj = SearchallApplications.ToList()[id];
+            int EditAppObjId = EditAppObj.AppID;
+            //To be used in individual and busniess
+            EditAppType = EditAppObj.Type;
+
+            return View();
         }
     }
 }
