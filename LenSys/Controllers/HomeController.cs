@@ -50,7 +50,9 @@ namespace LenSys.Controllers
         public static int EditDevelopmentFinanceAppID;
         public static int EditPropertyFinanceAppID;
         public static string EditAppType;
+        public static bool EditAppBySearch=false;
         public static Search GloabalSearch;
+
 
         public HomeController(IAllApplicationsRepository allApplicationsRepository,
             IAppAssetFinanceRepository appAssetFinanceRepository,
@@ -178,6 +180,19 @@ namespace LenSys.Controllers
             var allApplicationsConcat = _allApplicationsRepository.GetAllApplications();
             return View(allApplicationsConcat);
         }
+        public IActionResult SearchResults()
+        {
+            if (GloabalSearch.SearchAttribute == null || GloabalSearch.SearchAttribute == "")
+            {
+                GloabalSearch.SearchAttribute = "Application Id";
+            }
+            if (GloabalSearch.SearchParam == null || GloabalSearch.SearchParam == "")
+            {
+                GloabalSearch.SearchParam = "0";
+            }
+            var SearchallApplications = _allApplicationsRepository.SearchAllApplications(GloabalSearch.SearchAttribute, GloabalSearch.SearchParam);
+            return View("SearchResults", SearchallApplications);
+        }
         public ViewResult DeleteApplication(int id)
         {
             var allApplicationsConcat = _allApplicationsRepository.GetAllApplications();
@@ -249,6 +264,7 @@ namespace LenSys.Controllers
         }
         public IActionResult EditApplication(int id)
         {
+            EditAppBySearch = false;
             var allApplicationsConcat = _allApplicationsRepository.GetAllApplications();
             AllApplications EditAppObj = allApplicationsConcat.ToList()[id];
             int EditAppObjId = EditAppObj.AppID;
@@ -294,6 +310,7 @@ namespace LenSys.Controllers
         }
         public IActionResult EditApplication_Search(int id)
         {
+            EditAppBySearch = true;
             var SearchallApplications = _allApplicationsRepository.SearchAllApplications(GloabalSearch.SearchAttribute, GloabalSearch.SearchParam);
             AllApplications EditAppObj = SearchallApplications.ToList()[id];
             int EditAppObjId = EditAppObj.AppID;

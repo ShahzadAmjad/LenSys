@@ -201,6 +201,22 @@ namespace LenSys.Controllers
         [HttpPost]
         public IActionResult AppAssetFinance(AppAssetFinance appAssetFinance)
         {
+            appAssetFinance.busniesses = (List<AppAssetFinanceBusniess>)_appAssetFinanceBusniessRepository.GetAllBusniess();
+            appAssetFinance.individuals = (List<AppAssetFinanceIndividual>)_appAssetFinanceIndividualRepository.GetAllIndividual();
+            appAssetFinance.Lead = lead;
+            //Update AppAssetFinance Whole Application
+            AppAssetFinance appAssetFinance1 = _appAssetFinanceRepository.Update(appAssetFinance);
+            //return RedirectToAction("AllApplications", "Home");
+            bool editAppBySearch = HomeController.EditAppBySearch;
+
+            if (editAppBySearch)
+            {
+                return RedirectToAction("SearchResults", "Home");
+            }
+            else
+            {
+                return RedirectToAction("AllApplications", "Home");
+            }
             //foreach (AppAssetFinanceIndividual individual in _appAssetFinanceIndividualRepository.GetAllIndividual())
             //{
             //    individual.IndividualId = 0;
@@ -241,23 +257,25 @@ namespace LenSys.Controllers
 
             //lead.LeadId = 0;
             //appAssetFinance.AssetFinId = 0;
-
-            appAssetFinance.busniesses = (List<AppAssetFinanceBusniess>)_appAssetFinanceBusniessRepository.GetAllBusniess();
-            appAssetFinance.individuals = (List<AppAssetFinanceIndividual>)_appAssetFinanceIndividualRepository.GetAllIndividual();
-            appAssetFinance.Lead = lead;
-            //Update AppAssetFinance Whole Application
-            AppAssetFinance appAssetFinance1 = _appAssetFinanceRepository.Update(appAssetFinance);
-            return RedirectToAction("AllApplications", "Home");
             //Delete Old Record and add new one due to List multiple not updated
             //_appAssetFinanceRepository.Delete(appID);
             //AppAssetFinance appAssetFinance1 = _appAssetFinanceRepository.Add(appAssetFinance);
-
-
-
             //lead = new Lead();
-
-
             //return JavaScript(alert(""));
+        }
+        public IActionResult ReturnToParentPage()
+        {
+            bool editAppBySearch = HomeController.EditAppBySearch;
+
+            if (editAppBySearch)
+            {
+                return RedirectToAction("SearchResults", "Home");
+            }
+            else
+            {
+                return RedirectToAction("AllApplications", "Home");
+                //return View( "AllApplications", "Home");
+            }
         }
     }
 }
