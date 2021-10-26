@@ -27,12 +27,12 @@
                                 <div class="text-center ">
 
                                     <div class="form-check form-check-inline">
-                                        @Html.RadioButtonFor(x => x.SearchAttribute, "Application Id")
+                                        @Html.RadioButtonFor(x => x.SearchAttribute, "Application Id", Model.SearchAttribute == "Application Id" ? new { @checked = "checked" } : null)
                                         @*<input asp-for="SearchAttribute" class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="ApplicationId">*@
                                         <label class="form-check-label" for="inlineRadio1">Application Id</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        @Html.RadioButtonFor(x => x.SearchAttribute, "Busniess Id")
+                                        @Html.RadioButtonFor(x => x.SearchAttribute, "Busniess Id" )
                                         
                                         <label class="form-check-label" for="inlineRadio2">Busniess Id</label>
                                     </div>
@@ -90,7 +90,7 @@
                                 <div class="ln_solid"></div>
                                 <div class="item form-group">
                                     <div class="col-md-6 col-sm-6 offset-md-3">
-                                        <button class="btn btn-primary" type="button">Cancel</button>
+                                        @*<button class="btn btn-primary" type="button">Cancel</button>*@
                                         <button type="submit" class="btn btn-success">Search</button>
                                     </div>
                                 </div>
