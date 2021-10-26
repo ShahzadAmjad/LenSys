@@ -81,5 +81,17 @@ namespace LenSys.Models.Home.AllApplications
         {
             throw new NotImplementedException();
         }
+
+        public IEnumerable<AllApplications> SearchAllApplications(string SearchAttribute, string SearchParam)
+        {
+            var appAssetFinanceApplication_AllAppFormat = _appAssetFinanceRepository.SearchAppAssetFinance(SearchAttribute, SearchParam);
+            var appBusinessFinanceApplication_AllAppFormat = _appBusniessFinanceRepository.SearchAppBusniessFinance(SearchAttribute, SearchParam);
+            var appDevelopmentFinanceApplication_AllAppFormat = _appDevelopmentFinanceRepository.SearchAppDevelopmentFinance(SearchAttribute, SearchParam);
+            var appPropertyFinanceApplication_AllAppFormat = _appPropertyFinanceRepository.SearchAppPropertyFinance(SearchAttribute, SearchParam);
+
+            var _allApplications = ((appAssetFinanceApplication_AllAppFormat.Concat(appBusinessFinanceApplication_AllAppFormat)
+                .Concat(appDevelopmentFinanceApplication_AllAppFormat)).Concat(appPropertyFinanceApplication_AllAppFormat));
+            return _allApplications;
+        }
     }
 }

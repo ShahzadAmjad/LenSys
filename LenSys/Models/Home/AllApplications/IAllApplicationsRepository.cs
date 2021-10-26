@@ -10,6 +10,7 @@ namespace LenSys.Models.Home.AllApplications
         AllApplications GetApplication(int Id);
         AppAssetFinance.AppAssetFinance GetAssetFinanceApplication(int Id);
         IEnumerable<AllApplications> GetAllApplications();
+        IEnumerable<AllApplications> SearchAllApplications(string SearchAttribute, string SearchParam);
         IEnumerable<AppAssetFinance.AppAssetFinance> GetAllAssetFinanceApplication();
         AllApplications Add(AllApplications Applications);
         AllApplications Update(AllApplications ApplicationsChanges);

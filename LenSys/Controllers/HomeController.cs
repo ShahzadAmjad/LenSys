@@ -154,26 +154,28 @@ namespace LenSys.Controllers
         {
             //setting the global variable for delte and edit return
             GloabalSearch = search;
-            string SearchAppType = search.AppType;
-            //int deleteAppId = search.SearchId;
-            List<AllApplications> SearchallApplications = new List<AllApplications>();
+            //string SearchAppType = search.AppType;
+            ////int deleteAppId = search.SearchId;
+            //List<AllApplications> SearchallApplications = new List<AllApplications>();
 
-            if (SearchAppType == "Asset finance")
-            {
-                SearchallApplications = (List<AllApplications>)_appAssetFinanceRepository.SearchAppAssetFinance( search.SearchAttribute,search.SearchParam);
-            }
-            else if (SearchAppType == "Business finance")
-            {
-                SearchallApplications = (List<AllApplications>)_appBusniessFinanceRepository.SearchAppBusniessFinance(search.SearchAttribute, search.SearchParam);
-            }
-            else if (SearchAppType == "Development finance")
-            {
-                SearchallApplications = (List<AllApplications>)_appDevelopmentFinanceRepository.SearchAppDevelopmentFinance(search.SearchAttribute, search.SearchParam);
-            }
-            else if (SearchAppType == "Property finance")
-            {
-                SearchallApplications = (List<AllApplications>)_appPropertyFinanceRepository.SearchAppPropertyFinance(search.SearchAttribute, search.SearchParam);
-            }
+            //if (SearchAppType == "Asset finance")
+            //{
+            //    SearchallApplications = (List<AllApplications>)_appAssetFinanceRepository.SearchAppAssetFinance( search.SearchAttribute,search.SearchParam);
+            //}
+            //else if (SearchAppType == "Business finance")
+            //{
+            //    SearchallApplications = (List<AllApplications>)_appBusniessFinanceRepository.SearchAppBusniessFinance(search.SearchAttribute, search.SearchParam);
+            //}
+            //else if (SearchAppType == "Development finance")
+            //{
+            //    SearchallApplications = (List<AllApplications>)_appDevelopmentFinanceRepository.SearchAppDevelopmentFinance(search.SearchAttribute, search.SearchParam);
+            //}
+            //else if (SearchAppType == "Property finance")
+            //{
+            //    SearchallApplications = (List<AllApplications>)_appPropertyFinanceRepository.SearchAppPropertyFinance(search.SearchAttribute, search.SearchParam);
+            //}
+
+            var SearchallApplications = _allApplicationsRepository.SearchAllApplications(search.SearchAttribute, search.SearchParam);
 
             return View("SearchResults", SearchallApplications);
         }
@@ -215,6 +217,7 @@ namespace LenSys.Controllers
             allApplicationsConcat = _allApplicationsRepository.GetAllApplications();
             return View("AllApplications", allApplicationsConcat);
         }
+        //To be worked
         public ViewResult DeleteApplication_Search(int id)
         {
             var allApplicationsConcat = _allApplicationsRepository.GetAllApplications();
@@ -242,32 +245,8 @@ namespace LenSys.Controllers
                 _appPropertyFinanceRepository.Delete(deleteAppId);
             }
 
-            //allApplicationsConcat = _allApplicationsRepository.GetAllApplications();
-            //return View("AllApplications", allApplicationsConcat);
-
-            string SearchAppType = GloabalSearch.AppType;
-            //int deleteAppId = search.SearchId;
-            List<AllApplications> SearchallApplications = new List<AllApplications>();
-
-            if (SearchAppType == "Asset finance")
-            {
-                SearchallApplications = (List<AllApplications>)_appAssetFinanceRepository.SearchAppAssetFinance(GloabalSearch.SearchAttribute, GloabalSearch.SearchParam);
-            }
-            else if (SearchAppType == "Business finance")
-            {
-                SearchallApplications = (List<AllApplications>)_appBusniessFinanceRepository.SearchAppBusniessFinance(GloabalSearch.SearchAttribute, GloabalSearch.SearchParam);
-            }
-            else if (SearchAppType == "Development finance")
-            {
-                SearchallApplications = (List<AllApplications>)_appDevelopmentFinanceRepository.SearchAppDevelopmentFinance(GloabalSearch.SearchAttribute, GloabalSearch.SearchParam);
-            }
-            else if (SearchAppType == "Property finance")
-            {
-                SearchallApplications = (List<AllApplications>)_appPropertyFinanceRepository.SearchAppPropertyFinance(GloabalSearch.SearchAttribute, GloabalSearch.SearchParam);
-            }
-            
-            return View("SearchResults", SearchallApplications);
-
+            allApplicationsConcat = _allApplicationsRepository.GetAllApplications();
+            return View("AllApplications", allApplicationsConcat);
 
 
         }

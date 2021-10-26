@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace LenSys.Models.Home.AllApplications
 {
-    public class MockAllApplicationsRepository : IAllApplicationsRepository
+    public class MockAllApplicationsRepository //:IAllApplicationsRepository
     {
         private IAppAssetFinanceRepository _appAssetFinanceRepository;
         private IAppBusniessFinanceRepository _appBusniessFinanceRepository;
@@ -77,6 +77,11 @@ namespace LenSys.Models.Home.AllApplications
         }
 
         public AppAssetFinance.AppAssetFinance GetAssetFinanceApplication(int Id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<AllApplications> SearchAllApplications(string SearchAttribute, string SearchParam)
         {
             throw new NotImplementedException();
         }
