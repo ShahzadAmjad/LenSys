@@ -277,7 +277,30 @@ namespace LenSys.Controllers
             appDevelopmentFinance.Lead = lead;
             //Update App As a Whole Application            
             AppDevelopmentFinance appDevelopmentFinance1 = _appDevelopmentFinanceRepository.Update(appDevelopmentFinance);
-            return RedirectToAction("AllApplications", "Home");
+            //return RedirectToAction("AllApplications", "Home");
+            bool editAppBySearch = HomeController.EditAppBySearch;
+            if (editAppBySearch)
+            {
+                return RedirectToAction("SearchResults", "Home");
+            }
+            else
+            {
+                return RedirectToAction("AllApplications", "Home");
+            }
+        }
+        public IActionResult ReturnToParentPage()
+        {
+            bool editAppBySearch = HomeController.EditAppBySearch;
+
+            if (editAppBySearch)
+            {
+                return RedirectToAction("SearchResults", "Home");
+            }
+            else
+            {
+                return RedirectToAction("AllApplications", "Home");
+                //return View( "AllApplications", "Home");
+            }
         }
     }
 }
