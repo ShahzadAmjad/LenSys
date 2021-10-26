@@ -265,7 +265,7 @@ namespace LenSys.Controllers
             {
                 SearchallApplications = (List<AllApplications>)_appPropertyFinanceRepository.SearchAppPropertyFinance(GloabalSearch.SearchAttribute, GloabalSearch.SearchParam);
             }
-            //return View("Search");
+            
             return View("SearchResults", SearchallApplications);
 
 
