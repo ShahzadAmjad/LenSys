@@ -242,11 +242,34 @@ namespace LenSys.Controllers
                 _appPropertyFinanceRepository.Delete(deleteAppId);
             }
 
+            //allApplicationsConcat = _allApplicationsRepository.GetAllApplications();
+            //return View("AllApplications", allApplicationsConcat);
+
+            string SearchAppType = GloabalSearch.AppType;
+            //int deleteAppId = search.SearchId;
+            List<AllApplications> SearchallApplications = new List<AllApplications>();
+
+            if (SearchAppType == "Asset finance")
+            {
+                SearchallApplications = (List<AllApplications>)_appAssetFinanceRepository.SearchAppAssetFinance(GloabalSearch.SearchAttribute, GloabalSearch.SearchParam);
+            }
+            else if (SearchAppType == "Business finance")
+            {
+                SearchallApplications = (List<AllApplications>)_appBusniessFinanceRepository.SearchAppBusniessFinance(GloabalSearch.SearchAttribute, GloabalSearch.SearchParam);
+            }
+            else if (SearchAppType == "Development finance")
+            {
+                SearchallApplications = (List<AllApplications>)_appDevelopmentFinanceRepository.SearchAppDevelopmentFinance(GloabalSearch.SearchAttribute, GloabalSearch.SearchParam);
+            }
+            else if (SearchAppType == "Property finance")
+            {
+                SearchallApplications = (List<AllApplications>)_appPropertyFinanceRepository.SearchAppPropertyFinance(GloabalSearch.SearchAttribute, GloabalSearch.SearchParam);
+            }
+            //return View("Search");
+            return View("SearchResults", SearchallApplications);
 
 
 
-            allApplicationsConcat = _allApplicationsRepository.GetAllApplications();
-            return View("AllApplications", allApplicationsConcat);
         }
         public IActionResult EditApplication(int id)
         {
