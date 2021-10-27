@@ -264,12 +264,30 @@ namespace LenSys.Models.AppBusniessFinance
                     .Select(p => new AllApplications { AppID = p.BusniessFinId, LeadId = p.Lead.LeadId, Type = p.Lead.LoanPurpose, CompanyBusinessName = p.Lead.CompanyBusniessName })
                     .ToList();
             }
+            else if (SearchAttribute == "BD Id")
+            {
+                int id = Int32.Parse(SearchParam);
+                allApplicationsList = Context.AppBusniessFinance
+                    .Include(x => x.Lead)
+                    .Where(h => h.busniesses.Any(c => c.busniessDetails.BusniessDetailsId == id))
+                    .Select(p => new AllApplications { AppID = p.BusniessFinId, LeadId = p.Lead.LeadId, Type = p.Lead.LoanPurpose, CompanyBusinessName = p.Lead.CompanyBusniessName })
+                    .ToList();
+            }
             else if (SearchAttribute == "Individual Id")
             {
                 int id = Int32.Parse(SearchParam);
                 allApplicationsList = Context.AppBusniessFinance
                     .Include(x => x.Lead)
                     .Where(h => h.individuals.Any(c => c.IndividualId == id))
+                    .Select(p => new AllApplications { AppID = p.BusniessFinId, LeadId = p.Lead.LeadId, Type = p.Lead.LoanPurpose, CompanyBusinessName = p.Lead.CompanyBusniessName })
+                    .ToList();
+            }
+            else if (SearchAttribute == "PD Id")
+            {
+                int id = Int32.Parse(SearchParam);
+                allApplicationsList = Context.AppBusniessFinance
+                    .Include(x => x.Lead)
+                    .Where(h => h.individuals.Any(c => c.personalDetails.PersonalDetailsId == id))
                     .Select(p => new AllApplications { AppID = p.BusniessFinId, LeadId = p.Lead.LeadId, Type = p.Lead.LoanPurpose, CompanyBusinessName = p.Lead.CompanyBusniessName })
                     .ToList();
             }
