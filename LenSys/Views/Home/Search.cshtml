@@ -24,35 +24,39 @@
                         <form id="SearchForm" data-parsley-validate class="form-horizontal form-label-left" asp-controller="Home" asp-action="Search" method="post">
                             
 
-                                <div class="text-center ">
-
-                                    <div class="form-check form-check-inline">
-                                        @Html.RadioButtonFor(x => x.SearchAttribute, "Application Id", Model.SearchAttribute == "Application Id" ? new { @checked = "checked" } : null)
-                                        @*<input asp-for="SearchAttribute" class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="ApplicationId">*@
-                                        <label class="form-check-label" for="inlineRadio1">Application Id</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        @Html.RadioButtonFor(x => x.SearchAttribute, "Busniess Id" )
-                                        
-                                        <label class="form-check-label" for="inlineRadio2">Busniess Id</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        @Html.RadioButtonFor(x => x.SearchAttribute, "Individual Id")
-                                        <label class="form-check-label" for="inlineRadio3">Individual Id</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        @Html.RadioButtonFor(x => x.SearchAttribute, "First Name")                                        
-                                        <label class="form-check-label" for="inlineRadio4">First Name</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        @Html.RadioButtonFor(x => x.SearchAttribute, "Phone No")                                      
-                                        <label class="form-check-label" for="inlineRadio5">Phone No</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        @Html.RadioButtonFor(x => x.SearchAttribute, "Company Name")                                     
-                                        <label class="form-check-label" for="inlineRadio6">Company Name</label>
-                                    </div>
+                            <div class="text-center ">
+                                <div class="form-check form-check-inline">
+                                    @Html.RadioButtonFor(x => x.SearchAttribute, "Lead Id")
+                                    @*<input asp-for="SearchAttribute" class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="ApplicationId">*@
+                                    <label class="form-check-label" for="inlineRadio1">Lead Id</label>
                                 </div>
+                                <div class="form-check form-check-inline">
+                                    @Html.RadioButtonFor(x => x.SearchAttribute, "Application Id", Model.SearchAttribute == "Application Id" ? new { @checked = "checked" } : null)
+                                    @*<input asp-for="SearchAttribute" class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="ApplicationId">*@
+                                    <label class="form-check-label" for="inlineRadio1">Application Id</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    @Html.RadioButtonFor(x => x.SearchAttribute, "Busniess Id")
+
+                                    <label class="form-check-label" for="inlineRadio2">Busniess Id</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    @Html.RadioButtonFor(x => x.SearchAttribute, "Individual Id")
+                                    <label class="form-check-label" for="inlineRadio3">Individual Id</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    @Html.RadioButtonFor(x => x.SearchAttribute, "First Name")
+                                    <label class="form-check-label" for="inlineRadio4">First Name</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    @Html.RadioButtonFor(x => x.SearchAttribute, "Phone No")
+                                    <label class="form-check-label" for="inlineRadio5">Phone No</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    @Html.RadioButtonFor(x => x.SearchAttribute, "Company Name")
+                                    <label class="form-check-label" for="inlineRadio6">Company Name</label>
+                                </div>
+                            </div>
 
                                 <br />
                                 <br />

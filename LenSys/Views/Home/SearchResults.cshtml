@@ -14,10 +14,11 @@
         <thead class="thead-light">
             <tr>
                 <th id="Id">Id</th>
+                <th id="AppId">Lead Id</th>
                 <th id="AppId">Application Id</th>
                 <th id="firstName" class="hideCol hideHideCol_2">Type</th>
                 <th id="position" class="hideCol hideHideCol_3">Company Busniess Name</th>
-                <th>View</th>
+                @*<th>View</th>*@
                 <th>Edit</th>
                 <th>Delete</th>
             </tr>
@@ -31,21 +32,23 @@
                     var tm = "#myModal" + application.AppID;
                     var mid = "myModal" + application.AppID;
             <tr>
-
+                @*id*@
                 <td>
                     @index
                 </td>
-
                 <td>
-                    APP0000 @application.AppID
+                    APP0000 @application.LeadId
+                </td>
+                <td>
+                     @application.AppID
                 </td>
 
                 <td>@application.Type</td>
 
                 <td>@application.CompanyBusinessName</td>
-                <td>
+                @*<td>
                     <a asp-controller="Home" asp-action="ViewApplication_Search" asp-route-Id="@index" id="ViewBtn" style="width:80px;" class="btn btn-success btn-sm">View</a>
-                </td>
+                </td>*@
                 <td>
                     <a asp-controller="Home" asp-action="EditApplication_Search" asp-route-Id="@index" id="EditBtn" style="width:80px;" class="btn btn-primary btn-sm">Edit</a>
                 </td>

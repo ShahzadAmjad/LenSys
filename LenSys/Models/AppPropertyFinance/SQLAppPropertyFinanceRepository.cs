@@ -229,8 +229,16 @@ namespace LenSys.Models.AppPropertyFinance
 
             List<AllApplications> allApplicationsList = new List<AllApplications>();
             allApplicationsList = Context.AppPropertyFinance.Include(x => x.Lead).Select(p => new AllApplications { AppID = p.LoanId, LeadId = p.Lead.LeadId, Type = p.Lead.LoanPurpose, CompanyBusinessName = p.Lead.CompanyBusniessName }).ToList();
-
-            if (SearchAttribute == "Application Id")
+            if (SearchAttribute == "Lead Id")
+            {
+                int id = Int32.Parse(SearchParam);
+                allApplicationsList = Context.AppPropertyFinance
+                    .Include(x => x.Lead)
+                    .Where(h => h.Lead.LeadId == id)
+                    .Select(p => new AllApplications { AppID = p.LoanId, LeadId = p.Lead.LeadId, Type = p.Lead.LoanPurpose, CompanyBusinessName = p.Lead.CompanyBusniessName })
+                    .ToList();
+            }
+            else if (SearchAttribute == "Application Id")
             {
                 int id = Int32.Parse(SearchParam);
                 allApplicationsList = Context.AppPropertyFinance

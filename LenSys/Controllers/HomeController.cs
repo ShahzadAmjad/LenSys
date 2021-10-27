@@ -149,8 +149,8 @@ namespace LenSys.Controllers
         public ViewResult Search()
         {
             Search search = new Search();
-            search.SearchAttribute = "Application Id";
-            search.SearchParam = "0";
+            search.SearchAttribute = "Lead Id";
+            //search.SearchParam = "0";
             return View("Search", search);
         }
         [HttpPost]

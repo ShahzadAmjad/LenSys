@@ -49,7 +49,8 @@
                         <table id="tblIndividuals" class="table table-bordered table-hover table-striped">
                             <thead class="thead-light">
                                 <tr>
-                                    <th id="id">Id</th>
+                                    <th id="id">Indvidual Id</th>
+                                    <th id="id">PD Id</th>
                                     <th id="IndividualName" class="hideCol hideHideCol_2">Name</th>
 
                                     <th>Edit</th>
@@ -69,7 +70,7 @@
                                             var mid = "myModal" + individual.IndividualId;
                                             <tr>
                                                 <td>@individual.IndividualId</td>
-                                                @*<td>Temporary Field</td>*@
+                                                <td>@individual.personalDetails.PersonalDetailsId</td>
                                                 <td>@individual.personalDetails.FirstName</td>
 
                                                 <td>
@@ -125,7 +126,8 @@
                         <table id="tblBusniesses" class="table table-bordered table-hover table-striped">
                             <thead class="thead-light">
                                 <tr>
-                                    <th id="id">Id</th>
+                                    <th id="id">Business Id</th>
+                                    <th id="id">BD Id</th>
                                     <th id="CompanyName" class="hideCol hideHideCol_2">Company</th>
                                     <th>Edit</th>
                                     <th>Delete</th>
@@ -144,7 +146,7 @@
                                             var mid = "myModal" + busniess.BusniessId;
                                             <tr>
                                                 <td>@busniess.BusniessId</td>
-                                                @*<td>Temporary field</td>*@
+                                                <td>@busniess.busniessDetails.BusniessDetailsId</td>
                                                 <td>@busniess.busniessDetails.CompanyBusniessName</td>
 
                                                 <td>
