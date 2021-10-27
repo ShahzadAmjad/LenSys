@@ -10,5 +10,6 @@ namespace LenSys.Models.Home.AllApplications
         public int AppID { get; set; }
         public string Type { get; set; }
         public string CompanyBusinessName { get; set; }
+        public int LeadId { get; set; }
     }
 }

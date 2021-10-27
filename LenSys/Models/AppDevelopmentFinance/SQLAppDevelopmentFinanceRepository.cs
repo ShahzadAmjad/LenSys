@@ -134,7 +134,7 @@ namespace LenSys.Models.AppDevelopmentFinance
         public IEnumerable<AllApplications> GetAllAppDevelopmentFinance_AllApplication()
         {
             List<AllApplications> allApplicationsList = new List<AllApplications>();
-            allApplicationsList = Context.AppDevelopmentFinance.Include(x => x.Lead).Select(p => new AllApplications { AppID = p.LoanId, Type = p.Lead.LoanPurpose, CompanyBusinessName = p.Lead.CompanyBusniessName }).ToList();
+            allApplicationsList = Context.AppDevelopmentFinance.Include(x => x.Lead).Select(p => new AllApplications { AppID = p.LoanId, LeadId = p.Lead.LeadId, Type = p.Lead.LoanPurpose, CompanyBusinessName = p.Lead.CompanyBusniessName }).ToList();
             return allApplicationsList;
         }
 
@@ -235,7 +235,7 @@ namespace LenSys.Models.AppDevelopmentFinance
         {
 
             List<AllApplications> allApplicationsList = new List<AllApplications>();
-            allApplicationsList = Context.AppDevelopmentFinance.Include(x => x.Lead).Select(p => new AllApplications { AppID = p.LoanId, Type = p.Lead.LoanPurpose, CompanyBusinessName = p.Lead.CompanyBusniessName }).ToList();
+            allApplicationsList = Context.AppDevelopmentFinance.Include(x => x.Lead).Select(p => new AllApplications { AppID = p.LoanId, LeadId = p.Lead.LeadId, Type = p.Lead.LoanPurpose, CompanyBusinessName = p.Lead.CompanyBusniessName }).ToList();
 
             if (SearchAttribute == "Application Id")
             {
@@ -243,7 +243,7 @@ namespace LenSys.Models.AppDevelopmentFinance
                 allApplicationsList = Context.AppDevelopmentFinance
                     .Include(x => x.Lead)
                     .Where(h => h.LoanId == id)
-                    .Select(p => new AllApplications { AppID = p.LoanId, Type = p.Lead.LoanPurpose, CompanyBusinessName = p.Lead.CompanyBusniessName })
+                    .Select(p => new AllApplications { AppID = p.LoanId, LeadId = p.Lead.LeadId, Type = p.Lead.LoanPurpose, CompanyBusinessName = p.Lead.CompanyBusniessName })
                     .ToList();
             }
             else if (SearchAttribute == "Busniess Id")
@@ -252,7 +252,7 @@ namespace LenSys.Models.AppDevelopmentFinance
                 allApplicationsList = Context.AppDevelopmentFinance
                     .Include(x => x.Lead)
                     .Where(h => h.busniesses.Any(c => c.BusniessId == id))
-                    .Select(p => new AllApplications { AppID = p.LoanId, Type = p.Lead.LoanPurpose, CompanyBusinessName = p.Lead.CompanyBusniessName })
+                    .Select(p => new AllApplications { AppID = p.LoanId, LeadId = p.Lead.LeadId, Type = p.Lead.LoanPurpose, CompanyBusinessName = p.Lead.CompanyBusniessName })
                     .ToList();
             }
             else if (SearchAttribute == "Individual Id")
@@ -261,7 +261,7 @@ namespace LenSys.Models.AppDevelopmentFinance
                 allApplicationsList = Context.AppDevelopmentFinance
                     .Include(x => x.Lead)
                     .Where(h => h.individuals.Any(c => c.IndividualId == id))
-                    .Select(p => new AllApplications { AppID = p.LoanId, Type = p.Lead.LoanPurpose, CompanyBusinessName = p.Lead.CompanyBusniessName })
+                    .Select(p => new AllApplications { AppID = p.LoanId, LeadId = p.Lead.LeadId, Type = p.Lead.LoanPurpose, CompanyBusinessName = p.Lead.CompanyBusniessName })
                     .ToList();
             }
             else if (SearchAttribute == "First Name")
@@ -270,7 +270,7 @@ namespace LenSys.Models.AppDevelopmentFinance
                 allApplicationsList = Context.AppDevelopmentFinance
                     .Include(x => x.Lead)
                     .Where(h => h.individuals.Any(c => c.personalDetails.FirstName == id))
-                    .Select(p => new AllApplications { AppID = p.LoanId, Type = p.Lead.LoanPurpose, CompanyBusinessName = p.Lead.CompanyBusniessName })
+                    .Select(p => new AllApplications { AppID = p.LoanId, LeadId = p.Lead.LeadId, Type = p.Lead.LoanPurpose, CompanyBusinessName = p.Lead.CompanyBusniessName })
                     .ToList();
             }
             else if (SearchAttribute == "Phone No")
@@ -279,7 +279,7 @@ namespace LenSys.Models.AppDevelopmentFinance
                 allApplicationsList = Context.AppDevelopmentFinance
                     .Include(x => x.Lead)
                     .Where(h => h.individuals.Any(c => c.personalDetails.PhoneNo == id))
-                    .Select(p => new AllApplications { AppID = p.LoanId, Type = p.Lead.LoanPurpose, CompanyBusinessName = p.Lead.CompanyBusniessName })
+                    .Select(p => new AllApplications { AppID = p.LoanId, LeadId = p.Lead.LeadId, Type = p.Lead.LoanPurpose, CompanyBusinessName = p.Lead.CompanyBusniessName })
                     .ToList();
             }
             else if (SearchAttribute == "Company Name")
@@ -288,7 +288,7 @@ namespace LenSys.Models.AppDevelopmentFinance
                 allApplicationsList = Context.AppDevelopmentFinance
                     .Include(x => x.Lead)
                     .Where(h => h.busniesses.Any(c => c.busniessDetails.CompanyBusniessName == id))
-                    .Select(p => new AllApplications { AppID = p.LoanId, Type = p.Lead.LoanPurpose, CompanyBusinessName = p.Lead.CompanyBusniessName })
+                    .Select(p => new AllApplications { AppID = p.LoanId, LeadId = p.Lead.LeadId, Type = p.Lead.LoanPurpose, CompanyBusinessName = p.Lead.CompanyBusniessName })
                     .ToList();
             }
 
