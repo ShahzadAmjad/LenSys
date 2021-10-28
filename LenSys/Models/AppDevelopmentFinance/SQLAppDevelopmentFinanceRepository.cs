@@ -238,7 +238,13 @@ namespace LenSys.Models.AppDevelopmentFinance
             allApplicationsList = Context.AppDevelopmentFinance.Include(x => x.Lead).Select(p => new AllApplications { AppID = p.LoanId, LeadId = p.Lead.LeadId, Type = p.Lead.LoanPurpose, CompanyBusinessName = p.Lead.CompanyBusniessName }).ToList();
             if (SearchAttribute == "Lead Id")
             {
-                int id = Int32.Parse(SearchParam);
+                int id;
+                bool success = int.TryParse(SearchParam, out id);
+                if (!success)
+                {
+                    id = 0;
+                }
+                //int id = Int32.Parse(SearchParam);
                 allApplicationsList = Context.AppDevelopmentFinance
                     .Include(x => x.Lead)
                     .Where(h => h.Lead.LeadId == id)
@@ -247,7 +253,12 @@ namespace LenSys.Models.AppDevelopmentFinance
             }
             else if (SearchAttribute == "Application Id")
             {
-                int id = Int32.Parse(SearchParam);
+                int id;
+                bool success = int.TryParse(SearchParam, out id);
+                if (!success)
+                {
+                    id = 0;
+                }
                 allApplicationsList = Context.AppDevelopmentFinance
                     .Include(x => x.Lead)
                     .Where(h => h.LoanId == id)
@@ -256,7 +267,12 @@ namespace LenSys.Models.AppDevelopmentFinance
             }
             else if (SearchAttribute == "Busniess Id")
             {
-                int id = Int32.Parse(SearchParam);
+                int id;
+                bool success = int.TryParse(SearchParam, out id);
+                if (!success)
+                {
+                    id = 0;
+                }
                 allApplicationsList = Context.AppDevelopmentFinance
                     .Include(x => x.Lead)
                     .Where(h => h.busniesses.Any(c => c.BusniessId == id))
@@ -265,7 +281,12 @@ namespace LenSys.Models.AppDevelopmentFinance
             }
             else if (SearchAttribute == "BD Id")
             {
-                int id = Int32.Parse(SearchParam);
+                int id;
+                bool success = int.TryParse(SearchParam, out id);
+                if (!success)
+                {
+                    id = 0;
+                }
                 allApplicationsList = Context.AppDevelopmentFinance
                     .Include(x => x.Lead)
                     .Where(h => h.busniesses.Any(c => c.busniessDetails.BusniessDetailsId == id))
@@ -274,7 +295,12 @@ namespace LenSys.Models.AppDevelopmentFinance
             }
             else if (SearchAttribute == "Individual Id")
             {
-                int id = Int32.Parse(SearchParam);
+                int id;
+                bool success = int.TryParse(SearchParam, out id);
+                if (!success)
+                {
+                    id = 0;
+                }
                 allApplicationsList = Context.AppDevelopmentFinance
                     .Include(x => x.Lead)
                     .Where(h => h.individuals.Any(c => c.IndividualId == id))
@@ -283,7 +309,12 @@ namespace LenSys.Models.AppDevelopmentFinance
             }
             else if (SearchAttribute == "PD Id")
             {
-                int id = Int32.Parse(SearchParam);
+                int id;
+                bool success = int.TryParse(SearchParam, out id);
+                if (!success)
+                {
+                    id = 0;
+                }
                 allApplicationsList = Context.AppDevelopmentFinance
                     .Include(x => x.Lead)
                     .Where(h => h.individuals.Any(c => c.personalDetails.PersonalDetailsId == id))
@@ -301,7 +332,12 @@ namespace LenSys.Models.AppDevelopmentFinance
             }
             else if (SearchAttribute == "Phone No")
             {
-                int id = Int32.Parse(SearchParam);
+                int id;
+                bool success = int.TryParse(SearchParam, out id);
+                if (!success)
+                {
+                    id = 0;
+                }
                 allApplicationsList = Context.AppDevelopmentFinance
                     .Include(x => x.Lead)
                     .Where(h => h.individuals.Any(c => c.personalDetails.PhoneNo == id))
