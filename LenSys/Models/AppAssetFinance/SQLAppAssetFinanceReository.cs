@@ -25,6 +25,7 @@ namespace LenSys.Models.AppAssetFinance
         {
             //appAssetFinance.Lead.LeadId = 1;
             //Context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.Lead ON");
+
             Context.AppAssetFinance.Add(appAssetFinance);
             Context.SaveChanges();
             return appAssetFinance;

@@ -17,6 +17,7 @@ using LenSys.Models.BusniessServiceability;
 using LenSys.Models.BusniessUploadDocument;
 using LenSys.Models.Home;
 using LenSys.Models.Home.AllApplications;
+using LenSys.Models.Home.Lead;
 using LenSys.Models.IndividualPropertySchedule;
 using LenSys.Models.IndividualUploadDocuments;
 using Microsoft.AspNetCore.Builder;
@@ -50,9 +51,6 @@ namespace LenSys
 
             services.AddMvc(options => options.EnableEndpointRouting = false);
 
-
-
-            services.AddSingleton<ILeadRepository, MockLeadRepository>();
             services.AddSingleton<IPropertyScheduleRepository, MockPropertyScheduleRepository>();
             services.AddSingleton<IKeyPrincipalsRepository, MockKeyPrincipalsRepository>();
             services.AddSingleton<IBusniessLiabilitiesRepository, MockBusniessLiabilitiesRepository>();
@@ -60,17 +58,18 @@ namespace LenSys
             services.AddSingleton<IBusniessDocumentsRepository, MockBusniessDocumentsRepository>();
             services.AddSingleton<IindividualDocumentsRepository, MockIndividualDocumentsRepository>();
 
+            //For SQL classes
+            services.AddScoped<ILeadRepository, Models.Home.Lead.SQLLeadRepository>();
             services.AddScoped<IAppAssetFinanceRepository, SQLAppAssetFinanceReository>();
             services.AddScoped<IAppBusniessFinanceRepository, SQLAppBusniessFinanceRepository>();
             services.AddScoped<IAppDevelopmentFinanceRepository, SQLAppDevelopmentFinanceRepository>();
             services.AddScoped<IAppPropertyFinanceRepository, SQLAppPropertyFinanceRepository>();
-
             services.AddScoped<IAllApplicationsRepository, SQLAllApplicationsRepository>();
-
+            //Security details repository
             services.AddSingleton<IAppBusniessFinanceSecurityDetailsRepository, MockAppBusniessFinanceSecurityDetailsRepository>();
             services.AddSingleton<IAppDevelopmentFinanceSecurityDetailsRepository, MockAppDevelopmentFinanceSecurityDetailsRepository>();
             services.AddSingleton<IAppPropertyFinanceSecurityDetailsRepository, MockAppPropertyFinanceSecurityDetailsRepository>();
-                        
+             //For busniess and individual repos 
             services.AddSingleton<IAppAssetFinanceBusniessRepository, MockAppAssetFinanceBusniessRepository>();
             services.AddSingleton<IAppAssetFinanceIndividualRepository, MockAppAssetFinanceIndividualRepository>();
 

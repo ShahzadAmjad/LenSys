@@ -7,7 +7,7 @@ using LenSys.Models.BusniessKeyPrincipals;
 using LenSys.Models.BusniessLiabilities;
 using LenSys.Models.BusniessServiceability;
 using LenSys.Models.BusniessUploadDocument;
-using LenSys.Models.Home;
+using LenSys.Models.Home.Lead;
 using LenSys.Models.IndividualAddressDetails;
 using LenSys.Models.IndividualAsset;
 using LenSys.Models.IndividualCreditHistory;

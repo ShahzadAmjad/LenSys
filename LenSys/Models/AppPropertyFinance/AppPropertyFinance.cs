@@ -1,4 +1,4 @@
-﻿using LenSys.Models.Home;
+﻿using LenSys.Models.Home.Lead;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

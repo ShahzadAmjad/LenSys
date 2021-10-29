@@ -5,12 +5,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LenSys.Models.Home
+namespace LenSys.Models.Home.Lead
 {
     public class Lead
     {
         [Key]
-        //[DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int LeadId { get; set; }
         public string LoanPurpose { get; set; }
         public int LoanAmount { get; set; }

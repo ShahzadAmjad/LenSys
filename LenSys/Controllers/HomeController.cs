@@ -11,7 +11,7 @@ using LenSys.Models.AppDevelopmentFinance.AppDevelopmentFinanceIndividual;
 using LenSys.Models.AppPropertyFinance;
 using LenSys.Models.AppPropertyFinance.AppPropertyFinanceBusniess;
 using LenSys.Models.AppPropertyFinance.AppPropertyFinanceIndividual;
-using LenSys.Models.Home;
+using LenSys.Models.Home.Lead;
 using LenSys.Models.Home.AllApplications;
 using LenSys.Models.Home.Search;
 using Microsoft.AspNetCore.Mvc;
@@ -19,6 +19,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using LenSys.Models.Home;
 
 namespace LenSys.Controllers
 {
@@ -26,7 +27,7 @@ namespace LenSys.Controllers
     {
 
         private readonly IAllApplicationsRepository _allApplicationsRepository;
-
+        private ILeadRepository _leadRepository;
         private IAppAssetFinanceRepository _appAssetFinanceRepository;
         private IAppBusniessFinanceRepository _appBusniessFinanceRepository;
         private IAppDevelopmentFinanceRepository _appDevelopmentFinanceRepository;
@@ -69,7 +70,7 @@ namespace LenSys.Controllers
             IAppPropertyFinanceIndividualRepository appPropertyFinanceIndividualRepository,
             IAppBusniessFinanceSecurityDetailsRepository appBusniessFinanceSecurityDetailsRepository,
             IAppDevelopmentFinanceSecurityDetailsRepository appDevelopmentFinanceSecurityDetailsRepository,
-            IAppPropertyFinanceSecurityDetailsRepository appPropertyFinanceSecurityDetailsRepository)
+            IAppPropertyFinanceSecurityDetailsRepository appPropertyFinanceSecurityDetailsRepository, ILeadRepository leadRepository)
         {
             this._allApplicationsRepository = allApplicationsRepository;
             _appAssetFinanceRepository = appAssetFinanceRepository;
@@ -87,6 +88,7 @@ namespace LenSys.Controllers
             _appBusniessFinanceSecurityDetailsRepository = appBusniessFinanceSecurityDetailsRepository;
             _appDevelopmentFinanceSecurityDetailsRepository = appDevelopmentFinanceSecurityDetailsRepository;
             _appPropertyFinanceSecurityDetailsRepository = appPropertyFinanceSecurityDetailsRepository;
+            _leadRepository = leadRepository;
         }
         public ViewResult Index()
         {
@@ -107,41 +109,42 @@ namespace LenSys.Controllers
         [HttpPost]
         public IActionResult Lead(Lead lead)
         {
-            //if (ModelState.IsValid)
+            //Lead lead1 = _leadRepository.Add(lead);
+            ////if (ModelState.IsValid)
+            //{
+            if (lead.LoanPurpose == "Asset finance")
             {
-                if (lead.LoanPurpose == "Asset finance")
-                {
-                    AppAssetFinance appAssetFinance = new AppAssetFinance { CompanyName = lead.CompanyBusniessName };
+                AppAssetFinance appAssetFinance = new AppAssetFinance { CompanyName = lead.CompanyBusniessName };
 
-                    appAssetFinance.Lead = lead;
-                    _appAssetFinanceRepository.Add(appAssetFinance);
-                }
-
-                else if (lead.LoanPurpose == "Business finance")
-                {
-                    AppBusniessFinance appBusniessFinance = new AppBusniessFinance { AccountantCompany = lead.CompanyBusniessName };
-
-                    appBusniessFinance.Lead = lead;
-                    _appBusniessFinanceRepository.Add(appBusniessFinance);
-                }
-                else if (lead.LoanPurpose == "Development finance")
-                {
-                    AppDevelopmentFinance appDevelopmentFinance = new AppDevelopmentFinance { DetailsOfBuildersContrators = lead.CompanyBusniessName };
-
-                    appDevelopmentFinance.Lead = lead;
-                    _appDevelopmentFinanceRepository.Add(appDevelopmentFinance);
-
-                }
-                else if (lead.LoanPurpose == "Property finance")
-                {
-                    AppPropertyFinance appPropertyFinance = new AppPropertyFinance() { AccountantCompany = lead.CompanyBusniessName };
-
-                    appPropertyFinance.Lead = lead;
-                    _appPropertyFinanceRepository.Add(appPropertyFinance);
-                }
-                var allApplicationsConcat = _allApplicationsRepository.GetAllApplications();
-                return View("AllApplications", allApplicationsConcat);
+                appAssetFinance.Lead = lead;
+                _appAssetFinanceRepository.Add(appAssetFinance);
             }
+
+            else if (lead.LoanPurpose == "Business finance")
+            {
+                AppBusniessFinance appBusniessFinance = new AppBusniessFinance { AccountantCompany = lead.CompanyBusniessName };
+
+                appBusniessFinance.Lead = lead;
+                _appBusniessFinanceRepository.Add(appBusniessFinance);
+            }
+            else if (lead.LoanPurpose == "Development finance")
+            {
+                AppDevelopmentFinance appDevelopmentFinance = new AppDevelopmentFinance { DetailsOfBuildersContrators = lead.CompanyBusniessName };
+
+                appDevelopmentFinance.Lead = lead;
+                _appDevelopmentFinanceRepository.Add(appDevelopmentFinance);
+
+            }
+            else if (lead.LoanPurpose == "Property finance")
+            {
+                AppPropertyFinance appPropertyFinance = new AppPropertyFinance() { AccountantCompany = lead.CompanyBusniessName };
+
+                appPropertyFinance.Lead = lead;
+                _appPropertyFinanceRepository.Add(appPropertyFinance);
+            }
+            var allApplicationsConcat = _allApplicationsRepository.GetAllApplications();
+            return View("AllApplications", allApplicationsConcat);
+            //}
 
             //return View("Lead");
         }

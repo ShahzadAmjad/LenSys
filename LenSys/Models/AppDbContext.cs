@@ -1,4 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using LenSys.Models.Home.Lead;
+using LenSys.Models.Individual;
+using LenSys.Models.Busniess;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +16,10 @@ namespace LenSys.Models
         {
 
         }
+        public DbSet<Lead> Lead { get; set; }
+        public DbSet<Individual.Individual> Individual { get; set; }
+        public DbSet<Busniess.Busniess> Busniess { get; set; }
+
 
         public DbSet<AppAssetFinance.AppAssetFinance> AppAssetFinance { get; set; }
         public DbSet<AppBusniessFinance.AppBusniessFinance> AppBusniessFinance { get; set; }

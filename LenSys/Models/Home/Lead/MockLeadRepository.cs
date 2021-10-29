@@ -5,8 +5,10 @@ using System.Threading.Tasks;
 
 namespace LenSys.Models.Home
 {
-    interface ILeadRepository
+    public class MockLeadRepository//: ILeadRepository
     {
-        Lead Add(Lead lead);
+
+
+
     }
 }

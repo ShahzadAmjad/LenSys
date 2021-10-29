@@ -13,7 +13,7 @@ namespace LenSys.Models.AppAssetFinance
         [Key]
         public int AssetFinId { get; set; }
 
-        public Lead Lead { get; set; }
+        public Home.Lead.Lead Lead { get; set; }
 
         public List<AppAssetFinanceIndividual.AppAssetFinanceIndividual> individuals { get; set; }
         public List<AppAssetFinanceBusniess.AppAssetFinanceBusniess> busniesses { get; set; }
