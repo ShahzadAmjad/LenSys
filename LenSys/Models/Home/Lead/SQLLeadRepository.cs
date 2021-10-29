@@ -17,7 +17,10 @@ namespace LenSys.Models.Home.Lead
 
         public Lead Add(Lead lead)
         {
-            throw new NotImplementedException();
+            Context.Lead.Add(lead);
+            Context.SaveChanges();
+            return lead;
+
         }
 
         public IEnumerable<Lead> ClearLeadList()
@@ -27,17 +30,24 @@ namespace LenSys.Models.Home.Lead
 
         public Lead Delete(int id)
         {
-            throw new NotImplementedException();
+            Lead lead = GetLead(id);
+            if (lead != null)
+            {
+                Context.Lead.Remove(lead);
+                Context.SaveChanges();
+            }
+            return lead;
         }
 
         public IEnumerable<Lead> GetAllLeads()
         {
-            throw new NotImplementedException();
+            return Context.Lead;
         }
 
-        public Lead GetLead(int serviceabilityId)
+        public Lead GetLead(int Id)
         {
-            throw new NotImplementedException();
+            Lead lead = Context.Lead.Find(Id);
+            return lead;
         }
 
         public IEnumerable<Lead> SetLeadList(IEnumerable<Lead> LeadList)
@@ -45,9 +55,12 @@ namespace LenSys.Models.Home.Lead
             throw new NotImplementedException();
         }
 
-        public Lead Update(Lead lead)
+        public Lead Update(Lead leadChanges)
         {
-            throw new NotImplementedException();
+            var lead = Context.Lead.Attach(leadChanges);
+            lead.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            Context.SaveChanges();
+            return leadChanges;
         }
     }
 }
