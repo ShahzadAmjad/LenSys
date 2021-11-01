@@ -109,44 +109,44 @@ namespace LenSys.Controllers
         [HttpPost]
         public IActionResult Lead(Lead lead)
         {
-             _leadRepository.Add(lead);
-            ////if (ModelState.IsValid)
-            //{
-            //if (lead.LoanPurpose == "Asset finance")
-            //{
-            //    AppAssetFinance appAssetFinance = new AppAssetFinance { CompanyName = lead.CompanyBusniessName };
+            //_leadRepository.Add(lead);
+            //if (ModelState.IsValid)
+            {
+                if (lead.LoanPurpose == "Asset finance")
+                {
+                    AppAssetFinance appAssetFinance = new AppAssetFinance { CompanyName = lead.CompanyBusniessName };
 
-            //    appAssetFinance.Lead = lead;
-            //    _appAssetFinanceRepository.Add(appAssetFinance);
-            //}
+                    appAssetFinance.Lead = lead;
+                    _appAssetFinanceRepository.Add(appAssetFinance);
+                }
 
-            //else if (lead.LoanPurpose == "Business finance")
-            //{
-            //    AppBusniessFinance appBusniessFinance = new AppBusniessFinance { AccountantCompany = lead.CompanyBusniessName };
+                else if (lead.LoanPurpose == "Business finance")
+                {
+                    AppBusniessFinance appBusniessFinance = new AppBusniessFinance { AccountantCompany = lead.CompanyBusniessName };
 
-            //    appBusniessFinance.Lead = lead;
-            //    _appBusniessFinanceRepository.Add(appBusniessFinance);
-            //}
-            //else if (lead.LoanPurpose == "Development finance")
-            //{
-            //    AppDevelopmentFinance appDevelopmentFinance = new AppDevelopmentFinance { DetailsOfBuildersContrators = lead.CompanyBusniessName };
+                    appBusniessFinance.Lead = lead;
+                    _appBusniessFinanceRepository.Add(appBusniessFinance);
+                }
+                else if (lead.LoanPurpose == "Development finance")
+                {
+                    AppDevelopmentFinance appDevelopmentFinance = new AppDevelopmentFinance { DetailsOfBuildersContrators = lead.CompanyBusniessName };
 
-            //    appDevelopmentFinance.Lead = lead;
-            //    _appDevelopmentFinanceRepository.Add(appDevelopmentFinance);
+                    appDevelopmentFinance.Lead = lead;
+                    _appDevelopmentFinanceRepository.Add(appDevelopmentFinance);
 
-            //}
-            //else if (lead.LoanPurpose == "Property finance")
-            //{
-            //    AppPropertyFinance appPropertyFinance = new AppPropertyFinance() { AccountantCompany = lead.CompanyBusniessName };
+                }
+                else if (lead.LoanPurpose == "Property finance")
+                {
+                    AppPropertyFinance appPropertyFinance = new AppPropertyFinance() { AccountantCompany = lead.CompanyBusniessName };
 
-            //    appPropertyFinance.Lead = lead;
-            //    _appPropertyFinanceRepository.Add(appPropertyFinance);
-            //}
-            //var allApplicationsConcat = _allApplicationsRepository.GetAllApplications();
-            //return View("AllApplications", allApplicationsConcat);
-            //}
+                    appPropertyFinance.Lead = lead;
+                    _appPropertyFinanceRepository.Add(appPropertyFinance);
+                }
+                var allApplicationsConcat = _allApplicationsRepository.GetAllApplications();
+                return View("AllApplications", allApplicationsConcat);
+            }
 
-            return View("Lead");
+            //return View("Lead");
         }
         [HttpGet]
         public ViewResult Search()
